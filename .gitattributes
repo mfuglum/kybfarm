@@ -1,0 +1,2 @@
+edge/nohup.out filter=lfs diff=lfs merge=lfs -text
+edge/*.out filter=lfs diff=lfs merge=lfs -text
