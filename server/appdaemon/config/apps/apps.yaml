@@ -1,0 +1,12 @@
+hello_world:
+  module: hello
+  class: HelloWorld
+
+# Dummy control app
+dummy_control:
+  module: dummy_control
+  class: DummyControl
+  gain: 0.5
+  reference_value: 22
+  sensor: sensor.desktop_gf_scd_41_temperature
+  control_signal_topic: ha/desktop_gf/actuators/temperature

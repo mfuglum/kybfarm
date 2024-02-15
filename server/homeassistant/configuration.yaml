@@ -1,0 +1,61 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Add additional containers directly to the Home Assistant dashboard
+panel_iframe:
+  appdaemon:
+    title: "AppDaemon"
+    icon: "mdi:application"
+    url: !secret appdaemon_url
+  influxdb:
+    title: "InfluxDB"
+    icon: "mdi:database"
+    url: !secret influxdb_url
+
+automation: !include automations.yaml
+# script: !include scripts.yaml
+# scene: !include scenes.yaml
+
+# InfluxDB Database configuration
+influxdb: !include influxdb.yaml
+
+# Tunnel configuartion for remote access
+http: !include cloudflare.yaml
+
+# MQTT Configuration to receive MQTT data
+mqtt:
+  # Broker configuration: Must be done in GUI
+  
+  # Sensor configuration
+  sensor:
+    - name: "Desktop GF SCD-41 Temperature"
+      unique_id: "GF_SCD-41_TEMP"
+      state_topic: "res/ha/desktop_gf/sensors/SCD41"
+      value_template: "{{value_json['fields'].temperature}}"
+      unit_of_measurement: "°C"
+      icon: mdi:thermometer
+
+    - name: "Desktop GF SCD-41 Humidity"
+      unique_id: "GF_SCD-41_RH"
+      state_topic: "res/ha/desktop_gf/sensors/SCD41"
+      value_template: "{{value_json['fields'].humidity}}"
+      unit_of_measurement: "%[RH]"
+      icon: mdi:water-percent
+
+    - name: "Desktop GF SCD-41 CO2"
+      unique_id: "GF_SCD-41_CO2"
+      state_topic: "res/ha/desktop_gf/sensors/SCD41"
+      value_template: "{{value_json['fields'].CO2}}"
+      unit_of_measurement: "ppm"
+      icon: mdi:smoke
+
+    - name: "Desktop GF Dummy Control Signal for Temperature"
+      unique_id: "GF_DUMMY_CONTROL_SIGNAL_TEMP"
+      state_topic: "ha/desktop_gf/actuators/temperature"
+      value_template: "{{value_json['control_signal'] | float}}"
+      unit_of_measurement: "[float]"
+      icon: mdi:heat-wave
