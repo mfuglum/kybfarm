@@ -10,3 +10,14 @@ dummy_control:
   reference_value: 22
   sensor: sensor.desktop_gf_scd_41_temperature
   control_signal_topic: ha/desktop_gf/actuators/temperature
+
+# # WIP general control app
+# controller_app:
+#   module: controller
+#   class: PIDController
+#   sensor: sensor.temperature_farming_container
+#   actuator: light.heater
+#   setpoint: 22.5
+#   Kp: 0.1
+#   Ki: 0.01
+#   Kd: 0.05
