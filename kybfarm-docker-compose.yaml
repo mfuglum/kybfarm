@@ -1,4 +1,5 @@
 version: "3"
+
 services:
   homeassistant:
     container_name: homeassistant_kybfarm
@@ -6,13 +7,14 @@ services:
     volumes:
       - ./server/homeassistant/config:/config 
       - /etc/localtime:/etc/localtime:ro
-      - /run/dbus:/run/dbus:ro
+      - /run/dbus:/run/dbus:ro  # For bluetooth integration
     restart: unless-stopped
     privileged: true
+    # network_mode: host  # (Apparently, this does not work when using Docker Desktop. Must instead add ports manually.)
     ports:
       - 8123:8123
     depends_on:
-      - influxdb-service
+      - influxdb
     env_file:
       - .env
 
@@ -20,38 +22,28 @@ services:
     container_name: appdaemon_kybfarm
     image: acockburn/appdaemon:latest
     volumes:
-      - /etc/localtime:/etc/localtime
       - ./server/appdaemon/config:/conf
-    # environment:
-    #  - HA_URL=${APPDAEMON_HA_URL:?error}
-    #  - TOKEN=${APPDAEMON_TOKEN:?error}
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
     ports:
       - 5050:5050
     depends_on:
       - homeassistant
-    restart: always
     env_file:
       - .env
 
 
-  influxdb-service:
-    image: influxdb:latest
+  influxdb:
     container_name: influxdb_kybfarm
-    restart: always
-    ports:
-      - 8086:8086
+    image: influxdb:latest
     volumes:
       - ./server/influxdb/data:/var/lib/influxdb2
       - ./server/influxdb/config:/etc/influxdb2
+    restart: unless-stopped
+    ports:
+      - 8086:8086
     env_file:
       - .env
-    # environment:
-    #   - DOCKER_INFLUXDB_INIT_MODE=setup
-    #   - DOCKER_INFLUXDB_INIT_USERNAME=${DOCKER_INFLUXDB_INIT_USERNAME:?error}
-    #   - DOCKER_INFLUXDB_INIT_PASSWORD=${DOCKER_INFLUXDB_INIT_PASSWORD:?error}
-    #   - DOCKER_INFLUXDB_INIT_ORG=${DOCKER_INFLUXDB_INIT_ORG:?error}
-    #   - DOCKER_INFLUXDB_INIT_BUCKET=${DOCKER_INFLUXDB_INIT_BUCKET:?error}
-    #   - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN:?error}
 
   tunnel:
     container_name: cloudflared_tunnel_kybfarm
@@ -60,6 +52,3 @@ services:
     command: tunnel run
     env_file:
       - .env
-    # environment:
-    #  - TUNNEL_TOKEN=${CLOUDFLARE_TOKEN:?error}
-

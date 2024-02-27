@@ -10,11 +10,14 @@ panel_iframe:
   appdaemon:
     title: "AppDaemon"
     icon: "mdi:application"
+    # icon: "mdi:home-automation"
     url: !secret appdaemon_url
+    require_admin: true
   influxdb:
     title: "InfluxDB"
     icon: "mdi:database"
     url: !secret influxdb_url
+    require_admin: true
 
 automation: !include automations.yaml
 # script: !include scripts.yaml

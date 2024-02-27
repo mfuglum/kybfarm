@@ -1,0 +1,4 @@
+.env
+secrets.yaml
+server/venv
+server/influxdb
