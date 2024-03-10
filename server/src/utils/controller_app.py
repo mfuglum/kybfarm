@@ -5,9 +5,10 @@ This is a general control app meant for inheriting custom control modules.
 Its purpose is to abstract the interaction with InfluxDB and AppDaemon
 """
 
+import os
 import appdaemon.plugins.hass.hassapi as hass
-from influxdb_handler import InfluxDBHandler
-from controllers import PIDController
+from server.src.utils.influxdb_handler import InfluxDBHandler
+from server.src.utils.controllers import PIDController
 
 class PIDControllerApp(hass.Hass):
     def initialize(self):
@@ -22,9 +23,9 @@ class PIDControllerApp(hass.Hass):
 
         # Initialize InfluxDBHandler with correct user details
         self.db_handler = InfluxDBHandler(
-            bucket = "FarmData",
-            org = "kybfarm",
-            token = "opk12eopkop12j3po12j321jioj4klbnads",
+            bucket = os.getenv("DOCKER_INFLUXDB_INIT_BUCKET"),
+            org = os.getenv("DOCKER_INFLUXDB_INIT_ORG"),
+            token = os.getenv("DOCKER_INFLUXDB_INIT_ADMIN_TOKEN"),
             url = "http://localhost:8086"
         )
 

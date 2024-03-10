@@ -1,5 +1,5 @@
 import time
-from controllers import PIDController
+from server.src.utils.controllers import PIDController
 
 # Simulation parameters
 setpoint = 100.0  # Target temperature to maintain
@@ -22,7 +22,7 @@ def simulate_system(control_signal):
 # Test loop
 for _ in range(100):  # Run for 100 iterations
     # PID controller calculates the control signal
-    control_signal = pid_controller.calculate_output_value(setpoint, system_temperature)
+    control_signal = pid_controller.calculate_control_signal(setpoint, system_temperature)
     
     # Simulate applying the control signal to the system and getting the new temperature
     new_temperature = simulate_system(control_signal)
