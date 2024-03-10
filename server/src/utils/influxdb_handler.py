@@ -57,42 +57,45 @@ class InfluxDBHandler:
 
         # Write the datapoint to the database
         self._write_api.write(bucket=self._bucket, org=self._org, record=data_point)
-
-    def query_from_database(self, measurement: str, field: str, tags: dict, start: str='1h', stop: str='now()') -> object:
+    
+    def query_latest_from_database(self, measurement: str, field: str, tags: dict, start: str="0", stop: str='now()') -> object:
         """
-        Queries an array of data points from the database.
+        Queries the latest recorded datapoint in the specified column from the database.
         
         Parameters:
             measurement: The measurement name.
             field (optional): The field key-value pairs.
             tags: The tag key-value pairs.
-            start: The start of the time interval to query data over.
-            stop (optional): The end of the time interval to query data over. Defaults to current time.
+            start (optional): The earliest time to query data from. Defaults to the Unix epoch, January 1st 1970 at 00:00:00 UTC.
+            stop (optional): The latest time to query data from. Defaults to current time.
 
         Returns:
-            tables: The tables that result from the query.
+            tables: The FluxTable object that results from the query. Access the tables record contents with the following example syntax: "tables[0].records[0].get_value()".
         """
         # Initialize the base of the flux query
-        flux_query_base = f'from(bucket:"{self._bucket}")\n    |> range(start: {start}, stop: {stop})\n'
+        flux_query_base = f'from(bucket: "{self._bucket}")\n  |> range(start: {start}, stop: {stop})\n'
 
         # Initialize the filter part of the flux query
         flux_query_filters = ""
 
         # Add measurement filter
-        flux_query_filters += f'    |> filter(fn:(r) => r._measurement == "{measurement}")\n'
+        flux_query_filters += f'  |> filter(fn: (r) => r._measurement == "{measurement}")\n'
 
         # Add field filter
-        flux_query_filters += f'    |> filter(fn:(r) => r._field == "{field}")\n'
+        flux_query_filters += f'  |> filter(fn: (r) => r._field == "{field}")\n'
         
         # Add tag filters
         for tag, value in tags.items():
-            flux_query_filters += f'    |> filter(fn:(r) => r.{tag} == "{value}")\n'
+            flux_query_filters += f'  |> filter(fn: (r) => r.{tag} == "{value}")\n'
+
+        # Return last record in input table
+        flux_query_filters += '  |> last()\n'
 
         # Concatenate the base and filter part of the flux query
         flux_query = flux_query_base + flux_query_filters
 
-        # Query the data points from the database
-        print("Querying database with the following Flux script:\n", flux_query)
+        # Query the data point from the database
+        print("Querying database with the following Flux script:\n", flux_query)  # This line may be removed to reduce terminal clutter.
         tables = self._query_api.query(query=flux_query)
         return tables
     
