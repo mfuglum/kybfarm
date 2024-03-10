@@ -12,7 +12,7 @@ class PController():
         """
         self.Kp = Kp
 
-    def calculate_output_value(self, setpoint: float, input_value: float) -> float:
+    def calculate_control_signal(self, setpoint: float, input_value: float) -> float:
         """
         Calculates the control output value based on the setpoint and current input value.
 
@@ -21,15 +21,15 @@ class PController():
             input_value: The current value of the input.
 
         Returns:
-            output_value: The output value from the P controller.
+            control_signal: The output value from the P controller.
         """
         # Initialize calculation parameters
         error = setpoint - input_value
 
         # P calculations
-        output_value = (self.Kp * error)
+        control_signal = (self.Kp * error)
 
-        return output_value
+        return control_signal
     
 class PDController():
     """A Proportional-Derivative (PD) controller."""
@@ -49,7 +49,7 @@ class PDController():
         self.previous_time = None
         self.previous_error = 0
 
-    def calculate_output_value(self, setpoint: float, input_value: float) -> float:
+    def calculate_control_signal(self, setpoint: float, input_value: float) -> float:
         """
         Calculates the control output value based on the setpoint and current input value.
 
@@ -58,7 +58,7 @@ class PDController():
             input_value: The current value of the input.
 
         Returns:
-            output_value: The output value from the PD controller.
+            control_signal: The output value from the PD controller.
         """
         # Initialize calculation parameters
         error = setpoint - input_value
@@ -75,13 +75,13 @@ class PDController():
             derivative = delta_error / delta_time if delta_time > 0 else 0
 
         # Calculate output value
-        output_value = (self.Kp * error) + (self.Kd * derivative)
+        control_signal = (self.Kp * error) + (self.Kd * derivative)
 
         # Update for next calculation
         self.previous_time = current_time
         self.previous_error = error
 
-        return output_value
+        return control_signal
 
 class PIDController():
     """A Proportional-Integral-Derivative (PID) controller."""
@@ -104,11 +104,11 @@ class PIDController():
         self.min_integral = min_integral
 
         # Initialize internal states
-        self.previous_time = None  # Initialize as None to indicate first call of calculate_output_value()
+        self.previous_time = None  # Initialize as None to indicate first call of calculate_control_signal()
         self.previous_error = 0
         self.integral = 0
 
-    def calculate_output_value(self, setpoint: float, input_value: float) -> float:
+    def calculate_control_signal(self, setpoint: float, input_value: float) -> float:
         """
         Calculates the control output value based on the setpoint and current input value.
 
@@ -117,7 +117,7 @@ class PIDController():
             input_value: The current value of the input.
 
         Returns:
-            output_value: The output value from the PID controller.
+            control_signal: The output value from the PID controller.
         """
         # Initialize calculation parameters
         error = setpoint - input_value
@@ -136,10 +136,10 @@ class PIDController():
             self.integral = max(min(self.integral, self.max_integral), self.min_integral)  # Anti-Windup
 
         # Calculate output value
-        output_value = (self.Kp * error) + (self.Ki * self.integral) + (self.Kd * derivative)
+        control_signal = (self.Kp * error) + (self.Ki * self.integral) + (self.Kd * derivative)
 
         # Update for next calculation
         self.previous_time = current_time
         self.previous_error = error
 
-        return output_value
+        return control_signal

@@ -1,4 +1,4 @@
 .env
+.venv
 secrets.yaml
-server/venv
 server/influxdb
