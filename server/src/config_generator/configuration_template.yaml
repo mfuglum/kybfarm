@@ -1,0 +1,70 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Add additional containers directly to the Home Assistant dashboard
+panel_iframe:
+  appdaemon:
+    title: "AppDaemon"
+    icon: "mdi:application"
+    url: {{APPDAEMON_URL}}
+    require_admin: true
+  influxdb:
+    title: "InfluxDB"
+    icon: "mdi:database"
+    url: {{INFLUXDB_URL}}
+    require_admin: true
+
+automation: !include automations.yaml
+# script: !include scripts.yaml
+# scene: !include scenes.yaml
+
+# InfluxDB Database configuration
+influxdb: !include influxdb.yaml
+
+# Tunnel configuartion for remote access
+http: !include cloudflare.yaml
+
+# MQTT Configuration to receive MQTT data
+mqtt:
+  # Broker configuration: Must be done in GUI
+  
+  # Sensor configuration
+  sensor:
+    - name: {{TEMPERATURE_11_NAME}}
+      unique_id: {{TEMPERATURE_11_HA_ID}}
+      state_topic: {{MQTT_SENSOR_11_RES}}
+      value_template: {{TEMPERATURE_11_VALUE_TEMPLATE}}
+      unit_of_measurement: {{TEMPERATURE_11_HA_UNIT}}
+      icon: {{TEMPERATURE_11_HA_ICON}}
+
+    - name: {{HUMIDITY_11_NAME}}
+      unique_id: {{HUMIDITY_11_HA_ID}}
+      state_topic: {{MQTT_SENSOR_11_RES}}
+      value_template: {{HUMIDITY_11_VALUE_TEMPLATE}}
+      unit_of_measurement: {{HUMIDITY_11_HA_UNIT}}
+      icon: {{HUMIDITY_11_HA_ICON}}
+
+    - name: {{CO2_11_NAME}}
+      unique_id: {{CO2_11_HA_ID}}
+      state_topic: {{MQTT_SENSOR_11_RES}}
+      value_template: {{CO2_11_VALUE_TEMPLATE}}
+      unit_of_measurement: {{CO2_11_HA_UNIT}}
+      icon: {{CO2_11_HA_ICON}}
+
+    - name: {{P_10_NAME}}
+      unique_id: {{P_10_HA_ID}}
+      state_topic: {{MQTT_P_10_STATE}}
+      value_template: {{P_10_VALUE_TEMPLATE}}
+      unit_of_measurement: {{P_10_HA_UNIT}}
+      icon: {{P_10_HA_ICON}}
+
+    - name: {{TEMPERATURE_10_NAME}}
+      unique_id: {{TEMPERATURE_10_HA_ID}}
+      state_topic: {{MQTT_SENSOR_10_RES}}
+      value_template: {{TEMPERATURE_10_VALUE_TEMPLATE}}
+      unit_of_measurement: {{TEMPERATURE_10_HA_UNIT}}
+      icon: {{TEMPERATURE_10_HA_ICON}}

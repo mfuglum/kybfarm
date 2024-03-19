@@ -2,3 +2,6 @@
 .venv
 secrets.yaml
 server/influxdb
+configuration.yaml
+automations.yaml
+influxdb.yaml

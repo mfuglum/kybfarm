@@ -8,7 +8,7 @@ dummy_control:
   class: DummyControl
   gain: 0.5
   reference_value: 22
-  sensor: sensor.desktop_gf_scd_41_temperature
+  sensor: sensor.scd_41_temperature
   control_signal_topic: ha/desktop_gf/actuators/temperature
 
 # # WIP general control app
