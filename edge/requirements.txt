@@ -7,6 +7,7 @@ adafruit-circuitpython-scd4x==1.4.1
 adafruit-circuitpython-typing==1.9.5
 Adafruit-PlatformDetect==3.53.0
 Adafruit-PureIO==1.1.11
+minimalmodbus==2.1.1
 paho-mqtt==1.6.1
 pyftdi==0.55.0
 pyserial==3.5
