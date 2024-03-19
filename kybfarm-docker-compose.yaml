@@ -1,6 +1,19 @@
 version: "3"
 
 services:
+  config_generator:
+    container_name: config_generator 
+    build: server/src/config_generator
+    volumes:
+      - ./.env:/app/.env
+      - ./server/homeassistant/config/automations.yaml:/app/server/homeassistant/config/automations.yaml
+      - ./server/homeassistant/config/configuration.yaml:/app/server/homeassistant/config/configuration.yaml
+      - ./server/homeassistant/config/influxdb.yaml:/app/server/homeassistant/config/influxdb.yaml
+      - ./server/src/config_generator/config_generator.py:/app/server/src/config_generator/config_generator.py
+    # env_file:
+    #  - .env
+
+
   homeassistant:
     container_name: homeassistant_kybfarm
     image: ghcr.io/home-assistant/home-assistant:stable
@@ -14,9 +27,12 @@ services:
     ports:
       - 8123:8123
     depends_on:
+      - config_generator
       - influxdb
     env_file:
       - .env
+    environment:
+      - TEMPERATURE_11_NAME=${TEMPERATURE_11_NAME:?error}
 
   appdaemon:
     container_name: appdaemon_kybfarm
@@ -28,6 +44,7 @@ services:
     ports:
       - 5050:5050
     depends_on:
+      - config_generator
       - homeassistant
     env_file:
       - .env
@@ -42,6 +59,8 @@ services:
     restart: unless-stopped
     ports:
       - 8086:8086
+#    depends_on:
+#      - config_generator
     env_file:
       - .env
 
@@ -50,5 +69,7 @@ services:
     image: cloudflare/cloudflared:latest
     restart: unless-stopped
     command: tunnel run
+    depends_on:
+      - config_generator
     env_file:
       - .env
