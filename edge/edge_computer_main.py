@@ -85,7 +85,7 @@ client.on_message = on_message
 # Assign the specific callback functions for the client
 client.message_callback_add("dt/gf/scd41/req", on_message_SCD41)
 client.message_callback_add("dt/gf/sym01/req", on_message_SYM01)
-client.message_callback_add("dt/gf/light01/req", on_message_SLIGHT01)
+client.message_callback_add("dt/gf/slight01/req", on_message_SLIGHT01)
 
 # Connect to the MQTT server
 try:
