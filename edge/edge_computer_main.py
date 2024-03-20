@@ -111,14 +111,14 @@ except Exception as e:
     print("SYM01, error:", str(e))
 # Activate SLIGHT-01 sensor
 try:
-    sensor_SLIGHT01 = sensor_SLIGHT01_modbus.SLIGHT01(   portname='/dev/ttySC1',
+    sensor_SLIGHT01 = sensor_SLIGHT01_modbus.SLIGHT01(  portname='/dev/ttySC1',
                                                         slaveaddress=13, 
                                                         debug=False)
     print(sensor_SLIGHT01)
     print(sensor_SLIGHT01.get_baudrate())
 except Exception as e:
     print("SLIGHT01, error:", str(e))
-    
+
 # Start main loop
 try:
     # Main loop
