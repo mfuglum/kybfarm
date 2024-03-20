@@ -34,6 +34,13 @@ mqtt:
   
   # Sensor configuration
   sensor:
+    - name: {{LIGHT_01_NAME}}
+      unique_id: {{LIGHT_01_HA_ID}}
+      state_topic: {{MQTT_SENSOR_01_RES}}
+      value_template: {{LIGHT_01_VALUE_TEMPLATE}}
+      unit_of_measurement: {{LIGHT_01_HA_UNIT}}
+      icon: {{LIGHT_01_HA_ICON}}git
+
     - name: {{TEMPERATURE_11_NAME}}
       unique_id: {{TEMPERATURE_11_HA_ID}}
       state_topic: {{MQTT_SENSOR_11_RES}}
