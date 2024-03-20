@@ -4,7 +4,7 @@ import json
 import time
 
 # from sensor_interfaces import sensor_BMP280_I2C
-from sensor_interfaces import sensor_SCD41_I2C, sensor_SYM01_modbus
+from src.sensor_interfaces import sensor_SCD41_I2C, sensor_SYM01_modbus, sensor_SLIGHT01_modbus
 
 # Import MQTT topic fetching function from the file "mqtt_topic_fetching.py
 from src.utils.mqtt_topic_fetching import fetch_mqtt_topics
@@ -18,20 +18,17 @@ print("MQTT_TOPICS:", MQTT_TOPICS)
 MQTT_SERVER = "broker.emqx.io"
 MQTT_PORT = 1883
 MQTT_KEEP_ALIVE= 60
-MQTT_PATHS = [
-    "req/desktop_gf/sensors/BMP280",
-    "dt/gf/scd41/req",
-    "dt/gf/sym01/req",
-    # "sensors/request/BMP280", 
-    # "sensors/response/BMP280"
-    ]
+# MQTT_PATHS = [
+#    "dt/gf/scd41/req",
+#    "dt/gf/sym01/req",
+#    ]
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with code " + str(rc))
     # Subscribe in on_connect to renew subsriptions in case of lost connection
     # NB: This way of subscribing to path is for testing purposes
-    for path in MQTT_PATHS:
-        client.subscribe(path)
+    for topic in MQTT_TOPICS:
+        client.subscribe(topic)
 
 # Catch-all callback function for messages
 def on_message(client, userdata, msg):
@@ -63,7 +60,16 @@ def on_message_SYM01(client, userdata, msg):
         sensor_SYM01.fetch_and_print_data()
     except Exception as e:
         print("SYM01, data fetch error:", str(e))
-    
+
+def on_message_SLIGHT01(client, userdata, msg):
+    req_msg = json.loads(msg.payload)
+    try:
+        res_payload = json.dumps(sensor_SLIGHT01.fetch_and_return_data())
+        client.publish(req_msg["res_topic"], res_payload)
+        # Print payload:
+        print(res_payload)
+    except Exception as e:
+        print("SLIGHT01, data fetch error:", str(e))
 
 # Open or create log file(s)
 log_file_BMP280 = open("logging/log_file_BMP280.txt", "a")
@@ -79,6 +85,7 @@ client.on_message = on_message
 # Assign the specific callback functions for the client
 client.message_callback_add("dt/gf/scd41/req", on_message_SCD41)
 client.message_callback_add("dt/gf/sym01/req", on_message_SYM01)
+client.message_callback_add("dt/gf/light01/req", on_message_SLIGHT01)
 
 # Connect to the MQTT server
 try:
@@ -102,7 +109,16 @@ try:
     print(sensor_SYM01.get_baudrate())
 except Exception as e:
     print("SYM01, error:", str(e))
-
+# Activate SLIGHT-01 sensor
+try:
+    sensor_SLIGHT01 = sensor_SLIGHT01_modbus.SLIGHT01(   portname='/dev/ttySC1',
+                                                        slaveaddress=13, 
+                                                        debug=False)
+    print(sensor_SLIGHT01)
+    print(sensor_SLIGHT01.get_baudrate())
+except Exception as e:
+    print("SLIGHT01, error:", str(e))
+    
 # Start main loop
 try:
     # Main loop
