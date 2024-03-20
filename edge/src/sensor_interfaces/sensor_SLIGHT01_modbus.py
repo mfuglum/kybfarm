@@ -67,7 +67,7 @@ class SLIGHT01( minimalmodbus.Instrument ):
     def __init__(self,
                  portname='/dev/ttySC0',
                  slaveaddress=13,
-                 mode='MODE_RTU',
+                 mode=minimalmodbus.MODE_RTU,
                  close_port_after_each_call=False,
                  debug=False):
         minimalmodbus.Instrument.__init__(self, 

@@ -70,7 +70,7 @@ class SYM01( minimalmodbus.Instrument ):
     def __init__(self,
                  portname, 
                  slaveaddress=11,
-                 mode='MODE_RTU',
+                 mode=minimalmodbus.MODE_RTU,
                  close_port_after_each_call=False,
                  debug=False):
         minimalmodbus.Instrument.__init__(self,
