@@ -16,7 +16,7 @@ data = {
     "fields": {
             "temperature": 0,
             "humidity": 0,
-            "CO2": 0},
+            "co2": 0},
     "time": datetime.datetime.now().isoformat(),
 }
 
@@ -55,6 +55,6 @@ def fetch_and_print_data():
 def fetch_and_return_data():
     data["fields"]["temperature"] = scd41.temperature
     data["fields"]["humidity"] = scd41.relative_humidity
-    data["fields"]["CO2"] = scd41.CO2
+    data["fields"]["co2"] = scd41.CO2
     data["time"] = datetime.datetime.now().isoformat()
     return data
