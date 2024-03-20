@@ -11,8 +11,8 @@ MQTT_PORT = 1883
 MQTT_KEEP_ALIVE= 60
 MQTT_PATHS = [
     "req/desktop_gf/sensors/BMP280",
-    "req/desktop_gf/sensors/SCD41",
-    "req/desktop_gf/sensors/SYM01",
+    "dt/gf/scd41/req",
+    "dt/gf/sym01/req",
     # "sensors/request/BMP280", 
     # "sensors/response/BMP280"
     ]
@@ -68,8 +68,8 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 # Assign the specific callback functions for the client
-client.message_callback_add("req/desktop_gf/sensors/SCD41", on_message_SCD41)
-client.message_callback_add("req/desktop_gf/sensors/SYM01", on_message_SYM01)
+client.message_callback_add("dt/gf/scd41/req", on_message_SCD41)
+client.message_callback_add("dt/gf/sym01/req", on_message_SYM01)
 
 # Connect to the MQTT server
 try:
