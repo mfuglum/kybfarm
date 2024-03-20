@@ -82,11 +82,11 @@ class SLIGHT01( minimalmodbus.Instrument ):
         # Get the illuminance value from the sensor
         # The illuminance value is stored in two registers, one for the high 16 bits and one for the low 16 bits
         # Read the high 16 bits register
-        illuminance_high = self.read_register(readregisteraddress=0,
+        illuminance_high = self.read_register(registeraddress=0,
                                               number_of_decimals=0,
                                               functioncode=3,
                                               signed=False)
-        illuminance_low = self.read_register(readregisteraddress=1,
+        illuminance_low = self.read_register(registeraddress=1,
                                              number_of_decimals=0,
                                              functioncode=3,
                                              signed=False)
