@@ -19,7 +19,7 @@ class SLIGHT01( minimalmodbus.Instrument ):
     
     Args:
         * portname (str):       port name
-                                Default is '/dev/ttySC0', which is the address to the RS-485 hat of the Raspberry Pi 4B
+                                Default is '/dev/ttySC1', which is the address to the RS-485 hat of the Raspberry Pi 4B
         * slaveaddress (int):   slave address in the range 1 to 247
                                 Default is 13(from manufacturer)
     
@@ -67,11 +67,15 @@ class SLIGHT01( minimalmodbus.Instrument ):
     def __init__(self,
                  portname='/dev/ttySC0',
                  slaveaddress=13,
+                 mode='MODE_RTU',
+                 close_port_after_each_call=False,
                  debug=False):
         minimalmodbus.Instrument.__init__(self, 
                                           portname, 
-                                          slaveaddress,
-                                          debug)
+                                          slaveaddress=slaveaddress,
+                                          mode=mode,
+                                          close_port_after_each_call=close_port_after_each_call,
+                                          debug=debug)
     
     # Returns illuminance value in 0-200000 lux 
     def get_illuminance(self):
