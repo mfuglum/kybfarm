@@ -106,7 +106,7 @@ try:
                                                 slaveaddress=11, 
                                                 debug=False)
     print(sensor_SYM01)
-    print(sensor_SYM01.get_baudrate())
+    # print(sensor_SYM01.get_baudrate())
 except Exception as e:
     print("SYM01, error:", str(e))
 # Activate SLIGHT-01 sensor
@@ -115,7 +115,7 @@ try:
                                                         slaveaddress=13, 
                                                         debug=False)
     print(sensor_SLIGHT01)
-    print(sensor_SLIGHT01.get_baudrate())
+    # print(sensor_SLIGHT01.get_baudrate())
 except Exception as e:
     print("SLIGHT01, error:", str(e))
 
