@@ -26,8 +26,6 @@ services:
       - influxdb
     env_file:
       - .env
-    environment:
-      - TEMPERATURE_11_NAME=${TEMPERATURE_11_NAME:?error}
 
   appdaemon:
     container_name: appdaemon_kybfarm
@@ -54,8 +52,6 @@ services:
     restart: unless-stopped
     ports:
       - 8086:8086
-#    depends_on:
-#      - config_generator
     env_file:
       - .env
 

@@ -6,6 +6,15 @@ import time
 # from sensor_interfaces import sensor_BMP280_I2C
 from sensor_interfaces import sensor_SCD41_I2C, sensor_SYM01_modbus
 
+# Import MQTT topic fetching function from the file "mqtt_topic_fetching.py
+from src.utils.mqtt_topic_fetching import fetch_mqtt_topics
+
+# Fetch MQTT topics from the .env file
+mqtt_topic_keywords = ["REQ", "CMD"]
+env_file_path = "../.env"
+MQTT_TOPICS = fetch_mqtt_topics(env_file_path, mqtt_topic_keywords)
+print("MQTT_TOPICS:", MQTT_TOPICS)
+
 MQTT_SERVER = "broker.emqx.io"
 MQTT_PORT = 1883
 MQTT_KEEP_ALIVE= 60
