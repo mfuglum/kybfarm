@@ -6,13 +6,8 @@ services:
     build: server/src/config_generator
     volumes:
       - ./.env:/app/.env
-      - ./server/homeassistant/config/automations.yaml:/app/server/homeassistant/config/automations.yaml
-      - ./server/homeassistant/config/configuration.yaml:/app/server/homeassistant/config/configuration.yaml
-      - ./server/homeassistant/config/influxdb.yaml:/app/server/homeassistant/config/influxdb.yaml
+      - ./server/homeassistant/config:/app/server/homeassistant/config
       - ./server/src/config_generator/config_generator.py:/app/server/src/config_generator/config_generator.py
-    # env_file:
-    #  - .env
-
 
   homeassistant:
     container_name: homeassistant_kybfarm
