@@ -64,24 +64,24 @@ class SPAR02( minimalmodbus.Instrument ):
                                           close_port_after_each_call, 
                                           debug)
         
-        # Returns the value of the Photosynthetically Active Radiation (PAR) in µmol/m²/s
-        def get_par(self):
-            par = self.read_long(registeraddress=1,
-                           functioncode=3,
-                           signed=False,
-                           byteorder=minimalmodbus.BYTEORDER_BIG,
-                           number_of_registers=2)
+    # Returns the value of the Photosynthetically Active Radiation (PAR) in µmol/m²/s
+    def get_par(self):
+        par = self.read_long(registeraddress=1,
+                             functioncode=3,
+                             signed=False,
+                             byteorder=minimalmodbus.BYTEORDER_BIG,
+                             number_of_registers=2)
 
-            return par
+        return par
         
-        # A function to fetch and print data from the sensor
-        def fetch_and_print_data(self):
-            par = self.get_par()
-            print(f"Photosynthetically Active Radiation (PAR): {par} µmol/m²/s")
+    # A function to fetch and print data from the sensor
+    def fetch_and_print_data(self):
+        par = self.get_par()
+        print(f"Photosynthetically Active Radiation (PAR): {par} µmol/m²/s")
 
-        # A function to fetch and return data from the sensor
-        def fetch_and_return_data(self):
-            par = self.get_par()
-            data["fields"]["par"] = par
-            data["time"] = datetime.datetime.now().isoformat()
-            return data
+    # A function to fetch and return data from the sensor
+    def fetch_and_return_data(self):
+        par = self.get_par()
+        data["fields"]["par"] = par
+        data["time"] = datetime.datetime.now().isoformat()
+        return data
