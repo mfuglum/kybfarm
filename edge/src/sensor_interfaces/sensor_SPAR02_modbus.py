@@ -66,10 +66,10 @@ class SPAR02( minimalmodbus.Instrument ):
         
     # Returns the value of the Photosynthetically Active Radiation (PAR) in µmol/m²/s
     def get_par(self):
-        par = self.read_long(registeraddress=1,
+        par = self.read_long(registeraddress=0,
                              functioncode=3,
                              signed=False,
-                             byteorder=minimalmodbus.BYTEORDER_BIG,
+                             byteorder=minimalmodbus.BYTEORDER_LITTLE_SWAP,
                              number_of_registers=2)
 
         return par
