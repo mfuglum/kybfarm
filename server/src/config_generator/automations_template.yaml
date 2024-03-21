@@ -16,11 +16,11 @@
         "data": "ha_req" }'
   mode: single
 
-- alias: {{PAR_02_REQ_AUTOMATION_ALIAS}}
+- alias: {{SENSOR_02_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{PAR_02_REQ_INTERVAL_SEC}}
+    seconds: /{{SENSOR_02_REQ_INTERVAL_SEC}}
   condition: []
   action:
   - service: mqtt.publish
@@ -28,8 +28,8 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_PAR_02_REQ}}
-      payload: '{"req_topic": {{MQTT_PAR_02_REQ}}, "res_topic": {{MQTT_PAR_02_RES}},
+      topic: {{MQTT_SENSOR_02_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_02_REQ}}, "res_topic": {{MQTT_SENSOR_02_RES}},
         "data": "ha_req" }'
   mode: single
 
