@@ -41,6 +41,13 @@ mqtt:
       unit_of_measurement: {{LIGHT_01_HA_UNIT}}
       icon: {{LIGHT_01_HA_ICON}}
 
+    - name: {{PAR_02_NAME}}
+      unique_id: {{PAR_02_HA_ID}}
+      state_topic: {{MQTT_PAR_02_STATE}}
+      value_template: {{PAR_02_VALUE_TEMPLATE}}
+      unit_of_measurement: {{PAR_02_HA_UNIT}}
+      icon: {{PAR_02_HA_ICON}}
+
     - name: {{TEMPERATURE_11_NAME}}
       unique_id: {{TEMPERATURE_11_HA_ID}}
       state_topic: {{MQTT_SENSOR_11_RES}}

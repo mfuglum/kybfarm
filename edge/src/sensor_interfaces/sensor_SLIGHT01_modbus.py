@@ -18,10 +18,16 @@ class SLIGHT01( minimalmodbus.Instrument ):
     """Instrument class for S-LIGHT-01 Light Intensity sensor.
     
     Args:
-        * portname (str):       port name
-                                Default is '/dev/ttySC1', which is the address to the RS-485 hat of the Raspberry Pi 4B
-        * slaveaddress (int):   slave address in the range 1 to 247
-                                Default is 13(from manufacturer)
+        * portname (str):                       port name
+                                                Default is '/dev/ttySC1', which is the address to the RS-485 hat of the Raspberry Pi 4B
+        * slaveaddress (int):                   slave address in the range 1 to 247
+                                                Default is 13 (from manufacturer)
+        * mode (str):                           Mode of communication.
+                                                Default is minimalmodbus.MODE_RTU
+        * close_port_after_each_call (bool):    Whether to close the port after each call.
+                                                Default is False
+        * debug (bool):                         Whether to print debug information.
+                                                Default is False
     
     From datasheet, Ch. 6. RS485 Modbus Protocol:
 
