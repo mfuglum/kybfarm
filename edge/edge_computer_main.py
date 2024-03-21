@@ -47,7 +47,7 @@ def on_message_SCD41(client, userdata, msg):
         # Write to log
         # log_file_SCD41.write("\n" + res_payload)
         # sensor_SCD41_I2C.fetch_and_print_data()
-        print(res_payload)
+        print(res_payload + "\n")
     except Exception as e:
         print("SCD41, data fetch error:", str(e))
     # else:
@@ -62,7 +62,7 @@ def on_message_SYM01(client, userdata, msg):
         #log_file_SCD41.write("\n" + json.dumps(req_msg))
         # sensor_SCD41_I2C.fetch_and_print_data()
         # sensor_SYM01.fetch_and_print_data()
-        print(res_payload)
+        print(res_payload + "\n")
     except Exception as e:
         print("SYM01, data fetch error:", str(e))
 
@@ -72,7 +72,7 @@ def on_message_SLIGHT01(client, userdata, msg):
         res_payload = json.dumps(sensor_SLIGHT01.fetch_and_return_data())
         client.publish(req_msg["res_topic"], res_payload)
         # Print payload:
-        print(res_payload)
+        print(res_payload + "\n")
     except Exception as e:
         print("SLIGHT01, data fetch error:", str(e))
 
@@ -82,7 +82,7 @@ def on_message_SPAR02(client, userdata, msg):
         res_payload = json.dumps(sensor_SPAR02.fetch_and_return_data())
         client.publish(req_msg["res_topic"], res_payload)
         # Print payload:
-        print(res_payload)
+        print(res_payload + "\n")
     except Exception as e:
         print("SPAR02, data fetch error:", str(e))
 
