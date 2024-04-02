@@ -55,6 +55,21 @@ services:
     env_file:
       - .env
 
+  mqtt:
+    container_name: mqtt_kybfarm
+    image: eclipse-mosquitto:latest
+    volumes:
+      - ./server/mosquitto/config:/mosquitto/config
+      - ./server/mosquitto/data:/mosquitto/data
+      - ./server/mosquitto/log:/mosquitto/log
+    restart: unless-stopped
+    ports:
+      - 1883:1883
+    depends_on:
+      - config_generator
+    env_file:
+      - .env
+
   tunnel:
     container_name: cloudflared_tunnel_kybfarm
     image: cloudflare/cloudflared:latest

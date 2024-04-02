@@ -5,3 +5,4 @@ server/influxdb
 configuration.yaml
 automations.yaml
 influxdb.yaml
+server/appdaemon/config/appdaemon.yaml
