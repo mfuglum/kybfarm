@@ -7,7 +7,7 @@ Activate venv:
     source venv/bin/activate
 Install required packages:
     pip install -r requirements.txt
-    
+
 Run the file:
     python edge_computer_main.py
 """
@@ -30,7 +30,7 @@ load_dotenv()
 # Fetch MQTT config values from .env file
 MQTT_SERVER = os.getenv("MOSQUITTO_BROKER_IP")
 MQTT_PORT = os.getenv("MOSQUITTO_BROKER_PORT")
-MQTT_KEEP_ALIVE= os.genenv("MQTT_EDGE_KEEP_ALIVE")
+MQTT_KEEP_ALIVE= os.getenv("MQTT_EDGE_KEEP_ALIVE")
 
 # MQTT data (dt) request (req) topics
 MQTT_SLIGTH01_DT_REQ = os.getenv("MQTT_SENSOR_01_REQ")
