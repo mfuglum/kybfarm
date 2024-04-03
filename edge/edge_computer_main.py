@@ -17,7 +17,7 @@ import json
 import time
 from dotenv import load_dotenv
 import os
-
+import string
 # from sensor_interfaces import sensor_BMP280_I2C
 from src.sensor_interfaces import (sensor_SCD41_I2C, 
                                    sensor_SYM01_modbus, 
@@ -29,8 +29,8 @@ load_dotenv()
 
 # Fetch MQTT config values from .env file
 MQTT_HOST = os.getenv("MOSQUITTO_BROKER_IP")
-MQTT_PORT = os.getenv("MOSQUITTO_BROKER_PORT")
-MQTT_KEEP_ALIVE= os.getenv("MQTT_EDGE_KEEP_ALIVE")
+MQTT_PORT = int(os.getenv("MOSQUITTO_BROKER_PORT"))
+MQTT_KEEP_ALIVE = int(os.getenv("MQTT_EDGE_KEEP_ALIVE"))
 
 # MQTT data (dt) request (req) topics
 MQTT_SLIGTH01_DT_REQ = os.getenv("MQTT_SENSOR_01_REQ")
