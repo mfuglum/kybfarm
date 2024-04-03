@@ -28,7 +28,7 @@ from src.sensor_interfaces import (sensor_SCD41_I2C,
 load_dotenv()
 
 # Fetch MQTT config values from .env file
-MQTT_SERVER = os.getenv("MOSQUITTO_BROKER_IP")
+MQTT_HOST = os.getenv("MOSQUITTO_BROKER_IP")
 MQTT_PORT = os.getenv("MOSQUITTO_BROKER_PORT")
 MQTT_KEEP_ALIVE= os.getenv("MQTT_EDGE_KEEP_ALIVE")
 
@@ -118,7 +118,7 @@ client.message_callback_add(MQTT_SCD41_DT_REQ, on_message_SCD41)
 
 # Connect to the MQTT server
 try:
-    client.connect(MQTT_SERVER, MQTT_PORT, MQTT_KEEP_ALIVE)
+    client.connect(MQTT_HOST, MQTT_PORT, MQTT_KEEP_ALIVE)
     client.loop_start()
 except:
     print("\nConnection failed\n")
