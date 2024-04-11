@@ -107,7 +107,7 @@ def on_message_RLY12(client, userdata, msg):
     try:
         print(cmd_msg)
         if cmd_msg["cmd"] == "on":
-            relay_12.on_for(cmd_msg["time"])
+            relay_12.on_for(float(cmd_msg["time"]))
         elif cmd_msg["cmd"] == "off":
             relay_12.off()
         else:
