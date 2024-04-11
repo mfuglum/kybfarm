@@ -176,7 +176,7 @@ except Exception as e:
 
 # Activate relay devices
 try:
-    relay_12 = relay_device(18)
+    relay_12 = relay_device.relay_device(18)
 except Exception as e:
     print("Relay device, error:", str(e))
 
