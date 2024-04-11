@@ -105,12 +105,13 @@ def on_message_SCD41(client, userdata, msg):
 def on_message_RLY12(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        if cmd_msg["cmd"] == "on":
-            relay_12.on_for(cmd_msg["time"])
-        elif cmd_msg["cmd"] == "off":
-            relay_12.off()
-        else:
-            print("Invalid command")
+        print(cmd_msg)
+        # if cmd_msg["cmd"] == "on":
+            # relay_12.on_for(cmd_msg["time"])
+        # elif cmd_msg["cmd"] == "off":
+            # relay_12.off()
+        # else:
+        #     print("Invalid command")
     except Exception as e:
         print("Relay 12, command error:", str(e))
 
