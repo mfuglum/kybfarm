@@ -23,6 +23,7 @@ from src.sensor_interfaces import (sensor_SCD41_I2C,
                                    sensor_SYM01_modbus, 
                                    sensor_SLIGHT01_modbus,
                                    sensor_SPAR02_modbus)
+from src.utils import relay_device
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -40,7 +41,7 @@ MQTT_SCD41_DT_REQ = os.getenv("MQTT_SENSOR_11_REQ")
 
 # MQTT command (cmd) request (req) topics
 # MQTT_RELAY01_CMD_REQ = os.getenv("MQTT_RELAY_01_REQ")
-
+MQTT_RELAY12_CMD_REQ = "cmd/relay12/req"
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with code " + str(rc))
@@ -49,6 +50,8 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_SPAR02_DT_REQ)
     client.subscribe(MQTT_SYM01_DT_REQ)
     client.subscribe(MQTT_SCD41_DT_REQ)
+
+    client.subscribe(MQTT_RELAY12_CMD_REQ)
 
 # Catch-all callback function for messages
 def on_message(client, userdata, msg):
@@ -99,6 +102,18 @@ def on_message_SCD41(client, userdata, msg):
     except Exception as e:
         print("SCD41, data fetch error:", str(e))
 
+def on_message_RLY12(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        if cmd_msg["cmd"] == "on":
+            relay_12.on_for(cmd_msg["time"])
+        elif cmd_msg["cmd"] == "off":
+            relay_12.off()
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("Relay 12, command error:", str(e))
+
 # Open or create log file(s)
 log_file_BMP280 = open("logging/log_file_BMP280.txt", "a")
 log_file_SCD41 = open("logging/log_file_SCD41.txt", "a")
@@ -115,6 +130,9 @@ client.message_callback_add(MQTT_SLIGTH01_DT_REQ, on_message_SLIGHT01)
 client.message_callback_add(MQTT_SPAR02_DT_REQ, on_message_SPAR02)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
 client.message_callback_add(MQTT_SCD41_DT_REQ, on_message_SCD41)
+
+# Testing purpouse for relays
+client.message_callback_add(MQTT_RELAY12_CMD_REQ, on_message_RLY12)
 
 # Connect to the MQTT server
 try:
@@ -155,6 +173,12 @@ try:
     sensor_SCD41_I2C.start_low_periodic_measurement()
 except Exception as e:
     print("SCD41, error:", str(e))
+
+# Activate relay devices
+try:
+    relay_12 = relay_device(18)
+except Exception as e:
+    print("Relay device, error:", str(e))
 
 # Start main loop
 try:
