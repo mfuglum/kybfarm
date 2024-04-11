@@ -107,9 +107,11 @@ def on_message_RLY12(client, userdata, msg):
     try:
         print(cmd_msg)
         if cmd_msg["cmd"] == "on":
-            relay_12.turn_on_for(float(cmd_msg["time"]))
+            relay_12.turn_on()
         elif cmd_msg["cmd"] == "off":
-            relay_12.off()
+            relay_12.turn_off()
+        elif cmd_msg["cmd"] == "on_for":
+            relay_12.turn_on_for(float(cmd_msg["time"]))
         else:
             print("Invalid command")
     except Exception as e:
