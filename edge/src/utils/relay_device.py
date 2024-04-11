@@ -13,6 +13,9 @@ class relay_device:
         # Set the pin to high as relay is OFF in high state
         GPIO.output(pin, GPIO.HIGH)
         self.pin = pin
+    
+    def __del__ (self):
+        self.cleanup()
 
     # Turn the relay ON
     def turn_on(self):

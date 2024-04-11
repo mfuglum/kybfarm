@@ -41,28 +41,54 @@ MQTT_SCD41_DT_REQ = os.getenv("MQTT_SENSOR_11_REQ")
 
 # MQTT command (cmd) request (req) topics
 # MQTT_RELAY01_CMD_REQ = os.getenv("MQTT_RELAY_01_REQ")
-MQTT_RELAY12_CMD_REQ = "cmd/relay12/req"
+MQTT_RELAY12_CMD_REQ = os.getenv("MQTT_RELAY_12_REQ")
+
+# Device to GPIO (BCD) pin mapping
+GPIO_PIN = {
+    "relay_1": 2,
+    "relay_2": 3,
+    "relay_3": 4,
+    "relay_4": 14,
+    "relay_5": 15,
+    "relay_6": 17,
+    "relay_7": 23,
+    "relay_8": 10,
+    "relay_9": 9,
+    "relay_10": 25,
+    "relay_11": 11,
+    "relay_12": 8,
+    "relay_13": 6,
+    "relay_14": 12,
+    "relay_15": 13,
+    "relay_16": 16,
+    "float_switch_1": 7,
+    "float_switch_2": 0,
+    "float_switch_3": 1,
+    "float_switch_4": 5,
+}
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with code " + str(rc))
     # Subscribe in on_connect to renew subsriptions in case of lost connection
+    # Sensors #
     client.subscribe(MQTT_SLIGTH01_DT_REQ)
     client.subscribe(MQTT_SPAR02_DT_REQ)
     client.subscribe(MQTT_SYM01_DT_REQ)
     client.subscribe(MQTT_SCD41_DT_REQ)
 
+    # Actuators #
     client.subscribe(MQTT_RELAY12_CMD_REQ)
 
 # Catch-all callback function for messages
 def on_message(client, userdata, msg):
     print("\n" + msg.topic + ":\n", msg.payload)
 
+# Sensors callback functions MQTT data request topics
 def on_message_SLIGHT01(client, userdata, msg):
     req_msg = json.loads(msg.payload)
     try:
         res_payload = json.dumps(sensor_SLIGHT01.fetch_and_return_data())
         client.publish(req_msg["res_topic"], res_payload)
-        # Print payload:
         print(res_payload + "\n")
     except Exception as e:
         print("SLIGHT01, data fetch error:", str(e))
@@ -72,7 +98,6 @@ def on_message_SPAR02(client, userdata, msg):
     try:
         res_payload = json.dumps(sensor_SPAR02.fetch_and_return_data())
         client.publish(req_msg["res_topic"], res_payload)
-        # Print payload:
         print(res_payload + "\n")
     except Exception as e:
         print("SPAR02, data fetch error:", str(e))
@@ -82,10 +107,6 @@ def on_message_SYM01(client, userdata, msg):
     try:
         res_payload = json.dumps(sensor_SYM01.fetch_and_return_data())
         client.publish(req_msg["res_topic"], res_payload)
-        # Write to log
-        #log_file_SCD41.write("\n" + json.dumps(req_msg))
-        # sensor_SCD41_I2C.fetch_and_print_data()
-        # sensor_SYM01.fetch_and_print_data()
         print(res_payload + "\n")
     except Exception as e:
         print("SYM01, data fetch error:", str(e))
@@ -95,13 +116,11 @@ def on_message_SCD41(client, userdata, msg):
     try:
         res_payload = json.dumps(sensor_SCD41_I2C.fetch_and_return_data())
         client.publish(req_msg["res_topic"], res_payload, )
-        # Write to log
-        # log_file_SCD41.write("\n" + res_payload)
-        # sensor_SCD41_I2C.fetch_and_print_data()
         print(res_payload + "\n")
     except Exception as e:
         print("SCD41, data fetch error:", str(e))
 
+# Actuators callback functions MQTT command request topics
 def on_message_RLY12(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
@@ -117,10 +136,6 @@ def on_message_RLY12(client, userdata, msg):
     except Exception as e:
         print("Relay 12, command error:", str(e))
 
-# Open or create log file(s)
-log_file_BMP280 = open("logging/log_file_BMP280.txt", "a")
-log_file_SCD41 = open("logging/log_file_SCD41.txt", "a")
-
 # Setup MQTT client for sensor host
 client = mqtt.Client()
 
@@ -129,12 +144,13 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 # Assign the specific callback functions for the client
+# Sensors #
 client.message_callback_add(MQTT_SLIGTH01_DT_REQ, on_message_SLIGHT01)
 client.message_callback_add(MQTT_SPAR02_DT_REQ, on_message_SPAR02)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
 client.message_callback_add(MQTT_SCD41_DT_REQ, on_message_SCD41)
 
-# Testing purpouse for relays
+# Actuators #
 client.message_callback_add(MQTT_RELAY12_CMD_REQ, on_message_RLY12)
 
 # Connect to the MQTT server
@@ -179,7 +195,7 @@ except Exception as e:
 
 # Activate relay devices
 try:
-    relay_12 = relay_device.relay_device(8)
+    relay_12 = relay_device.relay_device(GPIO_PIN["relay_12"])
 except Exception as e:
     print("Relay device, error:", str(e))
 
@@ -194,6 +210,5 @@ except Exception as e:
     print("\nException, error: ", str(e))
 
 client.loop_stop()
-log_file_BMP280.close() 
-log_file_SCD41.close()
 sensor_SCD41_I2C.stop_periodic_measurement()
+

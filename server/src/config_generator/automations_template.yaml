@@ -66,3 +66,41 @@
       payload: '{"req_topic": {{MQTT_SENSOR_10_REQ}}, "res_topic": {{MQTT_SENSOR_10_RES}},
         "data": "ha_req" }'
   mode: single
+
+- alias: {{RELAY_12_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_12
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_12_REQ}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_12_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_12
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_12_REQ}}
+      payload: '{"cmd": "off"}'
+  mode: single
