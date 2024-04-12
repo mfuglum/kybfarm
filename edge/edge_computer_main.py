@@ -77,6 +77,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_SPAR02_DT_REQ)
     client.subscribe(MQTT_SYM01_DT_REQ)
     client.subscribe(MQTT_SCD41_DT_REQ)
+    client.subscribe(MQTT_SEC01_1_CMD)
 
     # Actuators #
     client.subscribe(MQTT_RELAY12_CMD)
