@@ -82,7 +82,7 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_12_REQ}}
+      topic: {{MQTT_RELAY_12_CMD}}
       payload: '{ "cmd": "on"}'
   mode: single
 
@@ -101,6 +101,96 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_12_REQ}}
+      topic: {{MQTT_RELAY_12_CMD}}
       payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{SENSOR_03_INIT_CALIBRATION_1413_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ec_sensor_1
+    from:
+    to: Initiate calibration for EC 1413us/cm
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Immerse probe in 1413us/cm, register calibration afte a while.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_03_REG_CALIBRATION_1413_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ec_sensor_1
+    from:
+    to: Register calibration for EC 1413us/cm
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Registered calibration for EC sensor 1 for 1413us/cm reference.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_03_END_CALIBRATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ec_sensor_1
+    from:
+    to: Normal Operation
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Sensor has returned to normal operation.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_03_INIT_CALIBRATION_12880_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ec_sensor_1
+    from:
+    to: Initiate calibration for EC 12880us/cm
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Immerse probe in 12880us/cm, register calibration afte a while.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_03_REG_CALIBRATION_12880_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ec_sensor_1
+    from:
+    to: Register calibration for EC 12880us/cm
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Registered calibration for EC sensor 1 for 12880us/cm reference.
+    target:
+      entity_id: input_text.calibration_status
   mode: single
