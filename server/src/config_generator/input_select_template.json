@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "minor_version": 2,
+  "key": "input_select",
+  "data": {
+    "items": [
+      {
+        "id": "calibrate_ec_sensor_1",
+        "name": "Calibrate S-EC-01-1",
+        "icon": "mdi:electron-framework",
+        "options": [
+          "Normal Operation",
+          "Initiate calibration for EC 1413us/cm",
+          "Register calibration for EC 1413us/cm",
+          "Initiate calibration for EC 12880us/cm",
+          "Register calibration for EC 12880us/cm"
+        ]
+      }
+    ]
+  }
+}

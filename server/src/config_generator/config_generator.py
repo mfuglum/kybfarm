@@ -29,6 +29,7 @@ def main():
         "./automations_template.yaml": "./server/homeassistant/config/automations.yaml",
         "./configuration_template.yaml": "./server/homeassistant/config/configuration.yaml",
         "./influxdb_template.yaml": "./server/homeassistant/config/influxdb.yaml",
+        "./input_select_template.json": "./server/homeassistant/config/.storage/input_select"
     }
 
     env_file = ".env"
