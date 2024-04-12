@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_boolean",
+  "data": {
+    "items": [
+      {
+        "id": "relay_12",
+        "name": "Relay 12:",
+        "icon": "mdi:toggle-switch"
+      }
+    ]
+  }
+}
