@@ -41,7 +41,9 @@ MQTT_SCD41_DT_REQ = os.getenv("MQTT_SENSOR_11_REQ")
 
 # MQTT command (cmd) request (req) topics
 # MQTT_RELAY01_CMD_REQ = os.getenv("MQTT_RELAY_01_REQ")
-MQTT_RELAY12_CMD_REQ = os.getenv("MQTT_RELAY_12_REQ")
+MQTT_RELAY12_CMD = os.getenv("MQTT_RELAY_12_CMD")
+
+MQTT_SEC01_1_CMD = os.getenv("MQTT_SENSOR_03_CMD")
 
 # Device to GPIO (BCD) pin mapping
 GPIO_PIN = {
@@ -77,7 +79,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_SCD41_DT_REQ)
 
     # Actuators #
-    client.subscribe(MQTT_RELAY12_CMD_REQ)
+    client.subscribe(MQTT_RELAY12_CMD)
 
 # Catch-all callback function for messages
 def on_message(client, userdata, msg):
@@ -120,6 +122,21 @@ def on_message_SCD41(client, userdata, msg):
     except Exception as e:
         print("SCD41, data fetch error:", str(e))
 
+def on_message_SEC01_1_CMD(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        print(cmd_msg)
+        if cmd_msg["cmd"] == "register_ec_1413":
+            # Send calibration command to sensor
+            print("Dummy action: Registering EC 1413")
+        elif cmd_msg["cmd"] == "register_ec_12880":
+            # Send calibration command to sensor
+            print("Dummy action: Registering EC 12880")
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("S-EC-01-1 error:", str(e))
+
 # Actuators callback functions MQTT command request topics
 def on_message_RLY12(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
@@ -149,9 +166,10 @@ client.message_callback_add(MQTT_SLIGTH01_DT_REQ, on_message_SLIGHT01)
 client.message_callback_add(MQTT_SPAR02_DT_REQ, on_message_SPAR02)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
 client.message_callback_add(MQTT_SCD41_DT_REQ, on_message_SCD41)
+client.message_callback_add(MQTT_SEC01_1_CMD, on_message_SEC01_1_CMD)
 
 # Actuators #
-client.message_callback_add(MQTT_RELAY12_CMD_REQ, on_message_RLY12)
+client.message_callback_add(MQTT_RELAY12_CMD, on_message_RLY12)
 
 # Connect to the MQTT server
 try:
