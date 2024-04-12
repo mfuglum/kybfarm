@@ -29,7 +29,9 @@ def main():
         "./automations_template.yaml": "./server/homeassistant/config/automations.yaml",
         "./configuration_template.yaml": "./server/homeassistant/config/configuration.yaml",
         "./influxdb_template.yaml": "./server/homeassistant/config/influxdb.yaml",
-        "./input_select_template.json": "./server/homeassistant/config/.storage/input_select"
+        "./input_select_template.json": "./server/homeassistant/config/.storage/input_select",
+        "./input_text_template.json": "./server/homeassistant/config/.storage/input_text",
+        "./input_boolean_template.json": "./server/homeassistant/config/.storage/input_boolean",
     }
 
     env_file = ".env"
