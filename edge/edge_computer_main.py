@@ -199,6 +199,7 @@ try:
                                                         debug=False)
     print(sensor_SLIGHT01)
     # sensor_SLIGHT01.set_slave_address(1)
+    time.sleep(1000)
     print("Slave address LIGHT01:" + sensor_SLIGHT01.get_slave_address() + "\n")
 except Exception as e:
     print("SLIGHT01, error:", str(e))
