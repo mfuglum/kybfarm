@@ -97,6 +97,8 @@ def on_message_SLIGHT01(client, userdata, msg):
         client.publish(req_msg["res_topic"], res_payload)
         print(res_payload + "\n")
         print("Slave address LIGHT01: ", sensor_SLIGHT01.get_slave_address(), "\n")
+        sensor_SLIGHT01.set_slave_address(1)
+        print("Updated slave address LIGHT01: ", sensor_SLIGHT01.get_slave_address(), "\n")
     except Exception as e:
         print("SLIGHT01, data fetch error:", str(e))
 
