@@ -213,11 +213,11 @@ except Exception as e:
 # Activate SEC-01-1 sensor
 try: 
     sensor_SEC01_1 = sensor_SEC01_modbus.SEC01(   portname='/dev/ttySC1',
-                                                  slaveaddress=1, 
+                                                  slaveaddress=30, 
                                                   debug=False)
     print(sensor_SEC01_1)
-    sensor_SEC01_1.set_slave_address(3)
-    print("Updated address EC01-1:" + sensor_SEC01_1.get_slave_address() + "\n")
+    # sensor_SEC01_1.set_slave_address(3)
+    # print("Updated address EC01-1:" + sensor_SEC01_1.get_slave_address() + "\n")
 except Exception as e:
     print("SEC01-1, error:", str(e))
 
