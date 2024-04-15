@@ -199,7 +199,7 @@ try:
                                                         debug=False)
     print(sensor_SLIGHT01)
     sensor_SLIGHT01.set_slave_address(1)
-    print("Updated address LIGHT01:" + sensor_SLIGHT01.get_slave_address() + "\n")
+    # print("Updated address LIGHT01:" + sensor_SLIGHT01.get_slave_address() + "\n")
 except Exception as e:
     print("SLIGHT01, error:", str(e))
 
