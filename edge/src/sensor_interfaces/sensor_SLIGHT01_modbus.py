@@ -71,7 +71,7 @@ class SLIGHT01( minimalmodbus.Instrument ):
     """
 
     def __init__(self,
-                 portname='/dev/ttySC0',
+                 portname='/dev/ttySC1',
                  slaveaddress=1,
                  mode=minimalmodbus.MODE_RTU,
                  close_port_after_each_call=False,
@@ -82,6 +82,7 @@ class SLIGHT01( minimalmodbus.Instrument ):
                                           mode=mode,
                                           close_port_after_each_call=close_port_after_each_call,
                                           debug=debug)
+        self.serial.baudrate = 9600
     
     # Returns illuminance value in 0-200000 lux 
     def get_illuminance(self):
