@@ -100,7 +100,7 @@ class SLIGHT01( minimalmodbus.Instrument ):
         illuminance = illuminance_high << 16 | illuminance_low
         return illuminance
     
-    def set_slaveaddress(self, slaveaddress):
+    def set_slave_address(self, slaveaddress):
         # Set the slave address of the sensor
         self.write_register(registeraddress=512,
                             value=slaveaddress,
@@ -108,7 +108,7 @@ class SLIGHT01( minimalmodbus.Instrument ):
                             functioncode=6,
                             signed=False)
         
-    def get_slaveaddress(self):
+    def get_slave_address(self):
         # Get the slave address of the sensor
         return self.read_register(registeraddress=512,
                                   number_of_decimals=0,

@@ -198,6 +198,8 @@ try:
                                                         slaveaddress=13, 
                                                         debug=False)
     print(sensor_SLIGHT01)
+    sensor_SLIGHT01.set_slave_address(1)
+    print("Updated address LIGHT01:" + sensor_SLIGHT01.get_slave_address() + "\n")
 except Exception as e:
     print("SLIGHT01, error:", str(e))
 
@@ -215,7 +217,8 @@ try:
     sensor_SEC01_1 = sensor_SEC01_modbus.SEC01(   portname='/dev/ttySC1',
                                                   slaveaddress=1, 
                                                   debug=False)
-    sensor_SEC01_1.set_slaveaddress(3)
+    print(sensor_SEC01_1)
+    sensor_SEC01_1.set_slave_address(3)
     print("Updated address EC01-1:" + sensor_SEC01_1.get_slave_address() + "\n")
 except Exception as e:
     print("SEC01-1, error:", str(e))
