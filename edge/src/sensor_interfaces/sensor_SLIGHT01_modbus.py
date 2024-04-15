@@ -107,6 +107,8 @@ class SLIGHT01( minimalmodbus.Instrument ):
                             number_of_decimals=0,
                             functioncode=6,
                             signed=False)
+        self.slaveaddress = slaveaddress
+
         
     def get_slave_address(self):
         # Get the slave address of the sensor
