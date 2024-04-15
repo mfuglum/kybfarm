@@ -1,15 +1,27 @@
 # kybfarm
 Open-source IoT platform for Vertical Farming Facilities.
 
+The framework is divided into server and edge.
+
+The server side is a implemented in a set of Docker containers:
+- Home Assistant: For datalogging, automation management and device overview.
+- InfluxDB: For data storage.
+- Eclipse Mosquitto: For edge-server MQTT communication.
+- AppDaemon: For hosting Python scripts interacting with Home Assistant and InfluxDB.
+- Cloudflared: For remote access to HomeAssistant over web-domain.
+- config_generator: For generating configuration files for Home Assistant with parameters stored in .env-file.
+
+
 ## Docker Compose: Build and launch the containers
 Prerequisite: Docker Desktop is installed.
 
 
-For local development the tunnel container 'cloudlfared' should be commented out from 'kybfarm-docker-compose.yaml'.
+For local development the tunnel container 'cloudflared' should be commented out from 'kybfarm-docker-compose.yaml'.
 
 Make sure to provide an environment file '.env' located in the root folder with all the necessary parameters before calling 'docker compose ... --build'.
 The tokens which will be configured after build are:
-    - Long-lived access token for AppDaemon integration with Home Assistant: https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token
+    - Long-lived access token for AppDaemon integration with Home Assistant.
+    - All-access API token for InfluxDB integration with Home Assistant.
 
 In root folder of the cloned repo the following command builds and launches the containers:
 ``` bash
