@@ -22,7 +22,8 @@ import string
 from src.sensor_interfaces import (sensor_SCD41_I2C, 
                                    sensor_SYM01_modbus, 
                                    sensor_SLIGHT01_modbus,
-                                   sensor_SPAR02_modbus)
+                                   sensor_SPAR02_modbus,
+                                   sensor_SEC01_modbus)
 from src.utils import relay_device
 
 # Load environment variables from the .env file
@@ -36,6 +37,7 @@ MQTT_KEEP_ALIVE = int(os.getenv("MQTT_EDGE_KEEP_ALIVE"))
 # MQTT data (dt) request (req) topics
 MQTT_SLIGTH01_DT_REQ = os.getenv("MQTT_SENSOR_01_REQ")
 MQTT_SPAR02_DT_REQ = os.getenv("MQTT_SENSOR_02_REQ")
+MQTT_SEC01_1_DT_REQ = os.getenv("MQTT_SENSOR_03_REQ")
 MQTT_SYM01_DT_REQ = os.getenv("MQTT_SENSOR_10_REQ")
 MQTT_SCD41_DT_REQ = os.getenv("MQTT_SENSOR_11_REQ")
 
@@ -75,6 +77,7 @@ def on_connect(client, userdata, flags, rc):
     # Sensors #
     client.subscribe(MQTT_SLIGTH01_DT_REQ)
     client.subscribe(MQTT_SPAR02_DT_REQ)
+    client.subscribe(MQTT_SEC01_1_DT_REQ)
     client.subscribe(MQTT_SYM01_DT_REQ)
     client.subscribe(MQTT_SCD41_DT_REQ)
     client.subscribe(MQTT_SEC01_1_CMD)
@@ -104,6 +107,15 @@ def on_message_SPAR02(client, userdata, msg):
         print(res_payload + "\n")
     except Exception as e:
         print("SPAR02, data fetch error:", str(e))
+
+def on_message_SEC01_1(client, userdata, msg):
+    req_msg = json.loads(msg.payload)
+    try:
+        res_payload = json.dumps(sensor_SEC01_1.fetch_and_return_data())
+        client.publish(req_msg["res_topic"], res_payload)
+        print(res_payload + "\n")
+    except Exception as e:
+        print("SEC01-1, data fetch error:", str(e))
 
 def on_message_SYM01(client, userdata, msg):
     req_msg = json.loads(msg.payload)
@@ -165,6 +177,7 @@ client.on_message = on_message
 # Sensors #
 client.message_callback_add(MQTT_SLIGTH01_DT_REQ, on_message_SLIGHT01)
 client.message_callback_add(MQTT_SPAR02_DT_REQ, on_message_SPAR02)
+client.message_callback_add(MQTT_SEC01_1_DT_REQ, on_message_SEC01_1)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
 client.message_callback_add(MQTT_SCD41_DT_REQ, on_message_SCD41)
 client.message_callback_add(MQTT_SEC01_1_CMD, on_message_SEC01_1_CMD)
@@ -196,6 +209,16 @@ try:
     print(sensor_SPAR02)
 except Exception as e:
     print("SPAR02, error:", str(e))
+
+# Activate SEC-01-1 sensor
+try: 
+    sensor_SEC01_1 = sensor_SEC01_modbus.SEC01(   portname='/dev/ttySC1',
+                                                  slaveaddress=1, 
+                                                  debug=False)
+    sensor_SEC01_1.set_slaveaddress(3)
+    print("Updated address EC01-1:" + sensor_SEC01_1.get_slave_address() + "\n")
+except Exception as e:
+    print("SEC01-1, error:", str(e))
 
 # Activate SYM-01 sensor
 try:
