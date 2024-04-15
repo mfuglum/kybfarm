@@ -74,21 +74,6 @@ class SPAR02( minimalmodbus.Instrument ):
 
         return par
     
-    # Set slave address
-    def set_slave_address(self, new_slaveaddress):
-        # Write slave address to register 512
-        self.write_register(registeraddress=512, 
-                            value=new_slaveaddress, 
-                            functioncode=6)
-    
-    # Get slave address
-    def get_slave_address(self):
-        # Get the slave address of the sensor
-        return self.read_register(registeraddress=512,
-                                  number_of_decimals=0,
-                                  functioncode=3,
-                                  signed=False)
-        
     # A function to fetch and print data from the sensor
     def fetch_and_print_data(self):
         par = self.get_par()
