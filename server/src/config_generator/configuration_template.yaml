@@ -47,6 +47,20 @@ mqtt:
       value_template: {{PAR_02_VALUE_TEMPLATE}}
       unit_of_measurement: {{PAR_02_HA_UNIT}}
       icon: {{PAR_02_HA_ICON}}
+    
+    - name: {{EC_03_NAME}}
+      unique_id: {{EC_03_HA_ID}}
+      state_topic: {{MQTT_SENSOR_03_RES}}
+      value_template: {{EC_03_VALUE_TEMPLATE}}
+      unit_of_measurement: {{EC_03_HA_UNIT}}
+      icon: {{EC_03_HA_ICON}}
+
+    - name: {{TEMPERATURE_03_NAME}}
+      unique_id: {{TEMPERATURE_03_HA_ID}}
+      state_topic: {{MQTT_SENSOR_03_RES}}
+      value_template: {{TEMPERATURE_03_VALUE_TEMPLATE}}
+      unit_of_measurement: {{TEMPERATURE_03_HA_UNIT}}
+      icon: {{TEMPERATURE_03_HA_ICON}}
 
     - name: {{TEMPERATURE_11_NAME}}
       unique_id: {{TEMPERATURE_11_HA_ID}}
