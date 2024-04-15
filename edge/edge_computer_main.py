@@ -96,7 +96,7 @@ def on_message_SLIGHT01(client, userdata, msg):
         res_payload = json.dumps(sensor_SLIGHT01.fetch_and_return_data())
         client.publish(req_msg["res_topic"], res_payload)
         print(res_payload + "\n")
-        print("Slave address LIGHT01:" + sensor_SLIGHT01.get_slave_address() + "\n")
+        print("Slave address LIGHT01: ", sensor_SLIGHT01.get_slave_address(), "\n")
     except Exception as e:
         print("SLIGHT01, data fetch error:", str(e))
 
