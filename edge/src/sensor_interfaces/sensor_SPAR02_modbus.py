@@ -63,7 +63,7 @@ class SPAR02( minimalmodbus.Instrument ):
                                           mode, 
                                           close_port_after_each_call, 
                                           debug)
-        
+        self.serial.baudrate = 9600
     # Returns the value of the Photosynthetically Active Radiation (PAR) in µmol/m²/s
     def get_par(self):
         par = self.read_long(registeraddress=0,
