@@ -96,8 +96,6 @@ def on_message_SLIGHT01(client, userdata, msg):
         res_payload = json.dumps(sensor_SLIGHT01.fetch_and_return_data())
         client.publish(req_msg["res_topic"], res_payload)
         print(res_payload + "\n")
-        # sensor_SLIGHT01.set_slave_address(1)
-        # print("Updated address SLIGHT01:", sensor_SLIGHT01.get_slave_address(),"\n")
     except Exception as e:
         print("SLIGHT01, data fetch error:", str(e))
 
@@ -197,7 +195,7 @@ except:
 # Activate SLIGHT-01 sensor
 try:
     sensor_SLIGHT01 = sensor_SLIGHT01_modbus.SLIGHT01(  portname='/dev/ttySC1',
-                                                        slaveaddress=13, 
+                                                        slaveaddress=1, 
                                                         debug=False)
     print(sensor_SLIGHT01)
 except Exception as e:
