@@ -145,7 +145,7 @@ class SEC01( minimalmodbus.Instrument ):
         # data["fields"]["salinity"] = salinity
         # data["fields"]["tds"] = tds
         data["time"] = datetime.datetime.now().isoformat()
-        data["tags"]["sensor_id"] = self.slaveaddress
+        data["tags"]["sensor_id"] = self.address
         return data
     
     def get_slave_address(self):
