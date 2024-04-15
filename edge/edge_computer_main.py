@@ -195,10 +195,10 @@ except:
 # Activate SLIGHT-01 sensor
 try:
     sensor_SLIGHT01 = sensor_SLIGHT01_modbus.SLIGHT01(  portname='/dev/ttySC1',
-                                                        slaveaddress=13, 
+                                                        slaveaddress=1, 
                                                         debug=False)
     print(sensor_SLIGHT01)
-    sensor_SLIGHT01.set_slave_address(1)
+    # sensor_SLIGHT01.set_slave_address(1)
     print("Updated address LIGHT01:" + sensor_SLIGHT01.get_slave_address() + "\n")
 except Exception as e:
     print("SLIGHT01, error:", str(e))
