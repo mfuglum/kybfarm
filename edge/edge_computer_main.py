@@ -114,6 +114,7 @@ def on_message_SEC01_1(client, userdata, msg):
         res_payload = json.dumps(sensor_SEC01_1.fetch_and_return_data())
         client.publish(req_msg["res_topic"], res_payload)
         print(res_payload + "\n")
+        print("SEC01-2 for testing purposes: ", sensor_SEC01_2.fetch_and_return_data(), "\n")
     except Exception as e:
         print("SEC01-1, data fetch error:", str(e))
 
@@ -213,11 +214,18 @@ except Exception as e:
 # Activate SEC-01-1 sensor
 try: 
     sensor_SEC01_1 = sensor_SEC01_modbus.SEC01(   portname='/dev/ttySC1',
-                                                  slaveaddress=30, 
+                                                  slaveaddress=3, 
                                                   debug=False)
     print(sensor_SEC01_1)
-    # sensor_SEC01_1.set_slave_address(3)
-    # print("Updated address EC01-1:" + sensor_SEC01_1.get_slave_address() + "\n")
+except Exception as e:
+    print("SEC01-1, error:", str(e))
+
+# Activate SEC-01-2 sensor
+try: 
+    sensor_SEC01_2 = sensor_SEC01_modbus.SEC01(   portname='/dev/ttySC1',
+                                                  slaveaddress=4, 
+                                                  debug=False)
+    print(sensor_SEC01_2)
 except Exception as e:
     print("SEC01-1, error:", str(e))
 
