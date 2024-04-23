@@ -2,6 +2,8 @@
 
 ### Required system wide installations, see [this section](#system-wide-installatins)
 
+### For auto-launch at reboot, see [this section](#auto-launch-at-reboot)
+
 ### If cloned with complete python virtual environment (venv):
 #### Activate the venv:
 ```
@@ -59,22 +61,17 @@ paho-mqtt
 
 ### Required system wide installations <a id="system-wide-installatins"></a>
 Due to not beeing Python packages, these must be installed system wide:
-Mosquitto, to be able to run as a MQTT broker (On debian/Ubuntu systems):
+Tailscale
+
+### Auto-launch edge script at reboot on Rasbian system <a id="auto-launch-at-reboot"></a>
+Open a terminal and enter:
 ```
-sudo apt-get update
+crontab -e
 ```
+If this is the first time using crontab chose your editor.
+
+Then add the following line to the crontab-file (replace 'path_to_repository' with actual path, e.g. '/home/username/'):
 ```
-sudo apt install -y mosquitto mosquitto-clients
+@reboot cd /path_to_repository/kybfarm/edge/ && source /venv/bin/activate && python edge_computer_main.py
 ```
-To start the broker:
-```
-sudo systemctl start mosquitto
-```
-To enable the broker at startup:
-```
-sudo systemctl enable mosquitto
-```
-To verify it's running:
-```
-sudo systemctl status mosquitto
-```
+
