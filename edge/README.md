@@ -64,14 +64,36 @@ Due to not beeing Python packages, these must be installed system wide:
 Tailscale
 
 ### Auto-launch edge script at reboot on Rasbian system <a id="auto-launch-at-reboot"></a>
+This section goes through the auto-launch script configuration and how to set a cron-job to execute it.
+
+The script for auto-launch in the file "auto_launch_at_reboot.sh"
+
+To make sure the script doesn't run too early it is implemented to wait for proper ping with the MQTT broker.
+To do so the IP for the MQTT broker must be provided in the file or in a separate "reboot_config.sh" in the same folder.
+An example file is provided as "reboot_config_example.sh". 
+Rename the file and replace the value for the "mqtt_broker_ip". 
+
+Also change the path to the repository and to the Python virtual environment in "auto_launch_at_reboot.sh" and "edge_computer_main.py"
+
+To make the auto-launch script executable enter the following command in a terminal in the folder of the file:
+```
+chmod +x auto_launch_at_reboot.sh
+```
+
+#### Then, a cron-job must be scheduled for every reboot:
+
 Open a terminal and enter:
 ```
 crontab -e
 ```
-If this is the first time using crontab chose your editor.
+If this is the first time using crontab, choose your preferred editor.
 
-Then add the following line to the crontab-file (replace 'path_to_repository' with actual path, e.g. '/home/username/'):
+Add the following line to the crontab-file (replace 'path_to_repository' with actual path, e.g. '/home/username/'):
 ```
-@reboot cd /path_to_repository/kybfarm/edge/ && source /venv/bin/activate && python edge_computer_main.py
+@reboot /path_to_repository/kybfarm/edge/auto_relaunch_at_reboot.sh
 ```
+
+When added, save and exit.
+
+
 
