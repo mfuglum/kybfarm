@@ -1,3 +1,4 @@
+#!/home/user1/Desktop/kybfarm/edge/venv/bin/python
 """This is the main file to run on the edge computer.
 It is subscribing to MQTT topics for data and command requests, and publishing the requested data or status to the MQTT broker.
 To run this file create a python virtual envronment in kybfarm/edge/ and install the required packages from requirements.txt:
