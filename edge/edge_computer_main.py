@@ -43,22 +43,22 @@ MQTT_SYM01_DT_REQ = os.getenv("MQTT_SENSOR_10_REQ")
 MQTT_SCD41_DT_REQ = os.getenv("MQTT_SENSOR_11_REQ")
 
 # MQTT command (cmd) topics
-MQTT_RELAY01_CMD = os.getenv("MQTT_RELAY_01_CMD")
-MQTT_RELAY02_CMD = os.getenv("MQTT_RELAY_02_CMD")
-MQTT_RELAY03_CMD = os.getenv("MQTT_RELAY_03_CMD")
-MQTT_RELAY04_CMD = os.getenv("MQTT_RELAY_04_CMD")
-MQTT_RELAY05_CMD = os.getenv("MQTT_RELAY_05_CMD")
-MQTT_RELAY06_CMD = os.getenv("MQTT_RELAY_06_CMD")
-MQTT_RELAY07_CMD = os.getenv("MQTT_RELAY_07_CMD")
-MQTT_RELAY08_CMD = os.getenv("MQTT_RELAY_08_CMD")
-MQTT_RELAY09_CMD = os.getenv("MQTT_RELAY_09_CMD")
-MQTT_RELAY10_CMD = os.getenv("MQTT_RELAY_10_CMD")
-MQTT_RELAY11_CMD = os.getenv("MQTT_RELAY_11_CMD")
-MQTT_RELAY12_CMD = os.getenv("MQTT_RELAY_12_CMD")
-MQTT_RELAY13_CMD = os.getenv("MQTT_RELAY_13_CMD")
-MQTT_RELAY14_CMD = os.getenv("MQTT_RELAY_14_CMD")
-MQTT_RELAY15_CMD = os.getenv("MQTT_RELAY_15_CMD")
-MQTT_RELAY16_CMD = os.getenv("MQTT_RELAY_16_CMD")
+MQTT_RELAY_01_CMD = os.getenv("MQTT_RELAY_01_CMD")
+MQTT_RELAY_02_CMD = os.getenv("MQTT_RELAY_02_CMD")
+MQTT_RELAY_03_CMD = os.getenv("MQTT_RELAY_03_CMD")
+MQTT_RELAY_04_CMD = os.getenv("MQTT_RELAY_04_CMD")
+MQTT_RELAY_05_CMD = os.getenv("MQTT_RELAY_05_CMD")
+MQTT_RELAY_06_CMD = os.getenv("MQTT_RELAY_06_CMD")
+MQTT_RELAY_07_CMD = os.getenv("MQTT_RELAY_07_CMD")
+MQTT_RELAY_08_CMD = os.getenv("MQTT_RELAY_08_CMD")
+MQTT_RELAY_09_CMD = os.getenv("MQTT_RELAY_09_CMD")
+MQTT_RELAY_10_CMD = os.getenv("MQTT_RELAY_10_CMD")
+MQTT_RELAY_11_CMD = os.getenv("MQTT_RELAY_11_CMD")
+MQTT_RELAY_12_CMD = os.getenv("MQTT_RELAY_12_CMD")
+MQTT_RELAY_13_CMD = os.getenv("MQTT_RELAY_13_CMD")
+MQTT_RELAY_14_CMD = os.getenv("MQTT_RELAY_14_CMD")
+MQTT_RELAY_15_CMD = os.getenv("MQTT_RELAY_15_CMD")
+MQTT_RELAY_16_CMD = os.getenv("MQTT_RELAY_16_CMD")
 
 MQTT_SEC01_1_CMD = os.getenv("MQTT_SENSOR_03_CMD")
 
@@ -98,22 +98,22 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_SEC01_1_CMD)
 
     # Actuators #
-    client.subscribe(MQTT_RELAY01_CMD)
-    client.subscribe(MQTT_RELAY02_CMD)
-    client.subscribe(MQTT_RELAY03_CMD)
-    client.subscribe(MQTT_RELAY04_CMD)
-    client.subscribe(MQTT_RELAY05_CMD)
-    client.subscribe(MQTT_RELAY06_CMD)
-    client.subscribe(MQTT_RELAY07_CMD)
-    client.subscribe(MQTT_RELAY08_CMD)
-    client.subscribe(MQTT_RELAY09_CMD)
-    client.subscribe(MQTT_RELAY10_CMD)
-    client.subscribe(MQTT_RELAY11_CMD)
-    client.subscribe(MQTT_RELAY12_CMD)
-    client.subscribe(MQTT_RELAY13_CMD)
-    client.subscribe(MQTT_RELAY14_CMD)
-    client.subscribe(MQTT_RELAY15_CMD)
-    client.subscribe(MQTT_RELAY16_CMD)
+    client.subscribe(MQTT_RELAY_01_CMD)
+    client.subscribe(MQTT_RELAY_02_CMD)
+    client.subscribe(MQTT_RELAY_03_CMD)
+    client.subscribe(MQTT_RELAY_04_CMD)
+    client.subscribe(MQTT_RELAY_05_CMD)
+    client.subscribe(MQTT_RELAY_06_CMD)
+    client.subscribe(MQTT_RELAY_07_CMD)
+    client.subscribe(MQTT_RELAY_08_CMD)
+    client.subscribe(MQTT_RELAY_09_CMD)
+    client.subscribe(MQTT_RELAY_10_CMD)
+    client.subscribe(MQTT_RELAY_11_CMD)
+    client.subscribe(MQTT_RELAY_12_CMD)
+    client.subscribe(MQTT_RELAY_13_CMD)
+    client.subscribe(MQTT_RELAY_14_CMD)
+    client.subscribe(MQTT_RELAY_15_CMD)
+    client.subscribe(MQTT_RELAY_16_CMD)
 
 # Catch-all callback function for messages
 def on_message(client, userdata, msg):
@@ -185,7 +185,7 @@ def on_message_SEC01_1_CMD(client, userdata, msg):
 def on_message_RLY01(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY01", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_1.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -200,7 +200,7 @@ def on_message_RLY01(client, userdata, msg):
 def on_message_RLY02(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY02", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_2.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -215,7 +215,7 @@ def on_message_RLY02(client, userdata, msg):
 def on_message_RLY03(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY03", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_3.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -230,7 +230,7 @@ def on_message_RLY03(client, userdata, msg):
 def on_message_RLY04(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY04", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_4.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -245,7 +245,7 @@ def on_message_RLY04(client, userdata, msg):
 def on_message_RLY05(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY05", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_5.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -260,7 +260,7 @@ def on_message_RLY05(client, userdata, msg):
 def on_message_RLY06(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY06", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_6.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -275,7 +275,7 @@ def on_message_RLY06(client, userdata, msg):
 def on_message_RLY07(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY07", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_7.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -290,7 +290,7 @@ def on_message_RLY07(client, userdata, msg):
 def on_message_RLY08(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY08", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_8.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -305,7 +305,7 @@ def on_message_RLY08(client, userdata, msg):
 def on_message_RLY09(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY09", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_9.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -320,7 +320,7 @@ def on_message_RLY09(client, userdata, msg):
 def on_message_RLY10(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY10", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_10.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -335,7 +335,7 @@ def on_message_RLY10(client, userdata, msg):
 def on_message_RLY11(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY11", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_11.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -350,7 +350,7 @@ def on_message_RLY11(client, userdata, msg):
 def on_message_RLY12(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY12", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_12.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -365,7 +365,7 @@ def on_message_RLY12(client, userdata, msg):
 def on_message_RLY13(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY13", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_13.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -380,7 +380,7 @@ def on_message_RLY13(client, userdata, msg):
 def on_message_RLY14(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY14", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_14.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -395,7 +395,7 @@ def on_message_RLY14(client, userdata, msg):
 def on_message_RLY15(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY15", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_15.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -410,7 +410,7 @@ def on_message_RLY15(client, userdata, msg):
 def on_message_RLY16(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print(cmd_msg)
+        print("RLY16", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
             relay_16.turn_on()
         elif cmd_msg["cmd"] == "off":
@@ -439,22 +439,22 @@ client.message_callback_add(MQTT_SCD41_DT_REQ, on_message_SCD41)
 client.message_callback_add(MQTT_SEC01_1_CMD, on_message_SEC01_1_CMD)
 
 # Actuators #
-client.message_callback_add(MQTT_RELAY01_CMD, on_message_RLY01)
-client.message_callback_add(MQTT_RELAY02_CMD, on_message_RLY02)
-client.message_callback_add(MQTT_RELAY03_CMD, on_message_RLY03)
-client.message_callback_add(MQTT_RELAY04_CMD, on_message_RLY04)
-client.message_callback_add(MQTT_RELAY05_CMD, on_message_RLY05)
-client.message_callback_add(MQTT_RELAY06_CMD, on_message_RLY06)
-client.message_callback_add(MQTT_RELAY07_CMD, on_message_RLY07)
-client.message_callback_add(MQTT_RELAY08_CMD, on_message_RLY08)
-client.message_callback_add(MQTT_RELAY09_CMD, on_message_RLY09)
-client.message_callback_add(MQTT_RELAY10_CMD, on_message_RLY10)
-client.message_callback_add(MQTT_RELAY11_CMD, on_message_RLY11)
-client.message_callback_add(MQTT_RELAY12_CMD, on_message_RLY12)
-client.message_callback_add(MQTT_RELAY13_CMD, on_message_RLY13)
-client.message_callback_add(MQTT_RELAY14_CMD, on_message_RLY14)
-client.message_callback_add(MQTT_RELAY15_CMD, on_message_RLY15)
-client.message_callback_add(MQTT_RELAY16_CMD, on_message_RLY16)
+client.message_callback_add(MQTT_RELAY_01_CMD, on_message_RLY01)
+client.message_callback_add(MQTT_RELAY_02_CMD, on_message_RLY02)
+client.message_callback_add(MQTT_RELAY_03_CMD, on_message_RLY03)
+client.message_callback_add(MQTT_RELAY_04_CMD, on_message_RLY04)
+client.message_callback_add(MQTT_RELAY_05_CMD, on_message_RLY05)
+client.message_callback_add(MQTT_RELAY_06_CMD, on_message_RLY06)
+client.message_callback_add(MQTT_RELAY_07_CMD, on_message_RLY07)
+client.message_callback_add(MQTT_RELAY_08_CMD, on_message_RLY08)
+client.message_callback_add(MQTT_RELAY_09_CMD, on_message_RLY09)
+client.message_callback_add(MQTT_RELAY_10_CMD, on_message_RLY10)
+client.message_callback_add(MQTT_RELAY_11_CMD, on_message_RLY11)
+client.message_callback_add(MQTT_RELAY_12_CMD, on_message_RLY12)
+client.message_callback_add(MQTT_RELAY_13_CMD, on_message_RLY13)
+client.message_callback_add(MQTT_RELAY_14_CMD, on_message_RLY14)
+client.message_callback_add(MQTT_RELAY_15_CMD, on_message_RLY15)
+client.message_callback_add(MQTT_RELAY_16_CMD, on_message_RLY16)
 
 # Connect to the MQTT server
 try:
