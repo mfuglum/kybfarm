@@ -5,8 +5,83 @@
   "data": {
     "items": [
       {
+        "id": "relay_01",
+        "name": "Relay 1:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_02",
+        "name": "Relay 2:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_03",
+        "name": "Relay 3:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_04",
+        "name": "Relay 4:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_05",
+        "name": "Relay 5:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_06",
+        "name": "Relay 6:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_07",
+        "name": "Relay 7:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_08",
+        "name": "Relay 8:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_09",
+        "name": "Relay 9:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_10",
+        "name": "Relay 10:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_11",
+        "name": "Relay 11:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
         "id": "relay_12",
         "name": "Relay 12:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_13",
+        "name": "Relay 13:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_14",
+        "name": "Relay 14:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_15",
+        "name": "Relay 15:",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "relay_16",
+        "name": "Relay 16:",
         "icon": "mdi:toggle-switch"
       }
     ]
