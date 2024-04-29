@@ -435,7 +435,7 @@ client.message_callback_add(MQTT_SLIGTH01_DT_REQ, on_message_SLIGHT01)
 client.message_callback_add(MQTT_SPAR02_DT_REQ, on_message_SPAR02)
 client.message_callback_add(MQTT_SEC01_1_DT_REQ, on_message_SEC01_1)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
-client.message_callback_add(MQTT_SCD41_DT_REQ, on_message_SCD41)
+# client.message_callback_add(MQTT_SCD41_DT_REQ, on_message_SCD41)
 client.message_callback_add(MQTT_SEC01_1_CMD, on_message_SEC01_1_CMD)
 
 # Actuators #
@@ -546,5 +546,5 @@ except Exception as e:
     print("\nException, error: ", str(e))
 
 client.loop_stop()
-sensor_SCD41_I2C.stop_periodic_measurement()
+# sensor_SCD41_I2C.stop_periodic_measurement()
 
