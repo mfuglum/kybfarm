@@ -509,10 +509,10 @@ except Exception as e:
     print("SYM01, error:", str(e))
 
 # Activate SCD-41 sensor
-try:
-    sensor_SCD41_I2C.start_low_periodic_measurement()
-except Exception as e:
-    print("SCD41, error:", str(e))
+# try:
+    # sensor_SCD41_I2C.start_low_periodic_measurement()
+# except Exception as e:
+    # print("SCD41, error:", str(e))
 
 # Activate relay devices
 try:
