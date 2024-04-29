@@ -1,4 +1,5 @@
 # Automations
+# Sensors #
 - alias: {{SENSOR_01_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
@@ -31,78 +32,6 @@
       topic: {{MQTT_SENSOR_02_REQ}}
       payload: '{"req_topic": {{MQTT_SENSOR_02_REQ}}, "res_topic": {{MQTT_SENSOR_02_RES}},
         "data": "ha_req" }'
-  mode: single
-
-- alias: {{SENSOR_11_REQ_AUTOMATION_ALIAS}} 
-  description: ''
-  trigger:
-  - platform: time_pattern
-    seconds: /{{SENSOR_11_REQ_INTERVAL_SEC}}
-  condition: []
-  action:
-  - service: mqtt.publish
-    metadata: {}
-    data:
-      qos: 0
-      retain: false
-      topic: {{MQTT_SENSOR_11_REQ}}
-      payload: '{"req_topic": {{MQTT_SENSOR_11_REQ}}, "res_topic": {{MQTT_SENSOR_11_RES}},
-        "data": "ha_req" }'
-  mode: single
-
-- alias: {{SENSOR_10_REQ_AUTOMATION_ALIAS}}
-  description: ''
-  trigger:
-  - platform: time_pattern
-    seconds: /{{SENSOR_10_REQ_INTERVAL_SEC}}
-  condition: []
-  action:
-  - service: mqtt.publish
-    metadata: {}
-    data:
-      qos: 0
-      retain: false
-      topic: {{MQTT_SENSOR_10_REQ}}
-      payload: '{"req_topic": {{MQTT_SENSOR_10_REQ}}, "res_topic": {{MQTT_SENSOR_10_RES}},
-        "data": "ha_req" }'
-  mode: single
-
-- alias: {{RELAY_12_CMD_ON_AUTOMATION_ALIAS}}
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - input_boolean.relay_12
-    from: 'off'
-    to: 'on'
-  condition: []
-  action:
-  - service: mqtt.publish
-    metadata: {}
-    data:
-      qos: 0
-      retain: false
-      topic: {{MQTT_RELAY_12_CMD}}
-      payload: '{ "cmd": "on"}'
-  mode: single
-
-- alias: {{RELAY_12_CMD_OFF_AUTOMATION_ALIAS}}
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - input_boolean.relay_12
-    from: 'on'
-    to: 'off'
-  condition: []
-  action:
-  - service: mqtt.publish
-    metadata: {}
-    data:
-      qos: 0
-      retain: false
-      topic: {{MQTT_RELAY_12_CMD}}
-      payload: '{"cmd": "off"}'
   mode: single
 
 - alias: {{SENSOR_03_REQ_AUTOMATION_ALIAS}}
@@ -224,4 +153,650 @@
       retain: false
       topic: {{MQTT_SENSOR_03_CMD}}
       payload: '{ "cmd": "register_ec_12880"}'
+  mode: single
+
+
+- alias: {{SENSOR_11_REQ_AUTOMATION_ALIAS}} 
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: /{{SENSOR_11_REQ_INTERVAL_SEC}}
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_11_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_11_REQ}}, "res_topic": {{MQTT_SENSOR_11_RES}},
+        "data": "ha_req" }'
+  mode: single
+
+- alias: {{SENSOR_10_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: /{{SENSOR_10_REQ_INTERVAL_SEC}}
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_10_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_10_REQ}}, "res_topic": {{MQTT_SENSOR_10_RES}},
+        "data": "ha_req" }'
+  mode: single
+
+# Relays #
+# Relay automations for toggle-on-off switch (input_boolean) on relay 01-16
+- alias: {{RELAY_01_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_01
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_01_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_01_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_01
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_01_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_02_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_02
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_02_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_02_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_02
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_02_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_03_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_03
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_03_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_03_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_03
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_03_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_04_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_04
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_04_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_04_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_04
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_04_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_05_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_05
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_05_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_05_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_05
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_05_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_06_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_06
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_06_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_06_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_06
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_06_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_07_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_07
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_07_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_07_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_07
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_07_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_08_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_08
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_08_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_08_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_08
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_08_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_09_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_09
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_09_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_09_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_09
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_09_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_10_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_10
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_10_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_10_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_10
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_10_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_11_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_11
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_11_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_11_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_11
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_11_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_12_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_12
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_12_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_12_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_12
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_12_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+# Relay 13 - 16
+- alias: {{RELAY_13_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_13
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_13_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_13_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_13
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_13_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_14_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_14
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_14_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_14_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_14
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_14_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_15_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_15
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_15_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_15_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_15
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_15_CMD}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{RELAY_16_CMD_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_16
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_16_CMD}}
+      payload: '{ "cmd": "on"}'
+  mode: single
+
+- alias: {{RELAY_16_CMD_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.relay_16
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_RELAY_16_CMD}}
+      payload: '{"cmd": "off"}'
   mode: single
