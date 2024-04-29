@@ -197,7 +197,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_01
+    - input_boolean.relay_1
     from: 'off'
     to: 'on'
   condition: []
@@ -216,7 +216,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_01
+    - input_boolean.relay_1
     from: 'on'
     to: 'off'
   condition: []
@@ -235,7 +235,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_02
+    - input_boolean.relay_2
     from: 'off'
     to: 'on'
   condition: []
@@ -254,7 +254,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_02
+    - input_boolean.relay_2
     from: 'on'
     to: 'off'
   condition: []
@@ -273,7 +273,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_03
+    - input_boolean.relay_3
     from: 'off'
     to: 'on'
   condition: []
@@ -292,7 +292,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_03
+    - input_boolean.relay_3
     from: 'on'
     to: 'off'
   condition: []
@@ -311,7 +311,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_04
+    - input_boolean.relay_4
     from: 'off'
     to: 'on'
   condition: []
@@ -330,7 +330,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_04
+    - input_boolean.relay_4
     from: 'on'
     to: 'off'
   condition: []
@@ -349,7 +349,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_05
+    - input_boolean.relay_5
     from: 'off'
     to: 'on'
   condition: []
@@ -368,7 +368,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_05
+    - input_boolean.relay_5
     from: 'on'
     to: 'off'
   condition: []
@@ -387,7 +387,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_06
+    - input_boolean.relay_6
     from: 'off'
     to: 'on'
   condition: []
@@ -406,7 +406,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_06
+    - input_boolean.relay_6
     from: 'on'
     to: 'off'
   condition: []
@@ -425,7 +425,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_07
+    - input_boolean.relay_7
     from: 'off'
     to: 'on'
   condition: []
@@ -444,7 +444,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_07
+    - input_boolean.relay_7
     from: 'on'
     to: 'off'
   condition: []
@@ -463,7 +463,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_08
+    - input_boolean.relay_8
     from: 'off'
     to: 'on'
   condition: []
@@ -482,7 +482,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_08
+    - input_boolean.relay_8
     from: 'on'
     to: 'off'
   condition: []
@@ -501,7 +501,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_09
+    - input_boolean.relay_9
     from: 'off'
     to: 'on'
   condition: []
@@ -520,7 +520,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.relay_09
+    - input_boolean.relay_9
     from: 'on'
     to: 'off'
   condition: []
