@@ -21,10 +21,13 @@ data = {
 }
 
 
-# Create sensor object I2C communcationg on default bus
-i2c = board.I2C()   # uses board.SCL and board.SDA
-# i2c = board.STEMMA_I2C() # Alternative for built-in STEMMA QT for I2C
-scd41 = adafruit_scd4x.SCD4X(i2c)
+try:
+    # Create sensor object I2C communcationg on default bus
+    i2c = board.I2C()   # uses board.SCL and board.SDA
+    # i2c = board.STEMMA_I2C() # Alternative for built-in STEMMA QT for I2C
+    scd41 = adafruit_scd4x.SCD4X(i2c)
+except Exception as e:
+    print("Error in SCD41 interface: ", e)
 
 # Put sensor in working mode with sampling every 30 sec
 def start_low_periodic_measurement():
