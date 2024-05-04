@@ -91,7 +91,7 @@
       qos: 0
       retain: false
       topic: {{MQTT_SENSOR_03_CMD}}
-      payload: '{ "cmd": "register_ec_1413"}'
+      payload: '{ "cmd": "register_ec_1413", "res_topic": {{MQTT_SENSOR_03_RES}}}'
   mode: single
 
 - alias: {{SENSOR_03_END_CALIBRATION_ALIAS}}
@@ -152,7 +152,7 @@
       qos: 0
       retain: false
       topic: {{MQTT_SENSOR_03_CMD}}
-      payload: '{ "cmd": "register_ec_12880"}'
+      payload: '{ "cmd": "register_ec_12880", "res_topic": {{MQTT_SENSOR_03_RES}}}'
   mode: single
 
 

@@ -172,10 +172,15 @@ def on_message_SEC01_1_CMD(client, userdata, msg):
         print(cmd_msg)
         if cmd_msg["cmd"] == "register_ec_1413":
             # Send calibration command to sensor
-            print("Dummy action: Registering EC 1413")
+            print("Registering EC 1413")
+            payload = sensor_SEC01_1.register_ec_1413()
+            client.publish(cmd_msg["res_topic"], payload)
+
         elif cmd_msg["cmd"] == "register_ec_12880":
             # Send calibration command to sensor
-            print("Dummy action: Registering EC 12880")
+            print("Registering EC 12880")
+            payload = sensor_SEC01_1.register_ec_12880()
+            client.publish(cmd_msg["res_topic"], payload)
         else:
             print("Invalid command")
     except Exception as e:
