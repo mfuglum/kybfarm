@@ -20,9 +20,12 @@ data = {
 }
 
 
-# Create sensor object I2C communcationg on default bus
-i2c = board.I2C()   # uses board.SCL and board.SDA
-bmp280 = adafruit_bmp280.Adafruit_BMP280_I2C(i2c)
+try:
+    # Create sensor object I2C communcationg on default bus
+    i2c = board.I2C()   # uses board.SCL and board.SDA
+    bmp280 = adafruit_bmp280.Adafruit_BMP280_I2C(i2c)
+except Exception as e:
+    print("Error in BMP280 interface: ", e)
 
 # OR Create sensor object, communicating over the board's default SPI bus
 # spi = board.SPI()

@@ -19,12 +19,13 @@ import time
 from dotenv import load_dotenv
 import os
 import string
-# from sensor_interfaces import sensor_BMP280_I2C
+
 from src.sensor_interfaces import (sensor_SCD41_I2C, 
                                    sensor_SYM01_modbus, 
                                    sensor_SLIGHT01_modbus,
                                    sensor_SPAR02_modbus,
-                                   sensor_SEC01_modbus)
+                                   sensor_SEC01_modbus,
+                                   sensor_SPH01_modbus)
 from src.utils import relay_device
 
 # Load environment variables from the .env file
@@ -39,10 +40,14 @@ MQTT_KEEP_ALIVE = int(os.getenv("MQTT_EDGE_KEEP_ALIVE"))
 MQTT_SLIGTH01_DT_REQ = os.getenv("MQTT_SENSOR_01_REQ")
 MQTT_SPAR02_DT_REQ = os.getenv("MQTT_SENSOR_02_REQ")
 MQTT_SEC01_1_DT_REQ = os.getenv("MQTT_SENSOR_03_REQ")
+MQTT_SEC01_2_DT_REQ = os.getenv("MQTT_SENSOR_04_REQ")
+MQTT_SPH01_1_DT_REQ = os.getenv("MQTT_SENSOR_05_REQ")
+MQTT_SPH01_2_DT_REQ = os.getenv("MQTT_SENSOR_06_REQ")
 MQTT_SYM01_DT_REQ = os.getenv("MQTT_SENSOR_10_REQ")
 MQTT_SCD41_DT_REQ = os.getenv("MQTT_SENSOR_11_REQ")
 
 # MQTT command (cmd) topics
+# Relays #
 MQTT_RELAY_01_CMD = os.getenv("MQTT_RELAY_01_CMD")
 MQTT_RELAY_02_CMD = os.getenv("MQTT_RELAY_02_CMD")
 MQTT_RELAY_03_CMD = os.getenv("MQTT_RELAY_03_CMD")
@@ -60,7 +65,11 @@ MQTT_RELAY_14_CMD = os.getenv("MQTT_RELAY_14_CMD")
 MQTT_RELAY_15_CMD = os.getenv("MQTT_RELAY_15_CMD")
 MQTT_RELAY_16_CMD = os.getenv("MQTT_RELAY_16_CMD")
 
+# Sensors #
 MQTT_SEC01_1_CMD = os.getenv("MQTT_SENSOR_03_CMD")
+MQTT_SEC01_2_CMD = os.getenv("MQTT_SENSOR_04_CMD")
+MQTT_SPH01_1_CMD = os.getenv("MQTT_SENSOR_05_CMD")
+MQTT_SPH01_2_CMD = os.getenv("MQTT_SENSOR_06_CMD")
 
 # Device to GPIO (BCD) pin mapping
 GPIO_PIN = {
@@ -93,9 +102,15 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_SLIGTH01_DT_REQ)
     client.subscribe(MQTT_SPAR02_DT_REQ)
     client.subscribe(MQTT_SEC01_1_DT_REQ)
+    client.subscribe(MQTT_SEC01_1_CMD)
+    client.subscribe(MQTT_SEC01_2_DT_REQ)
+    client.subscribe(MQTT_SEC01_2_CMD)
+    client.subscribe(MQTT_SPH01_1_DT_REQ)
+    client.subscribe(MQTT_SPH01_1_CMD)
+    client.subscribe(MQTT_SPH01_2_DT_REQ)
+    client.subscribe(MQTT_SPH01_2_CMD)
     client.subscribe(MQTT_SYM01_DT_REQ)
     client.subscribe(MQTT_SCD41_DT_REQ)
-    client.subscribe(MQTT_SEC01_1_CMD)
 
     # Actuators #
     client.subscribe(MQTT_RELAY_01_CMD)
@@ -148,6 +163,75 @@ def on_message_SEC01_1(client, userdata, msg):
     except Exception as e:
         print("SEC01-1, data fetch error:", str(e))
 
+def on_message_SEC01_1_CMD(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        print(cmd_msg)
+        if cmd_msg["cmd"] == "register_ec_1413":
+            # Send calibration command to sensor
+            print("Registering EC 1413")
+            payload = sensor_SEC01_1.register_ec_1413()
+            client.publish(cmd_msg["res_topic"], payload)
+
+        elif cmd_msg["cmd"] == "register_ec_12880":
+            # Send calibration command to sensor
+            print("Registering EC 12880")
+            payload = sensor_SEC01_1.register_ec_12880()
+            client.publish(cmd_msg["res_topic"], payload)
+        
+        elif cmd_msg["cmd"] == "set_temperature_compensation":
+            # Send calibration command to sensor
+            print("Setting temperature compensation")
+            payload = sensor_SEC01_1.set_temperature_compensation(float(cmd_msg["value"]))
+            client.publish(cmd_msg["res_topic"], payload)
+
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("S-EC-01-1 error:", str(e))
+
+def on_message_SPH01_1(client, userdata, msg):
+    req_msg = json.loads(msg.payload)
+    try:
+        res_payload = json.dumps(sensor_SPH01_1.fetch_and_return_data())
+        client.publish(req_msg["res_topic"], res_payload)
+        print(res_payload + "\n")
+    except Exception as e:
+        print("SPH01-1, data fetch error:", str(e))
+    
+def on_message_SPH01_1_CMD(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        print(cmd_msg)
+        if cmd_msg["cmd"] == "register_ph_4_01":
+            # Send calibration command to sensor
+            print("Registering pH 4.01")
+            payload = sensor_SPH01_1.register_ph_4_01()
+            client.publish(cmd_msg["res_topic"], payload)
+
+        elif cmd_msg["cmd"] == "register_ph_7_00":
+            # Send calibration command to sensor
+            print("Registering pH 7.00")
+            payload = sensor_SPH01_1.register_ph_7_00()
+            client.publish(cmd_msg["res_topic"], payload)
+
+        elif cmd_msg["cmd"] == "register_ph_10_01":
+            # Send calibration command to sensor
+            print("Registering pH 10.01")
+            payload = sensor_SPH01_1.register_ph_10_01()
+            client.publish(cmd_msg["res_topic"], payload)
+
+        elif cmd_msg["cmd"] == "set_temperature_compensation":
+            # Send calibration command to sensor
+            print("Setting temperature compensation")
+            payload = sensor_SPH01_1.set_temperature_compensation(float(cmd_msg["value"]))
+            client.publish(cmd_msg["res_topic"], payload)
+
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("SPH01-1 error:", str(e))
+
 def on_message_SYM01(client, userdata, msg):
     req_msg = json.loads(msg.payload)
     try:
@@ -166,25 +250,6 @@ def on_message_SCD41(client, userdata, msg):
     except Exception as e:
         print("SCD41, data fetch error:", str(e))
 
-def on_message_SEC01_1_CMD(client, userdata, msg):
-    cmd_msg = json.loads(msg.payload)
-    try:
-        print(cmd_msg)
-        if cmd_msg["cmd"] == "register_ec_1413":
-            # Send calibration command to sensor
-            print("Registering EC 1413")
-            payload = sensor_SEC01_1.register_ec_1413()
-            client.publish(cmd_msg["res_topic"], payload)
-
-        elif cmd_msg["cmd"] == "register_ec_12880":
-            # Send calibration command to sensor
-            print("Registering EC 12880")
-            payload = sensor_SEC01_1.register_ec_12880()
-            client.publish(cmd_msg["res_topic"], payload)
-        else:
-            print("Invalid command")
-    except Exception as e:
-        print("S-EC-01-1 error:", str(e))
 
 # Actuators callback functions MQTT command request topics
 def on_message_RLY01(client, userdata, msg):
@@ -442,6 +507,10 @@ client.message_callback_add(MQTT_SEC01_1_DT_REQ, on_message_SEC01_1)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
 # client.message_callback_add(MQTT_SCD41_DT_REQ, on_message_SCD41)
 client.message_callback_add(MQTT_SEC01_1_CMD, on_message_SEC01_1_CMD)
+# Add callback for SEC01_2_CMD and dt req
+# Add callback for SPH01_1_CMD and dt req
+client.message_callback_add(MQTT_SPH01_1_DT_REQ, on_message_SPH01_1)
+client.message_callback_add(MQTT_SPH01_1_CMD, on_message_SPH01_1_CMD)
 
 # Actuators #
 client.message_callback_add(MQTT_RELAY_01_CMD, on_message_RLY01)
@@ -503,6 +572,24 @@ try:
     print(sensor_SEC01_2)
 except Exception as e:
     print("SEC01-1, error:", str(e))
+
+# Activate SPH-01-1 sensor
+try:
+    sensor_SPH01_1 = sensor_SPH01_modbus.SPH01(   portname='/dev/ttySC1',
+                                                  slaveaddress=5, 
+                                                  debug=False)
+    print(sensor_SPH01_1)
+except Exception as e:
+    print("SPH01-1, error:", str(e))
+
+# Activate SPH-01-2 sensor
+try:
+    sensor_SPH01_2 = sensor_SPH01_modbus.SPH01(   portname='/dev/ttySC1',
+                                                  slaveaddress=6, 
+                                                  debug=False)
+    print(sensor_SPH01_2)
+except Exception as e:
+    print("SPH01-2, error:", str(e))
 
 # Activate SYM-01 sensor
 try:
