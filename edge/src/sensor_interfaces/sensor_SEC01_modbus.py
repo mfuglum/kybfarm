@@ -10,7 +10,8 @@ data = {
         "sensor_name": "S-EC-01"},
     "fields": {
             "ec": 0,
-            "temperature": 0},
+            "temperature": 0,
+            "calibrated": 0,},
     "time": datetime.datetime.now().isoformat(),
 }
 
@@ -224,11 +225,19 @@ class SEC01( minimalmodbus.Instrument ):
     # Immerse the electrode in 1413us/cm solution for a while and 
     # write 0xFFFF into the register to perform the auto calibration
     def calibrate_ec_1413us(self):
-        self.write_register(registeraddress=48,
-                            value=0xFFFF,
-                            number_of_decimals=0,
-                            functioncode=6,
-                            signed=False)
+        try:
+            self.write_register(registeraddress=48,
+                                value=0xFFFF,
+                                number_of_decimals=0,
+                                functioncode=6,
+                                signed=False)
+        except Exception as e:
+            return str(e)
+        # Return data struct with calibrated field set to 1 (True)
+        data["time"] = datetime.datetime.now().isoformat()
+        data["tags"]["sensor_id"] = self.address
+        data["fields"]["calibrated"] = 1
+        return data        
     
     def read_ec_1413us(self):
         return self.read_register(registeraddress=48,

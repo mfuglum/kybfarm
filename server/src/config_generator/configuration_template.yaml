@@ -61,6 +61,13 @@ mqtt:
       value_template: {{TEMPERATURE_03_VALUE_TEMPLATE}}
       unit_of_measurement: {{TEMPERATURE_03_HA_UNIT}}
       icon: {{TEMPERATURE_03_HA_ICON}}
+          
+    - name: {{SENSOR_03_CALIBRATION_NAME}}
+      unique_id: {{SENSOR_03_CALIBRATION_HA_ID}}
+      state_topic: {{MQTT_SENSOR_03_RES}}
+      value_template: {{EC_03_CALIBRATION_VALUE_TEMPLATE}}
+      unit_of_measurement: {{EC_03_CALIBRATION_UNIT}}
+      icon: {{EC_03_HA_ICON}}
 
     - name: {{TEMPERATURE_11_NAME}}
       unique_id: {{TEMPERATURE_11_HA_ID}}
