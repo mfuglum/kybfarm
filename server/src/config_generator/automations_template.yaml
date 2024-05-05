@@ -155,6 +155,127 @@
       payload: '{ "cmd": "register_ec_12880", "res_topic": {{MQTT_SENSOR_03_RES}}}'
   mode: single
 
+- alias: {{SENSOR_04_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: /{{SENSOR_04_REQ_INTERVAL_SEC}}
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_04_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_04_REQ}}, "res_topic": {{MQTT_SENSOR_04_RES}},
+        "data": "ha_req" }'
+  mode: single
+
+- alias: {{SENSOR_04_INIT_CALIBRATION_1413_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ec_sensor_2
+    from:
+    to: Initiate calibration for EC 1413us/cm
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Immerse probe in 1413us/cm, register calibration afte a while.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_04_REG_CALIBRATION_1413_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ec_sensor_2
+    from:
+    to: Register calibration for EC 1413us/cm
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Registered calibration for EC sensor 2 for 1413us/cm reference.
+    target:
+      entity_id: input_text.calibration_status
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_04_CMD}}
+      payload: '{ "cmd": "register_ec_1413", "res_topic": {{MQTT_SENSOR_04_RES}}}'
+  mode: single
+
+- alias: {{SENSOR_04_END_CALIBRATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ec_sensor_2
+    from:
+    to: Normal Operation
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Sensor has returned to normal operation.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_04_INIT_CALIBRATION_12880_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ec_sensor_2
+    from:
+    to: Initiate calibration for EC 12880us/cm
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Immerse probe in 12880us/cm, register calibration afte a while.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_04_REG_CALIBRATION_12880_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ec_sensor_2
+    from:
+    to: Register calibration for EC 12880us/cm
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Registered calibration for EC sensor 2 for 12880us/cm reference.
+    target:
+      entity_id: input_text.calibration_status
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_04_CMD}}
+      payload: '{ "cmd": "register_ec_12880", "res_topic": {{MQTT_SENSOR_04_RES}}}'
+  mode: single
+
 - alias: {{SENSOR_05_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
@@ -170,6 +291,317 @@
       topic: {{MQTT_SENSOR_05_REQ}}
       payload: '{"req_topic": {{MQTT_SENSOR_05_REQ}}, "res_topic": {{MQTT_SENSOR_05_RES}},
         "data": "ha_req" }'
+  mode: single
+
+- alias: {{SENSOR_05_INIT_CALIBRATION_0401_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_1
+    from:
+    to: Initiate calibration for pH 4.01
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Immerse probe in pH 4.01, register calibration afte a while.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_05_REG_CALIBRATION_0401_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_1
+    from:
+    to: Register calibration for pH 4.01
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Registered calibration for pH sensor 1 for pH 4.01 reference.
+    target:
+      entity_id: input_text.calibration_status
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_05_CMD}}
+      payload: '{ "cmd": "register_ph_0401", "res_topic": {{MQTT_SENSOR_05_RES}}}'
+  mode: single
+
+- alias: {{SENSOR_05_END_CALIBRATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_1
+    from:
+    to: Normal Operation
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Sensor has returned to normal operation.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_05_INIT_CALIBRATION_0700_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_1
+    from:
+    to: Initiate calibration for pH 7.00
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Immerse probe in pH 7.00, register calibration afte a while.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_05_REG_CALIBRATION_0700_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_1
+    from:
+    to: Register calibration for pH 7.00
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Registered calibration for pH sensor 1 for pH 7.00 reference.
+    target:
+      entity_id: input_text.calibration_status
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_05_CMD}}
+      payload: '{ "cmd": "register_ph_0700", "res_topic": {{MQTT_SENSOR_05_RES}}}'
+  mode: single
+
+- alias: {{SENSOR_05_INIT_CALIBRATION_1001_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_1
+    from:
+    to: Initiate calibration for pH 10.01
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Immerse probe in pH 10.01, register calibration afte a while.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_05_REG_CALIBRATION_1001_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_1
+    from:
+    to: Register calibration for pH 10.01
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Registered calibration for pH sensor 1 for pH 10.01 reference.
+    target:
+      entity_id: input_text.calibration_status
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_05_CMD}}
+      payload: '{ "cmd": "register_ph_1001", "res_topic": {{MQTT_SENSOR_05_RES}}}'
+  mode: single
+
+- alias: {{SENSOR_06_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: /{{SENSOR_06_REQ_INTERVAL_SEC}}
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_06_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_06_REQ}}, "res_topic": {{MQTT_SENSOR_06_RES}},
+        "data": "ha_req" }'
+  mode: single
+
+- alias: {{SENSOR_06_INIT_CALIBRATION_0401_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_2
+    from:
+    to: Initiate calibration for pH 4.01
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Immerse probe in pH 4.01, register calibration afte a while.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_06_REG_CALIBRATION_0401_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_2
+    from:
+    to: Register calibration for pH 4.01
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Registered calibration for pH sensor 2 for pH 4.01 reference.
+    target:
+      entity_id: input_text.calibration_status
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_06_CMD}}
+      payload: '{ "cmd": "register_ph_0401", "res_topic": {{MQTT_SENSOR_06_RES}}}'
+  mode: single
+
+- alias: {{SENSOR_06_END_CALIBRATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_2
+    from:
+    to: Normal Operation
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Sensor has returned to normal operation.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_06_INIT_CALIBRATION_0700_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_2
+    from:
+    to: Initiate calibration for pH 7.00
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Immerse probe in pH 7.00, register calibration afte a while.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_06_REG_CALIBRATION_0700_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_2
+    from:
+    to: Register calibration for pH 7.00
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Registered calibration for pH sensor 2 for pH 7.00 reference.
+    target:
+      entity_id: input_text.calibration_status
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_06_CMD}}
+      payload: '{ "cmd": "register_ph_0700", "res_topic": {{MQTT_SENSOR_06_RES}}}'
+  mode: single
+
+- alias: {{SENSOR_06_INIT_CALIBRATION_1001_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_2
+    from:
+    to: Initiate calibration for pH 10.01
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Immerse probe in pH 10.01, register calibration afte a while.
+    target:
+      entity_id: input_text.calibration_status
+  mode: single
+
+- alias: {{SENSOR_06_REG_CALIBRATION_1001_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.calibrate_ph_sensor_2
+    from:
+    to: Register calibration for pH 10.01
+  condition: []
+  action:
+  - service: input_text.set_value
+    metadata: {}
+    data:
+      value: Registered calibration for pH sensor 2 for pH 10.01 reference.
+    target:
+      entity_id: input_text.calibration_status
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_06_CMD}}
+      payload: '{ "cmd": "register_ph_1001", "res_topic": {{MQTT_SENSOR_06_RES}}}'
   mode: single
 
 - alias: {{SENSOR_11_REQ_AUTOMATION_ALIAS}} 
