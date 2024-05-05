@@ -56,7 +56,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ec_sensor_1
+    - input_select.calibrate_s_ec_01_1
     from:
     to: Initiate calibration for EC 1413us/cm
   condition: []
@@ -74,7 +74,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ec_sensor_1
+    - input_select.calibrate_s_ec_01_1
     from:
     to: Register calibration for EC 1413us/cm
   condition: []
@@ -99,7 +99,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ec_sensor_1
+    - input_select.calibrate_s_ec_01_1
     from:
     to: Normal Operation
   condition: []
@@ -117,7 +117,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ec_sensor_1
+    - input_select.calibrate_s_ec_01_1
     from:
     to: Initiate calibration for EC 12880us/cm
   condition: []
@@ -135,7 +135,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ec_sensor_1
+    - input_select.calibrate_s_ec_01_1
     from:
     to: Register calibration for EC 12880us/cm
   condition: []
@@ -177,7 +177,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ec_sensor_2
+    - input_select.calibrate_s_ec_01_2
     from:
     to: Initiate calibration for EC 1413us/cm
   condition: []
@@ -195,7 +195,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ec_sensor_2
+    - input_select.calibrate_s_ec_01_2
     from:
     to: Register calibration for EC 1413us/cm
   condition: []
@@ -220,7 +220,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ec_sensor_2
+    - input_select.calibrate_s_ec_01_2
     from:
     to: Normal Operation
   condition: []
@@ -238,7 +238,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ec_sensor_2
+    - input_select.calibrate_s_ec_01_2
     from:
     to: Initiate calibration for EC 12880us/cm
   condition: []
@@ -256,7 +256,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ec_sensor_2
+    - input_select.calibrate_s_ec_01_2
     from:
     to: Register calibration for EC 12880us/cm
   condition: []
@@ -298,7 +298,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_1
+    - input_select.calibrate_s_ph_01_1
     from:
     to: Initiate calibration for pH 4.01
   condition: []
@@ -316,7 +316,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_1
+    - input_select.calibrate_s_ph_01_1
     from:
     to: Register calibration for pH 4.01
   condition: []
@@ -341,7 +341,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_1
+    - input_select.calibrate_s_ph_01_1
     from:
     to: Normal Operation
   condition: []
@@ -359,7 +359,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_1
+    - input_select.calibrate_s_ph_01_1
     from:
     to: Initiate calibration for pH 7.00
   condition: []
@@ -377,7 +377,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_1
+    - input_select.calibrate_s_ph_01_1
     from:
     to: Register calibration for pH 7.00
   condition: []
@@ -402,7 +402,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_1
+    - input_select.calibrate_s_ph_01_1
     from:
     to: Initiate calibration for pH 10.01
   condition: []
@@ -420,7 +420,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_1
+    - input_select.calibrate_s_ph_01_1
     from:
     to: Register calibration for pH 10.01
   condition: []
@@ -462,7 +462,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_2
+    - input_select.calibrate_s_ph_01_2
     from:
     to: Initiate calibration for pH 4.01
   condition: []
@@ -480,7 +480,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_2
+    - input_select.calibrate_s_ph_01_2
     from:
     to: Register calibration for pH 4.01
   condition: []
@@ -505,7 +505,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_2
+    - input_select.calibrate_s_ph_01_2
     from:
     to: Normal Operation
   condition: []
@@ -523,7 +523,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_2
+    - input_select.calibrate_s_ph_01_2
     from:
     to: Initiate calibration for pH 7.00
   condition: []
@@ -541,7 +541,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_2
+    - input_select.calibrate_s_ph_01_2
     from:
     to: Register calibration for pH 7.00
   condition: []
@@ -566,7 +566,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_2
+    - input_select.calibrate_s_ph_01_2
     from:
     to: Initiate calibration for pH 10.01
   condition: []
@@ -584,7 +584,7 @@
   trigger:
   - platform: state
     entity_id:
-    - input_select.calibrate_ph_sensor_2
+    - input_select.calibrate_s_ph_01_2
     from:
     to: Register calibration for pH 10.01
   condition: []

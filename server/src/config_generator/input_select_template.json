@@ -5,7 +5,7 @@
   "data": {
     "items": [
       {
-        "id": "calibrate_ec_sensor_1",
+        "id": "calibrate_s_ec_01_1",
         "name": "Calibrate S-EC-01-1",
         "icon": "mdi:electron-framework",
         "options": [
@@ -17,7 +17,7 @@
         ]
       },
       {
-        "id": "calibrate_ec_sensor_2",
+        "id": "calibrate_s_ec_01_2",
         "name": "Calibrate S-EC-01-2",
         "icon": "mdi:electron-framework",
         "options": [
@@ -29,7 +29,7 @@
         ]
       },
       {
-        "id": "calibrate_ph_sensor_1",
+        "id": "calibrate_s_ph_01_1",
         "name": "Calibrate S-PH-01-1",
         "icon": "mdi:electron-framework",
         "options": [
@@ -43,7 +43,7 @@
         ]
       },
       {
-        "id": "calibrate_ph_sensor_2",
+        "id": "calibrate_s_ph_01_2",
         "name": "Calibrate S-PH-01-2",
         "icon": "mdi:electron-framework",
         "options": [
