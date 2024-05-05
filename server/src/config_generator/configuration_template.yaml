@@ -69,6 +69,27 @@ mqtt:
       unit_of_measurement: {{EC_03_CALIBRATION_UNIT}}
       icon: {{EC_03_HA_ICON}}
 
+    - name: {{EC_04_NAME}}
+      unique_id: {{EC_04_HA_ID}}
+      state_topic: {{MQTT_SENSOR_04_RES}}
+      value_template: {{EC_04_VALUE_TEMPLATE}}
+      unit_of_measurement: {{EC_04_HA_UNIT}}
+      icon: {{EC_04_HA_ICON}}
+
+    - name: {{TEMPERATURE_04_NAME}}
+      unique_id: {{TEMPERATURE_04_HA_ID}}
+      state_topic: {{MQTT_SENSOR_04_RES}}
+      value_template: {{TEMPERATURE_04_VALUE_TEMPLATE}}
+      unit_of_measurement: {{TEMPERATURE_04_HA_UNIT}}
+      icon: {{TEMPERATURE_04_HA_ICON}}
+
+    - name: {{SENSOR_04_CALIBRATION_NAME}}
+      unique_id: {{SENSOR_04_CALIBRATION_HA_ID}}
+      state_topic: {{MQTT_SENSOR_04_RES}}
+      value_template: {{EC_04_CALIBRATION_VALUE_TEMPLATE}}
+      unit_of_measurement: {{EC_04_CALIBRATION_UNIT}}
+      icon: {{EC_04_HA_ICON}}
+
     - name: {{PH_05_NAME}}
       unique_id: {{PH_05_HA_ID}}
       state_topic: {{MQTT_SENSOR_05_RES}}
@@ -89,6 +110,27 @@ mqtt:
       value_template: {{PH_05_CALIBRATION_VALUE_TEMPLATE}}
       unit_of_measurement: {{PH_05_CALIBRATION_UNIT}}
       icon: {{PH_05_HA_ICON}}
+
+    - name: {{PH_06_NAME}}
+      unique_id: {{PH_06_HA_ID}}
+      state_topic: {{MQTT_SENSOR_06_RES}}
+      value_template: {{PH_06_VALUE_TEMPLATE}}
+      unit_of_measurement: {{PH_06_HA_UNIT}}
+      icon: {{PH_06_HA_ICON}}
+
+    - name: {{TEMPERATURE_06_NAME}}
+      unique_id: {{TEMPERATURE_06_HA_ID}}
+      state_topic: {{MQTT_SENSOR_06_RES}}
+      value_template: {{TEMPERATURE_06_VALUE_TEMPLATE}}
+      unit_of_measurement: {{TEMPERATURE_06_HA_UNIT}}
+      icon: {{TEMPERATURE_06_HA_ICON}}
+
+    - name: {{SENSOR_06_CALIBRATION_NAME}}
+      unique_id: {{SENSOR_06_CALIBRATION_HA_ID}}
+      state_topic: {{MQTT_SENSOR_06_RES}}
+      value_template: {{PH_06_CALIBRATION_VALUE_TEMPLATE}}
+      unit_of_measurement: {{PH_06_CALIBRATION_UNIT}}
+      icon: {{PH_06_HA_ICON}}
 
     - name: {{TEMPERATURE_11_NAME}}
       unique_id: {{TEMPERATURE_11_HA_ID}}

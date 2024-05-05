@@ -203,19 +203,19 @@ def on_message_SPH01_1_CMD(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
         print(cmd_msg)
-        if cmd_msg["cmd"] == "register_ph_4_01":
+        if cmd_msg["cmd"] == "register_ph_0401":
             # Send calibration command to sensor
             print("Registering pH 4.01")
             payload = sensor_SPH01_1.register_ph_4_01()
             client.publish(cmd_msg["res_topic"], payload)
 
-        elif cmd_msg["cmd"] == "register_ph_7_00":
+        elif cmd_msg["cmd"] == "register_ph_0700":
             # Send calibration command to sensor
             print("Registering pH 7.00")
             payload = sensor_SPH01_1.register_ph_7_00()
             client.publish(cmd_msg["res_topic"], payload)
 
-        elif cmd_msg["cmd"] == "register_ph_10_01":
+        elif cmd_msg["cmd"] == "register_ph_1001":
             # Send calibration command to sensor
             print("Registering pH 10.01")
             payload = sensor_SPH01_1.register_ph_10_01()
