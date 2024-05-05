@@ -251,6 +251,11 @@ class SEC01( minimalmodbus.Instrument ):
                             number_of_decimals=0,
                             functioncode=6,
                             signed=False)
+        # Return data struct with calibrated field set to 1 (True)
+        data["time"] = datetime.datetime.now().isoformat()
+        data["tags"]["sensor_id"] = self.address
+        data["fields"]["calibrated"] = 1
+        return data
     
     def read_ec_12880us(self):
         return self.read_register(registeraddress=49,

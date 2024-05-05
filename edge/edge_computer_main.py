@@ -167,16 +167,16 @@ def on_message_SEC01_1_CMD(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
         print(cmd_msg)
-        if cmd_msg["cmd"] == "register_ec_1413":
+        if cmd_msg["cmd"] == "calibrate_ec_1413":
             # Send calibration command to sensor
             print("Registering EC 1413")
-            payload = sensor_SEC01_1.register_ec_1413()
+            payload = sensor_SEC01_1.calibrate_ec_1413us()
             client.publish(cmd_msg["res_topic"], payload)
 
-        elif cmd_msg["cmd"] == "register_ec_12880":
+        elif cmd_msg["cmd"] == "calibrate_ec_12880":
             # Send calibration command to sensor
             print("Registering EC 12880")
-            payload = sensor_SEC01_1.register_ec_12880()
+            payload = sensor_SEC01_1.calibrate_ec_12880us()
             client.publish(cmd_msg["res_topic"], payload)
         
         elif cmd_msg["cmd"] == "set_temperature_compensation":
@@ -203,22 +203,22 @@ def on_message_SPH01_1_CMD(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
         print(cmd_msg)
-        if cmd_msg["cmd"] == "register_ph_0401":
+        if cmd_msg["cmd"] == "calibrate_ph_0401":
             # Send calibration command to sensor
             print("Registering pH 4.01")
-            payload = sensor_SPH01_1.register_ph_4_01()
+            payload = sensor_SPH01_1.calibrate_ph_0401()
             client.publish(cmd_msg["res_topic"], payload)
 
-        elif cmd_msg["cmd"] == "register_ph_0700":
+        elif cmd_msg["cmd"] == "calibrate_ph_0700":
             # Send calibration command to sensor
             print("Registering pH 7.00")
-            payload = sensor_SPH01_1.register_ph_7_00()
+            payload = sensor_SPH01_1.calibrate_ph_0700()
             client.publish(cmd_msg["res_topic"], payload)
 
-        elif cmd_msg["cmd"] == "register_ph_1001":
+        elif cmd_msg["cmd"] == "calibrate_ph_1001":
             # Send calibration command to sensor
             print("Registering pH 10.01")
-            payload = sensor_SPH01_1.register_ph_10_01()
+            payload = sensor_SPH01_1.calibrate_ph_1001()
             client.publish(cmd_msg["res_topic"], payload)
 
         elif cmd_msg["cmd"] == "set_temperature_compensation":
