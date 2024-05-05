@@ -267,6 +267,48 @@ def on_message_SPH01_1_CMD(client, userdata, msg):
     except Exception as e:
         print("SPH01-1 error:", str(e))
 
+def on_message_SPH01_2(client, userdata, msg):
+    req_msg = json.loads(msg.payload)
+    try:
+        res_payload = json.dumps(sensor_SPH01_2.fetch_and_return_data())
+        client.publish(req_msg["res_topic"], res_payload)
+        print(res_payload + "\n")
+    except Exception as e:
+        print("SPH01-2, data fetch error:", str(e))
+
+def on_message_SPH01_2_CMD(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        print(cmd_msg)
+        if cmd_msg["cmd"] == "calibrate_ph_0401":
+            # Send calibration command to sensor
+            print("Registering pH 4.01")
+            payload = sensor_SPH01_2.calibrate_ph_0401()
+            client.publish(cmd_msg["res_topic"], payload)
+
+        elif cmd_msg["cmd"] == "calibrate_ph_0700":
+            # Send calibration command to sensor
+            print("Registering pH 7.00")
+            payload = sensor_SPH01_2.calibrate_ph_0700()
+            client.publish(cmd_msg["res_topic"], payload)
+
+        elif cmd_msg["cmd"] == "calibrate_ph_1001":
+            # Send calibration command to sensor
+            print("Registering pH 10.01")
+            payload = sensor_SPH01_2.calibrate_ph_1001()
+            client.publish(cmd_msg["res_topic"], payload)
+
+        elif cmd_msg["cmd"] == "set_temperature_compensation":
+            # Send calibration command to sensor
+            print("Setting temperature compensation")
+            payload = sensor_SPH01_2.set_temperature_compensation(float(cmd_msg["value"]))
+            client.publish(cmd_msg["res_topic"], payload)
+
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("SPH01-2 error:", str(e))
+
 def on_message_SYM01(client, userdata, msg):
     req_msg = json.loads(msg.payload)
     try:
@@ -539,14 +581,15 @@ client.on_message = on_message
 client.message_callback_add(MQTT_SLIGTH01_DT_REQ, on_message_SLIGHT01)
 client.message_callback_add(MQTT_SPAR02_DT_REQ, on_message_SPAR02)
 client.message_callback_add(MQTT_SEC01_1_DT_REQ, on_message_SEC01_1)
-client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
-# client.message_callback_add(MQTT_SCD41_DT_REQ, on_message_SCD41)
 client.message_callback_add(MQTT_SEC01_1_CMD, on_message_SEC01_1_CMD)
-# Add callback for SEC01_2_CMD and dt req
-
-# Add callback for SPH01_1_CMD and dt req
+client.message_callback_add(MQTT_SEC01_2_DT_REQ, on_message_SEC01_2)
+client.message_callback_add(MQTT_SEC01_2_CMD, on_message_SEC01_2_CMD)
 client.message_callback_add(MQTT_SPH01_1_DT_REQ, on_message_SPH01_1)
 client.message_callback_add(MQTT_SPH01_1_CMD, on_message_SPH01_1_CMD)
+client.message_callback_add(MQTT_SPH01_2_DT_REQ, on_message_SPH01_2)
+client.message_callback_add(MQTT_SPH01_2_CMD, on_message_SPH01_2_CMD)
+client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
+# client.message_callback_add(MQTT_SCD41_DT_REQ, on_message_SCD41)
 
 # Actuators #
 client.message_callback_add(MQTT_RELAY_01_CMD, on_message_RLY01)
