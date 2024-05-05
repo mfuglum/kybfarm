@@ -42,16 +42,16 @@ class SPH01( minimalmodbus.Instrument ):
     Modbus Function Code 0x06 : used for writing single holding register.
     Modbus Function Code 0x10: used for writing multiple holding register.
     
-    Register value           Register Addr (HEX/DEC)  Data     Type   Function code (DEC)   Range and Comments                          Default Value
-    Temperature              0x0000/0                 INT16    RO     3/4                   -4000-8000 for -40.00-80.00 C               N/A
-    pH                       0x0001/1                 INT16    RO     3/4                   0-1400 for 0.00-14.00 pH                    N/A
-    PHCALIBRAWAD             0x0002/2                 INT16    RO     3/4                   -2000-2000 corresponds to -2000-2000        N/A
-    TEMPCOMPENSATION         0x0020/32                INT16    RW     3/6/16                Temp. comp. 0: Turn on, 1: Turn off         0
-    PHCALIB_0401             0x0030/48                INT16    RW     3/6/16                Calibrate pH 4.01, stored as -2000-2000     N/A
-    PHCALIB_0700             0x0031/49                INT16    RW     3/6/16                Calibrate pH 7.00, stored as -2000-2000     N/A
-    PHCALIB_1001             0x0032/50                INT16    RW     3/6/16                Calibrate pH 10.01, stored as -2000-2000    N/A
-    SLAVEADDRESS             0x0200/512               INT16    RW     3/6/16                Read or write addr. in range 0-255          1
-    BAUDRATE                 0x0201/513               INT16    RW     3/6/16                Read or write baudrate in range 0-5         3:9600bps
+    Register value           Register Addr (HEX/DEC)  Data     Type   Function code (DEC)   Range and Comments                                                     Default Value
+    Temperature              0x0000/0                 INT16    RO     3/4                   -4000-8000 for -40.00-80.00 C                                          N/A
+    pH                       0x0001/1                 INT16    RO     3/4                   0-1400 for 0.00-14.00 pH                                               N/A
+    PHCALIBRAWAD             0x0002/2                 INT16    RO     3/4                   -2000-2000 corresponds to -2000-2000                                   N/A
+    TEMPCOMPENSATION         0x0020/32                INT16    RW     3/6/16                Temp. comp. 0: Turn on, 1: Turn off                                    0
+    PHCALIB_0401             0x0030/48                INT16    RW     3/6/16                Calibrate pH 4.01, stored as -2000-2000, Write 0xFFFF to calibrate     N/A
+    PHCALIB_0700             0x0031/49                INT16    RW     3/6/16                Calibrate pH 7.00, stored as -2000-2000, Write 0xFFFF to calibrate     N/A
+    PHCALIB_1001             0x0032/50                INT16    RW     3/6/16                Calibrate pH 10.01, stored as -2000-2000, Write 0xFFFF to calibrate    N/A
+    SLAVEADDRESS             0x0200/512               INT16    RW     3/6/16                Read or write addr. in range 0-255                                     1
+    BAUDRATE                 0x0201/513               INT16    RW     3/6/16                Read or write baudrate in range 0-5                                    3:9600bps
 
     Functions used from minimalmodbus API:
     https://minimalmodbus.readthedocs.io/en/stable/_modules/minimalmodbus.html#Instrument.read_bit
@@ -156,9 +156,9 @@ class SPH01( minimalmodbus.Instrument ):
                                   functioncode=3)
     
     # Calibration functions
-    def calibrate_ph_0401(self, value):
+    def calibrate_ph_0401(self):
         self.write_register(registeraddress=48,
-                            value=value,
+                            value=0xFFFF,
                             functioncode=6,
                             signed=False)
         # Return data struct with calibrated field set to 1 (True)
@@ -167,9 +167,9 @@ class SPH01( minimalmodbus.Instrument ):
         data["fields"]["calibrated"] = 1
         return data
         
-    def calibrate_ph_0700(self, value):
+    def calibrate_ph_0700(self):
         self.write_register(registeraddress=49,
-                            value=value,
+                            value=0xFFFF,
                             functioncode=6,
                             signed=False)
         # Return data struct with calibrated field set to 1 (True)
@@ -178,9 +178,9 @@ class SPH01( minimalmodbus.Instrument ):
         data["fields"]["calibrated"] = 1
         return data
     
-    def calibrate_ph_1001(self, value):
+    def calibrate_ph_1001(self):
         self.write_register(registeraddress=50,
-                            value=value,
+                            value=0xFFFF,
                             functioncode=6,
                             signed=False)
         # Return data struct with calibrated field set to 1 (True)
