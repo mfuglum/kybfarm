@@ -98,7 +98,7 @@ class SPH01( minimalmodbus.Instrument ):
     # Returns pH 0.00~14.00
     def get_pH(self):
         return self.read_register(registeraddress=1,
-                                  number_of_decimals=0,
+                                  number_of_decimals=2,
                                   functioncode=3,
                                   signed=False)
     
