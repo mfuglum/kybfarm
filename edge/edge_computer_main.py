@@ -169,20 +169,19 @@ def on_message_SEC01_1_CMD(client, userdata, msg):
         if cmd_msg["cmd"] == "calibrate_ec_1413":
             # Send calibration command to sensor
             print("Registering EC 1413")
-            payload = sensor_SEC01_1.calibrate_ec_1413us()
+            payload = json.dumps(sensor_SEC01_1.calibrate_ec_1413us())
             client.publish(cmd_msg["res_topic"], payload)
 
         elif cmd_msg["cmd"] == "calibrate_ec_12880":
             # Send calibration command to sensor
             print("Registering EC 12880")
-            payload = sensor_SEC01_1.calibrate_ec_12880us()
+            payload = json.dumps(sensor_SEC01_1.calibrate_ec_12880us())
             client.publish(cmd_msg["res_topic"], payload)
         
         elif cmd_msg["cmd"] == "set_temperature_compensation":
             # Send calibration command to sensor
             print("Setting temperature compensation")
-            payload = sensor_SEC01_1.set_temperature_compensation(float(cmd_msg["value"]))
-            client.publish(cmd_msg["res_topic"], payload)
+            sensor_SEC01_1.set_temperature_compensation(float(cmd_msg["value"]))
 
         else:
             print("Invalid command")
@@ -205,20 +204,19 @@ def on_message_SEC01_2_CMD(client, userdata, msg):
         if cmd_msg["cmd"] == "calibrate_ec_1413":
             # Send calibration command to sensor
             print("Registering EC 1413")
-            payload = sensor_SEC01_2.calibrate_ec_1413us()
+            payload = json.dumps(sensor_SEC01_2.calibrate_ec_1413us())
             client.publish(cmd_msg["res_topic"], payload)
 
         elif cmd_msg["cmd"] == "calibrate_ec_12880":
             # Send calibration command to sensor
             print("Registering EC 12880")
-            payload = sensor_SEC01_2.calibrate_ec_12880us()
+            payload = json.dumps(sensor_SEC01_2.calibrate_ec_12880us())
             client.publish(cmd_msg["res_topic"], payload)
         
         elif cmd_msg["cmd"] == "set_temperature_compensation":
             # Send calibration command to sensor
             print("Setting temperature compensation")
-            payload = sensor_SEC01_2.set_temperature_compensation(float(cmd_msg["value"]))
-            client.publish(cmd_msg["res_topic"], payload)
+            sensor_SEC01_2.set_temperature_compensation(float(cmd_msg["value"]))
 
         else:
             print("Invalid command")
@@ -241,26 +239,25 @@ def on_message_SPH01_1_CMD(client, userdata, msg):
         if cmd_msg["cmd"] == "calibrate_ph_0401":
             # Send calibration command to sensor
             print("Registering pH 4.01")
-            payload = sensor_SPH01_1.calibrate_ph_0401()
+            payload = json.dumps(sensor_SPH01_1.calibrate_ph_0401())
             client.publish(cmd_msg["res_topic"], payload)
 
         elif cmd_msg["cmd"] == "calibrate_ph_0700":
             # Send calibration command to sensor
             print("Registering pH 7.00")
-            payload = sensor_SPH01_1.calibrate_ph_0700()
+            payload = json.dumps(sensor_SPH01_1.calibrate_ph_0700())
             client.publish(cmd_msg["res_topic"], payload)
 
         elif cmd_msg["cmd"] == "calibrate_ph_1001":
             # Send calibration command to sensor
             print("Registering pH 10.01")
-            payload = sensor_SPH01_1.calibrate_ph_1001()
+            payload = json.dumps(sensor_SPH01_1.calibrate_ph_1001())
             client.publish(cmd_msg["res_topic"], payload)
 
         elif cmd_msg["cmd"] == "set_temperature_compensation":
             # Send calibration command to sensor
             print("Setting temperature compensation")
-            payload = sensor_SPH01_1.set_temperature_compensation(float(cmd_msg["value"]))
-            client.publish(cmd_msg["res_topic"], payload)
+            sensor_SPH01_1.set_temperature_compensation(float(cmd_msg["value"]))
 
         else:
             print("Invalid command")
@@ -283,26 +280,25 @@ def on_message_SPH01_2_CMD(client, userdata, msg):
         if cmd_msg["cmd"] == "calibrate_ph_0401":
             # Send calibration command to sensor
             print("Registering pH 4.01")
-            payload = sensor_SPH01_2.calibrate_ph_0401()
+            payload = json.dumps(sensor_SPH01_2.calibrate_ph_0401())
             client.publish(cmd_msg["res_topic"], payload)
 
         elif cmd_msg["cmd"] == "calibrate_ph_0700":
             # Send calibration command to sensor
             print("Registering pH 7.00")
-            payload = sensor_SPH01_2.calibrate_ph_0700()
+            payload = json.dumps(sensor_SPH01_2.calibrate_ph_0700())
             client.publish(cmd_msg["res_topic"], payload)
 
         elif cmd_msg["cmd"] == "calibrate_ph_1001":
             # Send calibration command to sensor
             print("Registering pH 10.01")
-            payload = sensor_SPH01_2.calibrate_ph_1001()
+            payload = json.dumps(sensor_SPH01_2.calibrate_ph_1001())
             client.publish(cmd_msg["res_topic"], payload)
 
         elif cmd_msg["cmd"] == "set_temperature_compensation":
             # Send calibration command to sensor
             print("Setting temperature compensation")
-            payload = sensor_SPH01_2.set_temperature_compensation(float(cmd_msg["value"]))
-            client.publish(cmd_msg["res_topic"], payload)
+            sensor_SPH01_2.set_temperature_compensation(float(cmd_msg["value"]))
 
         else:
             print("Invalid command")
