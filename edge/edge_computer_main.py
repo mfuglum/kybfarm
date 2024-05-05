@@ -540,7 +540,7 @@ except:
 # Activate SLIGHT-01 sensor
 try:
     sensor_SLIGHT01 = sensor_SLIGHT01_modbus.SLIGHT01(  portname='/dev/ttySC1',
-                                                        slaveaddress=1, 
+                                                        slaveaddress=30#1, #Using 1 for config og pH-1. 
                                                         debug=False)
     print(sensor_SLIGHT01)
 except Exception as e:
@@ -576,7 +576,7 @@ except Exception as e:
 # Activate SPH-01-1 sensor
 try:
     sensor_SPH01_1 = sensor_SPH01_modbus.SPH01(   portname='/dev/ttySC1',
-                                                  slaveaddress=5, 
+                                                  slaveaddress=1, # Change to 5 after config
                                                   debug=False)
     print(sensor_SPH01_1)
 except Exception as e:
