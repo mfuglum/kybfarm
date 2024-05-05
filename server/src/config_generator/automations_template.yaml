@@ -91,7 +91,7 @@
       qos: 0
       retain: false
       topic: {{MQTT_SENSOR_03_CMD}}
-      payload: '{ "cmd": "register_ec_1413", "res_topic": {{MQTT_SENSOR_03_RES}}}'
+      payload: '{ "cmd": "calibrate_ec_1413", "res_topic": {{MQTT_SENSOR_03_RES}}}'
   mode: single
 
 - alias: {{SENSOR_03_END_CALIBRATION_ALIAS}}
@@ -152,7 +152,7 @@
       qos: 0
       retain: false
       topic: {{MQTT_SENSOR_03_CMD}}
-      payload: '{ "cmd": "register_ec_12880", "res_topic": {{MQTT_SENSOR_03_RES}}}'
+      payload: '{ "cmd": "calibrate_ec_12880", "res_topic": {{MQTT_SENSOR_03_RES}}}'
   mode: single
 
 - alias: {{SENSOR_04_REQ_AUTOMATION_ALIAS}}
@@ -212,7 +212,7 @@
       qos: 0
       retain: false
       topic: {{MQTT_SENSOR_04_CMD}}
-      payload: '{ "cmd": "register_ec_1413", "res_topic": {{MQTT_SENSOR_04_RES}}}'
+      payload: '{ "cmd": "calibrate_ec_1413", "res_topic": {{MQTT_SENSOR_04_RES}}}'
   mode: single
 
 - alias: {{SENSOR_04_END_CALIBRATION_ALIAS}}
@@ -273,7 +273,7 @@
       qos: 0
       retain: false
       topic: {{MQTT_SENSOR_04_CMD}}
-      payload: '{ "cmd": "register_ec_12880", "res_topic": {{MQTT_SENSOR_04_RES}}}'
+      payload: '{ "cmd": "calibrate_ec_12880", "res_topic": {{MQTT_SENSOR_04_RES}}}'
   mode: single
 
 - alias: {{SENSOR_05_REQ_AUTOMATION_ALIAS}}
@@ -333,7 +333,7 @@
       qos: 0
       retain: false
       topic: {{MQTT_SENSOR_05_CMD}}
-      payload: '{ "cmd": "register_ph_0401", "res_topic": {{MQTT_SENSOR_05_RES}}}'
+      payload: '{ "cmd": "calibrate_ph_0401", "res_topic": {{MQTT_SENSOR_05_RES}}}'
   mode: single
 
 - alias: {{SENSOR_05_END_CALIBRATION_ALIAS}}
@@ -394,7 +394,7 @@
       qos: 0
       retain: false
       topic: {{MQTT_SENSOR_05_CMD}}
-      payload: '{ "cmd": "register_ph_0700", "res_topic": {{MQTT_SENSOR_05_RES}}}'
+      payload: '{ "cmd": "calibrate_ph_0700", "res_topic": {{MQTT_SENSOR_05_RES}}}'
   mode: single
 
 - alias: {{SENSOR_05_INIT_CALIBRATION_1001_ALIAS}}
@@ -437,7 +437,7 @@
       qos: 0
       retain: false
       topic: {{MQTT_SENSOR_05_CMD}}
-      payload: '{ "cmd": "register_ph_1001", "res_topic": {{MQTT_SENSOR_05_RES}}}'
+      payload: '{ "cmd": "calibrate_ph_1001", "res_topic": {{MQTT_SENSOR_05_RES}}}'
   mode: single
 
 - alias: {{SENSOR_06_REQ_AUTOMATION_ALIAS}}
@@ -497,7 +497,7 @@
       qos: 0
       retain: false
       topic: {{MQTT_SENSOR_06_CMD}}
-      payload: '{ "cmd": "register_ph_0401", "res_topic": {{MQTT_SENSOR_06_RES}}}'
+      payload: '{ "cmd": "calibrate_ph_0401", "res_topic": {{MQTT_SENSOR_06_RES}}}'
   mode: single
 
 - alias: {{SENSOR_06_END_CALIBRATION_ALIAS}}
@@ -558,7 +558,7 @@
       qos: 0
       retain: false
       topic: {{MQTT_SENSOR_06_CMD}}
-      payload: '{ "cmd": "register_ph_0700", "res_topic": {{MQTT_SENSOR_06_RES}}}'
+      payload: '{ "cmd": "calibrate_ph_0700", "res_topic": {{MQTT_SENSOR_06_RES}}}'
   mode: single
 
 - alias: {{SENSOR_06_INIT_CALIBRATION_1001_ALIAS}}
@@ -601,7 +601,7 @@
       qos: 0
       retain: false
       topic: {{MQTT_SENSOR_06_CMD}}
-      payload: '{ "cmd": "register_ph_1001", "res_topic": {{MQTT_SENSOR_06_RES}}}'
+      payload: '{ "cmd": "calibrate_ph_1001", "res_topic": {{MQTT_SENSOR_06_RES}}}'
   mode: single
 
 - alias: {{SENSOR_11_REQ_AUTOMATION_ALIAS}} 

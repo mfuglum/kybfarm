@@ -156,20 +156,35 @@ class SPH01( minimalmodbus.Instrument ):
                                   functioncode=3)
     
     # Calibration functions
-    def calibrate_ph_4_01(self, value):
+    def calibrate_ph_0401(self, value):
         self.write_register(registeraddress=48,
                             value=value,
                             functioncode=6,
                             signed=False)
+        # Return data struct with calibrated field set to 1 (True)
+        data["time"] = datetime.datetime.now().isoformat()
+        data["sensor_id"] = self.address
+        data["fields"]["calibrated"] = 1
+        return data
         
-    def calibrate_ph_7_00(self, value):
+    def calibrate_ph_0700(self, value):
         self.write_register(registeraddress=49,
                             value=value,
                             functioncode=6,
                             signed=False)
+        # Return data struct with calibrated field set to 1 (True)
+        data["time"] = datetime.datetime.now().isoformat()
+        data["sensor_id"] = self.address
+        data["fields"]["calibrated"] = 1
+        return data
     
-    def calibrate_ph_10_01(self, value):
+    def calibrate_ph_1001(self, value):
         self.write_register(registeraddress=50,
                             value=value,
                             functioncode=6,
                             signed=False)
+        # Return data struct with calibrated field set to 1 (True)
+        data["time"] = datetime.datetime.now().isoformat()
+        data["sensor_id"] = self.address
+        data["fields"]["calibrated"] = 1
+        return data
