@@ -69,6 +69,27 @@ mqtt:
       unit_of_measurement: {{EC_03_CALIBRATION_UNIT}}
       icon: {{EC_03_HA_ICON}}
 
+    - name: {{PH_05_NAME}}
+      unique_id: {{PH_05_HA_ID}}
+      state_topic: {{MQTT_SENSOR_05_RES}}
+      value_template: {{PH_05_VALUE_TEMPLATE}}
+      unit_of_measurement: {{PH_05_HA_UNIT}}
+      icon: {{PH_05_HA_ICON}}
+
+    - name: {{TEMPERATURE_05_NAME}}
+      unique_id: {{TEMPERATURE_05_HA_ID}}
+      state_topic: {{MQTT_SENSOR_05_RES}}
+      value_template: {{TEMPERATURE_05_VALUE_TEMPLATE}}
+      unit_of_measurement: {{TEMPERATURE_05_HA_UNIT}}
+      icon: {{TEMPERATURE_05_HA_ICON}}
+
+    - name: {{SENSOR_05_CALIBRATION_NAME}}
+      unique_id: {{SENSOR_05_CALIBRATION_HA_ID}}
+      state_topic: {{MQTT_SENSOR_05_RES}}
+      value_template: {{PH_05_CALIBRATION_VALUE_TEMPLATE}}
+      unit_of_measurement: {{PH_05_CALIBRATION_UNIT}}
+      icon: {{PH_05_HA_ICON}}
+
     - name: {{TEMPERATURE_11_NAME}}
       unique_id: {{TEMPERATURE_11_HA_ID}}
       state_topic: {{MQTT_SENSOR_11_RES}}

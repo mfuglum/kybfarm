@@ -155,6 +155,22 @@
       payload: '{ "cmd": "register_ec_12880", "res_topic": {{MQTT_SENSOR_03_RES}}}'
   mode: single
 
+- alias: {{SENSOR_05_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: /{{SENSOR_05_REQ_INTERVAL_SEC}}
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_05_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_05_REQ}}, "res_topic": {{MQTT_SENSOR_05_RES}},
+        "data": "ha_req" }'
+  mode: single
 
 - alias: {{SENSOR_11_REQ_AUTOMATION_ALIAS}} 
   description: ''
