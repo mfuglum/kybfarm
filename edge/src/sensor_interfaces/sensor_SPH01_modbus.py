@@ -9,7 +9,7 @@ data = {
         "location": "Gloeshaugen",
         "sensor_name": "S-PH-01"},
     "fields": {
-        "pH": 0,
+        "ph": 0,
         "temperature": 0,
         "calibrated": 0},
     "time": datetime.datetime.now().isoformat()
@@ -108,7 +108,7 @@ class SPH01( minimalmodbus.Instrument ):
         pH = self.get_pH()
 
         data["fields"]["temperature"] = temperature
-        data["fields"]["pH"] = pH
+        data["fields"]["ph"] = pH
         data["time"] = datetime.datetime.now().isoformat()
         data["tags"]["sensor_id"] = self.address
         return data
