@@ -233,10 +233,11 @@ class SEC01( minimalmodbus.Instrument ):
                                 signed=False)
         except Exception as e:
             return str(e)
-        # Return data struct with calibrated field set to 1 (True)
-        data["time"] = datetime.datetime.now().isoformat()
-        data["tags"]["sensor_id"] = self.address
-        data["fields"]["calibrated"] = 1
+        # Return data struct with calibrated field set to the timestamp
+        time = datetime.datetime.now().isoformat()
+        data["time"] = time
+        data["sensor_id"] = self.address
+        data["fields"]["calibrated"] = time
         return data        
     
     def read_ec_1413us(self):
@@ -251,10 +252,11 @@ class SEC01( minimalmodbus.Instrument ):
                             number_of_decimals=0,
                             functioncode=6,
                             signed=False)
-        # Return data struct with calibrated field set to 1 (True)
-        data["time"] = datetime.datetime.now().isoformat()
-        data["tags"]["sensor_id"] = self.address
-        data["fields"]["calibrated"] = 1
+        # Return data struct with calibrated field set to the timestamp
+        time = datetime.datetime.now().isoformat()
+        data["time"] = time
+        data["sensor_id"] = self.address
+        data["fields"]["calibrated"] = time
         return data
     
     def read_ec_12880us(self):
