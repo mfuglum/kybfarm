@@ -18,7 +18,6 @@ services:
       - /run/dbus:/run/dbus:ro  # For bluetooth integration
     restart: unless-stopped
     privileged: true
-    # network_mode: host  # (Apparently, this does not work when using Docker Desktop. Must instead add ports manually.)
     ports:
       - 8123:8123
     depends_on:
@@ -42,7 +41,6 @@ services:
     env_file:
       - .env
 
-
   influxdb:
     container_name: influxdb_kybfarm
     image: influxdb:latest
@@ -65,16 +63,6 @@ services:
     restart: unless-stopped
     ports:
       - 1883:1883
-    depends_on:
-      - config_generator
-    env_file:
-      - .env
-
-  tunnel:
-    container_name: cloudflared_tunnel_kybfarm
-    image: cloudflare/cloudflared:latest
-    restart: unless-stopped
-    command: tunnel run
     depends_on:
       - config_generator
     env_file:

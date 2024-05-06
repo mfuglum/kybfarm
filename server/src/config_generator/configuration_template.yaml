@@ -25,9 +25,6 @@ automation: !include automations.yaml
 # InfluxDB Database configuration
 influxdb: !include influxdb.yaml
 
-# Tunnel configuartion for remote access
-http: !include cloudflare.yaml
-
 # MQTT Configuration to receive MQTT data
 mqtt:
   # Broker configuration: Must be done in GUI
