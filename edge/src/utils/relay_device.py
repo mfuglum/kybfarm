@@ -8,10 +8,10 @@ class relay_device:
         GPIO.setwarnings(False)
         # Set the pin numbering mode
         GPIO.setmode(GPIO.BCM)
-        # Set the pin to high as relay is OFF in high state
-        GPIO.output(pin, GPIO.HIGH)
         # Set the pin as output
         GPIO.setup(pin, GPIO.OUT)
+        # Set the pin to high as relay is OFF in high state
+        GPIO.output(pin, GPIO.HIGH)
 
         self.pin = pin
     
