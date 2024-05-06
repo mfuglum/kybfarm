@@ -161,7 +161,7 @@ class SPH01( minimalmodbus.Instrument ):
                             value=0xFFFF,
                             functioncode=6,
                             signed=False)
-        # Return data struct with calibrated field set to 1 (True)
+        # Return data struct with calibrated field set to the timestamp
         time = datetime.datetime.now().isoformat()
         data["time"] = time
         data["sensor_id"] = self.address
@@ -173,10 +173,11 @@ class SPH01( minimalmodbus.Instrument ):
                             value=0xFFFF,
                             functioncode=6,
                             signed=False)
-        # Return data struct with calibrated field set to 1 (True)
-        data["time"] = datetime.datetime.now().isoformat()
+        # Return data struct with calibrated field set to the timestamp
+        time = datetime.datetime.now().isoformat()
+        data["time"] = time
         data["sensor_id"] = self.address
-        data["fields"]["calibrated"] = 1
+        data["fields"]["calibrated"] = time
         return data
     
     def calibrate_ph_1001(self):
@@ -184,8 +185,9 @@ class SPH01( minimalmodbus.Instrument ):
                             value=0xFFFF,
                             functioncode=6,
                             signed=False)
-        # Return data struct with calibrated field set to 1 (True)
-        data["time"] = datetime.datetime.now().isoformat()
+        # Return data struct with calibrated field set to the timestamp
+        time = datetime.datetime.now().isoformat()
+        data["time"] = time
         data["sensor_id"] = self.address
-        data["fields"]["calibrated"] = 1
+        data["fields"]["calibrated"] = time
         return data
