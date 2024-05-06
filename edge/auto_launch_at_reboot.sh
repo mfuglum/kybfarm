@@ -7,30 +7,30 @@
 # Configure GPIO pins to avoid wrong relay behavior before starting main
 
 # Refering to the GPIO (BCD) pin mapping on the edge computer
-"""
-GPIO_PIN = {
-    "relay_1": 2,
-    "relay_2": 3,
-    "relay_3": 4,
-    "relay_4": 14,
-    "relay_5": 15,
-    "relay_6": 17,
-    "relay_7": 23,
-    "relay_8": 10,
-    "relay_9": 9,
-    "relay_10": 25,
-    "relay_11": 11,
-    "relay_12": 8,
-    "relay_13": 6,
-    "relay_14": 12,
-    "relay_15": 13,
-    "relay_16": 16,
-    "float_switch_1": 7,
-    "float_switch_2": 0,
-    "float_switch_3": 1,
-    "float_switch_4": 5,
-}
-"""
+
+# GPIO_PIN = {
+#     "relay_1": 2,
+#     "relay_2": 3,
+#     "relay_3": 4,
+#     "relay_4": 14,
+#     "relay_5": 15,
+#     "relay_6": 17,
+#     "relay_7": 23,
+#     "relay_8": 10,
+#     "relay_9": 9,
+#     "relay_10": 25,
+#     "relay_11": 11,
+#     "relay_12": 8,
+#     "relay_13": 6,
+#     "relay_14": 12,
+#     "relay_15": 13,
+#     "relay_16": 16,
+#     "float_switch_1": 7,
+#     "float_switch_2": 0,
+#     "float_switch_3": 1,
+#     "float_switch_4": 5,
+# }
+
 # Set GPIO mode to output for relays
 gpio mode 2 out
 gpio mode 3 out
