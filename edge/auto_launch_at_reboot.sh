@@ -31,51 +31,30 @@
 #     "float_switch_4": 5,
 # }
 
-gpio setmode BCD
 
-# Set GPIO mode to output for relays
-gpio mode 2 out
-gpio mode 3 out
-gpio mode 4 out
-gpio mode 14 out
-gpio mode 15 out
-gpio mode 17 out
-gpio mode 23 out
-gpio mode 10 out
-gpio mode 9 out
-gpio mode 25 out
-gpio mode 11 out
-gpio mode 8 out
-gpio mode 6 out
-gpio mode 12 out
-gpio mode 13 out
-gpio mode 16 out
-
-# Set GPIO level to high to avoid relay activation at boot
-gpio write 2 1
-gpio write 3 1
-gpio write 4 1
-gpio write 14 1
-gpio write 15 1
-gpio write 17 1
-gpio write 23 1
-gpio write 10 1
-gpio write 9 1
-gpio write 25 1
-gpio write 11 1
-gpio write 8 1
-gpio write 6 1
-gpio write 12 1
-gpio write 13 1
-gpio write 16 1
-
-
+# Set GPIO mode to output and drive high utilizing raspi-gpio
+raspi-gpio set 2 op dh
+raspi-gpio set 3 op dh
+raspi-gpio set 4 op dh
+raspi-gpio set 14 op dh
+raspi-gpio set 15 op dh
+raspi-gpio set 17 op dh
+raspi-gpio set 23 op dh
+raspi-gpio set 10 op dh
+raspi-gpio set 9 op dh
+raspi-gpio set 25 op dh
+raspi-gpio set 11 op dh
+raspi-gpio set 8 op dh
+raspi-gpio set 6 op dh
+raspi-gpio set 12 op dh
+raspi-gpio set 13 op dh
+raspi-gpio set 16 op dh
 
 # Set GPIO mode to input for float switches
-gpio mode 7 in
-gpio mode 0 in
-gpio mode 1 in
-gpio mode 5 in
+raspi-gpio set 7 ip
+raspi-gpio set 0 ip
+raspi-gpio set 1 ip
+raspi-gpio set 5 ip
 
 # Activate venv on edge
 source /home/user1/Desktop/kybfarm/edge/venv/bin/activate
