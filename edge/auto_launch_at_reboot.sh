@@ -31,6 +31,24 @@ GPIO_PIN = {
     "float_switch_4": 5,
 }
 """
+# Set GPIO mode to output for relays
+gpio mode 2 out
+gpio mode 3 out
+gpio mode 4 out
+gpio mode 14 out
+gpio mode 15 out
+gpio mode 17 out
+gpio mode 23 out
+gpio mode 10 out
+gpio mode 9 out
+gpio mode 25 out
+gpio mode 11 out
+gpio mode 8 out
+gpio mode 6 out
+gpio mode 12 out
+gpio mode 13 out
+gpio mode 16 out
+
 # Set GPIO level to high to avoid relay activation at boot
 gpio write 2 1
 gpio write 3 1
@@ -49,23 +67,7 @@ gpio write 12 1
 gpio write 13 1
 gpio write 16 1
 
-# Set GPIO mode to output for relays
-gpio mode 2 out
-gpio mode 3 out
-gpio mode 4 out
-gpio mode 14 out
-gpio mode 15 out
-gpio mode 17 out
-gpio mode 23 out
-gpio mode 10 out
-gpio mode 9 out
-gpio mode 25 out
-gpio mode 11 out
-gpio mode 8 out
-gpio mode 6 out
-gpio mode 12 out
-gpio mode 13 out
-gpio mode 16 out
+
 
 # Set GPIO mode to input for float switches
 gpio mode 7 in
