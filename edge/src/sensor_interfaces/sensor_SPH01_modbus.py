@@ -162,9 +162,10 @@ class SPH01( minimalmodbus.Instrument ):
                             functioncode=6,
                             signed=False)
         # Return data struct with calibrated field set to 1 (True)
-        data["time"] = datetime.datetime.now().isoformat()
+        time = datetime.datetime.now().isoformat()
+        data["time"] = time
         data["sensor_id"] = self.address
-        data["fields"]["calibrated"] = 1
+        data["fields"]["calibrated"] = time
         return data
         
     def calibrate_ph_0700(self):
