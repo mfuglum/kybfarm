@@ -62,11 +62,15 @@ paho-mqtt
 ### Required system wide installations <a id="system-wide-installatins"></a>
 Due to not beeing Python packages, these must be installed system wide:
 Tailscale
+raspi-gpio:
+To control GPIO pins from bash script.
 
 ### Auto-launch edge script at reboot on Rasbian system <a id="auto-launch-at-reboot"></a>
 This section goes through the auto-launch script configuration and how to set a cron-job to execute it.
 
 The script for auto-launch in the file "auto_launch_at_reboot.sh"
+
+It configures all GPIO ports to avoid unwanted relay states, and utilized raspi-gpio for this. 
 
 To make sure the script doesn't run too early it is implemented to wait for proper ping with the MQTT broker.
 To do so the IP for the MQTT broker must be provided in the file or in a separate "reboot_config.sh" in the same folder.
