@@ -31,6 +31,8 @@
 #     "float_switch_4": 5,
 # }
 
+gpio setmode BCD
+
 # Set GPIO mode to output for relays
 gpio mode 2 out
 gpio mode 3 out
