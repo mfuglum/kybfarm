@@ -26,7 +26,7 @@ from src.sensor_interfaces import (sensor_SCD41_I2C,
                                    sensor_SPAR02_modbus,
                                    sensor_SEC01_modbus,
                                    sensor_SPH01_modbus)
-from src.actutor_instances import relay_devices_initialization 
+from src.actuator_instances import relay_devices_initialization 
 from src.utils import relay_device
 
 # Load environment variables from the .env file
