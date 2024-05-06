@@ -8,14 +8,15 @@ class relay_device:
         GPIO.setwarnings(False)
         # Set the pin numbering mode
         GPIO.setmode(GPIO.BCM)
-        # Set the pin as output
-        GPIO.setup(pin, GPIO.OUT)
         # Set the pin to high as relay is OFF in high state
         GPIO.output(pin, GPIO.HIGH)
+        # Set the pin as output
+        GPIO.setup(pin, GPIO.OUT)
+
         self.pin = pin
     
-    def __del__ (self):
-        self.cleanup()
+    # def __del__ (self):
+        # self.cleanup()
 
     # Turn the relay ON
     def turn_on(self):
@@ -32,5 +33,5 @@ class relay_device:
         threading.Timer(time, self.turn_off).start()
     
     # Cleanup the GPIO i.e. set all used pins in program back to input mode
-    def cleanup(self):
-        GPIO.cleanup()
+    # def cleanup(self):
+        # GPIO.cleanup()
