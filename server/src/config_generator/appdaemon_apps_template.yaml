@@ -6,10 +6,10 @@ hello_world:
 dummy_control:
   module: dummy_control
   class: DummyControl
-  gain: 0.5
-  reference_value: 22
-  sensor: sensor.scd_41_temperature
-  control_signal_topic: ha/desktop_gf/actuators/temperature
+  gain: {{P_10_GAIN}}
+  reference_value: {{P_10_REFERENCE}}
+  sensor: {{P_10_SENSOR}}
+  control_signal_topic: {{MQTT_P_10_STATE}}
 
 # # WIP general control app
 # controller_app:

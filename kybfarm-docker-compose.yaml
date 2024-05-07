@@ -7,6 +7,7 @@ services:
     volumes:
       - ./.env:/app/.env
       - ./server/homeassistant/config:/app/server/homeassistant/config
+      - ./server/appdaemon/config:/app/server/appdaemon/config
       - ./server/src/config_generator/config_generator.py:/app/server/src/config_generator/config_generator.py
 
   homeassistant:
