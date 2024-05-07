@@ -3,7 +3,7 @@ import datetime
 
 # A dictionary struct to send as payload over MQTT
 data = {
-    "measurement": "ambient",
+    "measurement": "Temperature and Leaf Wetness",
     "tags": {
         "sensor_id": "10",
         "location": "Gloeshaugen",

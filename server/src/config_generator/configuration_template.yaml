@@ -163,3 +163,10 @@ mqtt:
       value_template: {{TEMPERATURE_10_VALUE_TEMPLATE}}
       unit_of_measurement: {{TEMPERATURE_10_HA_UNIT}}
       icon: {{TEMPERATURE_10_HA_ICON}}
+
+    - name: {{LEAF_WETNESS_10_NAME}}
+      unique_id: {{LEAF_WETNESS_10_HA_ID}}
+      state_topic: {{MQTT_SENSOR_10_RES}}
+      value_template: {{LEAF_WETNESS_10_VALUE_TEMPLATE}}
+      unit_of_measurement: {{LEAF_WETNESS_10_HA_UNIT}}
+      icon: {{LEAF_WETNESS_10_HA_ICON}}
