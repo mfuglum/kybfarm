@@ -32,6 +32,7 @@ def main():
         "./input_select_template.json": "./server/homeassistant/config/.storage/input_select",
         "./input_text_template.json": "./server/homeassistant/config/.storage/input_text",
         "./input_boolean_template.json": "./server/homeassistant/config/.storage/input_boolean",
+        "./appdaemon_apps_template.yaml": "./server/appdaemon/config/apps/apps.yaml",
     }
 
     env_file = ".env"
