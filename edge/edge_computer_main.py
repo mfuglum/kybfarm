@@ -13,12 +13,10 @@ Run the file:
     python edge_computer_main.py
 """
 import paho.mqtt.client as mqtt
-import paho.mqtt.publish as publish
 import json
 import time
 from dotenv import load_dotenv
 import os
-import string
 
 from src.sensor_interfaces import (sensor_SCD41_I2C, 
                                    sensor_SYM01_modbus, 
@@ -27,7 +25,6 @@ from src.sensor_interfaces import (sensor_SCD41_I2C,
                                    sensor_SEC01_modbus,
                                    sensor_SPH01_modbus)
 from src.actuator_instances import relay_devices_initialization 
-from src.utils import relay_device
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -301,8 +298,6 @@ def on_message_SCD41(client, userdata, msg):
         print("SCD41, data fetch error:", str(e))
 
 
-
-
 # Setup MQTT client for sensor host
 client = mqtt.Client()
 
@@ -413,13 +408,8 @@ try:
 except Exception as e:
     print("SYM01, error:", str(e))
 
-# Activate SCD-41 sensor
-# try:
-    # sensor_SCD41_I2C.start_low_periodic_measurement()
-# except Exception as e:
-    # print("SCD41, error:", str(e))
 
-# Start main loop
+# Start main loop #
 try:
     # Main loop
     while True:
@@ -430,5 +420,3 @@ except Exception as e:
     print("\nException, error: ", str(e))
 
 client.loop_stop()
-# sensor_SCD41_I2C.stop_periodic_measurement()
-
