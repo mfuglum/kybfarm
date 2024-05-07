@@ -159,6 +159,7 @@ class SPH01( minimalmodbus.Instrument ):
     def calibrate_ph_0401(self):
         self.write_register(registeraddress=48,
                             value=0xFFFF,
+                            number_of_decimals=0,
                             functioncode=6,
                             signed=False)
         # Return data struct with calibrated field set to the timestamp
@@ -171,6 +172,7 @@ class SPH01( minimalmodbus.Instrument ):
     def calibrate_ph_0700(self):
         self.write_register(registeraddress=49,
                             value=0xFFFF,
+                            number_of_decimals=0,
                             functioncode=6,
                             signed=False)
         # Return data struct with calibrated field set to the timestamp
@@ -183,6 +185,7 @@ class SPH01( minimalmodbus.Instrument ):
     def calibrate_ph_1001(self):
         self.write_register(registeraddress=50,
                             value=0xFFFF,
+                            number_of_decimals=0,
                             functioncode=6,
                             signed=False)
         # Return data struct with calibrated field set to the timestamp
