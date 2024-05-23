@@ -26,13 +26,13 @@ def generate_config(template_path, config_path, env_file):
 
 def main():
     template_and_config_pairs = {
-        "./automations_template.yaml": "./server/homeassistant/config/automations.yaml",
-        "./configuration_template.yaml": "./server/homeassistant/config/configuration.yaml",
-        "./influxdb_template.yaml": "./server/homeassistant/config/influxdb.yaml",
-        "./input_select_template.json": "./server/homeassistant/config/.storage/input_select",
-        "./input_text_template.json": "./server/homeassistant/config/.storage/input_text",
-        "./input_boolean_template.json": "./server/homeassistant/config/.storage/input_boolean",
-        "./appdaemon_apps_template.yaml": "./server/appdaemon/config/apps/apps.yaml",
+        "./homeassistant_templates/automations_template.yaml": "./server/homeassistant/config/automations.yaml",
+        "./homeassistant_templates/configuration_template.yaml": "./server/homeassistant/config/configuration.yaml",
+        "./homeassistant_templates/influxdb_template.yaml": "./server/homeassistant/config/influxdb.yaml",
+        "./homeassistant_templates/input_select_template.json": "./server/homeassistant/config/.storage/input_select",
+        "./homeassistant_templates/input_text_template.json": "./server/homeassistant/config/.storage/input_text",
+        "./homeassistant_templates/input_boolean_template.json": "./server/homeassistant/config/.storage/input_boolean",
+        "./appdaemon_templates/appdaemon_apps_template.yaml": "./server/appdaemon/config/apps/apps.yaml",
     }
 
     env_file = ".env"
