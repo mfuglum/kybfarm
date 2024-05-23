@@ -39,16 +39,18 @@ kybfarm/
 |   |       `-- mosquitto.conf
 |   `-- src/
 |       `-- config_generator/
-|           |-- appdaemon_apps_template.yaml
-|           |-- automations_template.yaml
-|           |-- config_generator.py
-|           |-- configuration_template.yaml
-|           |-- dockerfile
-|           |-- influxdb_template.yaml
-|           |-- input_boolean_template.json
-|           |-- input_select_template.json
-|           |-- input_text_template.json
-|           `-- requirements.txt
+|           |-- appdaemon_templates/
+|           |   `-- appdaemon_apps_template.yaml
+|           `-- homeassistant_templates/
+|               |-- automations_template.yaml
+|               |-- config_generator.py
+|               |-- configuration_template.yaml
+|               |-- dockerfile
+|               |-- influxdb_template.yaml
+|               |-- input_boolean_template.json
+|               |-- input_select_template.json
+|               |-- input_text_template.json
+|               `-- requirements.txt
 |-- .gitignore
 |-- README.md
 |-- env_template.env
@@ -236,8 +238,8 @@ This is an outline of the recommended development flow when integrating new sens
 2. Write a device interface for the edge computer.
 3. Subscribe to data request topics and initialize the sensor.
 4. Register callback functions to provide data on request.
-5. On the server side, add sensor configuration in the Home Assistant config template (in `config_generator/`).
-6. Add automation for periodic data requests in the automations template (in `config_generator/`).
+5. On the server side, add sensor configuration in the Home Assistant config template (in `config_generator/homeassistant_templates/`).
+6. Add automation for periodic data requests in the automations template (in `config_generator/homeassistant_templates/`).
 7. Restart the systems with the applied code. The sensor will appear as discovered in Home Assistant and must be enabled if automatic enabling of discovered devices is not checked.
 
 # Development and Debugging Tips
