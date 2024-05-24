@@ -245,17 +245,78 @@ This is an outline of the recommended development flow when integrating new sens
 
 # Development and Debugging Tips
 ## On Edge / Raspberry Pi
+
 ### Stop Current Cronjob
+
 1. Check the status of cron jobs:
     ```bash
     systemctl status cron
     ```
 2. Identify the process under "cron.service" (e.g., `edge_computer_main.py`) and its PID.
-3. Kill the process:
+3. Kill the process by entering the following command replacing `PID` with the actual number:
     ```bash
-    kill [PID]
+    kill PID
     ```
-   This ensures the cron job does not conflict with manually started scripts.
+    This ensures the cron job does not conflict with manually started scripts.
+
+### Modifying Modbus RTU Address of Device
+
+Follow these steps to modify the Modbus RTU address of a device:
+
+1. **Open terminal**
+    - Access the terminal on your edge computer (Raspberry Pi).
+    - Navigate to the `/kybfarm/edge/` directory.
+    - Activate the Python virtual environment.
+    - Start Python by entering:
+    ```python
+    python
+    ```
+
+2. **Import the relevant device interface**
+    - Import the device interface to interact with the Modbus RTU device (replacing `RELEVANT_DEVICE`):
+    ```python
+    from src.sensor_interfaces import sensor_RELEVANT_DEVICE
+    ```
+
+3. **Create an Instance with the Original Address**
+    - Initialize the Modbus RTU device with its current address:
+    ```python
+    device_1 = sensor_RELEVANT_DEVICE(portname='/dev/ttySC1', slaveaddress=original_address)
+    ```
+    - Replace `/dev/ttySC1` with the correct port.
+    - Replace `original_address` with the current Modbus address of the sensor.
+    - Verify correct initialization by entering the device instance name:
+    ```python
+    device_1
+    ```
+    - The returned output should list the object with the provided port, address, and default values.
+    - Verify communication by inspecting the return from `get_slave_address()`:
+    ```python
+    device_1.get_slave_address()
+    ```
+
+4. **Set the New Slave Address**
+    - Change the Modbus address to the desired new address:
+    ```python
+    device_1.set_slave_address(new_address)
+    ```
+    - Replace `new_address` with the new Modbus address you want to assign.
+
+5. **Repower the Sensor**
+    - Power off the sensor and then power it back on to apply the new address.
+
+6. **Test with a New Instance**
+    - Create a new instance to verify that the sensor is responding at the new address:
+    ```python
+    device_2 = sensor_RELEVANT_DEVICE(portname='/dev/ttySC1', slaveaddress=new_address)
+    ```
+    - Test communication to ensure the address change was successful:
+    ```python
+    device_2.get_slave_address()
+    ```
+
+By following these steps, you can change and verify the Modbus RTU address of your sensor.
+
 
 ## On Server
 ### Debugging with MQTT
