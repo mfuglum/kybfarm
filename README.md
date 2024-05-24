@@ -161,7 +161,7 @@ Docker-Compose orchestrates all of the listed components based on the content of
 
 ## Home Assistant
 - **Purpose:** Manage devices, data logging, automation, and provide a user interface.
-- **Implementation:** Deployed using the Home Assistant Docker Image.
+- **Implementation:** Deployed using the Home Assistant Docker Image. The "config_generator" provides all configuration and functionality when executed.
 - **Configuration:**
   - Port: 8123
   - Integrates with InfluxDB for data storage
@@ -178,15 +178,16 @@ Docker-Compose orchestrates all of the listed components based on the content of
 - **Purpose:** Host Python scripts for data processing, modeling, and control.
 - **Implementation:** Uses the AppDaemon Docker Image.
 - **Configuration:**
+  - Port: 5050 
   - Scripts can access sensor data from InfluxDB, communicate via MQTT, and interact directly with entities in Home Assistant.
 
 ## Configuration Generator: `config_generator`
 - **Purpose:** Implement Architecture as Code by generating configuration files with parameters from the environment file.
-- **Implementation:** Executes in a container. It replaces placeholder values in the Home Assistant and AppDaemon configuration templates with actual parameters from the `.env` file.
+- **Implementation:** Executes in a container. It replaces placeholder values in the Home Assistant and AppDaemon configuration templates with actual parameters from the `.env` file using Jinja2.
 - **Configuration:**
   - The YAML file for Docker Compose mounts relevant Home Assistant and AppDaemon directories so that configuration can be written from this container.
 - **Usage:**
-  - Add your configuration templates to the `config_generator/` directory.
+  - Add or extend configuration templates in the `config_generator/` directory.
   - Ensure the placeholders in the templates match the variable names in the `.env` file.
   - The `config_generator` container will automatically generate the final configuration files on startup if provided with the appropriate location.
 
