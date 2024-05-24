@@ -234,6 +234,7 @@ A well-defined MQTT topic structure ensures efficient communication:
 Embed response topics in the payload to avoid hardcoding.
 
 # Development Guidelines
+## Recommended development flow
 This is an outline of the recommended development flow when integrating new sensors:
 1. Assign device names and MQTT topics in the `.env` file.
 2. Write a device interface for the edge computer.
@@ -242,6 +243,22 @@ This is an outline of the recommended development flow when integrating new sens
 5. On the server side, add sensor configuration in the Home Assistant config template (in `config_generator/homeassistant_templates/`).
 6. Add automation for periodic data requests in the automations template (in `config_generator/homeassistant_templates/`).
 7. Restart the systems with the applied code. The sensor will appear as discovered in Home Assistant and must be enabled if automatic enabling of discovered devices is not checked.
+
+## Outline of Configuration File Templates
+
+All of the configuration files mentioned below are located in `kybfarm/server/config_generator/`, and the following paths are relative to this directory:
+
+### AppDaemon Templates
+- `appdaemon_templates/appdaemon_apps_template.yaml`: This template is used to create instances of modules/classes developed in `kybfarm/server/appdaemon/config/apps`. It overwrites the `apps.yaml` file in that directory.
+
+### Home Assistant Templates
+- `homeassistant_templates/automations_template.yaml`: Manage, add, or modify all time- and event-based automations here. These automations can use entity IDs from entities defined in the other configuration files.
+- `homeassistant_templates/configuration_template.yaml`: This is the main configuration file for Home Assistant. New sensors are added here.
+- `homeassistant_templates/influxdb_template.yaml`: Provide InfluxDB configuration relevant to Home Assistant integration here.
+- `homeassistant_templates/input_boolean_template.yaml`: Manage or add switches for relay control here.
+- `homeassistant_templates/input_select_template.yaml`: Manage, add, or modify calibration menus for sensors here.
+- `homeassistant_templates/input_text_template.yaml`: Manage or add status fields here.
+
 
 # Development and Debugging Tips
 ## On Edge / Raspberry Pi
