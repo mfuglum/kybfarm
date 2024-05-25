@@ -1,5 +1,5 @@
 # IoT platform for VF: Software Manual
-The [kybfarm repository](https://github.com/mfuglum/kybfarm/) provides an open-source IoT platform framework for vertical farming. This document serves as a user manual for detailed guidance.
+The [kybfarm repository](https://github.com/mfuglum/kybfarm/) provides an open-source  Internet of Things (IoT) platform framework for vertical farming. This document serves as a user manual for detailed guidance.
 
 The repository is available at:  
 [https://github.com/mfuglum/kybfarm/](https://github.com/mfuglum/kybfarm/)
@@ -69,7 +69,7 @@ kybfarm/
 - A Raspberry Pi or similar device for edge computing.
 - Sensors and actuators compatible with the platform.
   - See section on RS485 adapter configuration for Modbus communication.
-- raspi-gpio installed for GPIO configuration on the edge computer.
+- raspi-gpio installed for General Purpose Input/Output (GPIO) configuration on the edge computer.
 - Ensure the server IP address is available by configuring the network or installing Tailscale or ZeroTier.
 
 ## Configuration
@@ -194,7 +194,7 @@ Docker-Compose orchestrates all of the listed components based on the content of
 # Edge Components
 ## Sensors
 - **Purpose:** Gather data for the vertical farming system.
-- **Implementation:** Most sensors use Modbus RTU protocol. Implemented in Python using minimalmodbus.
+- **Implementation:** Most sensors use Modbus  Remote Terminal Unit (RTU) protocol. Implemented in Python using minimalmodbus.
 - **The implemented sensor interfaces:**
 
 | Sensor Type                              | Model Name                                                                                         | Manufacturer | MPN.    |
@@ -269,7 +269,7 @@ All of the configuration files mentioned below are located in `kybfarm/server/co
     ```bash
     systemctl status cron
     ```
-2. Identify the process under "cron.service" (e.g., `edge_computer_main.py`) and its PID.
+2. Identify the process under "cron.service" (e.g., `edge_computer_main.py`) and its  Remote Terminal Unit (RTU).
 3. Kill the process by entering the following command replacing `PID` with the actual number:
     ```bash
     kill PID
@@ -348,7 +348,7 @@ By following these steps, you can change and verify the Modbus RTU address of yo
    - Access files and logs in the container.
    - Inspect files that might be incorrect or simply read errors in the log.
 
-### Debugging with Home Assistant GUI
+### Debugging with Home Assistant Graphical User Interface (GUI)
 Common errors occur when configuring relays and calibration GUI tools (Helpers). These errors often relate to entity IDs.
 The following bullet points can be useful in such situations:
 - Follow the naming convention of lowercase and underscore-separated names.
@@ -376,3 +376,11 @@ In summary, the following steps must be conducted to deploy the adapter with Ras
      - `ttySC0`
      - `ttySC1`
 
+## Glossary
+
+- **GPIO:** General Purpose Input/Output
+- **GUI:** Graphical User Interface
+- **IoT:** Internet of Things
+- **MPN:** Manufacturer Part Number
+- **PID:** Process ID
+- **RTU:** Remote Terminal Unit
