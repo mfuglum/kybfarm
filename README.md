@@ -384,3 +384,7 @@ In summary, the following steps must be conducted to deploy the adapter with Ras
 - **MPN:** Manufacturer Part Number
 - **PID:** Process ID
 - **RTU:** Remote Terminal Unit
+
+## Author and Date
+
+This user manual was created by Martin Fuglum in May 2024.
