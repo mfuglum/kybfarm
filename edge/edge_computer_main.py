@@ -24,7 +24,8 @@ from src.sensor_interfaces import (sensor_SCD41_I2C,
                                    sensor_SPAR02_modbus,
                                    sensor_SEC01_modbus,
                                    sensor_SPH01_modbus)
-from src.actuator_instances import relay_devices_initialization 
+from src.actuator_instances import (relay_devices_initialization,
+                                    grow_lamp_elixia_initialization) 
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -69,6 +70,14 @@ MQTT_SEC01_2_CMD = os.getenv("MQTT_SENSOR_04_CMD")
 MQTT_SPH01_1_CMD = os.getenv("MQTT_SENSOR_05_CMD")
 MQTT_SPH01_2_CMD = os.getenv("MQTT_SENSOR_06_CMD")
 
+# Grow Lamp Elixia #
+LAMP_01_IP = os.getenv("LAMP_01_IP")
+MQTT_LAMP_01_CMD = os.getenv("MQTT_LAMP_01_CMD")
+MQTT_LAMP_01_REQ = os.getenv("MQTT_LAMP_01_REQ")
+# Update IP of lamp
+grow_lamp_elixia_initialization.update_lamp_ip(LAMP_01_IP)
+
+# Configure MQTT
 def on_connect(client, userdata, flags, rc):
     print("Connected with code " + str(rc))
     # Subscribe in on_connect to renew subsriptions in case of lost connection
@@ -103,6 +112,8 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_RELAY_14_CMD)
     client.subscribe(MQTT_RELAY_15_CMD)
     client.subscribe(MQTT_RELAY_16_CMD)
+    client.subscribe(MQTT_LAMP_01_CMD)
+    client.subscribe(MQTT_LAMP_01_REQ)
 
 # Catch-all callback function for messages
 def on_message(client, userdata, msg):
