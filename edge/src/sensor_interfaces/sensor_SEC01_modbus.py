@@ -10,6 +10,7 @@ data = {
         "sensor_name": "S-EC-01"},
     "fields": {
             "ec": 0,
+            "tds": 0,
             "temperature": 0,
             "calibrated": 0,},
     "time": datetime.datetime.now().isoformat(),
@@ -128,23 +129,23 @@ class SEC01( minimalmodbus.Instrument ):
     def fetch_and_print_data(self):
         temperature = self.get_temperature()
         ec = self.get_ec()
+        tds = self.get_tds()
         # salinity = self.get_salinity()
-        # tds = self.get_tds()
         print(f"Temperature: {temperature} C\n")
         print(f"EC: {ec} µS/cm\n")
+        print(f"TDS: {tds} mg/L\n")
         # print(f"Salinity: {salinity} mg/L\n")
-        # print(f"TDS: {tds} mg/L\n")
 
     # A function to fetch and return data from the sensor
     def fetch_and_return_data(self):
         temperature = self.get_temperature()
         ec = self.get_ec()
+        tds = self.get_tds()
         # salinity = self.get_salinity()
-        # tds = self.get_tds()
         data["fields"]["temperature"] = temperature
         data["fields"]["ec"] = ec
+        data["fields"]["tds"] = tds
         # data["fields"]["salinity"] = salinity
-        # data["fields"]["tds"] = tds
         data["time"] = datetime.datetime.now().isoformat()
         data["tags"]["sensor_id"] = self.address
         return data
