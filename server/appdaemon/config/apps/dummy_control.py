@@ -43,8 +43,8 @@ class DummyControl(hass.Hass):
         try:
             # Gain/P control: control_signal = gain * (reference - value)
 
-            # Calculate the difference between the new value and the reference value
-            difference = float(new) - self.reference
+            # Calculate the difference between the reference value and the new sensor value
+            difference =  self.reference - float(new)
             self.log("Difference: {}".format(difference))
 
             # Calculate the control signal
