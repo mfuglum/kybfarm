@@ -24,6 +24,7 @@ class grow_lamp_elixia:
         # Intensities should be format n:n:n:n
         url = self.base_url + "intensity.cgi?int=" + str(intensities)
         try:
+            print("Try get url")
             response = requests.get(url)
             return response
         except Exception as e:
