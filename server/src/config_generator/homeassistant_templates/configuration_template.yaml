@@ -25,6 +25,9 @@ automation: !include automations.yaml
 # InfluxDB Database configuration
 influxdb: !include influxdb.yaml
 
+# Helpers for GUI
+input_number: !include input_number.yaml
+
 # MQTT Configuration to receive MQTT data
 mqtt:
   # Broker configuration: Must be done in GUI
@@ -58,6 +61,13 @@ mqtt:
       value_template: {{TEMPERATURE_03_VALUE_TEMPLATE}}
       unit_of_measurement: {{TEMPERATURE_03_HA_UNIT}}
       icon: {{TEMPERATURE_03_HA_ICON}}
+
+    - name: {{TDS_03_NAME}}
+      unique_id: {{TDS_03_HA_ID}}
+      state_topic: {{MQTT_SENSOR_03_RES}}
+      value_template: {{TDS_03_VALUE_TEMPLATE}}
+      unit_of_measurement: {{TDS_03_HA_UNIT}}
+      icon: {{TDS_03_HA_ICON}}
           
     - name: {{SENSOR_03_CALIBRATION_NAME}}
       unique_id: {{SENSOR_03_CALIBRATION_HA_ID}}
@@ -79,6 +89,13 @@ mqtt:
       value_template: {{TEMPERATURE_04_VALUE_TEMPLATE}}
       unit_of_measurement: {{TEMPERATURE_04_HA_UNIT}}
       icon: {{TEMPERATURE_04_HA_ICON}}
+
+    - name: {{TDS_04_NAME}}
+      unique_id: {{TDS_04_HA_ID}}
+      state_topic: {{MQTT_SENSOR_04_RES}}
+      value_template: {{TDS_04_VALUE_TEMPLATE}}
+      unit_of_measurement: {{TDS_04_HA_UNIT}}
+      icon: {{TDS_04_HA_ICON}}
 
     - name: {{SENSOR_04_CALIBRATION_NAME}}
       unique_id: {{SENSOR_04_CALIBRATION_HA_ID}}
