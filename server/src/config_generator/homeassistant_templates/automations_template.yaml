@@ -1250,7 +1250,7 @@
   mode: single
 
 # Elixia grow lamp
-- alias: {{LAMP_01_CMD_450NM_AUTOMATION_ALIAS}}
+- alias: {{LAMP_01_CMD_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state

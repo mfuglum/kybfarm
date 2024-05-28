@@ -1,0 +1,29 @@
+
+  elixia_1_channel_450nm:
+    name: "Elixia-1, Channel: 450nm"
+    initial: 500
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+  elixia_1_channel_660nm:
+    name: "Elixia-1, Channel: 660nm"
+    initial: 500
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+  elixia_1_channel_735nm:
+    name: "Elixia-1, Channel: 735nm"
+    initial: 500
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+  elixia_1_channel_5700k:
+    name: "Elixia-1, Channel: 5700K"
+    initial: 500
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
