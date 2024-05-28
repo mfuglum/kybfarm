@@ -1,6 +1,5 @@
 from src.utils import grow_lamp_elixia
 import json
-import time
 
 # This constant must be imported from the environment file and updated in the main script
 LAMP_01_IP = ""
@@ -36,4 +35,7 @@ def on_message_LAMP01_DT(client, userdata, msg):
         print("Lamp 1, request error:", str(e))
     
 # Initiate grow lamp
-lamp_1 = grow_lamp_elixia(LAMP_01_IP)
+try:
+    lamp_1 = grow_lamp_elixia(LAMP_01_IP)
+except Exception as e:
+    print("Error initiating grow lamp:", str(e))
