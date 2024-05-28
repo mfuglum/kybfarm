@@ -75,7 +75,7 @@ LAMP_01_IP = os.getenv("LAMP_01_IP")
 MQTT_LAMP_01_CMD = os.getenv("MQTT_LAMP_01_CMD")
 MQTT_LAMP_01_DT_REQ = os.getenv("MQTT_LAMP_01_REQ")
 # Update IP of lamp
-grow_lamp_elixia_initialization.lamp_1.update_lamp_ip(LAMP_01_IP)
+grow_lamp_elixia_initialization.lamp_1.update_ip_address(LAMP_01_IP)
 
 # Configure MQTT
 def on_connect(client, userdata, flags, rc):
