@@ -32,6 +32,7 @@ def main():
         "./homeassistant_templates/input_select_template.json": "./server/homeassistant/config/.storage/input_select",
         "./homeassistant_templates/input_text_template.json": "./server/homeassistant/config/.storage/input_text",
         "./homeassistant_templates/input_boolean_template.json": "./server/homeassistant/config/.storage/input_boolean",
+        "./homeassistant_templates/input_number_template.yaml": "./server/homeassistant/config/input_number.yaml",
         "./appdaemon_templates/appdaemon_apps_template.yaml": "./server/appdaemon/config/apps/apps.yaml",
     }
 
