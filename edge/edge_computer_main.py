@@ -73,7 +73,7 @@ MQTT_SPH01_2_CMD = os.getenv("MQTT_SENSOR_06_CMD")
 # Grow Lamp Elixia #
 LAMP_01_IP = os.getenv("LAMP_01_IP")
 MQTT_LAMP_01_CMD = os.getenv("MQTT_LAMP_01_CMD")
-MQTT_LAMP_01_REQ = os.getenv("MQTT_LAMP_01_REQ")
+MQTT_LAMP_01_DT_REQ = os.getenv("MQTT_LAMP_01_REQ")
 # Update IP of lamp
 grow_lamp_elixia_initialization.update_lamp_ip(LAMP_01_IP)
 
@@ -113,7 +113,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_RELAY_15_CMD)
     client.subscribe(MQTT_RELAY_16_CMD)
     client.subscribe(MQTT_LAMP_01_CMD)
-    client.subscribe(MQTT_LAMP_01_REQ)
+    client.subscribe(MQTT_LAMP_01_DT_REQ)
 
 # Catch-all callback function for messages
 def on_message(client, userdata, msg):
@@ -348,6 +348,9 @@ client.message_callback_add(MQTT_RELAY_13_CMD, relay_devices_initialization.on_m
 client.message_callback_add(MQTT_RELAY_14_CMD, relay_devices_initialization.on_message_RLY14)
 client.message_callback_add(MQTT_RELAY_15_CMD, relay_devices_initialization.on_message_RLY15)
 client.message_callback_add(MQTT_RELAY_16_CMD, relay_devices_initialization.on_message_RLY16)
+# Grow lamp Elixia
+client.message_callback_add(MQTT_LAMP_01_CMD, grow_lamp_elixia_initialization.on_message_LAMP01_CMD)
+client.message_callback_add(MQTT_LAMP_01_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_DT)
 
 # Connect to the MQTT server
 try:
