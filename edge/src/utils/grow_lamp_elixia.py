@@ -25,7 +25,7 @@ class grow_lamp_elixia:
         url = self.base_url + "intensity.cgi?int=" + str(intensities)
         try:
             print("Try get url")
-            response = requests.get(url)
+            response = requests.get(url, timeout=5)
             return response
         except Exception as e:
             return e
@@ -33,7 +33,7 @@ class grow_lamp_elixia:
     def get_diagnostic_data(self):
         url = self.base_url + "diag.xml"
         try:
-            response = requests.get(url)
+            response = requests.get(url, timeout=5)
             return response
         except Exception as e:
             return e
