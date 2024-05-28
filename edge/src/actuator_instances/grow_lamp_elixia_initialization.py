@@ -36,6 +36,6 @@ def on_message_LAMP01_DT(client, userdata, msg):
     
 # Initiate grow lamp
 try:
-    lamp_1 = grow_lamp_elixia(LAMP_01_IP)
+    lamp_1 = grow_lamp_elixia.grow_lamp_elixia(LAMP_01_IP)
 except Exception as e:
     print("Error initiating grow lamp:", str(e))
