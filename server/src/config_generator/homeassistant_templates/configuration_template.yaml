@@ -27,6 +27,9 @@ influxdb: !include influxdb.yaml
 
 # Helpers for GUI
 input_number: !include input_number.yaml
+input_boolean: !include input_boolean.yaml
+input_select: !include input_select.yaml
+input_text: !include input_text.yaml
 
 # MQTT Configuration to receive MQTT data
 mqtt:

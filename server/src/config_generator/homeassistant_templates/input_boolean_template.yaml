@@ -1,0 +1,49 @@
+
+  relay_1:
+    name: "Relay 1"
+    icon: "mdi:toggle-switch"
+  relay_2:
+    name: "Relay 2"
+    icon: "mdi:toggle-switch"
+  relay_3:
+    name: "Relay 3"
+    icon: "mdi:toggle-switch"
+  relay_4:
+    name: "Relay 4"
+    icon: "mdi:toggle-switch"
+  relay_5:
+    name: "Relay 5"
+    icon: "mdi:toggle-switch"
+  relay_6:
+    name: "Relay 6"
+    icon: "mdi:toggle-switch"
+  relay_7:
+    name: "Relay 7"
+    icon: "mdi:toggle-switch"
+  relay_8:
+    name: "Relay 8"
+    icon: "mdi:toggle-switch"
+  relay_9:
+    name: "Relay 9"
+    icon: "mdi:toggle-switch"
+  relay_10:
+    name: "Relay 10"
+    icon: "mdi:toggle-switch"
+  relay_11:
+    name: "Relay 11"
+    icon: "mdi:toggle-switch"
+  relay_12:
+    name: "Relay 12"
+    icon: "mdi:toggle-switch"
+  relay_13:
+    name: "Relay 13"
+    icon: "mdi:toggle-switch"
+  relay_14:
+    name: "Relay 14"
+    icon: "mdi:toggle-switch"
+  relay_15:
+    name: "Relay 15"
+    icon: "mdi:toggle-switch"
+  relay_16:
+    name: "Relay 16"
+    icon: "mdi:toggle-switch"

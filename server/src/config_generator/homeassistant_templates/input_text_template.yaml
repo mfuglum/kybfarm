@@ -1,0 +1,6 @@
+
+  calibration_status:
+    name: "Calibration status:"
+    icon: "mdi:chart-bell-curve"
+    initial: "Normal Operation"
+    mode: "text"
