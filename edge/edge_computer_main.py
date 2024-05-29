@@ -36,44 +36,44 @@ MQTT_PORT = int(os.getenv("MOSQUITTO_BROKER_PORT"))
 MQTT_KEEP_ALIVE = int(os.getenv("MQTT_EDGE_KEEP_ALIVE"))
 
 # MQTT data (dt) request (req) topics
-MQTT_SLIGTH01_DT_REQ = os.getenv("MQTT_SENSOR_01_REQ")
-MQTT_SPAR02_DT_REQ = os.getenv("MQTT_SENSOR_02_REQ")
-MQTT_SEC01_1_DT_REQ = os.getenv("MQTT_SENSOR_03_REQ")
-MQTT_SEC01_2_DT_REQ = os.getenv("MQTT_SENSOR_04_REQ")
-MQTT_SPH01_1_DT_REQ = os.getenv("MQTT_SENSOR_05_REQ")
-MQTT_SPH01_2_DT_REQ = os.getenv("MQTT_SENSOR_06_REQ")
-MQTT_SYM01_DT_REQ = os.getenv("MQTT_SENSOR_10_REQ")
-MQTT_SCD41_DT_REQ = os.getenv("MQTT_SENSOR_11_REQ")
+MQTT_SLIGTH01_DT_REQ = os.getenv("MQTT_SENSOR_01_DT_REQ")
+MQTT_SPAR02_DT_REQ = os.getenv("MQTT_SENSOR_02_DT_REQ")
+MQTT_SEC01_1_DT_REQ = os.getenv("MQTT_SENSOR_03_DT_REQ")
+MQTT_SEC01_2_DT_REQ = os.getenv("MQTT_SENSOR_04_DT_REQ")
+MQTT_SPH01_1_DT_REQ = os.getenv("MQTT_SENSOR_05_DT_REQ")
+MQTT_SPH01_2_DT_REQ = os.getenv("MQTT_SENSOR_06_DT_REQ")
+MQTT_SYM01_DT_REQ = os.getenv("MQTT_SENSOR_10_DT_REQ")
+MQTT_SCD41_DT_REQ = os.getenv("MQTT_SENSOR_11_DT_REQ")
 
 # MQTT command (cmd) topics
 # Relays #
-MQTT_RELAY_01_CMD = os.getenv("MQTT_RELAY_01_CMD")
-MQTT_RELAY_02_CMD = os.getenv("MQTT_RELAY_02_CMD")
-MQTT_RELAY_03_CMD = os.getenv("MQTT_RELAY_03_CMD")
-MQTT_RELAY_04_CMD = os.getenv("MQTT_RELAY_04_CMD")
-MQTT_RELAY_05_CMD = os.getenv("MQTT_RELAY_05_CMD")
-MQTT_RELAY_06_CMD = os.getenv("MQTT_RELAY_06_CMD")
-MQTT_RELAY_07_CMD = os.getenv("MQTT_RELAY_07_CMD")
-MQTT_RELAY_08_CMD = os.getenv("MQTT_RELAY_08_CMD")
-MQTT_RELAY_09_CMD = os.getenv("MQTT_RELAY_09_CMD")
-MQTT_RELAY_10_CMD = os.getenv("MQTT_RELAY_10_CMD")
-MQTT_RELAY_11_CMD = os.getenv("MQTT_RELAY_11_CMD")
-MQTT_RELAY_12_CMD = os.getenv("MQTT_RELAY_12_CMD")
-MQTT_RELAY_13_CMD = os.getenv("MQTT_RELAY_13_CMD")
-MQTT_RELAY_14_CMD = os.getenv("MQTT_RELAY_14_CMD")
-MQTT_RELAY_15_CMD = os.getenv("MQTT_RELAY_15_CMD")
-MQTT_RELAY_16_CMD = os.getenv("MQTT_RELAY_16_CMD")
+MQTT_RELAY_01_CMD_REQ = os.getenv("MQTT_RELAY_01_CMD_REQ")
+MQTT_RELAY_02_CMD_REQ = os.getenv("MQTT_RELAY_02_CMD_REQ")
+MQTT_RELAY_03_CMD_REQ = os.getenv("MQTT_RELAY_03_CMD_REQ")
+MQTT_RELAY_04_CMD_REQ = os.getenv("MQTT_RELAY_04_CMD_REQ")
+MQTT_RELAY_05_CMD_REQ = os.getenv("MQTT_RELAY_05_CMD_REQ")
+MQTT_RELAY_06_CMD_REQ = os.getenv("MQTT_RELAY_06_CMD_REQ")
+MQTT_RELAY_07_CMD_REQ = os.getenv("MQTT_RELAY_07_CMD_REQ")
+MQTT_RELAY_08_CMD_REQ = os.getenv("MQTT_RELAY_08_CMD_REQ")
+MQTT_RELAY_09_CMD_REQ = os.getenv("MQTT_RELAY_09_CMD_REQ")
+MQTT_RELAY_10_CMD_REQ = os.getenv("MQTT_RELAY_10_CMD_REQ")
+MQTT_RELAY_11_CMD_REQ = os.getenv("MQTT_RELAY_11_CMD_REQ")
+MQTT_RELAY_12_CMD_REQ = os.getenv("MQTT_RELAY_12_CMD_REQ")
+MQTT_RELAY_13_CMD_REQ = os.getenv("MQTT_RELAY_13_CMD_REQ")
+MQTT_RELAY_14_CMD_REQ = os.getenv("MQTT_RELAY_14_CMD_REQ")
+MQTT_RELAY_15_CMD_REQ = os.getenv("MQTT_RELAY_15_CMD_REQ")
+MQTT_RELAY_16_CMD_REQ = os.getenv("MQTT_RELAY_16_CMD_REQ")
 
 # Sensors #
-MQTT_SEC01_1_CMD = os.getenv("MQTT_SENSOR_03_CMD")
-MQTT_SEC01_2_CMD = os.getenv("MQTT_SENSOR_04_CMD")
-MQTT_SPH01_1_CMD = os.getenv("MQTT_SENSOR_05_CMD")
-MQTT_SPH01_2_CMD = os.getenv("MQTT_SENSOR_06_CMD")
+MQTT_SEC01_1_CMD_REQ = os.getenv("MQTT_SENSOR_03_CMD_REQ")
+MQTT_SEC01_2_CMD_REQ = os.getenv("MQTT_SENSOR_04_CMD_REQ")
+MQTT_SPH01_1_CMD_REQ = os.getenv("MQTT_SENSOR_05_CMD_REQ")
+MQTT_SPH01_2_CMD_REQ = os.getenv("MQTT_SENSOR_06_CMD_REQ")
 
 # Grow Lamp Elixia #
 LAMP_01_IP = os.getenv("LAMP_01_IP")
-MQTT_LAMP_01_CMD = os.getenv("MQTT_LAMP_01_CMD")
-MQTT_LAMP_01_DT_REQ = os.getenv("MQTT_LAMP_01_REQ")
+MQTT_LAMP_01_CMD_REQ = os.getenv("MQTT_LAMP_01_CMD_REQ")
+MQTT_LAMP_01_DT_REQ = os.getenv("MQTT_LAMP_01_DT_REQ")
 # Update IP of lamp
 grow_lamp_elixia_initialization.lamp_1.update_ip_address(LAMP_01_IP)
 
@@ -85,34 +85,34 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_SLIGTH01_DT_REQ)
     client.subscribe(MQTT_SPAR02_DT_REQ)
     client.subscribe(MQTT_SEC01_1_DT_REQ)
-    client.subscribe(MQTT_SEC01_1_CMD)
+    client.subscribe(MQTT_SEC01_1_CMD_REQ)
     client.subscribe(MQTT_SEC01_2_DT_REQ)
-    client.subscribe(MQTT_SEC01_2_CMD)
+    client.subscribe(MQTT_SEC01_2_CMD_REQ)
     client.subscribe(MQTT_SPH01_1_DT_REQ)
-    client.subscribe(MQTT_SPH01_1_CMD)
+    client.subscribe(MQTT_SPH01_1_CMD_REQ)
     client.subscribe(MQTT_SPH01_2_DT_REQ)
-    client.subscribe(MQTT_SPH01_2_CMD)
+    client.subscribe(MQTT_SPH01_2_CMD_REQ)
     client.subscribe(MQTT_SYM01_DT_REQ)
     client.subscribe(MQTT_SCD41_DT_REQ)
 
     # Actuators #
-    client.subscribe(MQTT_RELAY_01_CMD)
-    client.subscribe(MQTT_RELAY_02_CMD)
-    client.subscribe(MQTT_RELAY_03_CMD)
-    client.subscribe(MQTT_RELAY_04_CMD)
-    client.subscribe(MQTT_RELAY_05_CMD)
-    client.subscribe(MQTT_RELAY_06_CMD)
-    client.subscribe(MQTT_RELAY_07_CMD)
-    client.subscribe(MQTT_RELAY_08_CMD)
-    client.subscribe(MQTT_RELAY_09_CMD)
-    client.subscribe(MQTT_RELAY_10_CMD)
-    client.subscribe(MQTT_RELAY_11_CMD)
-    client.subscribe(MQTT_RELAY_12_CMD)
-    client.subscribe(MQTT_RELAY_13_CMD)
-    client.subscribe(MQTT_RELAY_14_CMD)
-    client.subscribe(MQTT_RELAY_15_CMD)
-    client.subscribe(MQTT_RELAY_16_CMD)
-    client.subscribe(MQTT_LAMP_01_CMD)
+    client.subscribe(MQTT_RELAY_01_CMD_REQ)
+    client.subscribe(MQTT_RELAY_02_CMD_REQ)
+    client.subscribe(MQTT_RELAY_03_CMD_REQ)
+    client.subscribe(MQTT_RELAY_04_CMD_REQ)
+    client.subscribe(MQTT_RELAY_05_CMD_REQ)
+    client.subscribe(MQTT_RELAY_06_CMD_REQ)
+    client.subscribe(MQTT_RELAY_07_CMD_REQ)
+    client.subscribe(MQTT_RELAY_08_CMD_REQ)
+    client.subscribe(MQTT_RELAY_09_CMD_REQ)
+    client.subscribe(MQTT_RELAY_10_CMD_REQ)
+    client.subscribe(MQTT_RELAY_11_CMD_REQ)
+    client.subscribe(MQTT_RELAY_12_CMD_REQ)
+    client.subscribe(MQTT_RELAY_13_CMD_REQ)
+    client.subscribe(MQTT_RELAY_14_CMD_REQ)
+    client.subscribe(MQTT_RELAY_15_CMD_REQ)
+    client.subscribe(MQTT_RELAY_16_CMD_REQ)
+    client.subscribe(MQTT_LAMP_01_CMD_REQ)
     client.subscribe(MQTT_LAMP_01_DT_REQ)
 
 # Catch-all callback function for messages
@@ -147,7 +147,7 @@ def on_message_SEC01_1(client, userdata, msg):
     except Exception as e:
         print("SEC01-1, data fetch error:", str(e))
 
-def on_message_SEC01_1_CMD(client, userdata, msg):
+def on_message_SEC01_1_CMD_REQ(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
         print(cmd_msg)
@@ -182,7 +182,7 @@ def on_message_SEC01_2(client, userdata, msg):
     except Exception as e:
         print("SEC01-2, data fetch error:", str(e))
 
-def on_message_SEC01_2_CMD(client, userdata, msg):
+def on_message_SEC01_2_CMD_REQ(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
         print(cmd_msg)
@@ -217,7 +217,7 @@ def on_message_SPH01_1(client, userdata, msg):
     except Exception as e:
         print("SPH01-1, data fetch error:", str(e))
     
-def on_message_SPH01_1_CMD(client, userdata, msg):
+def on_message_SPH01_1_CMD_REQ(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
         print(cmd_msg)
@@ -258,7 +258,7 @@ def on_message_SPH01_2(client, userdata, msg):
     except Exception as e:
         print("SPH01-2, data fetch error:", str(e))
 
-def on_message_SPH01_2_CMD(client, userdata, msg):
+def on_message_SPH01_2_CMD_REQ(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
         print(cmd_msg)
@@ -321,35 +321,35 @@ client.on_message = on_message
 client.message_callback_add(MQTT_SLIGTH01_DT_REQ, on_message_SLIGHT01)
 client.message_callback_add(MQTT_SPAR02_DT_REQ, on_message_SPAR02)
 client.message_callback_add(MQTT_SEC01_1_DT_REQ, on_message_SEC01_1)
-client.message_callback_add(MQTT_SEC01_1_CMD, on_message_SEC01_1_CMD)
+client.message_callback_add(MQTT_SEC01_1_CMD_REQ, on_message_SEC01_1_CMD_REQ)
 client.message_callback_add(MQTT_SEC01_2_DT_REQ, on_message_SEC01_2)
-client.message_callback_add(MQTT_SEC01_2_CMD, on_message_SEC01_2_CMD)
+client.message_callback_add(MQTT_SEC01_2_CMD_REQ, on_message_SEC01_2_CMD_REQ)
 client.message_callback_add(MQTT_SPH01_1_DT_REQ, on_message_SPH01_1)
-client.message_callback_add(MQTT_SPH01_1_CMD, on_message_SPH01_1_CMD)
+client.message_callback_add(MQTT_SPH01_1_CMD_REQ, on_message_SPH01_1_CMD_REQ)
 client.message_callback_add(MQTT_SPH01_2_DT_REQ, on_message_SPH01_2)
-client.message_callback_add(MQTT_SPH01_2_CMD, on_message_SPH01_2_CMD)
+client.message_callback_add(MQTT_SPH01_2_CMD_REQ, on_message_SPH01_2_CMD_REQ)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
-# client.message_callback_add(MQTT_SCD41_DT_REQ, on_message_SCD41)
+# client.message_callback_add(MQTT_SCD41_DT_DT_REQ, on_message_SCD41)
 
 # Actuators #
-client.message_callback_add(MQTT_RELAY_01_CMD, relay_devices_initialization.on_message_RLY01)
-client.message_callback_add(MQTT_RELAY_02_CMD, relay_devices_initialization.on_message_RLY02)
-client.message_callback_add(MQTT_RELAY_03_CMD, relay_devices_initialization.on_message_RLY03)
-client.message_callback_add(MQTT_RELAY_04_CMD, relay_devices_initialization.on_message_RLY04)
-client.message_callback_add(MQTT_RELAY_05_CMD, relay_devices_initialization.on_message_RLY05)
-client.message_callback_add(MQTT_RELAY_06_CMD, relay_devices_initialization.on_message_RLY06)
-client.message_callback_add(MQTT_RELAY_07_CMD, relay_devices_initialization.on_message_RLY07)
-client.message_callback_add(MQTT_RELAY_08_CMD, relay_devices_initialization.on_message_RLY08)
-client.message_callback_add(MQTT_RELAY_09_CMD, relay_devices_initialization.on_message_RLY09)
-client.message_callback_add(MQTT_RELAY_10_CMD, relay_devices_initialization.on_message_RLY10)
-client.message_callback_add(MQTT_RELAY_11_CMD, relay_devices_initialization.on_message_RLY11)
-client.message_callback_add(MQTT_RELAY_12_CMD, relay_devices_initialization.on_message_RLY12)
-client.message_callback_add(MQTT_RELAY_13_CMD, relay_devices_initialization.on_message_RLY13)
-client.message_callback_add(MQTT_RELAY_14_CMD, relay_devices_initialization.on_message_RLY14)
-client.message_callback_add(MQTT_RELAY_15_CMD, relay_devices_initialization.on_message_RLY15)
-client.message_callback_add(MQTT_RELAY_16_CMD, relay_devices_initialization.on_message_RLY16)
+client.message_callback_add(MQTT_RELAY_01_CMD_REQ, relay_devices_initialization.on_message_RLY01)
+client.message_callback_add(MQTT_RELAY_02_CMD_REQ, relay_devices_initialization.on_message_RLY02)
+client.message_callback_add(MQTT_RELAY_03_CMD_REQ, relay_devices_initialization.on_message_RLY03)
+client.message_callback_add(MQTT_RELAY_04_CMD_REQ, relay_devices_initialization.on_message_RLY04)
+client.message_callback_add(MQTT_RELAY_05_CMD_REQ, relay_devices_initialization.on_message_RLY05)
+client.message_callback_add(MQTT_RELAY_06_CMD_REQ, relay_devices_initialization.on_message_RLY06)
+client.message_callback_add(MQTT_RELAY_07_CMD_REQ, relay_devices_initialization.on_message_RLY07)
+client.message_callback_add(MQTT_RELAY_08_CMD_REQ, relay_devices_initialization.on_message_RLY08)
+client.message_callback_add(MQTT_RELAY_09_CMD_REQ, relay_devices_initialization.on_message_RLY09)
+client.message_callback_add(MQTT_RELAY_10_CMD_REQ, relay_devices_initialization.on_message_RLY10)
+client.message_callback_add(MQTT_RELAY_11_CMD_REQ, relay_devices_initialization.on_message_RLY11)
+client.message_callback_add(MQTT_RELAY_12_CMD_REQ, relay_devices_initialization.on_message_RLY12)
+client.message_callback_add(MQTT_RELAY_13_CMD_REQ, relay_devices_initialization.on_message_RLY13)
+client.message_callback_add(MQTT_RELAY_14_CMD_REQ, relay_devices_initialization.on_message_RLY14)
+client.message_callback_add(MQTT_RELAY_15_CMD_REQ, relay_devices_initialization.on_message_RLY15)
+client.message_callback_add(MQTT_RELAY_16_CMD_REQ, relay_devices_initialization.on_message_RLY16)
 # Grow lamp Elixia
-client.message_callback_add(MQTT_LAMP_01_CMD, grow_lamp_elixia_initialization.on_message_LAMP01_CMD)
+client.message_callback_add(MQTT_LAMP_01_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_CMD_REQ)
 client.message_callback_add(MQTT_LAMP_01_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_DT)
 
 # Connect to the MQTT server
