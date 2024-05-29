@@ -1,10 +1,10 @@
 # Automations
 # Sensors #
-- alias: {{SENSOR_01_REQ_AUTOMATION_ALIAS}}
+- alias: {{SENSOR_01_DT_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_01_REQ_INTERVAL_SEC}}
+    seconds: /{{SENSOR_01_DT_REQ_INTERVAL_SEC}}
   condition: []
   action:
   - service: mqtt.publish
@@ -12,16 +12,16 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_01_REQ}}
-      payload: '{"req_topic": {{MQTT_SENSOR_01_REQ}}, "res_topic": {{MQTT_SENSOR_01_RES}},
+      topic: {{MQTT_SENSOR_01_DT_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_01_DT_REQ}}, "res_topic": {{MQTT_SENSOR_01_DT_RES}},
         "data": "ha_req" }'
   mode: single
 
-- alias: {{SENSOR_02_REQ_AUTOMATION_ALIAS}}
+- alias: {{SENSOR_02_DT_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_02_REQ_INTERVAL_SEC}}
+    seconds: /{{SENSOR_02_DT_REQ_INTERVAL_SEC}}
   condition: []
   action:
   - service: mqtt.publish
@@ -29,16 +29,16 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_02_REQ}}
-      payload: '{"req_topic": {{MQTT_SENSOR_02_REQ}}, "res_topic": {{MQTT_SENSOR_02_RES}},
+      topic: {{MQTT_SENSOR_02_DT_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_02_DT_REQ}}, "res_topic": {{MQTT_SENSOR_02_DT_RES}},
         "data": "ha_req" }'
   mode: single
 
-- alias: {{SENSOR_03_REQ_AUTOMATION_ALIAS}}
+- alias: {{SENSOR_03_DT_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_03_REQ_INTERVAL_SEC}}
+    seconds: /{{SENSOR_03_DT_REQ_INTERVAL_SEC}}
   condition: []
   action:
   - service: mqtt.publish
@@ -46,8 +46,8 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_03_REQ}}
-      payload: '{"req_topic": {{MQTT_SENSOR_03_REQ}}, "res_topic": {{MQTT_SENSOR_03_RES}},
+      topic: {{MQTT_SENSOR_03_DT_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_03_DT_REQ}}, "res_topic": {{MQTT_SENSOR_03_DT_RES}},
         "data": "ha_req" }'
   mode: single
 
@@ -90,8 +90,8 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_03_CMD}}
-      payload: '{ "cmd": "calibrate_ec_1413", "res_topic": {{MQTT_SENSOR_03_RES}}}'
+      topic: {{MQTT_SENSOR_03_CMD_REQ}}
+      payload: '{ "cmd": "calibrate_ec_1413", "res_topic": {{MQTT_SENSOR_03_DT_RES}}}'
   mode: single
 
 - alias: {{SENSOR_03_END_CALIBRATION_ALIAS}}
@@ -151,15 +151,15 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_03_CMD}}
-      payload: '{ "cmd": "calibrate_ec_12880", "res_topic": {{MQTT_SENSOR_03_RES}}}'
+      topic: {{MQTT_SENSOR_03_CMD_REQ}}
+      payload: '{ "cmd": "calibrate_ec_12880", "res_topic": {{MQTT_SENSOR_03_DT_RES}}}'
   mode: single
 
-- alias: {{SENSOR_04_REQ_AUTOMATION_ALIAS}}
+- alias: {{SENSOR_04_DT_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_04_REQ_INTERVAL_SEC}}
+    seconds: /{{SENSOR_04_DT_REQ_INTERVAL_SEC}}
   condition: []
   action:
   - service: mqtt.publish
@@ -167,8 +167,8 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_04_REQ}}
-      payload: '{"req_topic": {{MQTT_SENSOR_04_REQ}}, "res_topic": {{MQTT_SENSOR_04_RES}},
+      topic: {{MQTT_SENSOR_04_DT_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_04_DT_REQ}}, "res_topic": {{MQTT_SENSOR_04_DT_RES}},
         "data": "ha_req" }'
   mode: single
 
@@ -211,8 +211,8 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_04_CMD}}
-      payload: '{ "cmd": "calibrate_ec_1413", "res_topic": {{MQTT_SENSOR_04_RES}}}'
+      topic: {{MQTT_SENSOR_04_CMD_REQ}}
+      payload: '{ "cmd": "calibrate_ec_1413", "res_topic": {{MQTT_SENSOR_04_DT_RES}}}'
   mode: single
 
 - alias: {{SENSOR_04_END_CALIBRATION_ALIAS}}
@@ -272,15 +272,15 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_04_CMD}}
-      payload: '{ "cmd": "calibrate_ec_12880", "res_topic": {{MQTT_SENSOR_04_RES}}}'
+      topic: {{MQTT_SENSOR_04_CMD_REQ}}
+      payload: '{ "cmd": "calibrate_ec_12880", "res_topic": {{MQTT_SENSOR_04_DT_RES}}}'
   mode: single
 
-- alias: {{SENSOR_05_REQ_AUTOMATION_ALIAS}}
+- alias: {{SENSOR_05_DT_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_05_REQ_INTERVAL_SEC}}
+    seconds: /{{SENSOR_05_DT_REQ_INTERVAL_SEC}}
   condition: []
   action:
   - service: mqtt.publish
@@ -288,8 +288,8 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_05_REQ}}
-      payload: '{"req_topic": {{MQTT_SENSOR_05_REQ}}, "res_topic": {{MQTT_SENSOR_05_RES}},
+      topic: {{MQTT_SENSOR_05_DT_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_05_DT_REQ}}, "res_topic": {{MQTT_SENSOR_05_DT_RES}},
         "data": "ha_req" }'
   mode: single
 
@@ -332,8 +332,8 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_05_CMD}}
-      payload: '{ "cmd": "calibrate_ph_0401", "res_topic": {{MQTT_SENSOR_05_RES}}}'
+      topic: {{MQTT_SENSOR_05_CMD_REQ}}
+      payload: '{ "cmd": "calibrate_ph_0401", "res_topic": {{MQTT_SENSOR_05_DT_RES}}}'
   mode: single
 
 - alias: {{SENSOR_05_END_CALIBRATION_ALIAS}}
@@ -393,8 +393,8 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_05_CMD}}
-      payload: '{ "cmd": "calibrate_ph_0700", "res_topic": {{MQTT_SENSOR_05_RES}}}'
+      topic: {{MQTT_SENSOR_05_CMD_REQ}}
+      payload: '{ "cmd": "calibrate_ph_0700", "res_topic": {{MQTT_SENSOR_05_DT_RES}}}'
   mode: single
 
 - alias: {{SENSOR_05_INIT_CALIBRATION_1001_ALIAS}}
@@ -436,15 +436,15 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_05_CMD}}
-      payload: '{ "cmd": "calibrate_ph_1001", "res_topic": {{MQTT_SENSOR_05_RES}}}'
+      topic: {{MQTT_SENSOR_05_CMD_REQ}}
+      payload: '{ "cmd": "calibrate_ph_1001", "res_topic": {{MQTT_SENSOR_05_DT_RES}}}'
   mode: single
 
-- alias: {{SENSOR_06_REQ_AUTOMATION_ALIAS}}
+- alias: {{SENSOR_06_DT_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_06_REQ_INTERVAL_SEC}}
+    seconds: /{{SENSOR_06_DT_REQ_INTERVAL_SEC}}
   condition: []
   action:
   - service: mqtt.publish
@@ -452,8 +452,8 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_06_REQ}}
-      payload: '{"req_topic": {{MQTT_SENSOR_06_REQ}}, "res_topic": {{MQTT_SENSOR_06_RES}},
+      topic: {{MQTT_SENSOR_06_DT_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_06_DT_REQ}}, "res_topic": {{MQTT_SENSOR_06_DT_RES}},
         "data": "ha_req" }'
   mode: single
 
@@ -496,8 +496,8 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_06_CMD}}
-      payload: '{ "cmd": "calibrate_ph_0401", "res_topic": {{MQTT_SENSOR_06_RES}}}'
+      topic: {{MQTT_SENSOR_06_CMD_REQ}}
+      payload: '{ "cmd": "calibrate_ph_0401", "res_topic": {{MQTT_SENSOR_06_DT_RES}}}'
   mode: single
 
 - alias: {{SENSOR_06_END_CALIBRATION_ALIAS}}
@@ -557,8 +557,8 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_06_CMD}}
-      payload: '{ "cmd": "calibrate_ph_0700", "res_topic": {{MQTT_SENSOR_06_RES}}}'
+      topic: {{MQTT_SENSOR_06_CMD_REQ}}
+      payload: '{ "cmd": "calibrate_ph_0700", "res_topic": {{MQTT_SENSOR_06_DT_RES}}}'
   mode: single
 
 - alias: {{SENSOR_06_INIT_CALIBRATION_1001_ALIAS}}
@@ -600,15 +600,15 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_06_CMD}}
-      payload: '{ "cmd": "calibrate_ph_1001", "res_topic": {{MQTT_SENSOR_06_RES}}}'
+      topic: {{MQTT_SENSOR_06_CMD_REQ}}
+      payload: '{ "cmd": "calibrate_ph_1001", "res_topic": {{MQTT_SENSOR_06_DT_RES}}}'
   mode: single
 
-- alias: {{SENSOR_11_REQ_AUTOMATION_ALIAS}} 
+- alias: {{SENSOR_11_DT_REQ_AUTOMATION_ALIAS}} 
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_11_REQ_INTERVAL_SEC}}
+    seconds: /{{SENSOR_11_DT_REQ_INTERVAL_SEC}}
   condition: []
   action:
   - service: mqtt.publish
@@ -616,16 +616,16 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_11_REQ}}
-      payload: '{"req_topic": {{MQTT_SENSOR_11_REQ}}, "res_topic": {{MQTT_SENSOR_11_RES}},
+      topic: {{MQTT_SENSOR_11_DT_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_11_DT_REQ}}, "res_topic": {{MQTT_SENSOR_11_DT_RES}},
         "data": "ha_req" }'
   mode: single
 
-- alias: {{SENSOR_10_REQ_AUTOMATION_ALIAS}}
+- alias: {{SENSOR_10_DT_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_10_REQ_INTERVAL_SEC}}
+    seconds: /{{SENSOR_10_DT_REQ_INTERVAL_SEC}}
   condition: []
   action:
   - service: mqtt.publish
@@ -633,14 +633,14 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_SENSOR_10_REQ}}
-      payload: '{"req_topic": {{MQTT_SENSOR_10_REQ}}, "res_topic": {{MQTT_SENSOR_10_RES}},
+      topic: {{MQTT_SENSOR_10_DT_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_10_DT_REQ}}, "res_topic": {{MQTT_SENSOR_10_DT_RES}},
         "data": "ha_req" }'
   mode: single
 
 # Relays #
 # Relay automations for toggle-on-off switch (input_boolean) on relay 01-16
-- alias: {{RELAY_01_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_01_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -655,11 +655,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_01_CMD}}
+      topic: {{MQTT_RELAY_01_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_01_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_01_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -674,11 +674,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_01_CMD}}
+      topic: {{MQTT_RELAY_01_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_02_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_02_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -693,11 +693,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_02_CMD}}
+      topic: {{MQTT_RELAY_02_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_02_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_02_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -712,11 +712,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_02_CMD}}
+      topic: {{MQTT_RELAY_02_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_03_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_03_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -731,11 +731,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_03_CMD}}
+      topic: {{MQTT_RELAY_03_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_03_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_03_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -750,11 +750,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_03_CMD}}
+      topic: {{MQTT_RELAY_03_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_04_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_04_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -769,11 +769,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_04_CMD}}
+      topic: {{MQTT_RELAY_04_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_04_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_04_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -788,11 +788,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_04_CMD}}
+      topic: {{MQTT_RELAY_04_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_05_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_05_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -807,11 +807,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_05_CMD}}
+      topic: {{MQTT_RELAY_05_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_05_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_05_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -826,11 +826,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_05_CMD}}
+      topic: {{MQTT_RELAY_05_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_06_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_06_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -845,11 +845,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_06_CMD}}
+      topic: {{MQTT_RELAY_06_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_06_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_06_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -864,11 +864,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_06_CMD}}
+      topic: {{MQTT_RELAY_06_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_07_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_07_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -883,11 +883,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_07_CMD}}
+      topic: {{MQTT_RELAY_07_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_07_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_07_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -902,11 +902,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_07_CMD}}
+      topic: {{MQTT_RELAY_07_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_08_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_08_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -921,11 +921,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_08_CMD}}
+      topic: {{MQTT_RELAY_08_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_08_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_08_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -940,11 +940,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_08_CMD}}
+      topic: {{MQTT_RELAY_08_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_09_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_09_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -959,11 +959,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_09_CMD}}
+      topic: {{MQTT_RELAY_09_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_09_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_09_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -978,11 +978,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_09_CMD}}
+      topic: {{MQTT_RELAY_09_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_10_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_10_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -997,11 +997,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_10_CMD}}
+      topic: {{MQTT_RELAY_10_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_10_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_10_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1016,11 +1016,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_10_CMD}}
+      topic: {{MQTT_RELAY_10_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_11_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_11_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1035,11 +1035,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_11_CMD}}
+      topic: {{MQTT_RELAY_11_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_11_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_11_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1054,11 +1054,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_11_CMD}}
+      topic: {{MQTT_RELAY_11_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_12_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_12_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1073,11 +1073,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_12_CMD}}
+      topic: {{MQTT_RELAY_12_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_12_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_12_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1092,12 +1092,12 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_12_CMD}}
+      topic: {{MQTT_RELAY_12_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
 # Relay 13 - 16
-- alias: {{RELAY_13_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_13_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1112,11 +1112,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_13_CMD}}
+      topic: {{MQTT_RELAY_13_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_13_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_13_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1131,11 +1131,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_13_CMD}}
+      topic: {{MQTT_RELAY_13_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_14_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_14_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1150,11 +1150,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_14_CMD}}
+      topic: {{MQTT_RELAY_14_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_14_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_14_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1169,11 +1169,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_14_CMD}}
+      topic: {{MQTT_RELAY_14_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_15_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_15_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1188,11 +1188,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_15_CMD}}
+      topic: {{MQTT_RELAY_15_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_15_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_15_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1207,11 +1207,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_15_CMD}}
+      topic: {{MQTT_RELAY_15_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-- alias: {{RELAY_16_CMD_ON_AUTOMATION_ALIAS}}
+- alias: {{RELAY_16_CMD_REQ_ON_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1226,11 +1226,11 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_16_CMD}}
+      topic: {{MQTT_RELAY_16_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
 
-- alias: {{RELAY_16_CMD_OFF_AUTOMATION_ALIAS}}
+- alias: {{RELAY_16_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1245,12 +1245,12 @@
     data:
       qos: 0
       retain: false
-      topic: {{MQTT_RELAY_16_CMD}}
+      topic: {{MQTT_RELAY_16_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
 # Elixia grow lamp
-- alias: {{LAMP_01_CMD_AUTOMATION_ALIAS}}
+- alias: {{LAMP_01_CMD_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1266,10 +1266,11 @@
     data_template:
       qos: 0
       retain: false
-      topic: {{MQTT_LAMP_01_CMD}}
+      topic: {{MQTT_LAMP_01_CMD_REQ}}
       payload: >
         {
           "cmd": "adjust_intensity",
+          "res_topic": {{MQTT_LAMP_01_CMD_RES}},
           "intensity": "{{ CHANNEL_450NM_STATE }}:{{ CHANNEL_660NM_STATE }}:{{ CHANNEL_735NM_STATE }}:{{ CHANNEL_5700K_STATE }}"
         }
       

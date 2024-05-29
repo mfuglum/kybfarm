@@ -4,7 +4,7 @@ import json
 # This constant must be imported from the environment file and updated in the main script
 LAMP_01_IP = ""
 
-def on_message_LAMP01_CMD(client, userdata, msg):
+def on_message_LAMP01_CMD_REQ(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
         print("LAMP01", cmd_msg, "\n")
