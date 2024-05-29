@@ -12,7 +12,7 @@ data = {
             "ec": 0,
             "tds": 0,
             "temperature": 0,
-            "calibrated": 0,},
+            "calibrated": 0},
     "time": datetime.datetime.now().isoformat(),
 }
 
