@@ -39,133 +39,133 @@ mqtt:
   sensor:
     - name: {{LIGHT_01_NAME}}
       unique_id: {{LIGHT_01_HA_ID}}
-      state_topic: {{MQTT_SENSOR_01_RES}}
+      state_topic: {{MQTT_SENSOR_01_DT_RES}}
       value_template: {{LIGHT_01_VALUE_TEMPLATE}}
       unit_of_measurement: {{LIGHT_01_HA_UNIT}}
       icon: {{LIGHT_01_HA_ICON}}
 
     - name: {{PAR_02_NAME}}
       unique_id: {{PAR_02_HA_ID}}
-      state_topic: {{MQTT_SENSOR_02_RES}}
+      state_topic: {{MQTT_SENSOR_02_DT_RES}}
       value_template: {{PAR_02_VALUE_TEMPLATE}}
       unit_of_measurement: {{PAR_02_HA_UNIT}}
       icon: {{PAR_02_HA_ICON}}
     
     - name: {{EC_03_NAME}}
       unique_id: {{EC_03_HA_ID}}
-      state_topic: {{MQTT_SENSOR_03_RES}}
+      state_topic: {{MQTT_SENSOR_03_DT_RES}}
       value_template: {{EC_03_VALUE_TEMPLATE}}
       unit_of_measurement: {{EC_03_HA_UNIT}}
       icon: {{EC_03_HA_ICON}}
 
     - name: {{TEMPERATURE_03_NAME}}
       unique_id: {{TEMPERATURE_03_HA_ID}}
-      state_topic: {{MQTT_SENSOR_03_RES}}
+      state_topic: {{MQTT_SENSOR_03_DT_RES}}
       value_template: {{TEMPERATURE_03_VALUE_TEMPLATE}}
       unit_of_measurement: {{TEMPERATURE_03_HA_UNIT}}
       icon: {{TEMPERATURE_03_HA_ICON}}
 
     - name: {{TDS_03_NAME}}
       unique_id: {{TDS_03_HA_ID}}
-      state_topic: {{MQTT_SENSOR_03_RES}}
+      state_topic: {{MQTT_SENSOR_03_DT_RES}}
       value_template: {{TDS_03_VALUE_TEMPLATE}}
       unit_of_measurement: {{TDS_03_HA_UNIT}}
       icon: {{TDS_03_HA_ICON}}
           
     - name: {{SENSOR_03_CALIBRATION_NAME}}
       unique_id: {{SENSOR_03_CALIBRATION_HA_ID}}
-      state_topic: {{MQTT_SENSOR_03_RES}}
+      state_topic: {{MQTT_SENSOR_03_DT_RES}}
       value_template: {{EC_03_CALIBRATION_VALUE_TEMPLATE}}
       unit_of_measurement: {{EC_03_CALIBRATION_UNIT}}
       icon: {{EC_03_HA_ICON}}
 
     - name: {{EC_04_NAME}}
       unique_id: {{EC_04_HA_ID}}
-      state_topic: {{MQTT_SENSOR_04_RES}}
+      state_topic: {{MQTT_SENSOR_04_DT_RES}}
       value_template: {{EC_04_VALUE_TEMPLATE}}
       unit_of_measurement: {{EC_04_HA_UNIT}}
       icon: {{EC_04_HA_ICON}}
 
     - name: {{TEMPERATURE_04_NAME}}
       unique_id: {{TEMPERATURE_04_HA_ID}}
-      state_topic: {{MQTT_SENSOR_04_RES}}
+      state_topic: {{MQTT_SENSOR_04_DT_RES}}
       value_template: {{TEMPERATURE_04_VALUE_TEMPLATE}}
       unit_of_measurement: {{TEMPERATURE_04_HA_UNIT}}
       icon: {{TEMPERATURE_04_HA_ICON}}
 
     - name: {{TDS_04_NAME}}
       unique_id: {{TDS_04_HA_ID}}
-      state_topic: {{MQTT_SENSOR_04_RES}}
+      state_topic: {{MQTT_SENSOR_04_DT_RES}}
       value_template: {{TDS_04_VALUE_TEMPLATE}}
       unit_of_measurement: {{TDS_04_HA_UNIT}}
       icon: {{TDS_04_HA_ICON}}
 
     - name: {{SENSOR_04_CALIBRATION_NAME}}
       unique_id: {{SENSOR_04_CALIBRATION_HA_ID}}
-      state_topic: {{MQTT_SENSOR_04_RES}}
+      state_topic: {{MQTT_SENSOR_04_DT_RES}}
       value_template: {{EC_04_CALIBRATION_VALUE_TEMPLATE}}
       unit_of_measurement: {{EC_04_CALIBRATION_UNIT}}
       icon: {{EC_04_HA_ICON}}
 
     - name: {{PH_05_NAME}}
       unique_id: {{PH_05_HA_ID}}
-      state_topic: {{MQTT_SENSOR_05_RES}}
+      state_topic: {{MQTT_SENSOR_05_DT_RES}}
       value_template: {{PH_05_VALUE_TEMPLATE}}
       unit_of_measurement: {{PH_05_HA_UNIT}}
       icon: {{PH_05_HA_ICON}}
 
     - name: {{TEMPERATURE_05_NAME}}
       unique_id: {{TEMPERATURE_05_HA_ID}}
-      state_topic: {{MQTT_SENSOR_05_RES}}
+      state_topic: {{MQTT_SENSOR_05_DT_RES}}
       value_template: {{TEMPERATURE_05_VALUE_TEMPLATE}}
       unit_of_measurement: {{TEMPERATURE_05_HA_UNIT}}
       icon: {{TEMPERATURE_05_HA_ICON}}
 
     - name: {{SENSOR_05_CALIBRATION_NAME}}
       unique_id: {{SENSOR_05_CALIBRATION_HA_ID}}
-      state_topic: {{MQTT_SENSOR_05_RES}}
+      state_topic: {{MQTT_SENSOR_05_DT_RES}}
       value_template: {{PH_05_CALIBRATION_VALUE_TEMPLATE}}
       unit_of_measurement: {{PH_05_CALIBRATION_UNIT}}
       icon: {{PH_05_HA_ICON}}
 
     - name: {{PH_06_NAME}}
       unique_id: {{PH_06_HA_ID}}
-      state_topic: {{MQTT_SENSOR_06_RES}}
+      state_topic: {{MQTT_SENSOR_06_DT_RES}}
       value_template: {{PH_06_VALUE_TEMPLATE}}
       unit_of_measurement: {{PH_06_HA_UNIT}}
       icon: {{PH_06_HA_ICON}}
 
     - name: {{TEMPERATURE_06_NAME}}
       unique_id: {{TEMPERATURE_06_HA_ID}}
-      state_topic: {{MQTT_SENSOR_06_RES}}
+      state_topic: {{MQTT_SENSOR_06_DT_RES}}
       value_template: {{TEMPERATURE_06_VALUE_TEMPLATE}}
       unit_of_measurement: {{TEMPERATURE_06_HA_UNIT}}
       icon: {{TEMPERATURE_06_HA_ICON}}
 
     - name: {{SENSOR_06_CALIBRATION_NAME}}
       unique_id: {{SENSOR_06_CALIBRATION_HA_ID}}
-      state_topic: {{MQTT_SENSOR_06_RES}}
+      state_topic: {{MQTT_SENSOR_06_DT_RES}}
       value_template: {{PH_06_CALIBRATION_VALUE_TEMPLATE}}
       unit_of_measurement: {{PH_06_CALIBRATION_UNIT}}
       icon: {{PH_06_HA_ICON}}
 
     - name: {{TEMPERATURE_11_NAME}}
       unique_id: {{TEMPERATURE_11_HA_ID}}
-      state_topic: {{MQTT_SENSOR_11_RES}}
+      state_topic: {{MQTT_SENSOR_11_DT_RES}}
       value_template: {{TEMPERATURE_11_VALUE_TEMPLATE}}
       unit_of_measurement: {{TEMPERATURE_11_HA_UNIT}}
       icon: {{TEMPERATURE_11_HA_ICON}}
 
     - name: {{HUMIDITY_11_NAME}}
       unique_id: {{HUMIDITY_11_HA_ID}}
-      state_topic: {{MQTT_SENSOR_11_RES}}
+      state_topic: {{MQTT_SENSOR_11_DT_RES}}
       value_template: {{HUMIDITY_11_VALUE_TEMPLATE}}
       unit_of_measurement: {{HUMIDITY_11_HA_UNIT}}
       icon: {{HUMIDITY_11_HA_ICON}}
 
     - name: {{CO2_11_NAME}}
       unique_id: {{CO2_11_HA_ID}}
-      state_topic: {{MQTT_SENSOR_11_RES}}
+      state_topic: {{MQTT_SENSOR_11_DT_RES}}
       value_template: {{CO2_11_VALUE_TEMPLATE}}
       unit_of_measurement: {{CO2_11_HA_UNIT}}
       icon: {{CO2_11_HA_ICON}}
@@ -179,14 +179,14 @@ mqtt:
 
     - name: {{TEMPERATURE_10_NAME}}
       unique_id: {{TEMPERATURE_10_HA_ID}}
-      state_topic: {{MQTT_SENSOR_10_RES}}
+      state_topic: {{MQTT_SENSOR_10_DT_RES}}
       value_template: {{TEMPERATURE_10_VALUE_TEMPLATE}}
       unit_of_measurement: {{TEMPERATURE_10_HA_UNIT}}
       icon: {{TEMPERATURE_10_HA_ICON}}
 
     - name: {{LEAF_WETNESS_10_NAME}}
       unique_id: {{LEAF_WETNESS_10_HA_ID}}
-      state_topic: {{MQTT_SENSOR_10_RES}}
+      state_topic: {{MQTT_SENSOR_10_DT_RES}}
       value_template: {{LEAF_WETNESS_10_VALUE_TEMPLATE}}
       unit_of_measurement: {{LEAF_WETNESS_10_HA_UNIT}}
       icon: {{LEAF_WETNESS_10_HA_ICON}}
