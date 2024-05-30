@@ -182,10 +182,10 @@ features of Docker Desktop:
 
     2.  Access the Home Assistant dashboard at:<http://localhost:8123>.
 
-    3.  Click on the profile icon (*m* in the example figure) in the
+    3.  Click on the profile icon in the
         left pane of the dashboard.
 
-    4.  Locate the token section or tab, and create a *Long-lived access
+    4.  Locate the token section in the *Security* tab, and create a *Long-lived access
         token*.
 
     5.  Add this token to the `.env` file as `TOKEN`.
