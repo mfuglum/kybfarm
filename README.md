@@ -22,6 +22,7 @@ kybfarm/
 |-- edge/
 |   |-- src/
 |   |   |-- actuator_instances/
+|   |   |   |-- grow_lamp_elixia_initialization.py
 |   |   |   `-- relay_devices_initialization.py
 |   |   |-- sensor_interfaces/
 |   |   |   |-- sensor_BMP280_I2C.py
@@ -32,6 +33,7 @@ kybfarm/
 |   |   |   |-- sensor_SPH01_modbus.py
 |   |   |   `-- sensor_SYM01_modbus.py
 |   |   `-- utils/
+|   |       |-- grow_lamp_elixia.py
 |   |       `-- relay_device.py
 |   |-- auto_launch_at_reboot.sh
 |   |-- edge_computer_main.py
