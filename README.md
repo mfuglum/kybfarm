@@ -61,7 +61,7 @@ kybfarm/
 |               `-- input_text_template.yaml
 |-- .gitignore
 |-- README.md
-|-- env_template.env ( update and rename to -> .env )
+|-- .env_template ( update and rename to -> .env )
 `-- kybfarm-docker-compose.yaml
 ```
 
@@ -104,7 +104,7 @@ managed through an environment file (`.env`) and template files with
 placeholder values. The environment file should be placed in the
 repository's root. The environment file includes parameters such as the
 MQTT broker address, device identifiers, and other settings specific to
-your deployment. The file `env_template.env` provides an example `.env`
+your deployment. The file `.env_template` provides an example `.env`
 file and should be replaced with the actual parameters.
 
 ### Docker Desktop as a tool during installation
