@@ -12,7 +12,7 @@ class grow_lamp_elixia:
                 res_topic: response topic,
             }
     """
-    def __init__ (self, ip_address="192.168.10.103"):
+    def __init__ (self, ip_address="10.53.11.93"):
         self.ip_address = ip_address
         self.base_url = f"http://{self.ip_address}/"
 
@@ -41,7 +41,7 @@ class grow_lamp_elixia:
     def get_status(self):
         url = self.base_url + "status.xml"
         try:
-            response = requests.get(url)
+            response = requests.get(url, timeout=5)
             return response
         except Exception as e:
             return e
