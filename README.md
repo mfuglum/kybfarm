@@ -235,8 +235,11 @@ features of Docker Desktop:
             python3 -m venv venv
             source venv/bin/activate
             pip install -r requirements.txt
+3.  **Configure addresses**
+    1. **For Modbus RTU sensors:** Provide the correct Modbus RTU address for each sensor instance in `edge_computer_main.py`
+    2. **For HTTP interfaced grow lamp:** Provide the lamp's IP address in the `.env` file in the `LAMP_01_IP` field.
 
-3.  **Configure crontab for auto-launch at boot on Rasbian system:**
+4.  **Configure crontab for auto-launch at boot on Rasbian system:**
 
     \
     The script for auto-launch is in the file
