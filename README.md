@@ -164,13 +164,15 @@ features of Docker Desktop:
 
     2.  Access InfluxDB at: <http://localhost:8086>.
 
-    3.  Locate the arrow symbol in the left pane, and click the *API
+    3. Log-in credentials are provided in the `.env` file as `DOCKER_INFLUXDB_INIT_USERNAME` and `DOCKER_INFLUXDB_INIT_PASSWORD`.
+
+    4.  Locate the arrow symbol in the left pane, and click the *API
         Tokens* option.
 
-    4.  Click *GENERATE API TOKEN* and choose the *All Access API Token*
+    5.  Click *GENERATE API TOKEN* and choose the *All Access API Token*
         option.
 
-    5.  Add this token to the `.env` file as `INFLUXDB_TOKEN`.
+    6.  Add this token to the `.env` file as `INFLUXDB_TOKEN`.
 
 5.  **Configure communication between AppDaemon and Home Assistant:**
 
