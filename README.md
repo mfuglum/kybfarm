@@ -427,7 +427,7 @@ content of the file `kybfarm-docker-compose.yaml`.
 | Actuator type | Model Name                | Links                                                                                       |
 |---------------|---------------------------|---------------------------------------------------------------------------------------------|
 | **HTTP protocol**                                                                                                                                         |
-| Grow lamp     | Heliospectra Elixia LX 60 | [Datasheet](https://led.heliospectra.com/hubfs/Heliospectra%20ELIXIA%20Technical%20Specifications%20V.4.pdf) & [User Manual](https://led.heliospectra.com/hubfs/Heliospectra%20ELIXIA%2c%20DYNA%20User%20Manual%20V.8.2.pdf) |
+| Grow lamp     | Heliospectra Elixia LX 601C R4B | [Datasheet](https://led.heliospectra.com/hubfs/Heliospectra%20ELIXIA%20Technical%20Specifications%20V.4.pdf) & [User Manual](https://led.heliospectra.com/hubfs/Heliospectra%20ELIXIA%2c%20DYNA%20User%20Manual%20V.8.2.pdf) |
 
 ### Communication Controller
 
