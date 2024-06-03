@@ -1,6 +1,8 @@
+
+
 # IoT platform for VF: Software Manual
 
-The [kybfarm repository](https://github.com/mfuglum/kybfarm/) provides
+The [Kybfarm Embed repository](https://github.com/mfuglum/kybfarm/) provides
 an open-source Internet of Things (IoT) platform framework for vertical
 farming. This document serves as a user manual for detailed guidance.
 
@@ -8,7 +10,7 @@ The repository is available at: <https://github.com/mfuglum/kybfarm/>
 
 ## Introduction
 
-The design of this IoT platform framework enables the management and
+The design of the Kybfarm Embed framework enables the management and
 automation of vertical farming systems. It leverages containerization
 for modularity and scalability at the server-side, while specific
 interfaces enable control over actuators and data acquisition from
@@ -17,7 +19,7 @@ server and edge, allowing one environment file for common parameters.
 Dedicated directories contain the server- and edge-specific code.
 The repository structure is outlined below:
 
-``` {#lst:repo_structure caption="Outline of repository structure for kybfarm." label="lst:repo_structure"}
+``` {#lst:repo_structure caption="Outline of repository structure for Kybfarm Embed." label="lst:repo_structure"}
 kybfarm/
 |-- edge/
 |   |-- src/
