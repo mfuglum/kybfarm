@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  mqtt:
+    container_name: mqtt_broker
+    image: eclipse-mosquitto:2
+    volumes:
+      - ./server/mosquitto/config:/mosquitto/config
+      - ./server/mosquitto/data:/mosquitto/data
+      - ./server/mosquitto/log:/mosquitto/log
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+    env_file:
+      - .env
+
+  vff_simulator:
+    container_name: vff_simulator
+    build: ./server/src/containers/vff_simulator
+    restart: unless-stopped
+    depends_on:
+      - mqtt
+    env_file:
+      - .env
+
+  temperature_sensor_simulator:
+    container_name: temperature_sensor_simulator
+    build: ./server/src/containers/temperature_sensor_simulator
+    restart: unless-stopped
+    depends_on:
+      - mqtt
+      - vff_simulator
+    env_file:
+      - .env
+
+  heat_pump_simulator:
+    container_name: heat_pump_simulator
+    build: ./server/src/containers/heat_pump_simulator
+    restart: unless-stopped
+    depends_on:
+      - mqtt
+      - vff_simulator
+      - temperature_sensor_simulator
+    env_file:
+      - .env

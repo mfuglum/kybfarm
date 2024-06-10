@@ -7,16 +7,18 @@ from utils.controllers import PIDController
 class FarmSystemSimulator:
     """A simulated farm system involving the climate variables within the farm, as well as the sensor and actuator devices interacting with the climate."""
 
-    def __init__(self, initial_temp=20.0, target_temp=22.0):
+    def __init__(self, initial_temp=20.0, target_temp=22.0, dt=1):
         """
         Initializes the farm system simulator.
 
         Parameters:
             initial_temp: The starting temperature within the farm.
             target_temp: The favored temperature within the farm.
+            dt: The time interval between each simulation update.
         """
         self.current_temp = initial_temp
         self.target_temp = target_temp
+        self.dt = dt
         self.heat_pump = HeatPumpSimulator(efficiency=1.0)
         self.pid_controller = PIDController(Kp=0.8, Ki=0.1, Kd=0.05)
         self.temperature_sensor = TemperatureSensorSimulator(noise_level=0.5)
@@ -28,7 +30,7 @@ class FarmSystemSimulator:
         """
         # Update ambient temperature based on weather cycle
         ambient_temp = self.ambient_temperature.get_ambient_temperature()
-        heat_change_from_ambient_temp = (ambient_temp - self.current_temp)*0.5
+        heat_change_from_ambient_temp = 0.2*(ambient_temp - self.current_temp)*self.dt
 
         # Update room temperature based on heat gained or lost from ambient temperature
         self.current_temp += heat_change_from_ambient_temp
@@ -54,10 +56,10 @@ class FarmSystemSimulator:
         try:
             while True:
                 self.update()
-                time.sleep(1)  # Update every second
+                time.sleep(self.dt)
         except KeyboardInterrupt:
             print("Simulation stopped.")
 
 if __name__ == "__main__":
-    simulator = FarmSystemSimulator(initial_temp=15.0, target_temp=22.0)
+    simulator = FarmSystemSimulator(initial_temp=15.0, target_temp=22.0, dt=0.1)
     simulator.simulate()

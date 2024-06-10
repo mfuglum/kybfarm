@@ -1,5 +1,5 @@
 import time
-from server.src.utils.controllers import PIDController
+from utils.controllers import PIDController
 
 # Simulation parameters
 setpoint = 100.0  # Target temperature to maintain
