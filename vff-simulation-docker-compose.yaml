@@ -33,13 +33,30 @@ services:
     env_file:
       - .env
 
-  heat_pump_simulator:
-    container_name: heat_pump_simulator
-    build: ./server/src/containers/heat_pump_simulator
+  homeassistant:
+    container_name: home_assistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./server/homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      # - /run/dbus:/run/dbus:ro  # (Optional) For bluetooth integration
     restart: unless-stopped
+    privileged: true
+    ports:
+      - "8123:8123"
     depends_on:
       - mqtt
-      - vff_simulator
       - temperature_sensor_simulator
     env_file:
       - .env
+
+  # heat_pump_simulator:
+  #   container_name: heat_pump_simulator
+  #   build: ./server/src/containers/heat_pump_simulator
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - mqtt
+  #     - vff_simulator
+  #     - temperature_sensor_simulator
+  #   env_file:
+  #     - .env
