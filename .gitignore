@@ -1,5 +1,6 @@
 .env
 .venv
+__pycache__
 secrets.yaml
 server/influxdb
 configuration.yaml
