@@ -2,27 +2,30 @@ import random, time  # For the simulation functionality
 import signal, sys  # For graceful shutdown of the process
 import json  # For MQTT messages
 import paho.mqtt.client as mqtt
+import os  # For accessing environment variables
 
 class TemperatureSensorSimulator:
     """A simulated temperature sensor with specified measurement noise."""
 
     def __init__(
-        self,
-        broker_hostname: str,
-        port: int,
-        subscribe_topic: str,
-        publish_topic: str,
-        noise_level=0.5,
-        sampling_time=0.1):
+            self,
+            mqtt_broker_url: str,
+            mqtt_broker_port: int,
+            subscribe_topic: str,
+            publish_topic: str,
+            noise_level=0.5,
+            sampling_time=0.1
+        ):
         """
         Initializes the temperature sensor with a specified noise level.
 
         Parameters:
-            broker_hostname:
-            port:
+            mqtt_broker_url:
+            mqtt_broker_port:
             subscribe_topic:
             publish_topic:
             noise_level: The maximum deviation due to noise.
+            sampling_time: 
         """
         # Process shutdown signal handler.
         signal.signal(signal.SIGINT, self.signal_handler)
@@ -40,9 +43,9 @@ class TemperatureSensorSimulator:
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
         try:
-            self.client.connect(broker_hostname, port)  # Connect to the Broker
+            self.client.connect(mqtt_broker_url, mqtt_broker_port)  # Connect to the Broker
         except Exception as e:
-            print(f"Failed to connect to MQTT Broker at {broker_hostname}:{port}, error: {e}")
+            print(f"Failed to connect to MQTT Broker at {mqtt_broker_url}:{mqtt_broker_port}, error: {e}")
         self.client.loop_start()  # Start the loop
 
     def signal_handler(self):
@@ -82,30 +85,30 @@ class TemperatureSensorSimulator:
         except ValueError as e:
             print(f"Could not decode JSON payload: {e}")
 
-    def read_temperature(self, actual_temperature):
+    def read_temperature(self, true_temperature):
         """
         Simulates reading the temperature by adding a random noise to the actual temperature.
 
         Parameters:
-            actual_temperature: The true temperature of the environment.
+            true_temperature: The true temperature of the environment.
 
         Returns:
             temperature_reading: The noisy temperature reading.
         """
         # Add noise to the temperature reading to simulate an imperfect sensor
         noise = random.uniform(-self.noise_level, self.noise_level)
-        measured_temperature = actual_temperature + noise
-        return measured_temperature
+        temperature_reading = true_temperature + noise
+        return temperature_reading
 
     def update(self):
         """
         Makes a single update to the simulated temperature sensor.
         """
         if self.latest_temperature is not None:
-            measured_temperature = self.read_temperature(self.latest_temperature)
-            print(f"Measured temperature: {measured_temperature}°C")
+            temperature_reading = self.read_temperature(self.latest_temperature)
+            print(f"Measured temperature: {temperature_reading}°C")
             message = {
-                "measured_temperature": measured_temperature
+                "temperature_reading": temperature_reading
             }
             self.client.publish(self.publish_topic, json.dumps(message))
 
@@ -124,12 +127,19 @@ class TemperatureSensorSimulator:
             time.sleep(remaining_sleep_time)
 
 if __name__ == "__main__":
+    mqtt_broker_url = os.getenv("MQTT_BROKER_URL")
+    mqtt_broker_port = int(os.getenv("MQTT_BROKER_PORT"))
+    subscribe_topic = os.getenv("VFF_SIMULATOR_PUBLISH_TOPIC")
+    publish_topic = os.getenv("TEMPERATURE_SENSOR_SIMULATOR_01_PUBLISH_TOPIC")
+    noise_level = float(os.getenv("TEMPERATURE_SENSOR_SIMULATOR_01_NOISE_LEVEL"))
+    sampling_time = float(os.getenv("TEMPERATURE_SENSOR_SIMULATOR_01_SAMPLING_TIME"))
+    
     simulator = TemperatureSensorSimulator(
-        broker_hostname="mqtt_broker",
-        port=1883,
-        subscribe_topic="VFF/sensors/input",
-        publish_topic="VFF/sensors/output",
-        noise_level=0.2,
-        sampling_time=0.5
+        mqtt_broker_url=mqtt_broker_url,
+        mqtt_broker_port=mqtt_broker_port,
+        subscribe_topic=subscribe_topic,
+        publish_topic=publish_topic,
+        noise_level=noise_level,
+        sampling_time=sampling_time
     )
     simulator.simulate()

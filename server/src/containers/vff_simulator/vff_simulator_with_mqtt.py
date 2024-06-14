@@ -2,46 +2,49 @@ import time, math  # For the simulation functionality
 import signal, sys  # For graceful shutdown of the process
 import json  # For MQTT messages
 import paho.mqtt.client as mqtt
+import os  # For accessing environment variables
 
 class VFFSimulator:
     """A simulated VFF involving the climate variables within the farm, as well as the sensor and actuator devices interacting with the climate."""
 
-    def __init__(self,
-                 broker_hostname: str,
-                 port: int,
-                 subscribe_topic: str,
-                 publish_topic: str,
-                 dt: float=0.1,
-                 ambient_temp_avg: float=14,
-                 ambient_temp_var: float=4,
-                 ambient_temp_cycle: str="day"):
+    def __init__(
+            self,
+            mqtt_broker_url: str,
+            mqtt_broker_port: int,
+            subscribe_topic: str,
+            publish_topic: str,
+            update_interval: float=0.1,
+            ambient_temp_average: float=14,
+            ambient_temp_amplitude: float=4,
+            ambient_temp_cycle_time: str="day"
+        ):
         """
         Initializes the VFF simulator.
 
         Parameters:
-            broker_hostname:
-            port:
+            mqtt_broker_url:
+            mqtt_broker_port:
             subscribe_topic:
             publish_topic:
-            dt:
-            ambient_temp_avg:
-            ambient_temp_var:
-            ambient_temp_cycle:
+            update_interval:
+            ambient_temp_average:
+            ambient_temp_amplitude:
+            ambient_temp_cycle_time:
         """
         # Process shutdown signal handler.
         signal.signal(signal.SIGINT, self.signal_handler)
         signal.signal(signal.SIGTERM, self.signal_handler)
 
         # Simulation configurations.
-        self.dt = dt
-        self.ambient_temp_avg = ambient_temp_avg
-        self.ambient_temp_var = ambient_temp_var
-        self.ambient_temp_cycle = ambient_temp_cycle
+        self.update_interval = update_interval
+        self.ambient_temp_average = ambient_temp_average
+        self.ambient_temp_amplitude = ambient_temp_amplitude
+        self.ambient_temp_cycle_time = ambient_temp_cycle_time
         # Initial temperature in the farm is the same as the ambient temperature.
         self.current_temp = self.get_ambient_temperature(
-            ambient_temp_average=self.ambient_temp_avg,
-            ambient_temp_variation=self.ambient_temp_var,
-            ambient_temp_cycle=self.ambient_temp_cycle
+            ambient_temp_average=self.ambient_temp_average,
+            ambient_temp_amplitude=self.ambient_temp_amplitude,
+            ambient_temp_cycle_time=self.ambient_temp_cycle_time
         )
         self.heat_from_actuators = 0  # Default value
 
@@ -52,9 +55,9 @@ class VFFSimulator:
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
         try:
-            self.client.connect(broker_hostname, port)  # Connect to the Broker
+            self.client.connect(mqtt_broker_url, mqtt_broker_port)  # Connect to the Broker
         except Exception as e:
-            print(f"Failed to connect to MQTT Broker at {broker_hostname}:{port}, error: {e}")
+            print(f"Failed to connect to MQTT Broker at {mqtt_broker_url}:{mqtt_broker_port}, error: {e}")
         self.client.loop_start()  # Start the loop
 
     def signal_handler(self):
@@ -107,32 +110,32 @@ class VFFSimulator:
         else:
             print("Heat output message is missing a value.")
 
-    def get_ambient_temperature(self, ambient_temp_average, ambient_temp_variation, ambient_temp_cycle):
+    def get_ambient_temperature(self, ambient_temp_average, ambient_temp_amplitude, ambient_temp_cycle_time):
         """
         Gets the current ambient temperature.
         For testing purposes it will simply give a value according to a cosine wave based on the time and cycle period.
 
         Parameters:
             ambient_temp_average: The average temperature in a cycle.
-            ambient_temp_variation: The temperature amplitude.
-            ambient_temp_cycle: The amount of time to complete a cycle. Valid options are "minute", "hour" and "day".
+            ambient_temp_amplitude: The temperature amplitude.
+            ambient_temp_cycle_time: The amount of time to complete a cycle. Valid options are "minute", "hour" and "day".
 
         Returns:
             current_ambient_temp: The current ambient temperature.
         """
         # Determine the number of seconds in a cycle based on the specified cycle period.
-        if ambient_temp_cycle == "minute":
+        if ambient_temp_cycle_time == "minute":
             cycle_duration = 60
-        elif ambient_temp_cycle == "hour":
+        elif ambient_temp_cycle_time == "hour":
             cycle_duration = 3600  # 60*60
-        elif ambient_temp_cycle == "day":
+        elif ambient_temp_cycle_time == "day":
             cycle_duration = 86400  # 60*60*24
         else:
             print("Unexpected value for ambient temperature cycle, valid arguments are 'minute', 'hour' and 'day'.\nDefaulting to one day cycle period.")
-            self.ambient_temp_cycle = "day"
+            self.ambient_temp_cycle_time = "day"
             cycle_duration = 86400
 
-        current_ambient_temp = ambient_temp_average + ambient_temp_variation*math.cos(2*math.pi*time.time()/cycle_duration)
+        current_ambient_temp = ambient_temp_average + ambient_temp_amplitude*math.cos(2*math.pi*time.time()/cycle_duration)
         return current_ambient_temp
 
     def update(self):
@@ -141,11 +144,11 @@ class VFFSimulator:
         """
         # Update ambient temperature based on time and cycle period.
         ambient_temp = self.get_ambient_temperature(
-            ambient_temp_average=self.ambient_temp_avg,
-            ambient_temp_variation=self.ambient_temp_var,
-            ambient_temp_cycle=self.ambient_temp_cycle
+            ambient_temp_average=self.ambient_temp_average,
+            ambient_temp_amplitude=self.ambient_temp_amplitude,
+            ambient_temp_cycle_time=self.ambient_temp_cycle_time
         )
-        heat_from_ambient_temp = 0.2*(ambient_temp - self.current_temp)*self.dt
+        heat_from_ambient_temp = 0.2*(ambient_temp - self.current_temp)*self.update_interval
 
         # Update room temperature based on heat gained or lost from ambient temperature.
         self.current_temp += heat_from_ambient_temp
@@ -164,20 +167,30 @@ class VFFSimulator:
         
     def simulate(self):
         """
-        Continuously updates the simulated VFF at a rate determined by the delta time (dt).
+        Continuously updates the simulated VFF at a rate determined by the update interval.
         """
         while True:
             self.update()
-            time.sleep(self.dt)
+            time.sleep(self.update_interval)
 
 if __name__ == "__main__":
+    mqtt_broker_url = os.getenv("MQTT_BROKER_URL")
+    mqtt_broker_port = int(os.getenv("MQTT_BROKER_PORT"))
+    subscribe_topic = os.getenv("VFF_SIMULATOR_SUBSCRIBE_TOPIC")
+    publish_topic = os.getenv("VFF_SIMULATOR_PUBLISH_TOPIC")
+    update_interval = float(os.getenv("VFF_SIMULATOR_UPDATE_INTERVAL"))
+    ambient_temp_average = float(os.getenv("VFF_SIMULATOR_AMBIENT_TEMP_AVERAGE"))
+    ambient_temp_amplitude = float(os.getenv("VFF_SIMULATOR_AMBIENT_TEMP_AMPLITUDE"))
+    ambient_temp_cycle_time = os.getenv("VFF_SIMULATOR_AMBIENT_TEMP_CYCLE_TIME")
+
     simulator = VFFSimulator(
-        broker_hostname="mqtt_broker",
-        port=1883,
-        subscribe_topic="VFF/actuators/output",
-        publish_topic="VFF/sensors/input",
-        dt=0.1,
-        ambient_temp_avg=14,
-        ambient_temp_var=4,
-        ambient_temp_cycle="minute")  # Use a short cycle for testing purposes
+        mqtt_broker_url=mqtt_broker_url,
+        mqtt_broker_port=mqtt_broker_port,
+        subscribe_topic=subscribe_topic,
+        publish_topic=publish_topic,
+        update_interval=update_interval,
+        ambient_temp_average=ambient_temp_average,
+        ambient_temp_amplitude=ambient_temp_amplitude,
+        ambient_temp_cycle_time=ambient_temp_cycle_time
+    )
     simulator.simulate()
