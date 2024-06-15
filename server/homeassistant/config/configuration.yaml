@@ -9,3 +9,25 @@ frontend:
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
+homeassistant:
+  name: !env_var HOME_ASSISTANT_NAME
+  latitude: !env_var HOME_ASSISTANT_LATITUDE
+  longitude: !env_var HOME_ASSISTANT_LONGITUDE
+  elevation: !env_var HOME_ASSISTANT_ELEVATION
+  unit_system: !env_var HOME_ASSISTANT_UNIT_SYSTEM
+  currency: !env_var HOME_ASSISTANT_CURRENCY
+  country: !env_var HOME_ASSISTANT_COUNTRY
+  time_zone: !env_var TZ
+
+mqtt:
+  sensor:
+    - unique_id: !env_var TEMPERATURE_SENSOR_SIMULATOR_01_UNIQUE_ID
+      device_class: !env_var TEMPERATURE_SENSOR_SIMULATOR_01_DEVICE_CLASS
+      state_topic: !env_var TEMPERATURE_SENSOR_SIMULATOR_01_PUBLISH_STATE_TOPIC
+      value_template: !env_var TEMPERATURE_SENSOR_SIMULATOR_01_VALUE_TEMPLATE
+      unit_of_measurement: !env_var TEMPERATURE_SENSOR_SIMULATOR_01_UNIT_OF_MEASUREMENT
+      suggested_display_precision: !env_var TEMPERATURE_SENSOR_SIMULATOR_01_SUGGESTED_DISPLAY_PRECISION  # The number of decimals which should be used in the sensor's state when it's displayed.
+      device:
+        identifiers: !env_var TEMPERATURE_SENSOR_SIMULATOR_01_DEVICE_IDENTIFIERS
+        name: !env_var TEMPERATURE_SENSOR_SIMULATOR_01_DEVICE_NAME

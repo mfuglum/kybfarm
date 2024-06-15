@@ -11,8 +11,8 @@ class TemperatureSensorSimulator:
             self,
             mqtt_broker_url: str,
             mqtt_broker_port: int,
-            subscribe_topic: str,
-            publish_topic: str,
+            subscribe_vff_simulator_topic: str,
+            publish_state_topic: str,
             noise_level=0.5,
             sampling_time=0.1
         ):
@@ -20,12 +20,12 @@ class TemperatureSensorSimulator:
         Initializes the temperature sensor with a specified noise level.
 
         Parameters:
-            mqtt_broker_url:
-            mqtt_broker_port:
-            subscribe_topic:
-            publish_topic:
+            mqtt_broker_url: Address of the container running the MQTT broker.
+            mqtt_broker_port: Exposed port used by the container running the MQTT broker.
+            subscribe_vff_simulator_topic: Topic used by the sensor simulator to get data from the VFF simulator.
+            publish_state_topic: Topic used by the sensor simulator to pass on its latest sensor readings.
             noise_level: The maximum deviation due to noise.
-            sampling_time: 
+            sampling_time: Time between each sensor reading.
         """
         # Process shutdown signal handler.
         signal.signal(signal.SIGINT, self.signal_handler)
@@ -37,6 +37,8 @@ class TemperatureSensorSimulator:
         self.latest_temperature = None
 
         # MQTT configurations.
+        self.subscribe_vff_simulator_topic = subscribe_vff_simulator_topic
+        self.publish_state_topic = publish_state_topic
         self.subscribe_topic = subscribe_topic
         self.publish_topic = publish_topic
         self.client = mqtt.Client("TemperatureSensorSimulator")
@@ -59,31 +61,35 @@ class TemperatureSensorSimulator:
 
     def on_connect(self, client, userdata, flags, return_code):
         """
-        Informs if connection to MQTT Broker is successful or not, and begins subscribing to subscribe_topic if it is.
+        Informs if connection to MQTT Broker is successful or not, and begins subscribing to subscribe_vff_simulator_topic if it is.
         """
         if return_code == 0:
             print("Connected to MQTT Broker.")
-            client.subscribe(self.subscribe_topic)
+            self.client.subscribe(self.subscribe_vff_simulator_topic)
+            # self.client.subscribe(self.subscribe_topic)
         else:
             print(f"Failed to connect to MQTT Broker, return code: {return_code}")
 
     def on_message(self, client, userdata, msg):
         """
         Runs every time a new message is recieved from the MQTT Broker.
-        Messages are expected to have a structure according to the following example:
-        {
-          "temperature": 14
-        }
         """
-        try:
-            message = json.loads(msg.payload)
-            actual_temperature = message.get("temperature")
-            if actual_temperature is not None:
-                self.latest_temperature = actual_temperature
-            else:
-                print("Temperature message missing value for 'temperature' key.")
-        except ValueError as e:
-            print(f"Could not decode JSON payload: {e}")
+        if msg.topic == self.subscribe_vff_simulator_topic:
+            """
+            Messages are expected to have a structure according to the following example:
+            {
+            "temperature": 14
+            }
+            """
+            try:
+                message = json.loads(msg.payload)
+                actual_temperature = message.get("temperature")
+                if actual_temperature is not None:
+                    self.latest_temperature = actual_temperature
+                else:
+                    print("Temperature message missing value for 'temperature' key.")
+            except ValueError as e:
+                print(f"Could not decode JSON payload: {e}")
 
     def read_temperature(self, true_temperature):
         """
@@ -110,7 +116,7 @@ class TemperatureSensorSimulator:
             message = {
                 "temperature_reading": temperature_reading
             }
-            self.client.publish(self.publish_topic, json.dumps(message))
+            self.client.publish(self.publish_state_topic, json.dumps(message))
 
     def simulate(self):
         """
@@ -129,16 +135,16 @@ class TemperatureSensorSimulator:
 if __name__ == "__main__":
     mqtt_broker_url = os.getenv("MQTT_BROKER_URL")
     mqtt_broker_port = int(os.getenv("MQTT_BROKER_PORT"))
-    subscribe_topic = os.getenv("VFF_SIMULATOR_PUBLISH_TOPIC")
-    publish_topic = os.getenv("TEMPERATURE_SENSOR_SIMULATOR_01_PUBLISH_TOPIC")
+    subscribe_vff_simulator_topic = os.getenv("VFF_SIMULATOR_PUBLISH_TOPIC")
+    publish_state_topic = os.getenv("TEMPERATURE_SENSOR_SIMULATOR_01_PUBLISH_STATE_TOPIC")
     noise_level = float(os.getenv("TEMPERATURE_SENSOR_SIMULATOR_01_NOISE_LEVEL"))
     sampling_time = float(os.getenv("TEMPERATURE_SENSOR_SIMULATOR_01_SAMPLING_TIME"))
     
     simulator = TemperatureSensorSimulator(
         mqtt_broker_url=mqtt_broker_url,
         mqtt_broker_port=mqtt_broker_port,
-        subscribe_topic=subscribe_topic,
-        publish_topic=publish_topic,
+        subscribe_vff_simulator_topic=subscribe_vff_simulator_topic,
+        publish_state_topic=publish_state_topic,
         noise_level=noise_level,
         sampling_time=sampling_time
     )
