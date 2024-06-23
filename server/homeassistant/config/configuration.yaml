@@ -20,6 +20,27 @@ homeassistant:
   country: !env_var HOME_ASSISTANT_COUNTRY
   time_zone: !env_var TZ
 
+influxdb:
+  api_version: 2
+  ssl: false
+  host: !env_var INFLUXDB_URL
+  port: !env_var INFLUXDB_PORT
+  token: !env_var DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
+  organization: !env_var DOCKER_INFLUXDB_INIT_ORG
+  bucket: !env_var DOCKER_INFLUXDB_INIT_BUCKET
+  tags:
+    source: HASS
+  tags_attributes:
+    - friendly_name
+    - device_class
+  default_measurement: units
+  exclude:
+    entity_globs:
+      - sensor.sun_*
+  include:
+    domains:
+      - sensor
+
 mqtt:
   sensor:
     - unique_id: !env_var TEMPERATURE_SENSOR_SIMULATOR_01_UNIQUE_ID
