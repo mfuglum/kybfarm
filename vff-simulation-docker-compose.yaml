@@ -32,7 +32,7 @@ services:
   #     - .env
 
   mqtt:
-    container_name: ${MQTT_BROKER_URL}
+    container_name: mqtt_broker
     image: eclipse-mosquitto:2
     volumes:
       - ./server/mosquitto/config:/mosquitto/config

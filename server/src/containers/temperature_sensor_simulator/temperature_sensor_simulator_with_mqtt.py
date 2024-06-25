@@ -133,8 +133,8 @@ class TemperatureSensorSimulator:
             time.sleep(remaining_sleep_time)
 
 if __name__ == "__main__":
-    mqtt_broker_url = os.getenv("MQTT_BROKER_URL")
-    mqtt_broker_port = int(os.getenv("MQTT_BROKER_PORT"))
+    mqtt_broker_url = os.getenv("MQTT_BROKER_CONTAINER_URL")
+    mqtt_broker_port = int(os.getenv("MQTT_BROKER_CONTAINER_PORT"))
     subscribe_vff_simulator_topic = os.getenv("VFF_SIMULATOR_PUBLISH_TOPIC")
     publish_state_topic = os.getenv("TEMPERATURE_SENSOR_SIMULATOR_01_PUBLISH_STATE_TOPIC")
     noise_level = float(os.getenv("TEMPERATURE_SENSOR_SIMULATOR_01_NOISE_LEVEL"))

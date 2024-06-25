@@ -23,8 +23,8 @@ homeassistant:
 influxdb:
   api_version: 2
   ssl: false
-  host: !env_var INFLUXDB_URL
-  port: !env_var INFLUXDB_PORT
+  host: !env_var INFLUXDB_CONTAINER_URL
+  port: !env_var INFLUXDB_CONTAINER_PORT
   token: !env_var DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
   organization: !env_var DOCKER_INFLUXDB_INIT_ORG
   bucket: !env_var DOCKER_INFLUXDB_INIT_BUCKET
