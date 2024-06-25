@@ -174,8 +174,8 @@ class VFFSimulator:
             time.sleep(self.update_interval)
 
 if __name__ == "__main__":
-    mqtt_broker_url = os.getenv("MQTT_BROKER_URL")
-    mqtt_broker_port = int(os.getenv("MQTT_BROKER_PORT"))
+    mqtt_broker_url = os.getenv("MQTT_BROKER_CONTAINER_URL")
+    mqtt_broker_port = int(os.getenv("MQTT_BROKER_CONTAINER_PORT"))
     subscribe_topic = os.getenv("VFF_SIMULATOR_SUBSCRIBE_TOPIC")
     publish_topic = os.getenv("VFF_SIMULATOR_PUBLISH_TOPIC")
     update_interval = float(os.getenv("VFF_SIMULATOR_UPDATE_INTERVAL"))
