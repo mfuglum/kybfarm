@@ -23,7 +23,7 @@ homeassistant:
 influxdb:
   api_version: 2
   ssl: false
-  host: !env_var INFLUXDB_CONTAINER_URL
+  host: !env_var INFLUXDB_CONTAINER_HOSTNAME
   port: !env_var INFLUXDB_CONTAINER_PORT
   token: !env_var DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
   organization: !env_var DOCKER_INFLUXDB_INIT_ORG
@@ -52,3 +52,18 @@ mqtt:
       device:
         identifiers: !env_var TEMPERATURE_SENSOR_SIMULATOR_01_DEVICE_IDENTIFIERS
         name: !env_var TEMPERATURE_SENSOR_SIMULATOR_01_DEVICE_NAME
+
+  # climate:  # (Not yet implemented)
+  #   - unique_id: "heat_pump_simulator_01"
+  #     modes:
+  #       - "off"
+  #       - "heat"
+  #     min_temp: 0
+  #     max_temp: 100
+  #     temperature_command_topic: "homeassistant/climate/heat_pump_simulator_01/set"
+  #     temperature_state_topic: "homeassistant/climate/heat_pump_simulator_01/state"
+  #     temperature_state_template: "{{ value_json.value }}"
+  #     temperature_unit: "C"
+  #     device:
+  #       identifiers: "heatpumpsimulator01"
+  #       name: "Heat Pump Simulator"

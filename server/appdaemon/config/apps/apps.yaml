@@ -1,0 +1,18 @@
+controllers:
+  module: controllers
+  global: true
+
+influxdb_handler:
+  module: influxdb_handler
+  global: true
+
+temperature_controller:
+  module: temperature_controller
+  class: TemperatureController
+  sensor: sensor_simulator_temperature
+  # actuator: actuator_simulator_heat_pump  # Not implemented
+  setpoint: 22.0
+  sample_time: 0.5
+  Kp: 0.1
+  Ki: 0.1
+  Kd: 0.05

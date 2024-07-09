@@ -1,0 +1,16 @@
+appdaemon:
+  latitude: !env_var HOME_ASSISTANT_LATITUDE
+  longitude: !env_var HOME_ASSISTANT_LONGITUDE
+  elevation: !env_var HOME_ASSISTANT_ELEVATION
+  time_zone: !env_var TZ
+  plugins:
+    HASS:
+      type: hass
+      ha_url: !env_var HA_URL
+      token: !env_var TOKEN
+      cert_verify: False
+http:
+  url: !env_var DASH_URL
+admin:
+api:
+hadashboard:

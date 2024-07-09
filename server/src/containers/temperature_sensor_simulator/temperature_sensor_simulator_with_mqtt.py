@@ -8,13 +8,18 @@ class TemperatureSensorSimulator:
     """A simulated temperature sensor with specified measurement noise."""
 
     def __init__(
-            self,
-            mqtt_broker_url: str,
-            mqtt_broker_port: int,
-            subscribe_vff_simulator_topic: str,
-            publish_state_topic: str,
-            noise_level=0.5,
-            sampling_time=0.1
+        self,
+        mqtt_broker_url: str,
+        mqtt_broker_port: int,
+        subscribe_vff_simulator_topic: str,
+        publish_state_topic: str,
+        #############################################################
+        ##### MQTT DISCOVERY FUNCTIONALITY # NOT YET IMPLEMENTED ####
+        # subscribe_home_assistant_status_topic: str,
+        # publish_discovery_topic: str,
+        #############################################################
+        noise_level=0.5,
+        sampling_time=0.1
         ):
         """
         Initializes the temperature sensor with a specified noise level.
@@ -24,6 +29,11 @@ class TemperatureSensorSimulator:
             mqtt_broker_port: Exposed port used by the container running the MQTT broker.
             subscribe_vff_simulator_topic: Topic used by the sensor simulator to get data from the VFF simulator.
             publish_state_topic: Topic used by the sensor simulator to pass on its latest sensor readings.
+            #############################################################
+            ##### MQTT DISCOVERY FUNCTIONALITY # NOT YET IMPLEMENTED ####
+            subscribe_home_assistant_status_topic: Topic used by Home Assistant to notify clients when the service goes online or offline.
+            publish_discovery_topic: Topic used by Home Assistant to discover and configure device automatically.
+            #############################################################
             noise_level: The maximum deviation due to noise.
             sampling_time: Time between each sensor reading.
         """
@@ -39,8 +49,11 @@ class TemperatureSensorSimulator:
         # MQTT configurations.
         self.subscribe_vff_simulator_topic = subscribe_vff_simulator_topic
         self.publish_state_topic = publish_state_topic
-        self.subscribe_topic = subscribe_topic
-        self.publish_topic = publish_topic
+        #############################################################
+        ##### MQTT DISCOVERY FUNCTIONALITY # NOT YET IMPLEMENTED ####
+        # self.subscribe_home_assistant_status_topic = subscribe_home_assistant_status_topic
+        # self.publish_discovery_topic = publish_discovery_topic
+        #############################################################
         self.client = mqtt.Client("TemperatureSensorSimulator")
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
@@ -66,7 +79,11 @@ class TemperatureSensorSimulator:
         if return_code == 0:
             print("Connected to MQTT Broker.")
             self.client.subscribe(self.subscribe_vff_simulator_topic)
-            # self.client.subscribe(self.subscribe_topic)
+            #############################################################
+            ##### MQTT DISCOVERY FUNCTIONALITY # NOT YET IMPLEMENTED ####
+            # self.client.subscribe(self.subscribe_home_assistant_status_topic)
+            # self.publish_discovery_message()
+            #############################################################
         else:
             print(f"Failed to connect to MQTT Broker, return code: {return_code}")
 
@@ -90,6 +107,37 @@ class TemperatureSensorSimulator:
                     print("Temperature message missing value for 'temperature' key.")
             except ValueError as e:
                 print(f"Could not decode JSON payload: {e}")
+
+    #############################################################
+    ##### MQTT DISCOVERY FUNCTIONALITY # NOT YET IMPLEMENTED ####
+        # elif msg.topic == self.subscribe_home_assistant_status_topic:
+        #     """
+        #     Messages are expected to have a structure according to the following example:
+        #     "status": online
+        #     """
+        #     if msg.payload == "online":
+        #         self.publish_discovery_message()
+        #         print("Sent a discovery message")
+        
+
+    # def publish_discovery_message(self):
+    #     discovery_message = {
+    #         "name": "Temperature",
+    #         "unique_id": "temperature_sensor_simulator_01",
+    #         "device_class": "temperature",
+    #         "state_topic": "homeassistant/sensor/temperature_sensor_simulator_01/state",  # Discovery topic format: "<discovery_prefix>/<component>/[<node_id>/]<object_id>/config" (Best practice for entities with a unique_id is to set <object_id> to unique_id and omit the <node_id>.)
+    #         "value_template": "{{ value_json.temperature_reading }}",
+    #         "unit_of_measurement": "°C",
+    #         "suggested_display_precision": 1,  # The number of decimals which should be used in the sensor's state when it's displayed.
+    #         "device": {
+    #             "name": "Sensor simulator",
+    #             "identifiers": [
+    #                 "tss01"
+    #             ]
+    #         }
+    #     }
+    #     self.client.publish(self.publish_discovery_topic, json.dumps(discovery_message), qos=1, retain=True)
+    #############################################################
 
     def read_temperature(self, true_temperature):
         """
@@ -145,6 +193,11 @@ if __name__ == "__main__":
         mqtt_broker_port=mqtt_broker_port,
         subscribe_vff_simulator_topic=subscribe_vff_simulator_topic,
         publish_state_topic=publish_state_topic,
+        #############################################################
+        ##### MQTT DISCOVERY FUNCTIONALITY # NOT YET IMPLEMENTED ####
+        # subscribe_home_assistant_status_topic="homeassistant/status",
+        # publish_discovery_topic="homeassistant/sensor/temperature_sensor_simulator_01/config",
+        #############################################################
         noise_level=noise_level,
         sampling_time=sampling_time
     )

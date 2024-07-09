@@ -3,4 +3,3 @@
 __pycache__
 server/influxdb
 influxdb.yaml
-server/appdaemon/config/appdaemon.yaml

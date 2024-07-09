@@ -98,7 +98,7 @@ class InfluxDBHandler:
         flux_query = flux_query_base + flux_query_filters
 
         # Query the data point from the database
-        print("Querying database with the following Flux script:\n", flux_query)  # This line may be removed to reduce terminal clutter.
+        # print("Querying database with the following Flux script:\n", flux_query)  # This line may be commented out to reduce terminal clutter.
         tables = self._query_api.query(query=flux_query)
         return tables
     
