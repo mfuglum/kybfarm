@@ -78,6 +78,7 @@ services:
     volumes:
       - ./server/appdaemon/config:/conf
       - /etc/localtime:/etc/localtime:ro
+      - appdaemon:/certs  # Added because AppDaemon kept creating a new volume on each startup.
     restart: unless-stopped
     ports:
       - "5050:5050"
@@ -89,3 +90,4 @@ services:
 
 volumes:
   influxdb:
+  appdaemon:
