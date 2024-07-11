@@ -11,6 +11,7 @@ class TemperatureController(hass.Hass):
         # Get entity IDs and parameters from the app configuration.
         self.sensor = self.args["sensor"]
         # self.actuator = self.args["actuator"]  # Not implemented
+        self.controller_on = bool(self.args["controller_on"])
         self.setpoint = float(self.args["setpoint"])
         self.sample_time = float(self.args["sample_time"])
         self.Kp = float(self.args["Kp"])
@@ -54,10 +55,14 @@ class TemperatureController(hass.Hass):
         self.log(f"Value from InfluxDB: {input}")
 
         # Calculate PID controller output.
-        output = self.pid.calculate_control_signal(
-            self.setpoint,
-            input
-            )
+        if self.controller_on:
+            output = self.pid.calculate_control_signal(
+                self.setpoint,
+                input
+                )
+        else:
+            output = 0
+        self.log(f"Controller output: {output}")
 
         # Update the actuator.
         message = {"control_signal": output}

@@ -9,8 +9,12 @@ influxdb_handler:
 temperature_controller:
   module: temperature_controller
   class: TemperatureController
+  dependencies:
+    - controllers
+    - influxdb_handler
   sensor: sensor_simulator_temperature
   # actuator: actuator_simulator_heat_pump  # Not implemented
+  controller_on: true
   setpoint: 22.0
   sample_time: 0.5
   Kp: 0.1
