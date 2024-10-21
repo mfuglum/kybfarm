@@ -23,7 +23,9 @@ from src.sensor_interfaces import (sensor_SCD41_I2C,
                                    sensor_SLIGHT01_modbus,
                                    sensor_SPAR02_modbus,
                                    sensor_SEC01_modbus,
-                                   sensor_SPH01_modbus)
+                                   sensor_SPH01_modbus,
+                                   sensor_C02_VOC_modbus
+                                   )
 from src.actuator_instances import (relay_devices_initialization,
                                     grow_lamp_elixia_initialization) 
 
@@ -308,6 +310,15 @@ def on_message_SCD41(client, userdata, msg):
     except Exception as e:
         print("SCD41, data fetch error:", str(e))
 
+def on_message_C02_VOC(client, userdata, msg):
+    req_msg = json.loads(msg.payload)
+    try:
+        res_payload = json.dumps(sensor_C02_VOC_modbus.fetch_and_return_data())
+        client.publish(req_msg["res_topic"], res_payload, )
+        print(res_payload + "\n")
+    except Exception as e:
+        print("SCD41, data fetch error:", str(e))
+
 
 # Setup MQTT client for sensor host
 client = mqtt.Client()
@@ -329,7 +340,7 @@ client.message_callback_add(MQTT_SPH01_1_CMD_REQ, on_message_SPH01_1_CMD_REQ)
 client.message_callback_add(MQTT_SPH01_2_DT_REQ, on_message_SPH01_2)
 client.message_callback_add(MQTT_SPH01_2_CMD_REQ, on_message_SPH01_2_CMD_REQ)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
-# client.message_callback_add(MQTT_SCD41_DT_DT_REQ, on_message_SCD41)
+client.message_callback_add(MQTT_SCD41_DT_DT_REQ,on_message_C02_VOC)
 
 # Actuators #
 client.message_callback_add(MQTT_RELAY_01_CMD_REQ, relay_devices_initialization.on_message_RLY01)
