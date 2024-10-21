@@ -206,7 +206,7 @@ features of Docker Desktop:
         AppDaemon and Home Assistant.
 
     5.  `MOSQUITTO_BROKER_IP`: The broker IP for the server for edge to
-        connect (Tailscale IP for server).
+        connect (ZeroTier IP for server).
 
 7.  **Rebuild containers with new parameters and tokens:**
 
