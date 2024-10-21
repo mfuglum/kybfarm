@@ -14,9 +14,9 @@ data = {
 }
 
 
-# The device / Instrument class for Seeed Studio SenseCAP S-LIGHT-01 Light Intensity sensor
+# The device / Instrument class for Thermokon LK+ CO2+VOC RS485 Modbus 
 class CO2_VOC( minimalmodbus.Instrument ):
-    """Instrument class for S-LIGHT-01 Light Intensity sensor.
+    """Instrument class for  Light Intensity sensor.
     
     Args:
         * portname (str):                       port name
@@ -30,27 +30,26 @@ class CO2_VOC( minimalmodbus.Instrument ):
         * debug (bool):                         Whether to print debug information.
                                                 Default is False
     
-    From datasheet, Ch. 6. RS485 Modbus Protocol:
+    From datasheet:
 
-    The default serial communication settings is slave
-    address 1, Modbus RTU, 9600bps, 8 data bits and 1 stop bit.
+    Baud rate, address and parity are set by manually setting pins on sensor
+    Default:
+        Baudrate: 9600
+        Parity: None
+        Address: 0 (Not usable as it is used to set address outside range 1-31 through an app)
+    Current:
+        Baudrate: 9600
+        Parity: None
+        Address: 7
 
-    Following Modbus function code are supported by sensor.
-    Modbus Function Code 0x03 : used for reading holding register.
-    Modbus Function Code 0x04 : used for reading input register.
-    Modbus Function Code 0x06 : used for writing single holding register.
-    Modbus Function Code 0x10: used for writing multiple holding register.
+
+    Imperial vs SI unit system is set using register 400
 
     Register value               Register Addr (HEX/DEC) Data    Type    Function code (DEC)     Range and Comments          Default Value
-    ILLUMINANCE HIGH 16 Bits     0x0000 /0               UINT16  RO      3/4                     0-200000 for 0-200000 lux   N/A
-    ILLUMINANCE LOW 16 Bits      0x0001 /1               UINT16  RO      3/4                     0-200000 for 0-200000 lux   N/A
-    STATUS                       0x0002 /2               UINT16  RO      3/4                     BIT1:Sensor Error           N/A
-                                                                                                 BIT0:Over Range
-    SLAVEADDRESS                 0x0200 /512             UINT16  R/W     3/6/16                  1-255                       1
-    BAUDRATE                     0x0201 /513             UINT16  R/W     3/6/16                  3:9600bps/4:19200bps        3:9600bps
-    RESPONSEDELAY                0x0206 /518             UINT16  R/W     3/6/16                  0-255 for 0-2550ms          0
-    ACTIVEOUTPUTINTERVAL         0x0207 /519             UINT16  R/W     3/6/16                  0-255 for 0-255ms           0
-    
+    C02                          0x0005 /5               UINT16  R       3                                                   N/A
+
+    UNIT SYSTEM                  0x0190 /400             UINT16  R/W     6                        VAL=1->SI, 2->IMPERIAL     1
+
     Functions used from minimalmodbus API:
     https://minimalmodbus.readthedocs.io/en/stable/_modules/minimalmodbus.html#Instrument.read_bit
 
@@ -87,7 +86,7 @@ class CO2_VOC( minimalmodbus.Instrument ):
 
 
 
-    def set_unit(unit = "SI"):
+    def set_unit(self,unit = "SI"):
         val= 1 if unit == "SI" else 2
         self.write_register(registeraddress=400,
                     value=val,
@@ -111,12 +110,12 @@ class CO2_VOC( minimalmodbus.Instrument ):
 
     # A function to fetch and print data from the sensor
     def fetch_and_print_data(self):
-        co2 = self.get_c02()
+        c02 = self.get_c02()
         print(f"C02: {c02} ppm")
 
     # A funcion to fetch and return data from the sensor
     def fetch_and_return_data(self):
-        co2 = self.get_c02()
-        data["fields"]["c02"] = c02
+        c02 = self.get_c02()
+        data["fields"]["co2"] = c02
         data["time"] = datetime.datetime.now().isoformat()
         return data

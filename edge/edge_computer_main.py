@@ -313,7 +313,7 @@ def on_message_SCD41(client, userdata, msg):
 def on_message_C02_VOC(client, userdata, msg):
     req_msg = json.loads(msg.payload)
     try:
-        res_payload = json.dumps(sensor_C02_VOC_modbus.fetch_and_return_data())
+        res_payload = json.dumps(sensor_C02_VOC.fetch_and_return_data())
         client.publish(req_msg["res_topic"], res_payload, )
         print(res_payload + "\n")
     except Exception as e:
@@ -340,7 +340,7 @@ client.message_callback_add(MQTT_SPH01_1_CMD_REQ, on_message_SPH01_1_CMD_REQ)
 client.message_callback_add(MQTT_SPH01_2_DT_REQ, on_message_SPH01_2)
 client.message_callback_add(MQTT_SPH01_2_CMD_REQ, on_message_SPH01_2_CMD_REQ)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
-client.message_callback_add(MQTT_SCD41_DT_DT_REQ,on_message_C02_VOC)
+client.message_callback_add(MQTT_SCD41_DT_REQ,on_message_C02_VOC)
 
 # Actuators #
 client.message_callback_add(MQTT_RELAY_01_CMD_REQ, relay_devices_initialization.on_message_RLY01)
@@ -432,6 +432,15 @@ try:
     print(sensor_SYM01)
 except Exception as e:
     print("SYM01, error:", str(e))
+
+try:
+    sensor_C02_VOC = sensor_C02_VOC_modbus.CO2_VOC(   portname='/dev/ttySC1',
+                                                slaveaddress=7, 
+                                                debug=False)
+    print(sensor_C02_VOC)
+except Exception as e:
+    print("C02_VOC, error:", str(e))
+
 
 
 # Start main loop #
