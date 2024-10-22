@@ -7,8 +7,10 @@ data = {
     "tags": {
         "sensor_id": "1",
         "location": "GF, Gloeshaugen",
-        "sensor_name": "SCD41"},
+        "sensor_name": "C02+VOC"},
     "fields": {
+            "temperature": 0,
+            "humidity": 0,
             "co2": 0},
     "time": datetime.datetime.now().isoformat(),
 }
@@ -102,6 +104,25 @@ class CO2_VOC( minimalmodbus.Instrument ):
                                               signed=False)
  
         return c02
+
+    def get_humidity(self):
+
+        humidity = self.read_register(registeraddress=1,
+                                              number_of_decimals=1,
+                                              functioncode=3,
+                                              signed=False)
+ 
+        return humidity
+
+    def get_temperature(self):
+
+        temperature = self.read_register(registeraddress=0,
+                                              number_of_decimals=1,
+                                              functioncode=3,
+                                              signed=False)
+ 
+        return temperature
+
     
 
 
@@ -116,6 +137,10 @@ class CO2_VOC( minimalmodbus.Instrument ):
     # A funcion to fetch and return data from the sensor
     def fetch_and_return_data(self):
         c02 = self.get_c02()
+        temperature = self.get_temperature()
+        humidity = self.get_humidity()
         data["fields"]["co2"] = c02
+        data["fields"]["humidity"] = humidity
+        data["fields"]["temperature"] = temperature
         data["time"] = datetime.datetime.now().isoformat()
         return data
