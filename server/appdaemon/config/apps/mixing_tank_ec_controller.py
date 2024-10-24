@@ -2,7 +2,7 @@
 
 
 
-
+from datetime import datetime
 
 # mixing_tank_ec_controller:
 #   module: mixing_tank_ec_controller
@@ -66,7 +66,10 @@ class Mixing_tank_ec_controller(ad.ADBase):
         startup_delay = str(self.args["startup_delay"])
         self.adapi.log(f"startup_delay is {startup_delay}")
         # self.adapi.run_every(self.callback_feedback ,"now" + startup_delay, 60*60*24)
-        self.adapi.run_at(self.callback_feedback,"10:00:00")
+        # self.adapi.run_at(self.callback_feedback,"10:46:00")
+        datetime_object = datetime(2024, 10, 24, 11, 00, 00)
+
+        self.adapi.run_every(self.callback_feedback,datetime_object,60*60*2)
         self.ec_sensor.listen_state(self.check_overflow, attribute = "ec") # need to change polling rate in home assistent
         self.adapi.log("Mixing tank EC controller initialized!")
 
