@@ -14,8 +14,8 @@ class Lamp_control(ad.ADBase):
         # self.run_at(self.callback,"08:00:00")
         # self.run_at(self.callback,"23:59:00")
         # self.adapi.run_at(self.callback,"12:01:30")
-        self.adapi.run_at(self.callback,"09:45:00")
-        self.adapi.run_at(self.callback,"09:47:00")
+        self.adapi.run_at(self.callback,"08:00:00")
+        self.adapi.run_at(self.callback,"23:59:00")
         self.adapi.log("Lamp controller init finished")
     
     def callback(self,cb_args):

@@ -1,5 +1,7 @@
 import adbase as ad
 import time
+from datetime import datetime
+
 
 
 # growth_tank_ec_controller:
@@ -52,7 +54,11 @@ class Grow_tank_ec_controller(ad.ADBase):
         self.drain_time = self.args["drain_time"]
         self.adapi.log(f"Startup delay is {startup_delay}")
         # self.adapi.run_every(self.callback ,"now", 60*60*12)
-        self.adapi.run_at(self.callback,"11:00:00")
+        # self.adapi.run_at(self.callback,"12:00:00")
+        datetime_object = datetime(2024, 10, 24, 12, 00, 00)
+
+        self.adapi.run_every(self.callback,datetime_object,60*60*2)
+
         # self.adapi.run_once(self.callback,start = "now")
         self.adapi.log("Grow tank EC controller init finished")
 
