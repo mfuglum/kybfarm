@@ -135,9 +135,11 @@ class Grow_tank_ec_controller(ad.ADBase):
             self.adapi.log("Grow tank controller turned on")
         elif new == "off":
             self.adapi.cancel_listen_state(self.cb_handle)
-            self.mix_pump.turn_off()
+            if not self.mix_controller or not getattr(self.mix_controller, "is_running", False):
+                self.mix_pump.turn_off()
             self.solenoid.turn_off()
             self.adapi.log("Grow tank controller turned off")
+
 
     
 

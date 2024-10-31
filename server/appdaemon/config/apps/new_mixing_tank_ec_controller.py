@@ -162,7 +162,8 @@ class Mixing_tank_ec_controller(ad.ADBase):
             self.adapi.cancel_listen_state(self.cb_handle)
             for pump in self.pumps:
                 pump.turn_off()
-            self.mix_pump.turn_off()
+            if not self.grow_controller or not getattr(self.grow_controller, "is_running", False):
+                self.mix_pump.turn_off()
             self.adapi.log("Mixing tank controller turned off")
 
 
