@@ -34,7 +34,7 @@ class Intake_fan_controller(ad.ADBase):
         self.intake_fan = self.adapi.get_entity(intake_fan_id)
         self.toggle = self.adapi.get_entity(toggle_id)
         self.cb_handle = None
-        if self.toggle.get_state == "on":
+        if self.toggle.get_state() == "on":
            self.cb_handle =  self.humidity.listen_state(self.callback)
 
         self.toggle.listen_state(self.toggle_control)
@@ -48,13 +48,13 @@ class Intake_fan_controller(ad.ADBase):
     def callback(self, entity, attribute, old, new, cb_args):
         new = float(new)
         temp = float(self.temp.get_state())
-        if new < self.humid_low.get_state and temp < self.temp_low.get_state():
+        if new < float(self.humid_low.get_state()) and temp < float(self.temp_low.get_state()):
             # self.adapi.log(f"new value is {new}")
             # self.adapi.log("Humidity too low, turning off intake fan")
             self.intake_fan.turn_off()
-        elif new > self.humid_high.get_state or temp > self.temp_high.get_state():
-            # self.adapi.log(f"new value is {new}")
-            # self.adapi.log("Humidity too high, turning on intake fan")
+        elif new > float(self.humid_high.get_state()) or temp > float(self.temp_high.get_state()):
+            self.adapi.log(f"new value is {new}")
+            self.adapi.log("Humidity too high, turning on intake fan")
             self.intake_fan.turn_on()
         
 
@@ -63,7 +63,7 @@ class Intake_fan_controller(ad.ADBase):
     def toggle_control(self, entity, attribute, old, new, cb_args):
 
         if new == "on":
-            self.cb_handle = self.humidity.listen_state(self.init_control)
+            self.cb_handle = self.humidity.listen_state(self.callback)
             self.adapi.log("Intake fan controller turned on")
         elif new == "off":
             self.adapi.cancel_listen_state(self.cb_handle)
