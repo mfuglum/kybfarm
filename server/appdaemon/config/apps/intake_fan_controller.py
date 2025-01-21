@@ -53,8 +53,8 @@ class Intake_fan_controller(ad.ADBase):
             # self.adapi.log("Humidity too low, turning off intake fan")
             self.intake_fan.turn_off()
         elif new > float(self.humid_high.get_state()) or temp > float(self.temp_high.get_state()):
-            self.adapi.log(f"new value is {new}")
-            self.adapi.log("Humidity too high, turning on intake fan")
+            # self.adapi.log(f"new value is {new}")
+            # self.adapi.log("Humidity too high, turning on intake fan")
             self.intake_fan.turn_on()
         
 
