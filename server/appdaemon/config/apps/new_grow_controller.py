@@ -26,17 +26,45 @@ from datetime import datetime
 
 # Ec controller for grow tanks
 class Grow_tank_ec_controller(ad.ADBase):
+
+
+
+    """
+        Appdeamon App for controlling the EC in a single grow tank, run two instances for two tanks.
+        This controller just circulates the water from the mixing tank into the growing tank on a regular interval.
+
+        Also estimates time constants and steady state value, however these are just logged and not actually used.
+
+        configs:
+            flow rate : flow rate in and out of grow tank, assumed to be identical for both input and output.
+            vol_growth_tank : volume of the grow tank.
+            vol_mix_tank : volume of the mixing tank.
+            grow_tank_ec_sensor_id : HA id of the grow tank ec sensor.
+            mix_tank_ec_sensor_id : HA id of the mixing tank ec sensor.
+            solenoid_id : HA id of the input solenoid.
+            tau : measured time constant of the system.
+            n_tau : number of time constants to run circulation for.
+            mix_tank_pump_id : HA id of mixing tank pump.
+            max_run_time : maximum amount of time where the grow tank can be allowed to fill at a time,
+                            this is to reduce the chance of overflow.
+            draining_time : amount of time to wait between fillings. This gives time for the tank level to fall.
+            toggle_id : HA id of toggle button for turning controller on/off.
+            reset_time : time to wait before starting a new control session.
+        
+
+    """
+
     def initialize(self):
         self.adapi = self.get_ad_api()
         self.adapi.log("Grow tank EC controller init...")
         self.Fr = self.args["flow_rate"]
         self.V1 = self.args["vol_growth_tank"]
         self.V2 = self.args["vol_mix_tank"]
-        self.eps = self.args["epsilon"]
+       # self.eps = self.args["epsilon"]
 
-        sensor_id = self.args["ec_growth"]
+        sensor_id = self.args["grow_tank_ec_sensor_id"]
         self.ec_grow = self.adapi.get_entity(sensor_id)
-        sensor_id = self.args["ec_mix"]
+        sensor_id = self.args["mix_tank_ec_sensor_id"]
         self.ec_mix = self.adapi.get_entity(sensor_id)
 
         acutator_id = self.args["solenoid_id"]
@@ -46,7 +74,10 @@ class Grow_tank_ec_controller(ad.ADBase):
         self.tau = self.time_constant(self.Fr,self.V1,self.V2)
         self.tau = self.args["tau"]
         self.adapi.log(f"time constant is {self.tau}")
-        self.mix_pump = self.adapi.get_entity("input_boolean.relay_2")
+        mix_pump_id = self.args["mix_tank_pump_id"]
+        self.mix_pump = self.adapi.get_entity(mix_pump_id)
+
+        # self.mix_pump = self.adapi.get_entity("input_boolean.relay_2")
 
         
         self.max_run_time = self.args["max_run_time"]
@@ -56,6 +87,9 @@ class Grow_tank_ec_controller(ad.ADBase):
         self.is_running = False
         toggle_id = self.args["toggle_id"]
         self.toggle = self.adapi.get_entity(toggle_id)
+
+        self.run_in_handle = None
+
         self.cb_handle = None
         if self.toggle.get_state() == "on":
             self.cb_handle = self.ec_grow.listen_state(self.init_control)
@@ -73,16 +107,20 @@ class Grow_tank_ec_controller(ad.ADBase):
     def init_control(self, entity, attribute, old, new, cb_args):
         self.adapi.cancel_listen_state(self.cb_handle)
         self.adapi.log("Hello from callback")
-        if self.mix_controller and getattr(self.mix_controller, "is_running", False):
-            self.adapi.log("Grow controller running, mixing control can't run yet")
+        # if self.mix_controller and getattr(self.mix_controller, "is_running", False):
+        if self.mix_controller and self.mix_controller.is_running:
+            self.adapi.log("Mixing control running, grow control can run yet")
             self.adapi.run_in(self.reset_timer, delay = 60, random_start = 60 , random_end = 120 )
+            return
+        if self.is_running:
+            self.adapi.log("Already an instance running")
             return
         self.adapi.log("helo from beyong")
         self.is_running = True
 
         self.mix_pump.turn_on()
 
-        self.adapi.run_in(self.control,60)
+        self.run_in_handle = self.adapi.run_in(self.control,60)
 
 
     def control(self, cb_args):
@@ -96,6 +134,7 @@ class Grow_tank_ec_controller(ad.ADBase):
             self.adapi.log("Grow tank control ended")
             self.mix_pump.turn_off()
             self.is_running = False
+            # Error here, need to 
             self.adapi.run_in(self.reset_timer,delay = self.reset_time)
             return
         
@@ -103,7 +142,7 @@ class Grow_tank_ec_controller(ad.ADBase):
         run_time = min(remaining,self.max_run_time)
         remaining = remaining - run_time
         self.adapi.log(f"Turning on for {run_time}")
-        # self.solenoid.turn_on()
+        self.solenoid.turn_on()
         self.adapi.run_in(self.drain, delay = run_time, remaining = remaining )
 
 
@@ -113,7 +152,7 @@ class Grow_tank_ec_controller(ad.ADBase):
         self.solenoid.turn_off()
         remaining = cb_args["remaining"]
         self.adapi.log(f"Draining tank for {self.drain_time} seconds")
-        self.adapi.run_in(self.control,delay = self.drain_time,remaining = remaining ) 
+        self.run_in_handle = self.adapi.run_in(self.control,delay = self.drain_time,remaining = remaining ) 
 
 
 
@@ -125,6 +164,7 @@ class Grow_tank_ec_controller(ad.ADBase):
             self.cb_handle = self.ec_grow.listen_state(self.init_control)
         elif toggle == "off":
             self.adapi.cancel_listen_state(self.cb_handle)
+            
 
 
 
@@ -135,13 +175,13 @@ class Grow_tank_ec_controller(ad.ADBase):
             self.adapi.log("Grow tank controller turned on")
         elif new == "off":
             self.adapi.cancel_listen_state(self.cb_handle)
-            if not self.mix_controller or not getattr(self.mix_controller, "is_running", False):
+            self.adapi.log(self.mix_controller.is_running)
+            if self.mix_controller and  not self.mix_controller.is_running:
                 self.mix_pump.turn_off()
             self.solenoid.turn_off()
+            self.is_running = False
+            self.adapi.cancel_timer(self.run_in_handle)
             self.adapi.log("Grow tank controller turned off")
-
-
-    
 
 
     def time_constant(self,Fr,V1,V2):
@@ -150,8 +190,8 @@ class Grow_tank_ec_controller(ad.ADBase):
 
         return 1/(alpha1+alpha2)
 
-    def x_10(self,eps,V1,V2,x_20):
-        return (x_20*(1-V2/(V1+V2))-eps)*(V2+V1)/V1
+    # def x_10(self,eps,V1,V2,x_20):
+    #     return (x_20*(1-V2/(V1+V2))-eps)*(V2+V1)/V1
 
     def ss(self,V1,V2,x10,x20):
         return V1/(V2+V1)*x10 + V2/(V1+V2)*x20

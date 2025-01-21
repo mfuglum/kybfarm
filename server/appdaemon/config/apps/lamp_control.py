@@ -1,8 +1,14 @@
 import adbase as ad
-# from datetime import datetime
 
-# Ec controller for grow tanks
 class Lamp_control(ad.ADBase):
+
+"""
+Appdeamon app for controlling intensity and timing for Kybfarm's grow lamp
+
+"""
+
+
+
     def initialize(self):
         self.adapi = self.get_ad_api()
         self.adapi.log("Lamp controller init...")
@@ -33,12 +39,9 @@ class Lamp_control(ad.ADBase):
         self.start_time.listen_state(self.new_start_time)
         self.finish_time.listen_state(self.new_finish_time)
 
-        # self.adapi.run_at(self.callback,"08:00:00")
-        # self.adapi.run_at(self.callback,"23:59:00")
         self.adapi.log("Lamp controller init finished")
     
     def callback(self,cb_args):
-        self.adapi.log("hello from cb")
         self.set_lamp_state()
 
         

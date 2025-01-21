@@ -68,8 +68,10 @@ class Mixing_tank_ec_controller(ad.ADBase):
         self.toggle= self.adapi.get_entity(toggle_id)
 
         toggle = self.toggle.get_state()
+        self.run_in_handle = None
         self.cb_handle = None
         if toggle == "on":
+            # This might never run if the mixing pump isnt on
             self.cb_handle = self.ec_sensor.listen_state(self.init_control)
 
         self.toggle.listen_state(self.toggle_control)
@@ -81,16 +83,26 @@ class Mixing_tank_ec_controller(ad.ADBase):
     def init_control(self, entity, attribute, old, new, cb_args):
         self.adapi.cancel_listen_state(self.cb_handle) # Might not be thread safe
         self.adapi.log("Hello from callback")
-        if self.grow_controller and getattr(self.grow_controller, "is_running", False):
+        # if self.grow_controller and getattr(self.grow_controller, "is_running", False):
+        if self.grow_controller is None:
+            self.adapi.log("Can't get grow controller is_running")
+
+            self.adapi.run_in(self.reset_timer,delay = 60, random_start = 60 , random_end = 120 )
+            return
+        self.adapi.log(f"Grow running is {self.grow_controller.is_running}")
+        if self.grow_controller.is_running:
             self.adapi.log("Grow controller running, mixing control can't run yet")
             self.adapi.run_in(self.reset_timer,delay = 60, random_start = 60 , random_end = 120 )
+            return
+        if self.is_running:
+            self.adapi.log("Already an instance running")
             return
         self.adapi.log("helo from beyong")
         self.is_running = True
 
         self.mix_pump.turn_on()
-
-        self.adapi.run_in(self.control,60)
+        #  Need to be cancelable here
+        self.run_in_handle = self.adapi.run_in(self.control,60)
 
     def control(self, cb_args):
         self.adapi.log("bingbong")
@@ -131,7 +143,7 @@ class Mixing_tank_ec_controller(ad.ADBase):
         T_max = max(T)
         for i,p in enumerate(self.pumps):
             self.adapi.log(f"Turning on pump number {i} for {T[i]} seconds")
-            #p.turn_on()
+            p.turn_on()
             self.adapi.run_in(self.turn_off_pump,delay = T[i],index = i,is_last = T[i] == T_max)
 
 
@@ -145,7 +157,7 @@ class Mixing_tank_ec_controller(ad.ADBase):
         self.adapi.log(f"Turning off pump number {index}")
         
         if is_last:
-            self.adapi.run_in(self.control,self.mixing_wait_time)
+            self.run_in_handle = self.adapi.run_in(self.control,self.mixing_wait_time)
 
             self.adapi.log(f"Waiting for ec to stabilize for {str(self.mixing_wait_time)}, seconds")
 
@@ -162,8 +174,11 @@ class Mixing_tank_ec_controller(ad.ADBase):
             self.adapi.cancel_listen_state(self.cb_handle)
             for pump in self.pumps:
                 pump.turn_off()
-            if not self.grow_controller or not getattr(self.grow_controller, "is_running", False):
+            self.adapi.log(self.grow_controller.is_running)
+            if self.grow_controller and not self.grow_controller.is_running:
                 self.mix_pump.turn_off()
+            self.is_running = False
+            self.adapi.cancel_timer(self.run_in_handle)
             self.adapi.log("Mixing tank controller turned off")
 
 
