@@ -37,6 +37,33 @@ import asyncio
 
 # Controller for mixing tank
 class Mixing_tank_ec_controller(ad.ADBase):
+
+
+    """
+        Appdeamon App for controlling ec in mixing tank. Uses the ec reference set in HA as the target.
+        The algorithm consists of:
+          Calculating the required amount of time to run the nutrient pump, then running the pumps for half that time
+          Current ec is measured and the time is recalculated. The algorithm repeats until the reference has been reached.
+
+        configs:
+            ratio : nutrient ratio
+            ec_ref_id : HA id of ec reference
+            ec_constant : empirically measured ec-volume proportionality constant
+            flow_rates : flow rates of peristaltic pumps
+            margin : margin of error to accept
+            tank_vol : volume of mixing tank
+            mixing_wait_time : time to wait between pausing peristaltic pumps and remeasuring the ec
+            pump_ids : list of HA ids of peristaltic pumps
+            sensor_id : HA id of mixing tank ec sensor
+            mix_tank_pump_id : HA id of mixing tank circulation pump
+            toggle_id : HA id for toggle turning the controller on/off
+
+
+
+    """
+
+
+
     def initialize(self):
         self.adapi = self.get_ad_api()
         self.adapi.log("Mixing tank EC controller init...")
@@ -62,7 +89,10 @@ class Mixing_tank_ec_controller(ad.ADBase):
         self.ec_sensor = self.adapi.get_entity(sensor_id)
 
 
-        self.mix_pump = self.adapi.get_entity("input_boolean.relay_2")
+        mix_pump_id = self.args["mix_tank_pump_id"]
+        self.mix_pump = self.adapi.get_entity(mix_pump_id)
+
+        # self.mix_pump = self.adapi.get_entity("input_boolean.relay_2")
 
         toggle_id = self.args["toggle_id"]
         self.toggle= self.adapi.get_entity(toggle_id)
