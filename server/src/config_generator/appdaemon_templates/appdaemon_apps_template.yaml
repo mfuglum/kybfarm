@@ -2,7 +2,6 @@ hello_world:
   module: hello
   class: HelloWorld
 
-# Dummy control app
 dummy_control:
   module: dummy_control
   class: DummyControl
@@ -28,44 +27,6 @@ intake_fan_controller:
   temp_low_id: {{TEMP_LOW_ID}}
   temp_high_id: {{TEMP_HIGH_ID}}
   toggle_id: {{INTAKE_FAN_TOGGLE_ID}}
-
-
-# air_pump_controller:
-#   module: air_pump_controller
-#   class: Air_pump_controller
-#   id: input_boolean.relay_3
-
-# intake_fan_controller:
-#   module: intake_fan_controller
-#   class: Intake_fan_controller
-#   humidity_sensor_id: sensor.scd_41_humidity
-#   temp_sensor_id: sensor.scd_41_temperature
-#   intake_fan_id: input_boolean.relay_5
-#   humid_low_id: "input_number.intake_fan_humid_low"
-#   humid_high_id: "input_number.intake_fan_humid_high"
-#   temp_low_id: "input_number.intake_fan_temp_low"
-#   temp_high_id: "input_number.intake_fan_temp_high"
-#   toggle_id: "input_boolean.intake_fan_toggle"
-
-
-
-# lamp_controller:
-#   module: lamp_control
-#   class: Lamp_control
-#   amplitude_ids:
-#     - input_number.elixia_1_channel_450nm
-#     - input_number.elixia_1_channel_5700k
-#     - input_number.elixia_1_channel_660nm
-#     - input_number.elixia_1_channel_735nm
-#   input_amplitude_ids:
-#     - "input_number.lamp_blue"
-#     - "input_number.lamp_green"
-#     - "input_number.lamp_red"
-#     - "input_number.lamp_far_red"
-#   start_time_id: "input_datetime.lamp_start_time"
-#   finish_time_id: "input_datetime.lamp_finish_time"
-#   toggle_id: "input_boolean.lamp_control_toggle"
-
 
 lamp_controller:
   module: lamp_control
@@ -100,9 +61,7 @@ mixing_tank_ec_controller:
     - {{MIX_FLOWRATE_3}}
   ec_constant: {{MIX_EC_CONSTANT}}
   margin: {{MIX_MARGIN}}
-  #ec_ref: 1.5 # dummy
   tank_vol: {{MIX_TANK_VOL}}
-  #startup_delay: {{}} 
   pump_ids: 
     - {{MIX_PERIPUMP_ID_1}}
     - {{MIX_PERIPUMP_ID_2}}
@@ -121,10 +80,8 @@ grow_tank_ec_controller:
   flow_rate: {{GROW_FLOWRATE}}
   vol_mix_tank: {{MIX_TANK_VOL}}
   vol_growth_tank: {{GROW_TANK_VOL}}
-  #epsilon: {{}}
-  ec_growth: {{GROW_EC_SENSOR_ID}}
-  ec_mix: {{MIX_EC_SENSOR_ID}}
-  #startup_delay: {{}}
+  grow_tank_ec_sensor_id: {{GROW_EC_SENSOR_ID}}
+  mix_tank_ec_sensor_id: {{MIX_EC_SENSOR_ID}}
   solenoid_id: {{GROW_SOLENOID_1_ID}}
   n_tau: {{GROW_N_TAU}}
   tau: {{GROW_TAU}} 
@@ -133,203 +90,3 @@ grow_tank_ec_controller:
   toggle_id: {{GROW_TOGGLE_ID}}
   reset_time: {{GROW_RESET_TIME}}
   mix_tank_pump_id: {{MIX_PUMP_ID}}
-
-
-
-
-# mixing_tank_ec_controller:
-#   module: new_mixing_tank_ec_controller
-#   class: Mixing_tank_ec_controller
-#   ratio:
-#     - 0.6 #dummy
-#     - 1.8 #dummy
-#     - 1.2 #dummy
-#   flow_rates:
-#     - 0.0004347 # l/s, should maybe be m3/s
-#     - 0.0003436
-#     - 0.000357
-#   ec_constant: 0.0034 # dummy
-#   margin: 0.01 #dummy
-#   ec_ref: 1.5 # dummy
-#   tank_vol: 350
-#   startup_delay: 0
-#   pump_ids:
-#     - "input_boolean.relay_14"
-#     - "input_boolean.relay_15"
-#     - "input_boolean.relay_16"
-#   sensor_id: "sensor.s_ec_01_2_ec"
-#   mixing_wait_time: 200 # seconds
-#   toggle_id: "input_boolean.mix_control_toggle"
-#   ec_ref_id: "input_number.ec_ref"
-#   mix_tank_pump_id: "input_boolean.relay_2"
-
-
-
-# grow_tank_ec_controller:
-#   module: new_grow_controller
-#   class: Grow_tank_ec_controller
-#   flow_rate: 0.0486111  # l/s (estimate)
-#   vol_mix_tank: 350
-#   vol_growth_tank: 100
-#   epsilon: 0.05
-#   ec_growth: "sensor.s_ec_01_1_ec"
-#   ec_mix: "sensor.s_ec_01_2_ec"
-#   startup_delay: "0"
-#   solenoid_id: "input_boolean.relay_11"
-#   n_tau: 4
-#   tau: 70 #s
-#   max_run_time: 100
-#   drain_time: 150
-#   toggle_id: "input_boolean.grow_control_toggle"
-#   reset_time: 3600
-#   mix_tank_pump_id: "input_boolean.relay_2"
-
-# # WIP general control app
-# controller_app:
-#   module: controller
-#   class: PIDController
-#   sensor: sensor.temperature_farming_container
-#   actuator: light.heater
-#   setpoint: 22.5
-#   Kp: 0.1
-#   Ki: 0.01
-#   Kd: 0.05
-
-
-  
-
-# # # WIP general control app
-# # controller_app:
-# #   module: controller
-# #   class: PIDController
-# #   sensor: sensor.temperature_farming_container
-# #   actuator: light.heater
-# #   setpoint: 22.5
-# #   Kp: 0.1
-# #   Ki: 0.01
-# #   Kd: 0.05
-
-
-# # hello_world:
-# #   module: hello
-# #   class: HelloWorld
-
-# # Dummy control app
-# # dummy_control:
-# #   module: dummy_control
-# #   class: DummyControl
-# #   gain: 0.5
-# #   reference_value: 22.0
-# #   sensor: sensor.s_ec_01_2_temperature
-# #   control_signal_topic: "ha/desktop_gf/actuators/temperature"
-
-
-
-
-
-# # test: 
-# #   module: test
-# #   class: Test
-
-
-# # level_controller_1:
-# #   module: level_controller
-# #   class: Level_controller
-# #   fill_time: 1 # seconds
-# #   sensor_entity_id: sensor.float_switch_1
-# #   act_entity_id: input_boolean.relay_11
-
-# # level_controller_2:
-# #   module: level_controller
-# #   class: Level_controller
-# #   fill_time: 1 # seconds
-# #   sensor_entity_id: sensor.float_switch_2
-# #   act_entity_id: input_boolean.relay_12
-
-# lamp_controller:
-#   module: lamp_control
-#   class: Lamp_control
-#   ids:
-#     - input_number.elixia_1_channel_450nm
-#     - input_number.elixia_1_channel_5700k
-#     - input_number.elixia_1_channel_660nm
-#     - input_number.elixia_1_channel_735nm
-#   amplitudes:
-#     - 248
-#     - 248
-#     - 734
-#     - 61
-#   on_time: 16 # hours
-
-
-
-# mixing_tank_ec_controller:
-#   module: mixing_tank_ec_controller
-#   class: Mixing_tank_ec_controller
-#   ratio:
-#     - 1.8 #dummy
-#     - 1.2 #dummy
-#     - 0.6 #dummy
-#   flow_rates:
-#     - 0.0004347 # l/s, should maybe be m3/s
-#     - 0.0003436
-#     - 0.000357
-#   ec_constant: 0.0034 # dummy
-#   margin: 0.05 #dummy
-#   ec_ref: 0.45 # dummy
-#   tank_vol: 350
-#   startup_delay: 0
-#   pump_ids:
-#     - "input_boolean.relay_14"
-#     - "input_boolean.relay_15"
-#     - "input_boolean.relay_16"
-#   sensor_id: "sensor.s_ec_01_2_ec"
-#   mixing_wait_time: 200 # seconds
-
-# growth_tank_ec_controller:
-#   module: grow
-#   class: Grow_tank_ec_controller
-#   flow_rate: 0.0486111  # l/s (estimate)
-#   vol_mix_tank: 350
-#   vol_growth_tank: 100
-#   epsilon: 0.05
-#   ec_growth: "sensor.s_ec_01_1_ec"
-#   ec_mix: "sensor.s_ec_01_2_ec"
-#   startup_delay: "0"
-#   solenoid_id: "input_boolean.relay_11"
-#   n_tau: 4
-#   tau: 70 #s
-#   max_run_time: 100
-#   drain_time: 150
-
-
-
-
-
-# # # WIP general control app
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# controller_app:
-#   module: controller
-#   class: PIDController
-#   sensor: sensor.temperature_farming_container
-#   actuator: light.heater
-#   setpoint: 22.5
-#   Kp: 0.1
-#   Ki: 0.01
-#   Kd: 0.05
