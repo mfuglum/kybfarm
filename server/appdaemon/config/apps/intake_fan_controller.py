@@ -4,8 +4,24 @@ import time
 
 
 
-# Ec controller for grow tanks
 class Intake_fan_controller(ad.ADBase):
+
+    """
+    Appdeamon app for controlling intake fan on the Kybfarm vertical farming system
+
+    configs:
+        humid_high_id : id of humidity upper bound input in HA
+        humid_low_id : id of humidity lower bound input in HA
+        temp_high_id : id of temperature upper bound input in HA
+        temp_low_id : id of temperature lower bound input in HA
+        humidity_sensor_id : HA id of humidity sensor
+        temp_sensor_id : HA id of temperature sensor 
+        toggle_id : HA id of toggle button for turning controller on/off
+        intake_fan_id : HA id of intake fan
+
+    """
+
+
     def initialize(self):
         self.adapi = self.get_ad_api()
         self.adapi.log("Intake fan controller init...")
@@ -49,12 +65,8 @@ class Intake_fan_controller(ad.ADBase):
         new = float(new)
         temp = float(self.temp.get_state())
         if new < float(self.humid_low.get_state()) and temp < float(self.temp_low.get_state()):
-            # self.adapi.log(f"new value is {new}")
-            # self.adapi.log("Humidity too low, turning off intake fan")
             self.intake_fan.turn_off()
         elif new > float(self.humid_high.get_state()) or temp > float(self.temp_high.get_state()):
-            # self.adapi.log(f"new value is {new}")
-            # self.adapi.log("Humidity too high, turning on intake fan")
             self.intake_fan.turn_on()
         
 

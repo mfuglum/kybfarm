@@ -2,22 +2,31 @@ import adbase as ad
 
 class Lamp_control(ad.ADBase):
 
-"""
-Appdeamon app for controlling intensity and timing for Kybfarm's grow lamp
-
-"""
+    """
+    Appdeamon app for controlling intensity and timing for Kybfarm's grow lamp
 
 
+
+    configs:
+        input_amplitude_ids : list of HA ids for amplitude inputs in Main dashboard
+        amplitude_ids : list of HA ids for control of amplitudes
+        toggle_id : HA id for toggle turning the controller on/off
+        start_time_id : HA id for input in Main dashboard which controls at what time of the day the lamp should turn on
+        finish_time_id : HA id for input in Main dashboard which controls at what time of the day the lamp should turn off
+
+
+
+    """
 
     def initialize(self):
         self.adapi = self.get_ad_api()
         self.adapi.log("Lamp controller init...")
+        input_amplitude_ids = self.args["input_amplitude_ids"]
+        self.amplitudes =  [self.adapi.get_entity(id) for id in input_amplitude_ids]
+
         amplitude_ids = self.args["amplitude_ids"]
-        self.amplitudes =  [self.adapi.get_entity(id) for id in amplitude_ids]
 
-        ids = self.args["ids"]
-
-        self.values = [self.adapi.get_entity(id) for id in ids]
+        self.values = [self.adapi.get_entity(id) for id in amplitude_ids]
 
 
         toggle_id = self.args["toggle_id"]
@@ -61,7 +70,6 @@ Appdeamon app for controlling intensity and timing for Kybfarm's grow lamp
 
             self.adapi.log("Lamp controller turned off")
 
-    # Må legge til mer her
     def new_start_time(self, entity, attribute, old, new, cb_args):
         self.cb_handle_start = self.adapi.run_at(self.callback,new)
         self.set_lamp_state()

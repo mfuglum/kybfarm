@@ -6,6 +6,17 @@ import time
 
 # Ec controller for grow tanks
 class Air_pump_controller(ad.ADBase):
+
+    """
+        Appdeamon App for controlling air pump controller. Main purpose is to make sure the air pump is always on,
+        even if the edge computer has reset.
+
+        configs:
+            id : HA id of air pump
+
+    """
+
+
     def initialize(self):
         self.adapi = self.get_ad_api()
         self.adapi.log("Air pump controller init...")
