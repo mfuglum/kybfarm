@@ -30,6 +30,7 @@ input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
 input_select: !include input_select.yaml
 input_text: !include input_text.yaml
+input_datetime: !include input_datetime.yaml
 
 # MQTT Configuration to receive MQTT data
 mqtt:
@@ -190,3 +191,7 @@ mqtt:
       value_template: {{LEAF_WETNESS_10_VALUE_TEMPLATE}}
       unit_of_measurement: {{LEAF_WETNESS_10_HA_UNIT}}
       icon: {{LEAF_WETNESS_10_HA_ICON}}
+
+
+
+

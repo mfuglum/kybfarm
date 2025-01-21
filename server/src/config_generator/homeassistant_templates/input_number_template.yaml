@@ -27,3 +27,75 @@
     max: 1000
     step: 1
     mode: "box"
+
+
+
+  ec_ref:
+    name: "EC reference for mixing tank"
+    initial: 0 
+    min: 0
+    max: 2
+    step: 0.05
+    mode: "box"
+
+  intake_fan_temp_low:
+    name: "Intake fan min temp"
+    initial: 24 
+    min: 0
+    max: 30
+    step: 1
+    mode: "box"
+  intake_fan_temp_high:
+    name: "Intake fan max temp"
+    initial: 25
+    min: 0
+    max: 30
+    step: 1
+    mode: "box"
+  intake_fan_humid_low:
+    name: "Intake fan min humid"
+    initial: 60
+    min: 0
+    max: 100
+    step: 1
+    mode: "box"
+  intake_fan_humid_high:
+    name: "Intake fan max humid"
+    initial: 70
+    min: 0
+    max: 100
+    step: 1
+    mode: "box"
+
+  lamp_blue:
+    name: "Lamp blue amplitude"
+    initial: 0 
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+  lamp_green:
+    name: "Lamp green amplitude"
+    initial: 0 
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+  lamp_red:
+    name: "Lamp red amplitude"
+    initial: 0 
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+  lamp_far_red:
+    name: "Lamp far_red amplitude"
+    initial: 0 
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
