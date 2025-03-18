@@ -68,3 +68,15 @@ services:
       - config_generator
     env_file:
       - .env
+
+  kfvision:
+    container_name: kfvision_kybfarm
+    build: server/KFVision
+    restart: unless-stopped
+    ports:
+      - 5001:5001  
+    depends_on:
+      - mqtt
+      - influxdb
+    env_file:
+      - .env
