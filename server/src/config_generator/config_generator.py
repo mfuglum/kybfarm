@@ -9,13 +9,14 @@ def parse_environment_file(env_file):
             if "=" in pair:
                 key, value = pair.split("=", 1)
                 env[key.strip()] = value.strip()
-    print(env)
+    #print(env)
     return env
 
 def generate_config(template_path, config_path, env_file):
     # Read the template file and generate the config file
     with open(template_path, 'r') as file:
         file_contents = file.read()
+        #print(file_contents)
         template = Template(file_contents)
         env = parse_environment_file(env_file)
         rendered_template = template.render(env)
@@ -33,11 +34,13 @@ def main():
         "./homeassistant_templates/input_text_template.yaml": "./server/homeassistant/config/input_text.yaml",
         "./homeassistant_templates/input_boolean_template.yaml": "./server/homeassistant/config/input_boolean.yaml",
         "./homeassistant_templates/input_number_template.yaml": "./server/homeassistant/config/input_number.yaml",
+        "./homeassistant_templates/input_datetime_template.yaml": "./server/homeassistant/config/input_datetime.yaml",
         "./appdaemon_templates/appdaemon_apps_template.yaml": "./server/appdaemon/config/apps/apps.yaml",
     }
 
     env_file = ".env"
     for template_path, config_path in template_and_config_pairs.items():
+
         generate_config(template_path, config_path, env_file)
 
 if __name__ == "__main__":
