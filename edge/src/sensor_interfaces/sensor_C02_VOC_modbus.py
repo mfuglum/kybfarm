@@ -144,3 +144,6 @@ class CO2_VOC( minimalmodbus.Instrument ):
         data["fields"]["temperature"] = temperature
         data["time"] = datetime.datetime.now().isoformat()
         return data
+    
+
+    #Local branch testing.
