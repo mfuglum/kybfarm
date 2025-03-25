@@ -171,6 +171,80 @@ mqtt:
       unit_of_measurement: {{CO2_11_HA_UNIT}}
       icon: {{CO2_11_HA_ICON}}
 
+      name: {{DEWPOINT_11_NAME}}
+      unique_id: {{DEWPOINT_11_HA_ID}}
+      state_topic: {{MQTT_SENSOR_11_DT_RES}}
+      value_template: {{DEWPOINT_11_VALUE_TEMPLATE}}
+      unit_of_measurement: {{DEWPOINT_11_HA_UNIT}}
+      icon: {{DEWPOINT_11_HA_ICON}}
+
+      name: {{VOLUMEFLOW_11_NAME}}
+      unique_id: {{VOLUMEFLOW_11_HA_ID}}
+      state_topic: {{MQTT_SENSOR_11_DT_RES}}
+      value_template: {{VOLUMEFLOW_11_VALUE_TEMPLATE}}
+      unit_of_measurement: {{VOLUMEFLOW_11_HA_UNIT}}
+      icon: {{VOLUMEFLOW_11_HA_ICON}}
+
+      # --------- LEGGER TIL NY SENSOR ---------------
+
+    - name: {{TEMPERATURE_12_NAME}}
+      unique_id: {{TEMPERATURE_12_HA_ID}}
+      state_topic: {{MQTT_SENSOR_12_DT_RES}}
+      value_template: {{TEMPERATURE_12_VALUE_TEMPLATE}}
+      unit_of_measurement: {{TEMPERATURE_12_HA_UNIT}}
+      icon: {{TEMPERATURE_12_HA_ICON}}
+
+    - name: {{HUMIDITY_12_NAME}}
+      unique_id: {{HUMIDITY_12_HA_ID}}
+      state_topic: {{MQTT_SENSOR_12_DT_RES}}
+      value_template: {{HUMIDITY_12_VALUE_TEMPLATE}}
+      unit_of_measurement: {{HUMIDITY_12_HA_UNIT}}
+      icon: {{HUMIDITY_12_HA_ICON}}
+
+    - name: {{CO2_12_NAME}}
+      unique_id: {{CO2_12_HA_ID}}
+      state_topic: {{MQTT_SENSOR_12_DT_RES}}
+      value_template: {{CO2_12_VALUE_TEMPLATE}}
+      unit_of_measurement: {{CO2_12_HA_UNIT}}
+      icon: {{CO2_12_HA_ICON}}
+
+      name: {{DEWPOINT_12_NAME}}
+      unique_id: {{DEWPOINT_12_HA_ID}}
+      state_topic: {{MQTT_SENSOR_12_DT_RES}}
+      value_template: {{DEWPOINT_12_VALUE_TEMPLATE}}
+      unit_of_measurement: {{DEWPOINT_12_HA_UNIT}}
+      icon: {{DEWPOINT_12_HA_ICON}}
+
+      name: {{VOLUMEFLOW_12_NAME}}
+      unique_id: {{VOLUMEFLOW_12_HA_ID}}
+      state_topic: {{MQTT_SENSOR_12_DT_RES}}
+      value_template: {{VOLUMEFLOW_12_VALUE_TEMPLATE}}
+      unit_of_measurement: {{VOLUMEFLOW_12_HA_UNIT}}
+      icon: {{VOLUMEFLOW_12_HA_ICON}}
+
+ # --------- LEGGER TIL NY TEMP SENSOR ---------------
+      
+    - name: {{TEMPERATURE_13_NAME}}
+      unique_id: {{TEMPERATURE_13_HA_ID}}
+      state_topic: {{MQTT_SENSOR_13_DT_RES}}
+      value_template: {{TEMPERATURE_13_VALUE_TEMPLATE}}
+      unit_of_measurement: {{TEMPERATURE_13_HA_UNIT}}
+      icon: {{TEMPERATURE_13_HA_ICON}}
+
+    - name: {{HUMIDITY_13_NAME}}
+      unique_id: {{HUMIDITY_13_HA_ID}}
+      state_topic: {{MQTT_SENSOR_13_DT_RES}}
+      value_template: {{HUMIDITY_13_VALUE_TEMPLATE}}
+      unit_of_measurement: {{HUMIDITY_13_HA_UNIT}}
+      icon: {{HUMIDITY_13_HA_ICON}}
+
+      name: {{DEWPOINT_13_NAME}}
+      unique_id: {{DEWPOINT_13_HA_ID}}
+      state_topic: {{MQTT_SENSOR_13_DT_RES}}
+      value_template: {{DEWPOINT_13_VALUE_TEMPLATE}}
+      unit_of_measurement: {{DEWPOINT_13_HA_UNIT}}
+      icon: {{DEWPOINT_13_HA_ICON}}
+
     - name: {{P_10_NAME}}
       unique_id: {{P_10_HA_ID}}
       state_topic: {{MQTT_P_10_STATE}}
