@@ -28,9 +28,10 @@ intake_fan_controller:
   temp_high_id: {{TEMP_HIGH_ID}}
   toggle_id: {{INTAKE_FAN_TOGGLE_ID}}
 
-lamp_controller:
+lamp1_controller:
   module: lamp_control
   class: Lamp_control
+  name: "Lamp1"
   amplitude_ids:
     - {{LAMP_1_450_ID}}
     - {{LAMP_1_5700_ID}}
@@ -44,6 +45,26 @@ lamp_controller:
   start_time_id: {{LAMP_1_START_TIME_ID}}
   finish_time_id: {{LAMP_1_FINISH_TIME_ID}}
   toggle_id: {{LAMP_1_TOGGLE_ID}}
+
+
+lamp2_controller:
+  module: lamp_control
+  class: Lamp_control
+  name: "Lamp2"
+  amplitude_ids:
+    - {{LAMP_2_450_ID}}
+    - {{LAMP_2_5700_ID}}
+    - {{LAMP_2_660_ID}}
+    - {{LAMP_2_735_ID}}
+  input_amplitude_ids:
+    - {{LAMP_2_BLUE_ID}}
+    - {{LAMP_2_GREEN_ID}}
+    - {{LAMP_2_RED_ID}}
+    - {{LAMP_2_FAR_RED_ID}}
+  start_time_id: {{LAMP_2_START_TIME_ID}}
+  finish_time_id: {{LAMP_2_FINISH_TIME_ID}}
+  toggle_id: {{LAMP_2_TOGGLE_ID}}
+
 
 
 
