@@ -20,7 +20,8 @@ class Lamp_control(ad.ADBase):
 
     def initialize(self):
         self.adapi = self.get_ad_api()
-        self.adapi.log("Lamp controller init...")
+        self.label = self.args["name"]
+        self.adapi.log(f"[{self.label}] Lamp controller init...")
         input_amplitude_ids = self.args["input_amplitude_ids"]
         self.amplitudes =  [self.adapi.get_entity(id) for id in input_amplitude_ids]
 
@@ -48,7 +49,7 @@ class Lamp_control(ad.ADBase):
         self.start_time.listen_state(self.new_start_time)
         self.finish_time.listen_state(self.new_finish_time)
 
-        self.adapi.log("Lamp controller init finished")
+        self.adapi.log(f"[{self.label}] Lamp controller init finished")
     
     def callback(self,cb_args):
         self.set_lamp_state()
@@ -58,7 +59,7 @@ class Lamp_control(ad.ADBase):
     def toggle_control(self, entity, attribute, old, new, cb_args):
 
         if new == "on":
-            self.adapi.log("Lamp controller controller turned on")
+            self.adapi.log(f"[{self.label}]Lamp controller controller turned on")
             self.cb_handle_start = self.adapi.run_at(self.callback,self.adapi.parse_datetime(self.start_time.get_state()))
             self.cb_handle_finish = self.adapi.run_at(self.callback,self.adapi.parse_datetime(self.finish_time.get_state()))
             self.set_lamp_state()
@@ -68,7 +69,7 @@ class Lamp_control(ad.ADBase):
             self.adapi.cancel_timer(self.cb_handle_finish)
             self.turn_off()
 
-            self.adapi.log("Lamp controller turned off")
+            self.adapi.log(f"[{self.label}] Lamp controller turned off")
 
     def new_start_time(self, entity, attribute, old, new, cb_args):
         self.cb_handle_start = self.adapi.run_at(self.callback,new)
@@ -90,12 +91,12 @@ class Lamp_control(ad.ADBase):
     def turn_on(self):
         ampls = [ampl.get_state() for ampl in self.amplitudes]
         [value.set_state(state = ampl) for value,ampl in zip(self.values,ampls)]
-        self.adapi.log("Turning on lamp")
+        self.adapi.log(f"[{self.label}] Turning on lamp")
 
 
     def turn_off(self):
         [value.set_state(state = 0) for value in self.values]
-        self.adapi.log("Turning off lamp")
+        self.adapi.log(f"[{self.label}] Turning off lamp")
 
 
 
