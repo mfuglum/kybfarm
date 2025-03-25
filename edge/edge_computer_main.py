@@ -12,19 +12,22 @@ Install required packages:
 Run the file:
     python edge_computer_main.py
 """
+from edge.src.sensor_interfaces import sensor_STH01_modbus
 import paho.mqtt.client as mqtt
 import json
 import time
 from dotenv import load_dotenv
 import os
 
-from src.sensor_interfaces import (sensor_SCD41_I2C, 
+from src.sensor_interfaces import (sensor_SCD41_I2C, # Denne kan fjernes
                                    sensor_SYM01_modbus, 
                                    sensor_SLIGHT01_modbus,
                                    sensor_SPAR02_modbus,
                                    sensor_SEC01_modbus,
                                    sensor_SPH01_modbus,
-                                   sensor_C02_VOC_modbus
+                                   sensor_C02_VOC_modbus,
+                                   sensor_C02_VOC_modbus1, # Legger til ny VOC sensor # Legger til ny temp sensor
+                                   sensor_STH01_modbus # Legger til ny temp sensor
                                    )
 from src.actuator_instances import (relay_devices_initialization,
                                     grow_lamp_elixia_initialization) 
@@ -45,7 +48,9 @@ MQTT_SEC01_2_DT_REQ = os.getenv("MQTT_SENSOR_04_DT_REQ")
 MQTT_SPH01_1_DT_REQ = os.getenv("MQTT_SENSOR_05_DT_REQ")
 MQTT_SPH01_2_DT_REQ = os.getenv("MQTT_SENSOR_06_DT_REQ")
 MQTT_SYM01_DT_REQ = os.getenv("MQTT_SENSOR_10_DT_REQ")
-MQTT_SCD41_DT_REQ = os.getenv("MQTT_SENSOR_11_DT_REQ")
+MQTT_CO2VOC_DT_REQ = os.getenv("MQTT_SENSOR_11_DT_REQ") # Endrer denne til riktig topic
+MQTT_CO2VOC1_DT_REQ = os.getenv("MQTT_SENSOR_12_DT_REQ") # Legger til ny VOC sensor
+MQTT_STH01_DT_REQ = os.getenv("MQTT_SENSOR_13_DT_REQ") # Legger til ny temp sensor
 
 # MQTT command (cmd) topics
 # Relays #
@@ -95,7 +100,9 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_SPH01_2_DT_REQ)
     client.subscribe(MQTT_SPH01_2_CMD_REQ)
     client.subscribe(MQTT_SYM01_DT_REQ)
-    client.subscribe(MQTT_SCD41_DT_REQ)
+    client.subscribe(MQTT_CO2VOC_DT_REQ) # Subscriber til riktig topic
+    client.subscribe(MQTT_CO2VOC1_DT_REQ) # Subscriber til ny topic
+    client.subscribe(MQTT_STH01_DT_REQ) # Subscriber til ny topic - temp sensor
 
     # Actuators #
     client.subscribe(MQTT_RELAY_01_CMD_REQ)
@@ -116,6 +123,8 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_RELAY_16_CMD_REQ)
     client.subscribe(MQTT_LAMP_01_CMD_REQ)
     client.subscribe(MQTT_LAMP_01_DT_REQ)
+
+#kuk
 
 # Catch-all callback function for messages
 def on_message(client, userdata, msg):
@@ -301,6 +310,7 @@ def on_message_SYM01(client, userdata, msg):
     except Exception as e:
         print("SYM01, data fetch error:", str(e))
 
+# Denne kan fjernes
 def on_message_SCD41(client, userdata, msg):
     req_msg = json.loads(msg.payload)
     try:
@@ -317,7 +327,25 @@ def on_message_C02_VOC(client, userdata, msg):
         client.publish(req_msg["res_topic"], res_payload, )
         print(res_payload + "\n")
     except Exception as e:
-        print("SCD41, data fetch error:", str(e))
+        print("CO2_VOC, data fetch error:", str(e))
+
+def on_message_C02_VOC1(client, userdata, msg):
+    req_msg = json.loads(msg.payload)
+    try:
+        res_payload = json.dumps(sensor_C02_VOC1.fetch_and_return_data())
+        client.publish(req_msg["res_topic"], res_payload, )
+        print(res_payload + "\n")
+    except Exception as e:
+        print("CO2_VOC, data fetch error:", str(e))
+
+def on_message_STH01(client, userdata, msg):
+    req_msg = json.loads(msg.payload)
+    try:
+        res_payload = json.dumps(sensor_STH01.fetch_and_return_data())
+        client.publish(req_msg["res_topic"], res_payload, )
+        print(res_payload + "\n")
+    except Exception as e:
+        print("S_TH_01, data fetch error:", str(e))
 
 
 # Setup MQTT client for sensor host
@@ -340,7 +368,9 @@ client.message_callback_add(MQTT_SPH01_1_CMD_REQ, on_message_SPH01_1_CMD_REQ)
 client.message_callback_add(MQTT_SPH01_2_DT_REQ, on_message_SPH01_2)
 client.message_callback_add(MQTT_SPH01_2_CMD_REQ, on_message_SPH01_2_CMD_REQ)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
-client.message_callback_add(MQTT_SCD41_DT_REQ,on_message_C02_VOC)
+client.message_callback_add(MQTT_CO2VOC_DT_REQ,on_message_C02_VOC)
+client.message_callback_add(MQTT_CO2VOC1_DT_REQ,on_message_C02_VOC1)
+client.message_callback_add(MQTT_STH01_DT_REQ,on_message_STH01)
 
 # Actuators #
 client.message_callback_add(MQTT_RELAY_01_CMD_REQ, relay_devices_initialization.on_message_RLY01)
@@ -440,6 +470,22 @@ try:
     print(sensor_C02_VOC)
 except Exception as e:
     print("C02_VOC, error:", str(e))
+
+try:
+    sensor_C02_VOC1 = sensor_C02_VOC_modbus1.CO2_VOC1(   portname='/dev/ttySC1',
+                                                slaveaddress=23, 
+                                                debug=False)
+    print(sensor_C02_VOC1)
+except Exception as e:
+    print("C02_VOC1, error:", str(e))
+
+try:
+    sensor_STH01 = sensor_STH01_modbus.STH01(   portname='/dev/ttySC1',
+                                                slaveaddress=42, 
+                                                debug=False)
+    print(sensor_STH01)
+except Exception as e:
+    print("C02_VOC1, error:", str(e))
 
 
 

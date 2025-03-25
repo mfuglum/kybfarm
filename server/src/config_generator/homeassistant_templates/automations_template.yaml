@@ -621,6 +621,23 @@
         "data": "ha_req" }'
   mode: single
 
+- alias: {{SENSOR_13_DT_REQ_AUTOMATION_ALIAS}} 
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: /{{SENSOR_13_DT_REQ_INTERVAL_SEC}}
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_13_DT_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_13_DT_REQ}}, "res_topic": {{MQTT_SENSOR_13_DT_RES}},
+        "data": "ha_req" }'
+  mode: single
+
 - alias: {{SENSOR_10_DT_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
