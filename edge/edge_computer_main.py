@@ -124,6 +124,8 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_LAMP_01_CMD_REQ)
     client.subscribe(MQTT_LAMP_01_DT_REQ)
 
+#kuk
+
 # Catch-all callback function for messages
 def on_message(client, userdata, msg):
     print("\n" + msg.topic + ":\n", msg.payload)
