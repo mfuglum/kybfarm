@@ -77,12 +77,19 @@ MQTT_SEC01_2_CMD_REQ = os.getenv("MQTT_SENSOR_04_CMD_REQ")
 MQTT_SPH01_1_CMD_REQ = os.getenv("MQTT_SENSOR_05_CMD_REQ")
 MQTT_SPH01_2_CMD_REQ = os.getenv("MQTT_SENSOR_06_CMD_REQ")
 
-# Grow Lamp Elixia #
+# Grow Lamp1 Elixia #
 LAMP_01_IP = os.getenv("LAMP_01_IP")
 MQTT_LAMP_01_CMD_REQ = os.getenv("MQTT_LAMP_01_CMD_REQ")
 MQTT_LAMP_01_DT_REQ = os.getenv("MQTT_LAMP_01_DT_REQ")
-# Update IP of lamp
+# Update IP of lamp1
 grow_lamp_elixia_initialization.lamp_1.update_ip_address(LAMP_01_IP)
+
+# Grow Lamp2 Elixia #
+LAMP_02_IP = os.getenv("LAMP_02_IP")
+MQTT_LAMP_02_CMD_REQ = os.getenv("MQTT_LAMP_02_CMD_REQ")
+MQTT_LAMP_02_DT_REQ = os.getenv("MQTT_LAMP_02_DT_REQ")
+#Update IP of lamp2
+grow_lamp_elixia_initialization.lamp_2.update_ip_address(LAMP_02_IP)
 
 # Configure MQTT
 def on_connect(client, userdata, flags, rc):
@@ -123,6 +130,8 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_RELAY_16_CMD_REQ)
     client.subscribe(MQTT_LAMP_01_CMD_REQ)
     client.subscribe(MQTT_LAMP_01_DT_REQ)
+    client.subscribe(MQTT_LAMP_02_CMD_REQ)
+    client.subscribe(MQTT_LAMP_02_DT_REQ)
 
 #kuk
 
@@ -389,9 +398,12 @@ client.message_callback_add(MQTT_RELAY_13_CMD_REQ, relay_devices_initialization.
 client.message_callback_add(MQTT_RELAY_14_CMD_REQ, relay_devices_initialization.on_message_RLY14)
 client.message_callback_add(MQTT_RELAY_15_CMD_REQ, relay_devices_initialization.on_message_RLY15)
 client.message_callback_add(MQTT_RELAY_16_CMD_REQ, relay_devices_initialization.on_message_RLY16)
-# Grow lamp Elixia
+# Grow lamp1 Elixia
 client.message_callback_add(MQTT_LAMP_01_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_CMD_REQ)
 client.message_callback_add(MQTT_LAMP_01_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_DT)
+# Grow lamp2 Elixia
+client.message_callback_add(MQTT_LAMP_02_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_CMD_REQ)
+client.message_callback_add(MQTT_LAMP_02_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_DT)
 
 # Connect to the MQTT server
 try:

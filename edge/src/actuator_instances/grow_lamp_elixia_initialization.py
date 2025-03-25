@@ -3,6 +3,7 @@ import json
 
 # This constant must be imported from the environment file and updated in the main script
 LAMP_01_IP = ""
+LAMP_02_IP = ""
 
 def on_message_LAMP01_CMD_REQ(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
@@ -38,4 +39,41 @@ def on_message_LAMP01_DT(client, userdata, msg):
 try:
     lamp_1 = grow_lamp_elixia.grow_lamp_elixia(LAMP_01_IP)
 except Exception as e:
-    print("Error initiating grow lamp:", str(e))
+    print("Error initiating grow lamp1:", str(e))
+
+
+def on_message_LAMP02_CMD_REQ(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        print("LAMP02", cmd_msg, "\n")
+        if cmd_msg["cmd"] == "adjust_intensity":
+            response = lamp_2.set_channel_intensities(cmd_msg["intensity"])
+        # elif cmd_msg["cmd"] == "off":
+        #     lamp_1.turn_off()
+        else:
+            print("Invalid command")
+        res_payload = res_payload = json.dumps(response)
+        client.publish(cmd_msg["res_topic"], res_payload)
+    except Exception as e:
+        print("Lamp 2, command error:", str(e))
+
+def on_message_LAMP02_DT(client, userdata, msg):
+    msg = json.loads(msg.payload)
+    try:
+        print("LAMP02", msg, "\n")
+        if msg["req"] == "get_diagnostic_data":
+            response = lamp_2.get_diagnostic_data()
+        elif msg["req"] == "get_status":
+            response = lamp_2.get_status()
+        else:
+            print("Invalid command")
+        res_payload = json.dumps(response)
+        client.publish(msg["res_topic"], res_payload)
+    except Exception as e:
+        print("Lamp 2, request error:", str(e))
+    
+# Initiate grow lamp
+try:
+    lamp_2 = grow_lamp_elixia.grow_lamp_elixia(LAMP_02_IP)
+except Exception as e:
+    print("Error initiating grow lamp2:", str(e))
