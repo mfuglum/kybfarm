@@ -5,9 +5,9 @@ import datetime
 data = {
     "measurement": "ambient",
     "tags": {
-        "sensor_id": "1",
+        "sensor_id": "2", # Endrer sensor_id fra 1 til 2
         "location": "GF, Gloeshaugen",
-        "sensor_name": "C02+VOC"},
+        "sensor_name": "C02+VOC_1"}, # Endrer sensor_id fra CO2+VOC til CO2+VOC_1
     "fields": {
             "temperature": 0,
             "humidity": 0,
@@ -76,7 +76,7 @@ class CO2_VOC( minimalmodbus.Instrument ):
 
     def __init__(self,
                  portname='/dev/ttySC1',
-                 slaveaddress=1, # Find correct adress
+                 slaveaddress=23, # Find correct adress - definert som eksempel i datablad
                  mode=minimalmodbus.MODE_RTU,
                  close_port_after_each_call=False,
                  debug=False):
@@ -196,6 +196,3 @@ class CO2_VOC( minimalmodbus.Instrument ):
         data["fields"]["volumeFlow"] = volumeFlow
         data["time"] = datetime.datetime.now().isoformat()
         return data
-    
-
-    #Local branch testing.
