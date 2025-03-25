@@ -1266,7 +1266,7 @@
       payload: '{"cmd": "off"}'
   mode: single
 
-# Elixia grow lamp
+# Elixia grow lamp1
 - alias: {{LAMP_01_CMD_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
@@ -1288,6 +1288,34 @@
         {
           "cmd": "adjust_intensity",
           "res_topic": {{MQTT_LAMP_01_CMD_RES}},
+          "intensity": "{{ CHANNEL_450NM_STATE }}:{{ CHANNEL_660NM_STATE }}:{{ CHANNEL_735NM_STATE }}:{{ CHANNEL_5700K_STATE }}"
+        }
+      
+  mode: single
+
+
+  # Elixia grow lamp2
+- alias: {{LAMP_02_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.elixia_2_channel_450nm
+      - input_number.elixia_2_channel_660nm
+      - input_number.elixia_2_channel_735nm
+      - input_number.elixia_2_channel_5700k
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: false
+      topic: {{MQTT_LAMP_02_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust_intensity",
+          "res_topic": {{MQTT_LAMP_02_CMD_RES}},
           "intensity": "{{ CHANNEL_450NM_STATE }}:{{ CHANNEL_660NM_STATE }}:{{ CHANNEL_735NM_STATE }}:{{ CHANNEL_5700K_STATE }}"
         }
       
