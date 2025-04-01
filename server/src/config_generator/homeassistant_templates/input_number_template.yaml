@@ -128,3 +128,10 @@
     step: 1
     mode: "box"
 
+  humid_ref:
+    name: Target humidity
+    initial: 50
+    min: 30
+    max: 80
+    step: 1
+    mode: "box"
