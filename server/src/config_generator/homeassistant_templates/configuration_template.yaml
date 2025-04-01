@@ -171,14 +171,14 @@ mqtt:
       unit_of_measurement: {{CO2_11_HA_UNIT}}
       icon: {{CO2_11_HA_ICON}}
 
-      name: {{DEWPOINT_11_NAME}}
+    - name: {{DEWPOINT_11_NAME}}
       unique_id: {{DEWPOINT_11_HA_ID}}
       state_topic: {{MQTT_SENSOR_11_DT_RES}}
       value_template: {{DEWPOINT_11_VALUE_TEMPLATE}}
       unit_of_measurement: {{DEWPOINT_11_HA_UNIT}}
       icon: {{DEWPOINT_11_HA_ICON}}
 
-      name: {{VOLUMEFLOW_11_NAME}}
+    - name: {{VOLUMEFLOW_11_NAME}}
       unique_id: {{VOLUMEFLOW_11_HA_ID}}
       state_topic: {{MQTT_SENSOR_11_DT_RES}}
       value_template: {{VOLUMEFLOW_11_VALUE_TEMPLATE}}
@@ -208,14 +208,14 @@ mqtt:
       unit_of_measurement: {{CO2_12_HA_UNIT}}
       icon: {{CO2_12_HA_ICON}}
 
-      name: {{DEWPOINT_12_NAME}}
+    - name: {{DEWPOINT_12_NAME}}
       unique_id: {{DEWPOINT_12_HA_ID}}
       state_topic: {{MQTT_SENSOR_12_DT_RES}}
       value_template: {{DEWPOINT_12_VALUE_TEMPLATE}}
       unit_of_measurement: {{DEWPOINT_12_HA_UNIT}}
       icon: {{DEWPOINT_12_HA_ICON}}
 
-      name: {{VOLUMEFLOW_12_NAME}}
+    - name: {{VOLUMEFLOW_12_NAME}}
       unique_id: {{VOLUMEFLOW_12_HA_ID}}
       state_topic: {{MQTT_SENSOR_12_DT_RES}}
       value_template: {{VOLUMEFLOW_12_VALUE_TEMPLATE}}
@@ -238,7 +238,7 @@ mqtt:
       unit_of_measurement: {{HUMIDITY_13_HA_UNIT}}
       icon: {{HUMIDITY_13_HA_ICON}}
 
-      name: {{DEWPOINT_13_NAME}}
+    - name: {{DEWPOINT_13_NAME}}
       unique_id: {{DEWPOINT_13_HA_ID}}
       state_topic: {{MQTT_SENSOR_13_DT_RES}}
       value_template: {{DEWPOINT_13_VALUE_TEMPLATE}}
