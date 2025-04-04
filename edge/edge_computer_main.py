@@ -71,6 +71,8 @@ MQTT_RELAY_13_CMD_REQ = os.getenv("MQTT_RELAY_13_CMD_REQ")
 MQTT_RELAY_14_CMD_REQ = os.getenv("MQTT_RELAY_14_CMD_REQ")
 MQTT_RELAY_15_CMD_REQ = os.getenv("MQTT_RELAY_15_CMD_REQ")
 MQTT_RELAY_16_CMD_REQ = os.getenv("MQTT_RELAY_16_CMD_REQ")
+#Solid state relay
+MQTT_SOLID_STATE_RELAY_01_CMD_REQ = os.getenv("MQTT_SOLID_STATE_RELAY_01_CMD_REQ")
 
 # Sensors #
 MQTT_SEC01_1_CMD_REQ = os.getenv("MQTT_SENSOR_03_CMD_REQ")
@@ -133,6 +135,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_RELAY_14_CMD_REQ)
     client.subscribe(MQTT_RELAY_15_CMD_REQ)
     client.subscribe(MQTT_RELAY_16_CMD_REQ)
+    client.subscribe(MQTT_SOLID_STATE_RELAY_01_CMD_REQ) # Solid state relay
     client.subscribe(MQTT_LAMP_01_CMD_REQ)
     client.subscribe(MQTT_LAMP_01_DT_REQ)
     client.subscribe(MQTT_LAMP_02_CMD_REQ)
@@ -389,6 +392,7 @@ client.message_callback_add(MQTT_CO2VOC1_DT_REQ,on_message_C02_VOC1)
 client.message_callback_add(MQTT_STH01_DT_REQ,on_message_STH01)
 
 # Actuators #
+# Relays
 client.message_callback_add(MQTT_RELAY_01_CMD_REQ, relay_devices_initialization.on_message_RLY01)
 client.message_callback_add(MQTT_RELAY_02_CMD_REQ, relay_devices_initialization.on_message_RLY02)
 client.message_callback_add(MQTT_RELAY_03_CMD_REQ, relay_devices_initialization.on_message_RLY03)
@@ -405,6 +409,8 @@ client.message_callback_add(MQTT_RELAY_13_CMD_REQ, relay_devices_initialization.
 client.message_callback_add(MQTT_RELAY_14_CMD_REQ, relay_devices_initialization.on_message_RLY14)
 client.message_callback_add(MQTT_RELAY_15_CMD_REQ, relay_devices_initialization.on_message_RLY15)
 client.message_callback_add(MQTT_RELAY_16_CMD_REQ, relay_devices_initialization.on_message_RLY16)
+# Solid state relay
+client.message_callback_add(MQTT_SOLID_STATE_RELAY_01_CMD_REQ, relay_devices_initialization.on_message_SSR01)
 # Grow lamp1 Elixia
 client.message_callback_add(MQTT_LAMP_01_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_CMD_REQ)
 client.message_callback_add(MQTT_LAMP_01_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_DT)

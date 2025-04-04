@@ -1266,6 +1266,93 @@
       payload: '{"cmd": "off"}'
   mode: single
 
+- alias: {{SOLID_STATE_RELAY_01_CMD_REQ_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.solid_state_relay1
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
+      payload: '{"cmd": "on"}'
+  mode: single
+
+- alias: {{SOLID_STATE_RELAY_01_CMD_REQ_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.solid_state_relay1
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{SOLID_STATE_RELAY_01_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.ssr_duty_cycle
+      - input_number.ssr_base_period
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust_ssr_pwm",
+          "res_topic": {{MQTT_SOLID_STATE_RELAY_01_CMD_RES}},
+          "value_duty_cycle": "{{ SSR_DUTY_CYCLE }}",
+          "value_base_period": "{{SSR_BASE_PERIOD}}"
+        }
+      
+  mode: single
+
+- alias: {{SOLID_STATE_RELAY_01_CMD_REQ_STOP_PWM_LOOP_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.solid_state_relay_stop_loop
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "ssr_stop_pwm_loop",
+          "res_topic": {{MQTT_SOLID_STATE_RELAY_01_CMD_RES}},
+          "value": "{{ SSR_STOP_LOOP }}"
+        }
+      
+  mode: single
+
+
 # Elixia grow lamp1
 - alias: {{LAMP_01_CMD_REQ_AUTOMATION_ALIAS}}
   description: ''
