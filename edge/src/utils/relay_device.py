@@ -32,6 +32,8 @@ class relay_device:
         # Create a thread to turn off the relay after the specified time (seconds)
         threading.Timer(time, self.turn_off).start()
     
+    
+    
     # Cleanup the GPIO i.e. set all used pins in program back to input mode
     # def cleanup(self):
         # GPIO.cleanup()

@@ -99,7 +99,12 @@
   relay_16:
     name: "(rl16) Peristaltic pump 3 "
     icon: "mdi:toggle-switch"
-
+  solid_state_relay1:
+    name: "(ssr1) Heating battery"
+    icon: "mdi:heating-coil"
+  solid_state_relay_stop_loop:
+    name: "(ssr) Stop pwm loop"
+    icon: "mdi:toggle-switch"
 
 
 
