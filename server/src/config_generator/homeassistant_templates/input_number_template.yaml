@@ -136,6 +136,13 @@
     step: 1
     mode: "box"
 
+  temp_ref:
+    name: Target temp
+    initial: 20
+    min: 10
+    max: 50
+    step: 1
+    mode: "box"
   ssr_duty_cycle:
     name: SSR duty cycle
     initial: 0
@@ -151,5 +158,7 @@
     max: 20
     step: 0.1
     mode: "box"
+
+  
 
   
