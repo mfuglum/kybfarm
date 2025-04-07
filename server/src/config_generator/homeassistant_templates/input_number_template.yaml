@@ -135,3 +135,11 @@
     max: 80
     step: 1
     mode: "box"
+
+  temp_ref:
+    name: Target temp
+    initial: 20
+    min: 10
+    max: 50
+    step: 1
+    mode: "box"

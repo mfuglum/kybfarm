@@ -5,7 +5,7 @@
 from src.sensor_interfaces import sensor_C02_VOC_modbus # Sensoren før viften
 from src.sensor_interfaces import sensor_STH01_modbus # Sensoren etter viften
 
-from src.utils import pid_controller # Kode for PID kontroller
+from src.utils.pid_controller import PIDController # Kode for PID kontroller
 
 import time
 import serial
