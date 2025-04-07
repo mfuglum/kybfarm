@@ -1344,3 +1344,27 @@
         }
       
   mode: single
+
+    # Ønsket temp
+- alias: {{REF_TEMP_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.temp_ref
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: false
+      topic: {{MQTT_REF_TEMP_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust_ref_temp",
+          "res_topic": {{MQTT_REF_TEMP_CMD_RES}},
+          "value": "{{ REF_TEMP }}"
+        }
+      
+  mode: single
