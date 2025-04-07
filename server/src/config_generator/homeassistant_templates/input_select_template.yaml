@@ -42,3 +42,14 @@
       "Initiate calibration for pH 10.01",
       "Register calibration for pH 10.01"
     ]
+
+  new_intake_fan_modes:
+    name: "New intake fan modes"
+    icon: "mdi:electron-framework"
+    initial: "Off"
+    options: [
+      "Off",
+      "Low",
+      "Medium",
+      "High"
+    ]

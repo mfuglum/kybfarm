@@ -121,6 +121,10 @@
     name: "Intake fan controller"
     icon: "mdi:fan"
 
+  new_intake_fan_toggle:
+    name: "New intake fan controller"
+    icon: "mdi_fan"
+
   lamp_control_toggle:
     name: "Lamp controller"
     icon: "mdi:ceiling-light"

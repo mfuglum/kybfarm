@@ -28,6 +28,13 @@ intake_fan_controller:
   temp_high_id: {{TEMP_HIGH_ID}}
   toggle_id: {{INTAKE_FAN_TOGGLE_ID}}
 
+new_intake_fan_controller:
+  module: new_intake_fan_controller
+  class: new_Intake_fan_controller
+  fan_mode_id: {{FAN_MODE_ID}}
+  fan_voltage_id: {{FAN_VOLTAGE_ID}}
+  fan_manual_toggle_id: {{FAN_MANUAL_TOGGLE_ID}}
+
 lamp1_controller:
   module: lamp_control
   class: Lamp_control

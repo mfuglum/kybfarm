@@ -32,6 +32,14 @@ class pwm_relay_device:
             self._thread.daemon = True
             self._thread.start()
 
+    def update_duty_cycle(self, duty_cycle):
+        with self._lock:
+            self.duty_cycle = max(0.0, min(1.0, duty_cycle))
+
+    def update_period(self, period):
+        with self._lock:
+            self.period = max(0.0, min(1.0, period))
+
     def stop_pwm(self):
         self._running = False
         if self._thread:
