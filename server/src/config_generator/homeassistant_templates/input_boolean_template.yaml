@@ -123,7 +123,7 @@
 
   new_intake_fan_toggle:
     name: "New intake fan controller"
-    icon: "mdi_fan"
+    icon: "mdi:fan"
 
   lamp_control_toggle:
     name: "Lamp controller"

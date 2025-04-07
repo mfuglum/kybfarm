@@ -129,7 +129,7 @@
     mode: "box"
 
   humid_ref:
-    name: Target humidity
+    name: "Target humidity"
     initial: 50
     min: 30
     max: 80
@@ -137,14 +137,14 @@
     mode: "box"
 
   temp_ref:
-    name: Target temp
+    name: "Target temp"
     initial: 20
     min: 10
     max: 50
     step: 1
     mode: "box"
   ssr_duty_cycle:
-    name: SSR duty cycle
+    name: "SSR duty cycle"
     initial: 0
     min: 0
     max: 1
@@ -152,7 +152,7 @@
     mode: "box"
 
   ssr_base_period:
-    name: SSR base period
+    name: "SSR base period"
     initial: 1
     min: 0.1
     max: 20
@@ -160,7 +160,7 @@
     mode: "box"
   
   new_Intake_fan_voltage:
-    name: Fan manual voltage
+    name: "Fan manual voltage"
     initial: 0
     min: 0
     max: 10
