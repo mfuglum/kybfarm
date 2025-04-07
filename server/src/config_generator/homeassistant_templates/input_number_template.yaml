@@ -159,7 +159,7 @@
     step: 0.1
     mode: "box"
   
-  new_Intake_fan_voltage:
+  new_intake_fan_voltage:
     name: "Fan manual voltage"
     initial: 0
     min: 0
