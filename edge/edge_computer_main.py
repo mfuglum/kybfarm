@@ -31,7 +31,8 @@ from src.sensor_interfaces import (sensor_SCD41_I2C, # Denne kan fjernes
                                    )
 from src.actuator_instances import (relay_devices_initialization,
                                     grow_lamp_elixia_initialization,
-                                    analog_output) 
+                                    analog_output,
+                                    solid_state_relay) 
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -98,6 +99,10 @@ grow_lamp_elixia_initialization.lamp_2.update_ip_address(LAMP_02_IP)
 MQTT_REF_HUMID_CMD_REQ = os.getenv("MQTT_REF_HUMID_CMD_REQ")
 MQTT_REF_HUMID_DT_REQ = os.getenv("MQTT_REF_HUMID_DT_REQ")
 
+# Ønsket temperatur
+MQTT_REF_TEMP_CMD_REQ = os.getenv("MQTT_REF_TEMP_CMD_REQ")
+MQTT_REF_TEMP_DT_REQ = os.getenv("MQTT_REF_TEMP_DT_REQ")
+
 # Configure MQTT
 def on_connect(client, userdata, flags, rc):
     print("Connected with code " + str(rc))
@@ -142,6 +147,8 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_LAMP_02_DT_REQ)
     client.subscribe(MQTT_REF_HUMID_CMD_REQ)
     client.subscribe(MQTT_REF_HUMID_DT_REQ)
+    client.subscribe(MQTT_REF_TEMP_CMD_REQ)
+    client.subscribe(MQTT_REF_TEMP_DT_REQ)
 
 #kuk
 
@@ -420,6 +427,10 @@ client.message_callback_add(MQTT_LAMP_02_DT_REQ, grow_lamp_elixia_initialization
 
 # Ønsket fuktighet
 client.message_callback_add(MQTT_REF_HUMID_CMD_REQ, analog_output.on_message_REFHUMID_CMD_REQ)
+# client.message_callback_add(MQTT_REF_HUMID_DT_REQ, analog_output.on_message_REFHUMID_DT)
+
+# Ønsket Temp
+client.message_callback_add(MQTT_REF_TEMP_CMD_REQ, solid_state_relay.on_message_REFTEMP_CMD_REQ)
 # client.message_callback_add(MQTT_REF_HUMID_DT_REQ, analog_output.on_message_REFHUMID_DT)
 
 # Connect to the MQTT server
