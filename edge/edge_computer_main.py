@@ -12,7 +12,6 @@ Install required packages:
 Run the file:
     python edge_computer_main.py
 """
-from edge.src.sensor_interfaces import sensor_STH01_modbus
 import paho.mqtt.client as mqtt
 import json
 import time
@@ -31,6 +30,7 @@ from src.sensor_interfaces import (
                                    )
 from src.actuator_instances import (relay_devices_initialization,
                                     grow_lamp_elixia_initialization,
+                                    voltage_output
                                     #analog_output,  - Not connected
                                     #solid_state_relay  - Not connected
                                     ) 
@@ -81,6 +81,13 @@ MQTT_SEC01_1_CMD_REQ = os.getenv("MQTT_SENSOR_03_CMD_REQ")
 MQTT_SEC01_2_CMD_REQ = os.getenv("MQTT_SENSOR_04_CMD_REQ")
 MQTT_SPH01_1_CMD_REQ = os.getenv("MQTT_SENSOR_05_CMD_REQ")
 MQTT_SPH01_2_CMD_REQ = os.getenv("MQTT_SENSOR_06_CMD_REQ")
+
+# Voltage output #
+MQTT_FAN_VOLTAGE_CMD_REQ = os.getenv("MQTT_FAN_VOLTAGE_CMD_REQ")
+MQTT_FAN_VOLTAGE_CMD_RES = os.getenv("MQTT_FAN_VOLTAGE_CMD_RES")
+
+MQTT_VALVE_VOLTAGE_CMD_REQ = os.getenv("MQTT_VALVE_VOLTAGE_CMD_REQ")
+MQTT_VALVE_VOLTAGE_CMD_RES = os.getenv("MQTT_VALVE_VOLTAGE_CMD_RES")
 
 # Grow Lamp1 Elixia #
 LAMP_01_IP = os.getenv("LAMP_01_IP")
@@ -151,7 +158,11 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_REF_TEMP_CMD_REQ)
     client.subscribe(MQTT_REF_TEMP_DT_REQ)
 
-#kuk
+    # 0 - 10V control
+    client.subscribe(MQTT_FAN_VOLTAGE_CMD_REQ)
+    client.subscribe(MQTT_FAN_VOLTAGE_CMD_RES)
+    client.subscribe(MQTT_VALVE_VOLTAGE_CMD_REQ)
+    client.subscribe(MQTT_VALVE_VOLTAGE_CMD_RES)
 
 # Catch-all callback function for messages
 def on_message(client, userdata, msg):
@@ -338,14 +349,14 @@ def on_message_SYM01(client, userdata, msg):
         print("SYM01, data fetch error:", str(e))
 
 # Denne kan fjernes
-def on_message_SCD41(client, userdata, msg):
-    req_msg = json.loads(msg.payload)
-    try:
-        res_payload = json.dumps(sensor_SCD41_I2C.fetch_and_return_data())
-        client.publish(req_msg["res_topic"], res_payload, )
-        print(res_payload + "\n")
-    except Exception as e:
-        print("SCD41, data fetch error:", str(e))
+#def on_message_SCD41(client, userdata, msg):
+ #   req_msg = json.loads(msg.payload)
+#    try:
+ #       res_payload = json.dumps(sensor_SCD41_I2C.fetch_and_return_data())
+ #       client.publish(req_msg["res_topic"], res_payload, )
+ #       print(res_payload + "\n")
+ #   except Exception as e:
+ #       print("SCD41, data fetch error:", str(e))
 
 def on_message_C02_VOC(client, userdata, msg):
     req_msg = json.loads(msg.payload)
@@ -419,12 +430,23 @@ client.message_callback_add(MQTT_RELAY_15_CMD_REQ, relay_devices_initialization.
 client.message_callback_add(MQTT_RELAY_16_CMD_REQ, relay_devices_initialization.on_message_RLY16)
 # Solid state relay
 client.message_callback_add(MQTT_SOLID_STATE_RELAY_01_CMD_REQ, relay_devices_initialization.on_message_SSR01)
+
+# Voltage output
+#Fan
+client.message_callback_add(MQTT_FAN_VOLTAGE_CMD_REQ, voltage_output.on_message_FAN_VOLTAGE_CMD_REQ)
+#client.message_callback_add(MQTT_FAN_VOLTAGE_CMD_RES, voltage_output.on_message_FAN_VOLTAGE_CMD_RES)
+#Valve
+client.message_callback_add(MQTT_VALVE_VOLTAGE_CMD_REQ, voltage_output.on_message_VALVE_VOLTAGE_CMD_REQ)
+#client.message_callback_add(MQTT_VALVE_VOLTAGE_CMD_RES, voltage_output.on_message_VALVE_VOLTAGE_CMD_RES)
+
 # Grow lamp1 Elixia
 client.message_callback_add(MQTT_LAMP_01_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_CMD_REQ)
 client.message_callback_add(MQTT_LAMP_01_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_DT)
 # Grow lamp2 Elixia
 client.message_callback_add(MQTT_LAMP_02_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_CMD_REQ)
 client.message_callback_add(MQTT_LAMP_02_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_DT)
+
+# PWM ouput
 
 
 # Not implemented yet
