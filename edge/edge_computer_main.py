@@ -19,20 +19,21 @@ import time
 from dotenv import load_dotenv
 import os
 
-from src.sensor_interfaces import (sensor_SCD41_I2C, # Denne kan fjernes
+from src.sensor_interfaces import (
                                    sensor_SYM01_modbus, 
                                    sensor_SLIGHT01_modbus,
                                    sensor_SPAR02_modbus,
                                    sensor_SEC01_modbus,
                                    sensor_SPH01_modbus,
                                    sensor_C02_VOC_modbus,
-                                   sensor_C02_VOC_modbus1, # Legger til ny VOC sensor # Legger til ny temp sensor
-                                   sensor_STH01_modbus # Legger til ny temp sensor
+                                   #sensor_C02_VOC_modbus1, # Legger til ny VOC sensor # Legger til ny temp sensor - Not connected
+                                   #sensor_STH01_modbus # Legger til ny temp sensor - Not connected
                                    )
 from src.actuator_instances import (relay_devices_initialization,
                                     grow_lamp_elixia_initialization,
-                                    analog_output,
-                                    solid_state_relay) 
+                                    #analog_output,  - Not connected
+                                    #solid_state_relay  - Not connected
+                                    ) 
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -119,9 +120,9 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_SPH01_2_DT_REQ)
     client.subscribe(MQTT_SPH01_2_CMD_REQ)
     client.subscribe(MQTT_SYM01_DT_REQ)
-    client.subscribe(MQTT_CO2VOC_DT_REQ) # Subscriber til riktig topic
-    client.subscribe(MQTT_CO2VOC1_DT_REQ) # Subscriber til ny topic
-    client.subscribe(MQTT_STH01_DT_REQ) # Subscriber til ny topic - temp sensor
+    client.subscribe(MQTT_CO2VOC_DT_REQ) 
+    #client.subscribe(MQTT_CO2VOC1_DT_REQ) # Commented out due to the sensors not being connected 
+    #client.subscribe(MQTT_STH01_DT_REQ) #
 
     # Actuators #
     client.subscribe(MQTT_RELAY_01_CMD_REQ)
@@ -395,8 +396,8 @@ client.message_callback_add(MQTT_SPH01_2_DT_REQ, on_message_SPH01_2)
 client.message_callback_add(MQTT_SPH01_2_CMD_REQ, on_message_SPH01_2_CMD_REQ)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
 client.message_callback_add(MQTT_CO2VOC_DT_REQ,on_message_C02_VOC)
-client.message_callback_add(MQTT_CO2VOC1_DT_REQ,on_message_C02_VOC1)
-client.message_callback_add(MQTT_STH01_DT_REQ,on_message_STH01)
+#client.message_callback_add(MQTT_CO2VOC1_DT_REQ,on_message_C02_VOC1) Not connected yet
+#client.message_callback_add(MQTT_STH01_DT_REQ,on_message_STH01)
 
 # Actuators #
 # Relays
@@ -425,12 +426,14 @@ client.message_callback_add(MQTT_LAMP_01_DT_REQ, grow_lamp_elixia_initialization
 client.message_callback_add(MQTT_LAMP_02_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_CMD_REQ)
 client.message_callback_add(MQTT_LAMP_02_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_DT)
 
+
+# Not implemented yet
 # Ønsket fuktighet
-client.message_callback_add(MQTT_REF_HUMID_CMD_REQ, analog_output.on_message_REFHUMID_CMD_REQ)
+#client.message_callback_add(MQTT_REF_HUMID_CMD_REQ, analog_output.on_message_REFHUMID_CMD_REQ) 
 # client.message_callback_add(MQTT_REF_HUMID_DT_REQ, analog_output.on_message_REFHUMID_DT)
 
 # Ønsket Temp
-client.message_callback_add(MQTT_REF_TEMP_CMD_REQ, solid_state_relay.on_message_REFTEMP_CMD_REQ)
+#client.message_callback_add(MQTT_REF_TEMP_CMD_REQ, solid_state_relay.on_message_REFTEMP_CMD_REQ)
 # client.message_callback_add(MQTT_REF_HUMID_DT_REQ, analog_output.on_message_REFHUMID_DT)
 
 # Connect to the MQTT server
