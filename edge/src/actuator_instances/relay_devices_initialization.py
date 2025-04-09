@@ -1,4 +1,5 @@
 from src.utils import relay_device
+from src.utils import pwm_relay_device
 import json
 
 # Device to GPIO (BCD) pin mapping
@@ -309,6 +310,6 @@ try:
     relay_14 = relay_device.relay_device(GPIO_PIN["relay_14"])
     relay_15 = relay_device.relay_device(GPIO_PIN["relay_15"])
     relay_16 = relay_device.relay_device(GPIO_PIN["relay_16"])
-    solid_state_relay_1 = relay_device.relay_device(GPIO_PIN["solid_state_relay_1"])
+    solid_state_relay_1 = pwm_relay_device.relay_device(GPIO_PIN["solid_state_relay_1"])
 except Exception as e:
     print("Relay device initialization error:", str(e))
