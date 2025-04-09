@@ -1353,6 +1353,55 @@
   mode: single
 
 
+
+# Fan voltage
+- alias: {{MQTT_FAN_VOLTAGE_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.new_intake_fan_voltage
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: false
+      topic: {{MQTT_FAN_VOLTAGE_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust",
+          "res_topic": {{MQTT_FAN_VOLTAGE_CMD_RES}},
+          "value": "{{ MQTT_FAN_VOLTAGE_STATE }}"
+        }
+      
+  mode: single
+
+  # Valve voltage
+- alias: {{MQTT_VALVE_VOLTAGE_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.valve_voltage
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: false
+      topic: {{MQTT_VALVE_VOLTAGE_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust",
+          "res_topic": {{MQTT_VALVE_VOLTAGE_CMD_REs}},
+          "value": "{{ MQTT_VALVE_VOLTAGE_STATE }}"
+        }
+      
+  mode: single
+
 # Elixia grow lamp1
 - alias: {{LAMP_01_CMD_REQ_AUTOMATION_ALIAS}}
   description: ''
