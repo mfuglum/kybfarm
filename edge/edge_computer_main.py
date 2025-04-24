@@ -348,15 +348,6 @@ def on_message_SYM01(client, userdata, msg):
     except Exception as e:
         print("SYM01, data fetch error:", str(e))
 
-# Denne kan fjernes
-#def on_message_SCD41(client, userdata, msg):
- #   req_msg = json.loads(msg.payload)
-#    try:
- #       res_payload = json.dumps(sensor_SCD41_I2C.fetch_and_return_data())
- #       client.publish(req_msg["res_topic"], res_payload, )
- #       print(res_payload + "\n")
- #   except Exception as e:
- #       print("SCD41, data fetch error:", str(e))
 
 def on_message_C02_VOC(client, userdata, msg):
     req_msg = json.loads(msg.payload)
@@ -529,7 +520,7 @@ except Exception as e:
     print("SYM01, error:", str(e))
 
 try:
-    sensor_C02_VOC = sensor_C02_VOC_modbus.CO2_VOC(   portname='/dev/ttySC1',
+    sensor_C02_VOC = sensor_C02_VOC_modbus.CO2_VOC(   portname='/dev/ttySC0',
                                                 slaveaddress=7, 
                                                 debug=False)
     print(sensor_C02_VOC)
@@ -537,7 +528,7 @@ except Exception as e:
     print("C02_VOC, error:", str(e))
 
 try:
-    sensor_C02_VOC1 = sensor_C02_VOC_modbus1.CO2_VOC1(   portname='/dev/ttySC1',
+    sensor_C02_VOC1 = sensor_C02_VOC_modbus1.CO2_VOC1(   portname='/dev/ttySC0',
                                                 slaveaddress=23, 
                                                 debug=False)
     print(sensor_C02_VOC1)
@@ -545,7 +536,7 @@ except Exception as e:
     print("C02_VOC1, error:", str(e))
 
 try:
-    sensor_STH01 = sensor_STH01_modbus.STH01(   portname='/dev/ttySC1',
+    sensor_STH01 = sensor_STH01_modbus.STH01(   portname='/dev/ttySC0',
                                                 slaveaddress=42, 
                                                 debug=False)
     print(sensor_STH01)

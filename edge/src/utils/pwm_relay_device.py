@@ -13,9 +13,10 @@ class pwm_relay_device:
         GPIO.setup(pin, GPIO.OUT)
         # Set the pin to high as relay is OFF in high state
         GPIO.output(pin, GPIO.HIGH)
+        self.turn_off()
 
         self.pin = pin
-        self.period = 1
+        self.period = 5.0
         self.duty_cycle = 0.0
         self._running = False
         self._lock = threading.Lock()
@@ -23,7 +24,7 @@ class pwm_relay_device:
 
     def set_pwm(self, period, duty_cycle):
         with self._lock:
-            self.period = max(0.0, min(1.0, period))
+            self.period = max(1.0, min(10.0, period))
             self.duty_cycle = max(0.0, min(1.0, duty_cycle))
 
         if not self._running:
@@ -38,12 +39,12 @@ class pwm_relay_device:
 
     def update_period(self, period):
         with self._lock:
-            self.period = max(0.0, min(1.0, period))
+            self.period = max(1.0, min(10.0, period))
 
     def stop_pwm(self):
         self._running = False
         if self._thread:
-            self._thread.join()
+            self._thread.join(timeout=1)
             self._thread = None
         self.turn_off()
     
@@ -52,6 +53,9 @@ class pwm_relay_device:
             with self._lock:
                 duty = self.duty_cycle
                 period = self.period
+
+                duty = max(0.0, min(1.0, duty))
+                period = max(1.0, min(10.0, period))
 
                 if duty <= 0.0:
                     self.turn_off()
