@@ -273,11 +273,11 @@ def on_message_SSR01(client, userdata, msg):
     try:
         print("SSR01", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
-            relay_16.turn_on()
+            solid_state_relay_1.turn_on()
         elif cmd_msg["cmd"] == "off":
-            relay_16.turn_off()
+            solid_state_relay_1.turn_off()
         elif cmd_msg["cmd"] == "on_for":
-            relay_16.turn_on_for(float(cmd_msg["time"]))
+            solid_state_relay_1.turn_on_for(float(cmd_msg["time"]))
         
         elif cmd_msg["cmd"] == "adjust_ssr_pwm":
             period = float(cmd_msg["value_base_period"])
