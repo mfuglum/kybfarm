@@ -24,9 +24,9 @@ from src.sensor_interfaces import (
                                    sensor_SPAR02_modbus,
                                    sensor_SEC01_modbus,
                                    sensor_SPH01_modbus,
-                                   sensor_CO2_VOC_modbus
+                                   sensor_CO2_VOC_modbus,
                                    #sensor_C02_VOC_modbus1, # Legger til ny VOC sensor # Legger til ny temp sensor - Not connected
-                                   #sensor_STH01_modbus # Legger til ny temp sensor - Not connected
+                                   sensor_STH01_modbus # Legger til ny temp sensor - Not connected
                                    )
 from src.actuator_instances import (relay_devices_initialization,
                                     grow_lamp_elixia_initialization,
@@ -129,7 +129,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_SYM01_DT_REQ)
     client.subscribe(MQTT_CO2VOC_DT_REQ) 
     #client.subscribe(MQTT_CO2VOC1_DT_REQ) # Commented out due to the sensors not being connected 
-    #client.subscribe(MQTT_STH01_DT_REQ) #
+    client.subscribe(MQTT_STH01_DT_REQ) #
 
     # Actuators #
     client.subscribe(MQTT_RELAY_01_CMD_REQ)
@@ -399,7 +399,7 @@ client.message_callback_add(MQTT_SPH01_2_CMD_REQ, on_message_SPH01_2_CMD_REQ)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
 client.message_callback_add(MQTT_CO2VOC_DT_REQ,on_message_CO2_VOC)
 #client.message_callback_add(MQTT_CO2VOC1_DT_REQ,on_message_C02_VOC1) Not connected yet
-#client.message_callback_add(MQTT_STH01_DT_REQ,on_message_STH01)
+client.message_callback_add(MQTT_STH01_DT_REQ,on_message_STH01)
 
 # Actuators #
 # Relays
