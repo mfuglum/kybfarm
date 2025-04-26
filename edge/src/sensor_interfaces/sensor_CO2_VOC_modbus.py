@@ -76,7 +76,7 @@ class CO2_VOC( minimalmodbus.Instrument ):
 
     def __init__(self,
                  portname='/dev/ttySC0',
-                 slaveaddress=1, # Find correct adress
+                 slaveaddress=7, # Find correct adress
                  mode=minimalmodbus.MODE_RTU,
                  close_port_after_each_call=False,
                  debug=False):
