@@ -7,6 +7,10 @@ class pwm_relay_device:
     def __init__(self, pin):
         # Disable warnings
         GPIO.setwarnings(False)
+        
+        # Set the pin number
+        self.pin = pin
+
         # Set the pin numbering mode
         GPIO.setmode(GPIO.BCM)
         # Set the pin as output
@@ -15,7 +19,6 @@ class pwm_relay_device:
         GPIO.output(pin, GPIO.HIGH)
         self.turn_off()
 
-        self.pin = pin
         self.period = 5.0
         self.duty_cycle = 0.0
         self._running = False
