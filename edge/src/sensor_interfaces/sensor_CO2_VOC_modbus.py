@@ -148,8 +148,16 @@ class CO2_VOC( minimalmodbus.Instrument ):
     
             return dewpoint
 
+    def get_volume_flow(self):
 
-    def get_volume_flow_low(self):
+            volumeFlow = self.read_register(registeraddress=9,
+                                                number_of_decimals=2,
+                                                functioncode=3,
+                                                signed=False)
+    
+            return volumeFlow
+
+    """def get_volume_flow_low(self):
         # Reading 16-bit lowregister (adress 50) for Volume Flow 1
         return self.read_register(registeraddress=50, 
                                 number_of_decimals=0, 
@@ -162,8 +170,8 @@ class CO2_VOC( minimalmodbus.Instrument ):
                                 number_of_decimals=0, 
                                 functioncode=3, 
                                 signed=False)
-
-    def get_volume_flow(self):
+    """
+    """def get_volume_flow(self):
         # Reading Volume Flow 1 (32-bit) with combining LOW and HIGH values
         low = self.get_volume_flow_low()
         high = self.get_volume_flow_high()
@@ -177,7 +185,7 @@ class CO2_VOC( minimalmodbus.Instrument ):
             return volume_flow
         else:
             return None  # Handles errors if one of the registers is not read correctly.
-        
+        """
 
     # A function to fetch and print data from the sensor
     def fetch_and_print_data(self):
