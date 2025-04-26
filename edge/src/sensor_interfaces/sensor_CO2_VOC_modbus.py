@@ -7,7 +7,7 @@ data = {
     "tags": {
         "sensor_id": "1",
         "location": "GF, Gloeshaugen",
-        "sensor_name": "C02+VOC"},
+        "sensor_name": "CO2+VOC"},
     "fields": {
             "temperature": 0,
             "humidity": 0,
@@ -75,7 +75,7 @@ class CO2_VOC( minimalmodbus.Instrument ):
     """
 
     def __init__(self,
-                 portname='/dev/ttySC1',
+                 portname='/dev/ttySC0',
                  slaveaddress=1, # Find correct adress
                  mode=minimalmodbus.MODE_RTU,
                  close_port_after_each_call=False,
@@ -107,14 +107,14 @@ class CO2_VOC( minimalmodbus.Instrument ):
                     signed=False)
 
     # C02 measurments - register 5
-    def get_c02(self):
+    def get_co2(self):
 
-        c02 = self.read_register(registeraddress=5,
+        co2 = self.read_register(registeraddress=5,
                                               number_of_decimals=0,
                                               functioncode=3,
                                               signed=False)
  
-        return c02
+        return co2
 
     # Relative humidity measurment - register 1
     def get_humidity(self):
@@ -179,17 +179,17 @@ class CO2_VOC( minimalmodbus.Instrument ):
 
     # A function to fetch and print data from the sensor
     def fetch_and_print_data(self):
-        c02 = self.get_c02()
-        print(f"C02: {c02} ppm")
+        co2 = self.get_co2()
+        print(f"CO2: {co2} ppm")
 
     # A funcion to fetch and return data from the sensor
     def fetch_and_return_data(self):
-        c02 = self.get_c02()
+        co2 = self.get_co2()
         temperature = self.get_temperature()
         humidity = self.get_humidity()
         dewpoint = self.get_dewpoint()
         volumeFlow = self.get_volume_flow()
-        data["fields"]["co2"] = c02
+        data["fields"]["co2"] = co2
         data["fields"]["humidity"] = humidity
         data["fields"]["temperature"] = temperature
         data["fields"]["dewpoint"] = dewpoint
@@ -198,4 +198,3 @@ class CO2_VOC( minimalmodbus.Instrument ):
         return data
     
 
-    #Local branch testing.
