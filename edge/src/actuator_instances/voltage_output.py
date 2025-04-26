@@ -19,6 +19,7 @@ fan_output = 0
 valve_output = 0
 
 def on_message_FAN_VOLTAGE_CMD_REQ(client, userdata, msg):
+    global fan_output
     cmd_msg = json.loads(msg.payload)
     try:
         print("FAN_VOLTAGE", cmd_msg, "\n")
@@ -26,6 +27,11 @@ def on_message_FAN_VOLTAGE_CMD_REQ(client, userdata, msg):
             raw_fan_value = cmd_msg["value"]
             clamped_fan_value = max(0, min(10, raw_fan_value))
             fan_output = int(clamped_fan_value * 1000)
+
+            output[0] = fan_output
+            output[1] = valve_output
+            result = master.execute(1, cst.WRITE_MULTIPLE_REGISTERS, 0x00, 0x08, output_value=output)
+            print("Result of write:", result)
             print("Fan output set to:", fan_output)
         else:
             print("Invalid command")
@@ -33,6 +39,7 @@ def on_message_FAN_VOLTAGE_CMD_REQ(client, userdata, msg):
         print("Fan voltage, command error:", str(e))
 
 def on_message_VALVE_VOLTAGE_CMD_REQ(client, userdata, msg):
+    global valve_output
     cmd_msg = json.loads(msg.payload)
     try:
         print("VALVE_VOLTAGE", cmd_msg, "\n")
@@ -40,6 +47,11 @@ def on_message_VALVE_VOLTAGE_CMD_REQ(client, userdata, msg):
             raw_valve_value = cmd_msg["value"]
             clamped_valve_value = max(0, min(10, raw_valve_value))
             valve_output = int(clamped_valve_value * 1000)
+
+            output[0] = fan_output
+            output[1] = valve_output
+            result = master.execute(1, cst.WRITE_MULTIPLE_REGISTERS, 0x00, 0x08, output_value=output)
+            print("Result of write:", result)
             print("Valve output set to:", valve_output)
         else:
             print("Invalid command")
@@ -48,7 +60,7 @@ def on_message_VALVE_VOLTAGE_CMD_REQ(client, userdata, msg):
 
 
 
-try:
+"""try:
     master.set_timeout(5.0)
     master.set_verbose(True)
 
@@ -63,3 +75,4 @@ try:
 
 except Exception as exc:
     print(str(exc))
+"""
