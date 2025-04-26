@@ -73,7 +73,7 @@ class STH01( minimalmodbus.Instrument ):
     """
 
     def __init__(self,
-                 portname='/dev/ttySC1',
+                 portname='/dev/ttySC0',
                  slaveaddress=42, # Standard definert i datablad
                  mode=minimalmodbus.MODE_RTU,
                  close_port_after_each_call=False,

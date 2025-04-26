@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 # Henter sensor data
-from src.sensor_interfaces import sensor_C02_VOC_modbus # Sensoren før viften
+from edge.src.sensor_interfaces import sensor_CO2_VOC_modbus # Sensoren før viften
 from src.sensor_interfaces import sensor_STH01_modbus # Sensoren etter viften
 
 from src.utils.pid_controller import PIDController # Kode for PID kontroller
@@ -20,7 +20,7 @@ master = modbus_rtu.RtuMaster(serial.Serial(port=PORT,baudrate=9600, bytesize=8,
 master.set_timeout(5.0)
 master.set_verbose(True)
 
-sensor1 = sensor_C02_VOC_modbus.CO2_VOC() # Henter klassen CO2_VOC 
+sensor1 = sensor_CO2_VOC_modbus.CO2_VOC() # Henter klassen CO2_VOC 
 sensor2 = sensor_STH01_modbus.STH01() # Henter klassen STH01
 
 # PID for kjølebatteri

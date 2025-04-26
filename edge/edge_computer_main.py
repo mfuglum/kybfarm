@@ -24,7 +24,7 @@ from src.sensor_interfaces import (
                                    sensor_SPAR02_modbus,
                                    sensor_SEC01_modbus,
                                    sensor_SPH01_modbus,
-                                   sensor_C02_VOC_modbus,
+                                   sensor_CO2_VOC_modbus
                                    #sensor_C02_VOC_modbus1, # Legger til ny VOC sensor # Legger til ny temp sensor - Not connected
                                    #sensor_STH01_modbus # Legger til ny temp sensor - Not connected
                                    )
@@ -349,10 +349,10 @@ def on_message_SYM01(client, userdata, msg):
         print("SYM01, data fetch error:", str(e))
 
 
-def on_message_C02_VOC(client, userdata, msg):
+def on_message_CO2_VOC(client, userdata, msg):
     req_msg = json.loads(msg.payload)
     try:
-        res_payload = json.dumps(sensor_C02_VOC.fetch_and_return_data())
+        res_payload = json.dumps(sensor_CO2_VOC.fetch_and_return_data())
         client.publish(req_msg["res_topic"], res_payload, )
         print(res_payload + "\n")
     except Exception as e:
@@ -397,7 +397,7 @@ client.message_callback_add(MQTT_SPH01_1_CMD_REQ, on_message_SPH01_1_CMD_REQ)
 client.message_callback_add(MQTT_SPH01_2_DT_REQ, on_message_SPH01_2)
 client.message_callback_add(MQTT_SPH01_2_CMD_REQ, on_message_SPH01_2_CMD_REQ)
 client.message_callback_add(MQTT_SYM01_DT_REQ, on_message_SYM01)
-client.message_callback_add(MQTT_CO2VOC_DT_REQ,on_message_C02_VOC)
+client.message_callback_add(MQTT_CO2VOC_DT_REQ,on_message_CO2_VOC)
 #client.message_callback_add(MQTT_CO2VOC1_DT_REQ,on_message_C02_VOC1) Not connected yet
 #client.message_callback_add(MQTT_STH01_DT_REQ,on_message_STH01)
 
@@ -520,12 +520,12 @@ except Exception as e:
     print("SYM01, error:", str(e))
 
 try:
-    sensor_C02_VOC = sensor_C02_VOC_modbus.CO2_VOC(   portname='/dev/ttySC0',
+    sensor_CO2_VOC = sensor_CO2_VOC_modbus.CO2_VOC(   portname='/dev/ttySC0',
                                                 slaveaddress=7, 
                                                 debug=False)
-    print(sensor_C02_VOC)
+    print(sensor_CO2_VOC)
 except Exception as e:
-    print("C02_VOC, error:", str(e))
+    print("CO2_VOC, error:", str(e))
 
 try:
     sensor_C02_VOC1 = sensor_C02_VOC_modbus1.CO2_VOC1(   portname='/dev/ttySC0',
