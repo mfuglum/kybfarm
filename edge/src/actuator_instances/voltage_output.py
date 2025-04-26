@@ -24,7 +24,7 @@ def on_message_FAN_VOLTAGE_CMD_REQ(client, userdata, msg):
     try:
         print("FAN_VOLTAGE", cmd_msg, "\n")
         if cmd_msg["cmd"] == "adjust":
-            raw_fan_value = cmd_msg["value"]
+            raw_fan_value = float(cmd_msg["value"])
             clamped_fan_value = max(0, min(10, raw_fan_value))
             fan_output = int(clamped_fan_value * 1000)
 
@@ -44,7 +44,7 @@ def on_message_VALVE_VOLTAGE_CMD_REQ(client, userdata, msg):
     try:
         print("VALVE_VOLTAGE", cmd_msg, "\n")
         if cmd_msg["cmd"] == "adjust":
-            raw_valve_value = cmd_msg["value"]
+            raw_valve_value = float(cmd_msg["value"])
             clamped_valve_value = max(0, min(10, raw_valve_value))
             valve_output = int(clamped_valve_value * 1000)
 
