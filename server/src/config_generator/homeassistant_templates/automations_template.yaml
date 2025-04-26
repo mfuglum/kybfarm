@@ -1396,7 +1396,7 @@
       payload: >
         {
           "cmd": "adjust",
-          "res_topic": {{MQTT_VALVE_VOLTAGE_CMD_REs}},
+          "res_topic": {{MQTT_VALVE_VOLTAGE_CMD_RES}},
           "value": "{{ MQTT_VALVE_VOLTAGE_STATE }}"
         }
       

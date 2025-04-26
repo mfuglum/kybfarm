@@ -1,5 +1,6 @@
 import minimalmodbus
 import datetime
+import serial
 
 # A dictionary struct to send as payload over MQTT
 data = {
@@ -85,7 +86,8 @@ class CO2_VOC( minimalmodbus.Instrument ):
                                           slaveaddress=slaveaddress,
                                           mode=mode,
                                           close_port_after_each_call=close_port_after_each_call,
-                                          debug=debug)    
+                                          debug=debug)   
+        self.serial.baudrate = 9600 
         self.set_unit(unit = "SI")
 
 
