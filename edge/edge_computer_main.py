@@ -541,7 +541,7 @@ try:
                                                 debug=False)
     print(sensor_STH01)
 except Exception as e:
-    print("C02_VOC1, error:", str(e))
+    print("STH01-1, error:", str(e))
 
 
 
