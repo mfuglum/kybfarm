@@ -1424,7 +1424,7 @@
         {
           "cmd": "adjust_intensity",
           "res_topic": {{MQTT_LAMP_01_CMD_RES}},
-          "intensity": "{{ CHANNEL_450NM_STATE }}:{{ CHANNEL_660NM_STATE }}:{{ CHANNEL_735NM_STATE }}:{{ CHANNEL_5700K_STATE }}"
+          "intensity": "{{ L1CHANNEL_450NM_STATE }}:{{ L1CHANNEL_660NM_STATE }}:{{ L1CHANNEL_735NM_STATE }}:{{ L1CHANNEL_5700K_STATE }}"
         }
       
   mode: single
@@ -1452,7 +1452,7 @@
         {
           "cmd": "adjust_intensity",
           "res_topic": {{MQTT_LAMP_02_CMD_RES}},
-          "intensity": "{{ CHANNEL_450NM_STATE }}:{{ CHANNEL_660NM_STATE }}:{{ CHANNEL_735NM_STATE }}:{{ CHANNEL_5700K_STATE }}"
+          "intensity": "{{ L2CHANNEL_450NM_STATE }}:{{ L2CHANNEL_660NM_STATE }}:{{ L2CHANNEL_735NM_STATE }}:{{ L2CHANNEL_5700K_STATE }}"
         }
       
   mode: single
