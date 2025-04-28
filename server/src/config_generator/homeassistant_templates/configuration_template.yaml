@@ -244,6 +244,27 @@ mqtt:
       value_template: {{DEWPOINT_13_VALUE_TEMPLATE}}
       unit_of_measurement: {{DEWPOINT_13_HA_UNIT}}
       icon: {{DEWPOINT_13_HA_ICON}}
+    
+    - name: {{TEMPERATURE_14_NAME}}
+      unique_id: {{TEMPERATURE_14_HA_ID}}
+      state_topic: {{MQTT_SENSOR_14_DT_RES}}
+      value_template: {{TEMPERATURE_14_VALUE_TEMPLATE}}
+      unit_of_measurement: {{TEMPERATURE_14_HA_UNIT}}
+      icon: {{TEMPERATURE_14_HA_ICON}}
+
+    - name: {{HUMIDITY_14_NAME}}
+      unique_id: {{HUMIDITY_14_HA_ID}}
+      state_topic: {{MQTT_SENSOR_14_DT_RES}}
+      value_template: {{HUMIDITY_14_VALUE_TEMPLATE}}
+      unit_of_measurement: {{HUMIDITY_14_HA_UNIT}}
+      icon: {{HUMIDITY_14_HA_ICON}}
+
+    - name: {{DEWPOINT_14_NAME}}
+      unique_id: {{DEWPOINT_14_HA_ID}}
+      state_topic: {{MQTT_SENSOR_14_DT_RES}}
+      value_template: {{DEWPOINT_14_VALUE_TEMPLATE}}
+      unit_of_measurement: {{DEWPOINT_14_HA_UNIT}}
+      icon: {{DEWPOINT_14_HA_ICON}}
 
     - name: {{P_10_NAME}}
       unique_id: {{P_10_HA_ID}}
