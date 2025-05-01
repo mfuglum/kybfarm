@@ -1306,8 +1306,8 @@
   - platform: state
     entity_id:
     - input_boolean.solid_state_relay1
-    from: 'off'
-    to: 'on'
+    from: 'on'
+    to: 'off'
   condition: []
   action:
   - service: mqtt.publish
@@ -1325,8 +1325,8 @@
   - platform: state
     entity_id:
     - input_boolean.solid_state_relay1
-    from: 'on'
-    to: 'off'
+    from: 'off'
+    to: 'on'
   condition: []
   action:
   - service: mqtt.publish
@@ -1535,6 +1535,31 @@
           "cmd": "adjust_ref_temp",
           "res_topic": {{MQTT_REF_TEMP_CMD_RES}},
           "value": "{{ REF_TEMP }}"
+        }
+      
+  mode: single
+
+  #PID
+- alias: {{PID_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: /{{PID_CMD_REQ_INTERVAL_SEC}}
+  condition: 
+    - condition: state
+      entity_id: input_boolean.pid_enable_toggle
+      state: "on"
+
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: false
+      topic: {{MQTT_PID_ENABLE_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "pid_enable",
         }
       
   mode: single

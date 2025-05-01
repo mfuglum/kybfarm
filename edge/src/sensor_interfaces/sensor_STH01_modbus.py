@@ -1,19 +1,6 @@
 import minimalmodbus
 import datetime
 
-# A dictionary struct to send as payload over MQTT
-data = {
-    "measurement": "Temperature and Humidity",
-    "tags": {
-        "sensor_id": "8",
-        "location": "GF, Gloeshaugen",
-        "sensor_name": "S-TH-01"},
-    "fields": {
-        "temperature": 0,
-        "dewpoint": 0,
-        "humidity": 0},
-    "time": datetime.datetime.now().isoformat(),
-}
 
 
 # The device / Instrument class for Thermokon LK+ CO2+VOC RS485 Modbus 
@@ -74,7 +61,7 @@ class STH01( minimalmodbus.Instrument ):
 
     def __init__(self,
                  portname='/dev/ttySC0',
-                 slaveaddress=42, # Standard definert i datablad
+                 slaveaddress=200, # Standard definert i datablad
                  mode=minimalmodbus.MODE_RTU,
                  close_port_after_each_call=False,
                  debug=False):
@@ -117,14 +104,25 @@ class STH01( minimalmodbus.Instrument ):
             return dewpoint
         
     # A funcion to fetch and return data from the sensor
-    def fetch_and_return_data(self):
+    def fetch_and_return_data(self,sensor_name):
         temperature = self.get_temperature()
         humidity = self.get_humidity()
         dewpoint = self.get_dewpoint()
-        data["fields"]["humidity"] = humidity
-        data["fields"]["temperature"] = temperature
-        data["fields"]["dewpoint"] = dewpoint
-        data["time"] = datetime.datetime.now().isoformat()
+
+
+        # A dictionary struct to send as payload over MQTT
+        data = {
+        "measurement": "Temperature and Humidity",
+        "tags": {
+            "sensor_id": "8",
+            "location": "GF, Gloeshaugen",
+            "sensor_name": sensor_name},
+        "fields": {
+            "temperature": temperature,
+            "dewpoint": dewpoint,
+            "humidity": humidity},
+        "time": datetime.datetime.now().isoformat(),
+}
         return data
     
     def get_slave_address(self):

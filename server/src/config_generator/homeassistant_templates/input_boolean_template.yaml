@@ -106,6 +106,10 @@
     name: "(ssr) Stop pwm loop"
     icon: "mdi:toggle-switch"
 
+  pid_enable_toggle:
+    name: "PID enable"
+    icon: "mdi:toggle-swich"
+
 
 
 
