@@ -105,6 +105,10 @@ MQTT_LAMP_02_DT_REQ = os.getenv("MQTT_LAMP_02_DT_REQ")
 #Update IP of lamp2
 grow_lamp_elixia_initialization.lamp_2.update_ip_address(LAMP_02_IP)
 
+#PID
+MQTT_PID_ENABLE_CMD_REQ = os.getenv("MQTT_PID_ENABLE_CMD_REQ")
+
+
 # Ønsket fuktighet
 MQTT_REF_HUMID_CMD_REQ = os.getenv("MQTT_REF_HUMID_CMD_REQ")
 MQTT_REF_HUMID_DT_REQ = os.getenv("MQTT_REF_HUMID_DT_REQ")
@@ -167,6 +171,9 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_FAN_VOLTAGE_CMD_RES)
     client.subscribe(MQTT_VALVE_VOLTAGE_CMD_REQ)
     client.subscribe(MQTT_VALVE_VOLTAGE_CMD_RES)
+
+    #PID
+    client.subscribe(MQTT_PID_ENABLE_CMD_REQ)
 
 # Catch-all callback function for messages
 def on_message(client, userdata, msg):
@@ -374,7 +381,7 @@ def on_message_C02_VOC_2(client, userdata, msg):
 def on_message_STH01_1(client, userdata, msg):
     req_msg = json.loads(msg.payload)
     try:
-        res_payload = json.dumps(sensor_STH01_1.fetch_and_return_data())
+        res_payload = json.dumps(sensor_STH01_1.fetch_and_return_data(sensor_name="STH01-1"))
         client.publish(req_msg["res_topic"], res_payload, )
         print(res_payload + "\n")
     except Exception as e:
@@ -383,11 +390,27 @@ def on_message_STH01_1(client, userdata, msg):
 def on_message_STH01_2(client, userdata, msg):
     req_msg = json.loads(msg.payload)
     try:
-        res_payload = json.dumps(sensor_STH01_2.fetch_and_return_data())
+        res_payload = json.dumps(sensor_STH01_2.fetch_and_return_data(sensor_name="STH01-2"))
         client.publish(req_msg["res_topic"], res_payload, )
         print(res_payload + "\n")
     except Exception as e:
         print("S_TH_01, data fetch error:", str(e))
+
+
+#PDI
+def on_message_PID_CMD_REQ(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        print(cmd_msg)
+        if cmd_msg["cmd"] == "pid_enable":
+            # Send command to enable PID
+            print("Enabling PID")
+            
+
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("PID enableerror:", str(e))
 
 
 
@@ -452,6 +475,9 @@ client.message_callback_add(MQTT_LAMP_01_DT_REQ, grow_lamp_elixia_initialization
 # Grow lamp2 Elixia
 client.message_callback_add(MQTT_LAMP_02_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_CMD_REQ)
 client.message_callback_add(MQTT_LAMP_02_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_DT)
+
+# PID
+client.message_callback_add(MQTT_PID_CMD_REQ, on_message_PID_CMD_REQ)
 
 # PWM ouput
 
@@ -553,16 +579,8 @@ except Exception as e:
     print("CO2_VOC1, error:", str(e))
 
 try:
-    sensor_C02_VOC1 = sensor_C02_VOC_modbus1.CO2_VOC1(   portname='/dev/ttySC0',
-                                                slaveaddress=23, 
-                                                debug=False)
-    print(sensor_C02_VOC1)
-except Exception as e:
-    print("C02_VOC1, error:", str(e))
-
-try:
     sensor_STH01_1 = sensor_STH01_modbus.STH01(   portname='/dev/ttySC0',
-                                                slaveaddress=42, 
+                                                slaveaddress=70, 
                                                 debug=False)
     print(sensor_STH01_1)
 except Exception as e:
@@ -570,7 +588,7 @@ except Exception as e:
 
 try:
     sensor_STH01_2 = sensor_STH01_modbus.STH01(   portname='/dev/ttySC0',
-                                                slaveaddress=43, 
+                                                slaveaddress=69, 
                                                 debug=False)
     print(sensor_STH01_2)
 except Exception as e:
