@@ -158,6 +158,14 @@
     max: 20
     step: 0.1
     mode: "box"
+
+  ssr_turn_on_for:
+    name: "SSR on time"
+    initial: 0
+    min: 0
+    max: 60
+    step: 1
+    mode: "box"
   
   new_intake_fan_voltage:
     name: "Fan manual voltage"

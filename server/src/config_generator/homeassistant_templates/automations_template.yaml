@@ -1386,6 +1386,28 @@
       
   mode: single
 
+- alias: {{SOLID_STATE_RELAY_01_CMD_REQ_TURN_ON_FOR_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.ssr_turn_on_for
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "on_for",
+          "time": "{{ SSR_TIME }}"
+        }
+      
+  mode: single
+
 
 
 # Fan voltage
@@ -1492,7 +1514,7 @@
   mode: single
 
   # Ønsket fuktighet
-- alias: {{REF_HUMID_CMD_REQ_AUTOMATION_ALIAS}}
+- alias: {{MQTT_REF_HUMID_CMD_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1516,7 +1538,7 @@
   mode: single
 
     # Ønsket temp
-- alias: {{REF_TEMP_CMD_REQ_AUTOMATION_ALIAS}}
+- alias: {{MQTT_REF_TEMP_CMD_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1557,9 +1579,6 @@
       qos: 0
       retain: false
       topic: {{MQTT_PID_ENABLE_CMD_REQ}}
-      payload: >
-        {
-          "cmd": "pid_enable",
-        }
+      payload: '{"cmd": "pid_enable"}'
       
   mode: single
