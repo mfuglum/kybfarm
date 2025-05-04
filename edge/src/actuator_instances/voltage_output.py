@@ -16,11 +16,11 @@ master = modbus_rtu.RtuMaster(serial.Serial(port=PORT,baudrate=9600, bytesize=8,
 master.set_timeout(5.0)
 master.set_verbose(True)
 
-sensor1 = sensor_STH01_modbus.STH01_1(   portname='/dev/ttySC0',
+sensor1 = sensor_STH01_modbus.STH01(   portname='/dev/ttySC0',
                                                 slaveaddress=70, 
                                                 debug=False)
 
-sensor2 = sensor_STH01_modbus.STH01_2(   portname='/dev/ttySC0',
+sensor2 = sensor_STH01_modbus.STH01(   portname='/dev/ttySC0',
                                                 slaveaddress=69, 
                                                 debug=False)
 
