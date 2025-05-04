@@ -110,6 +110,10 @@
     name: "PID enable"
     icon: "mdi:toggle-swich"
 
+  heating_pid_enable_toggle:
+    name: "Heating PID enable"
+    icon: "mdi:toggle-switch"
+
 
 
 
