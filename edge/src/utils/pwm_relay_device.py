@@ -15,9 +15,8 @@ class pwm_relay_device:
         GPIO.setmode(GPIO.BCM)
         # Set the pin as output
         GPIO.setup(pin, GPIO.OUT)
-        # Set the pin to high as relay is OFF in high state
-        GPIO.output(pin, GPIO.HIGH)
-        self.turn_off()
+        # Set the pin to low as ssr relay is OFF in high state
+        GPIO.output(pin, GPIO.LOW)
 
         self.period = 5.0
         self.duty_cycle = 0.0
@@ -79,11 +78,11 @@ class pwm_relay_device:
 
         # Turn the relay ON
     def turn_on(self):
-        GPIO.output(self.pin, GPIO.LOW)
+        GPIO.output(self.pin, GPIO.HIGH)
         
     # Turn the relay OFF
     def turn_off(self):
-        GPIO.output(self.pin, GPIO.HIGH)
+        GPIO.output(self.pin, GPIO.LOW)
 
     # Turn the relay ON for a specified amount of time (seconds)
     def turn_on_for(self, time):

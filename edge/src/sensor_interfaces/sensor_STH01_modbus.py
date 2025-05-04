@@ -87,7 +87,7 @@ class STH01( minimalmodbus.Instrument ):
     def get_humidity(self):
 
         humidity = self.read_register(registeraddress=1,
-                                              number_of_decimals=0,
+                                              number_of_decimals=2,
                                               functioncode=3,
                                               signed=False)
  
@@ -133,7 +133,7 @@ class STH01( minimalmodbus.Instrument ):
         # Write slave address to register 512
         self.write_register(registeraddress=512,
                             value=slaveaddress,
-                            functioncode=6,
+                            functioncode=16,
                             signed=False)
         
     def get_baudrate(self):

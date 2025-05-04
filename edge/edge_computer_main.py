@@ -111,11 +111,11 @@ MQTT_PID_ENABLE_CMD_REQ = os.getenv("MQTT_PID_ENABLE_CMD_REQ")
 
 # Ønsket fuktighet
 MQTT_REF_HUMID_CMD_REQ = os.getenv("MQTT_REF_HUMID_CMD_REQ")
-MQTT_REF_HUMID_DT_REQ = os.getenv("MQTT_REF_HUMID_DT_REQ")
+MQTT_REF_HUMID_CMD_RES = os.getenv("MQTT_REF_HUMID_CMD_RES")
 
 # Ønsket temperatur
 MQTT_REF_TEMP_CMD_REQ = os.getenv("MQTT_REF_TEMP_CMD_REQ")
-MQTT_REF_TEMP_DT_REQ = os.getenv("MQTT_REF_TEMP_DT_REQ")
+MQTT_REF_TEMP_CMD_RES = os.getenv("MQTT_REF_TEMP_CMD_RES")
 
 # Configure MQTT
 def on_connect(client, userdata, flags, rc):
@@ -162,9 +162,9 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_LAMP_02_CMD_REQ)
     client.subscribe(MQTT_LAMP_02_DT_REQ)
     client.subscribe(MQTT_REF_HUMID_CMD_REQ)
-    client.subscribe(MQTT_REF_HUMID_DT_REQ)
+    client.subscribe(MQTT_REF_HUMID_CMD_RES)
     client.subscribe(MQTT_REF_TEMP_CMD_REQ)
-    client.subscribe(MQTT_REF_TEMP_DT_REQ)
+    client.subscribe(MQTT_REF_TEMP_CMD_RES)
 
     # 0 - 10V control
     client.subscribe(MQTT_FAN_VOLTAGE_CMD_REQ)
@@ -385,7 +385,7 @@ def on_message_STH01_1(client, userdata, msg):
         client.publish(req_msg["res_topic"], res_payload, )
         print(res_payload + "\n")
     except Exception as e:
-        print("S_TH_01, data fetch error:", str(e))
+        print("STH01_1, data fetch error:", str(e))
 
 def on_message_STH01_2(client, userdata, msg):
     req_msg = json.loads(msg.payload)
@@ -394,7 +394,7 @@ def on_message_STH01_2(client, userdata, msg):
         client.publish(req_msg["res_topic"], res_payload, )
         print(res_payload + "\n")
     except Exception as e:
-        print("S_TH_01, data fetch error:", str(e))
+        print("STH01_2, data fetch error:", str(e))
 
 
 #PDI
@@ -405,12 +405,14 @@ def on_message_PID_CMD_REQ(client, userdata, msg):
         if cmd_msg["cmd"] == "pid_enable":
             # Send command to enable PID
             print("Enabling PID")
+            voltage_output.run_pid()
+            print("Running PID")
             
 
         else:
             print("Invalid command")
     except Exception as e:
-        print("PID enableerror:", str(e))
+        print("PID enable error:", str(e))
 
 
 
@@ -477,7 +479,8 @@ client.message_callback_add(MQTT_LAMP_02_CMD_REQ, grow_lamp_elixia_initializatio
 client.message_callback_add(MQTT_LAMP_02_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_DT)
 
 # PID
-client.message_callback_add(MQTT_PID_CMD_REQ, on_message_PID_CMD_REQ)
+client.message_callback_add(MQTT_PID_ENABLE_CMD_REQ, on_message_PID_CMD_REQ)
+client.message_callback_add(MQTT_REF_HUMID_CMD_REQ, voltage_output.on_message_REFHUMID_CMD_REQ)
 
 # PWM ouput
 
@@ -583,6 +586,7 @@ try:
                                                 slaveaddress=70, 
                                                 debug=False)
     print(sensor_STH01_1)
+    print("Slave address:", sensor_STH01_1.get_slave_address() )
 except Exception as e:
     print("STH01-1, error:", str(e))
 
@@ -591,6 +595,7 @@ try:
                                                 slaveaddress=69, 
                                                 debug=False)
     print(sensor_STH01_2)
+    print("Slave address:", sensor_STH01_2.get_slave_address() )
 except Exception as e:
     print("STH01-2, error:", str(e))
 
