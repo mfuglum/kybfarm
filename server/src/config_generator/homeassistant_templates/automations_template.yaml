@@ -4,7 +4,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_01_DT_REQ_INTERVAL_SEC}}
+    seconds: 0
+  - platform:
+    seconds: 30
   condition: []
   action:
   - service: mqtt.publish
@@ -21,7 +23,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_02_DT_REQ_INTERVAL_SEC}}
+    seconds: 1
+  - platform:
+    seconds: 31
   condition: []
   action:
   - service: mqtt.publish
@@ -38,7 +42,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_03_DT_REQ_INTERVAL_SEC}}
+    seconds: 2
+  - platform:
+    seconds: 32
   condition: []
   action:
   - service: mqtt.publish
@@ -159,7 +165,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_04_DT_REQ_INTERVAL_SEC}}
+    seconds: 3
+  - platform:
+    seconds: 33
   condition: []
   action:
   - service: mqtt.publish
@@ -280,7 +288,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_05_DT_REQ_INTERVAL_SEC}}
+    seconds: 4
+  - platform:
+    seconds: 34
   condition: []
   action:
   - service: mqtt.publish
@@ -444,7 +454,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_06_DT_REQ_INTERVAL_SEC}}
+    seconds: 5
+  - platform:
+    seconds: 35
   condition: []
   action:
   - service: mqtt.publish
@@ -608,7 +620,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_11_DT_REQ_INTERVAL_SEC}}
+    seconds: 6
+  - platform:
+    seconds: 36
   condition: []
   action:
   - service: mqtt.publish
@@ -642,7 +656,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_13_DT_REQ_INTERVAL_SEC}}
+    seconds: 7
+  - platform:
+    seconds: 37
   condition: []
   action:
   - service: mqtt.publish
@@ -659,7 +675,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_14_DT_REQ_INTERVAL_SEC}}
+    seconds: 8
+  - platform:
+    seconds: 38
   condition: []
   action:
   - service: mqtt.publish
@@ -676,7 +694,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_10_DT_REQ_INTERVAL_SEC}}
+    seconds: 9
+  - platform:
+    seconds: 39
   condition: []
   action:
   - service: mqtt.publish
@@ -1566,7 +1586,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{PID_CMD_REQ_INTERVAL_SEC}}
+    seconds: 10
+  - platform:
+    seconds: 40
   condition: 
     - condition: state
       entity_id: input_boolean.pid_enable_toggle
@@ -1579,6 +1601,30 @@
       qos: 0
       retain: false
       topic: {{MQTT_PID_ENABLE_CMD_REQ}}
+      payload: '{"cmd": "pid_enable"}'
+      
+  mode: single
+
+
+- alias: {{HEATING_PID_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: 11
+  - platform:
+    seconds: 41
+  condition: 
+    - condition: state
+      entity_id: input_boolean.heating_pid_enable_toggle
+      state: "on"
+
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: false
+      topic: {{MQTT_HEATING_PID_ENABLE_CMD_REQ}}
       payload: '{"cmd": "pid_enable"}'
       
   mode: single

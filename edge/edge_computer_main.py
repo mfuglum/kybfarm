@@ -30,11 +30,11 @@ from src.sensor_interfaces import (
                                    )
 from src.actuator_instances import (relay_devices_initialization,
                                     grow_lamp_elixia_initialization,
-                                    voltage_output
+                                    voltage_output,
                                     #analog_output,  - Not connected
-                                    #solid_state_relay  - Not connected
+                                    solid_state_relay  #- Not connected
                                     ) 
-
+from src.actuator_instances.solid_state_relay import latest_heating_data
 # Load environment variables from the .env file
 load_dotenv()
 
@@ -174,6 +174,8 @@ def on_connect(client, userdata, flags, rc):
 
     #PID
     client.subscribe(MQTT_PID_ENABLE_CMD_REQ)
+
+
 
 # Catch-all callback function for messages
 def on_message(client, userdata, msg):
@@ -363,8 +365,13 @@ def on_message_SYM01(client, userdata, msg):
 def on_message_CO2_VOC_1(client, userdata, msg):
     req_msg = json.loads(msg.payload)
     try:
-        res_payload = json.dumps(sensor_CO2_VOC_1.fetch_and_return_data())
+        data = sensor_CO2_VOC_1.fetch_and_return_data()
+        res_payload = json.dumps(data)
         client.publish(req_msg["res_topic"], res_payload, )
+
+        latest_heating_data["CO2_VOC_1"] = data["fields"]["temperature"]
+
+
         print(res_payload + "\n")
     except Exception as e:
         print("CO2_VOC_1, data fetch error:", str(e))
@@ -381,8 +388,12 @@ def on_message_C02_VOC_2(client, userdata, msg):
 def on_message_STH01_1(client, userdata, msg):
     req_msg = json.loads(msg.payload)
     try:
-        res_payload = json.dumps(sensor_STH01_1.fetch_and_return_data(sensor_name="STH01-1"))
+        data = sensor_STH01_1.fetch_and_return_data(sensor_name="STH01-1")
+        res_payload = json.dumps(data)
         client.publish(req_msg["res_topic"], res_payload, )
+
+        latest_heating_data["STH01_1"] = data["fields"]["temperature"]
+
         print(res_payload + "\n")
     except Exception as e:
         print("STH01_1, data fetch error:", str(e))
@@ -390,8 +401,12 @@ def on_message_STH01_1(client, userdata, msg):
 def on_message_STH01_2(client, userdata, msg):
     req_msg = json.loads(msg.payload)
     try:
-        res_payload = json.dumps(sensor_STH01_2.fetch_and_return_data(sensor_name="STH01-2"))
+        data = sensor_STH01_2.fetch_and_return_data(sensor_name="STH01-2")
+        res_payload = json.dumps(data)
         client.publish(req_msg["res_topic"], res_payload, )
+
+        latest_heating_data["STH01_2"] = data["fields"]["temperature"]
+
         print(res_payload + "\n")
     except Exception as e:
         print("STH01_2, data fetch error:", str(e))
@@ -404,9 +419,9 @@ def on_message_PID_CMD_REQ(client, userdata, msg):
         print(cmd_msg)
         if cmd_msg["cmd"] == "pid_enable":
             # Send command to enable PID
-            print("Enabling PID")
+            print("Enabling Cooling PID")
             voltage_output.run_pid()
-            print("Running PID")
+            print("Running Cooling PID")
             
 
         else:
@@ -416,6 +431,22 @@ def on_message_PID_CMD_REQ(client, userdata, msg):
 
 
 
+
+def on_message_HEATING_PID_CMD_REQ(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        print(cmd_msg)
+        if cmd_msg["cmd"] == "pid_enable":
+            # Send command to enable PID
+            print("Enabling Heating PID")
+            solid_state_relay.run_heating_pid()
+            print("Running Heating PID")
+            
+
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("PID enable error:", str(e))
 # Setup MQTT client for sensor host
 client = mqtt.Client()
 
