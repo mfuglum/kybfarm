@@ -5,7 +5,7 @@
   trigger:
   - platform: time_pattern
     seconds: 0
-  - platform:
+  - platform: time_pattern
     seconds: 30
   condition: []
   action:
@@ -24,7 +24,7 @@
   trigger:
   - platform: time_pattern
     seconds: 1
-  - platform:
+  - platform: time_pattern
     seconds: 31
   condition: []
   action:
@@ -43,7 +43,7 @@
   trigger:
   - platform: time_pattern
     seconds: 2
-  - platform:
+  - platform: time_pattern
     seconds: 32
   condition: []
   action:
@@ -166,7 +166,7 @@
   trigger:
   - platform: time_pattern
     seconds: 3
-  - platform:
+  - platform: time_pattern
     seconds: 33
   condition: []
   action:
@@ -289,7 +289,7 @@
   trigger:
   - platform: time_pattern
     seconds: 4
-  - platform:
+  - platform: time_pattern
     seconds: 34
   condition: []
   action:
@@ -455,7 +455,7 @@
   trigger:
   - platform: time_pattern
     seconds: 5
-  - platform:
+  - platform: time_pattern
     seconds: 35
   condition: []
   action:
@@ -620,8 +620,8 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: 6
-  - platform:
+    seconds: 6 
+  - platform: time_pattern
     seconds: 36
   condition: []
   action:
@@ -657,7 +657,7 @@
   trigger:
   - platform: time_pattern
     seconds: 7
-  - platform:
+  - platform: time_pattern
     seconds: 37
   condition: []
   action:
@@ -676,7 +676,7 @@
   trigger:
   - platform: time_pattern
     seconds: 8
-  - platform:
+  - platform: time_pattern
     seconds: 38
   condition: []
   action:
@@ -695,7 +695,7 @@
   trigger:
   - platform: time_pattern
     seconds: 9
-  - platform:
+  - platform: time_pattern
     seconds: 39
   condition: []
   action:
@@ -1587,7 +1587,7 @@
   trigger:
   - platform: time_pattern
     seconds: 10
-  - platform:
+  - platform: time_pattern
     seconds: 40
   condition: 
     - condition: state
@@ -1611,7 +1611,7 @@
   trigger:
   - platform: time_pattern
     seconds: 11
-  - platform:
+  - platform: time_pattern
     seconds: 41
   condition: 
     - condition: state
