@@ -725,7 +725,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_01_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -744,7 +744,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_01_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -763,7 +763,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_02_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -782,7 +782,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_02_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -801,7 +801,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_03_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -820,7 +820,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_03_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -839,7 +839,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_04_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -858,7 +858,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_04_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -877,7 +877,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_05_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -896,7 +896,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_05_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -915,7 +915,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_06_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -934,7 +934,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_06_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -953,7 +953,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_07_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -972,7 +972,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_07_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -991,7 +991,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_08_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1010,7 +1010,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_08_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1029,7 +1029,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_09_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1048,7 +1048,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_09_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1067,7 +1067,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_10_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1086,7 +1086,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_10_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1105,7 +1105,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_11_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1124,7 +1124,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_11_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1143,7 +1143,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_12_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1162,7 +1162,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_12_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1182,7 +1182,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_13_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1201,7 +1201,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_13_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1220,7 +1220,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_14_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1239,7 +1239,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_14_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1258,7 +1258,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_15_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1277,7 +1277,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_15_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1296,7 +1296,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_16_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1315,31 +1315,12 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_16_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
 - alias: {{SOLID_STATE_RELAY_01_CMD_REQ_ON_AUTOMATION_ALIAS}}
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - input_boolean.solid_state_relay1
-    from: 'on'
-    to: 'off'
-  condition: []
-  action:
-  - service: mqtt.publish
-    metadata: {}
-    data:
-      qos: 0
-      retain: false
-      topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
-      payload: '{"cmd": "on"}'
-  mode: single
-
-- alias: {{SOLID_STATE_RELAY_01_CMD_REQ_OFF_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: state
@@ -1353,7 +1334,26 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
+      topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
+      payload: '{"cmd": "on"}'
+  mode: single
+
+- alias: {{SOLID_STATE_RELAY_01_CMD_REQ_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.solid_state_relay1
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: true
       topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1371,7 +1371,7 @@
     metadata: {}
     data_template:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
       payload: >
         {
@@ -1443,7 +1443,7 @@
     metadata: {}
     data_template:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_FAN_VOLTAGE_CMD_REQ}}
       payload: >
         {
@@ -1467,7 +1467,7 @@
     metadata: {}
     data_template:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_VALVE_VOLTAGE_CMD_REQ}}
       payload: >
         {
@@ -1549,7 +1549,7 @@
     metadata: {}
     data_template:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_REF_HUMID_CMD_REQ}}
       payload: >
         {
@@ -1576,7 +1576,7 @@
     metadata: {}
     data_template:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_REF_TEMP_CMD_REQ}}
       payload: >
         {
@@ -1605,7 +1605,7 @@
     metadata: {}
     data_template:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_PID_ENABLE_CMD_REQ}}
       payload: '{"cmd": "pid_enable"}'
       
@@ -1629,7 +1629,7 @@
     metadata: {}
     data_template:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_HEATING_PID_ENABLE_CMD_REQ}}
       payload: '{"cmd": "pid_enable"}'
       
