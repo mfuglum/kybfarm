@@ -1,7 +1,7 @@
 # Henter sensor data
 
 
-from edge.src.actuator_instances.relay_devices_initialization import solid_state_relay_1
+from src.actuator_instances.relay_devices_initialization import solid_state_relay_1
 
 from src.utils.pid_controller import PIDController # Kode for PID kontroller
 from src.utils.latest_pid_data import latest_heating_data
