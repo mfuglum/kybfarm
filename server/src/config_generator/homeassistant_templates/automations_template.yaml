@@ -1540,7 +1540,10 @@
   - platform: state
     entity_id:
       - input_number.humid_ref
-  condition: []
+  condition: 
+    - condition: state
+      entity_id: input_boolean.pid_enable_toggle
+      state: "on"
   action:
   - service: mqtt.publish
     metadata: {}
@@ -1564,7 +1567,10 @@
   - platform: state
     entity_id:
       - input_number.temp_ref
-  condition: []
+  condition: 
+    - condition: state
+      entity_id: input_boolean.heating_pid_enable_toggle
+      state: "on"
   action:
   - service: mqtt.publish
     metadata: {}

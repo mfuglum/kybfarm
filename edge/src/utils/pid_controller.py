@@ -5,10 +5,11 @@ import time
 # ---------------------------------------
 
 class PIDController():
-    def __init__(self, Kp: float, Ki: float, Kd: float, max_integral: float = 10, min_integral: float = -10):
+    def __init__(self, Kp: float, Ki: float, Kd: float, mode: str = "cooling", max_integral: float = 10, min_integral: float = -10):
         self.Kp = Kp
         self.Ki = Ki
         self.Kd = Kd
+        self.mode = mode
         self.max_integral = max_integral
         self.min_integral = min_integral
 
@@ -19,6 +20,12 @@ class PIDController():
     def calculate_control_signal(self, setpoint: float, input_value: float) -> float:
         # Merk: positivt signal når input_value > setpoint (for avfukting)
         error = input_value - setpoint
+        if self.mode == "cooling":
+            error = input_value - setpoint
+        elif self.mode == "heating":
+            error = setpoint - input_value
+        else:
+            raise ValueError("Invalid mode. Use 'cooling' or 'heating'.")
         current_time = time.time()
 
         if self.previous_time is None:
