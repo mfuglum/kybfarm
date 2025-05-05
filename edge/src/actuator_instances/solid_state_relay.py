@@ -4,23 +4,17 @@
 from edge.src.actuator_instances.relay_devices_initialization import solid_state_relay_1
 
 from src.utils.pid_controller import PIDController # Kode for PID kontroller
+from src.utils.latest_pid_data import latest_heating_data
 
 import json
 import time
 
-heating_pid = PIDController(Kp=6.0, Ki=0.1, Kd=0.05)
+heating_pid = PIDController(Kp=6.0, Ki=0.1, Kd=0.05, mode ="heating")
 MAX_HEATING_PID_OUTPUT = 100.0  # 0–100% styring
 
-latest_heating_data = {
-    "REF_TEMP": None,
-    "STH01_1": None,
-    "STH01_2": None,
-    "CO2_VOC_1": None,
-}
 
 
 def on_message_REFTEMP_CMD_REQ(client, userdata, msg):
-    global ref_temperature
     cmd_msg = json.loads(msg.payload)
     try:
         print("Desired temperature", cmd_msg, "\n")
@@ -36,8 +30,6 @@ def on_message_REFTEMP_CMD_REQ(client, userdata, msg):
         print("Desired temperature, command error:", str(e))
 
 def run_heating_pid():
-    #global ref_temperature
-    print("ref_temperature:", ref_temperature)
     try:
 
    

@@ -34,7 +34,7 @@ from src.actuator_instances import (relay_devices_initialization,
                                     #analog_output,  - Not connected
                                     solid_state_relay  #- Not connected
                                     ) 
-from src.actuator_instances.solid_state_relay import latest_heating_data
+from src.utils.latest_pid_data import latest_heating_data, latest_humidity_data
 # Load environment variables from the .env file
 load_dotenv()
 
@@ -107,6 +107,7 @@ grow_lamp_elixia_initialization.lamp_2.update_ip_address(LAMP_02_IP)
 
 #PID
 MQTT_PID_ENABLE_CMD_REQ = os.getenv("MQTT_PID_ENABLE_CMD_REQ")
+MQTT_HEATING_PID_ENABLE_CMD_REQ = os.getenv("MQTT_HEATING_PID_ENABLE_CMD_REQ")
 
 
 # Ønsket fuktighet
@@ -174,6 +175,7 @@ def on_connect(client, userdata, flags, rc):
 
     #PID
     client.subscribe(MQTT_PID_ENABLE_CMD_REQ)
+    client.subscribe(MQTT_HEATING_PID_ENABLE_CMD_REQ)
 
 
 
@@ -393,6 +395,7 @@ def on_message_STH01_1(client, userdata, msg):
         client.publish(req_msg["res_topic"], res_payload, )
 
         latest_heating_data["STH01_1"] = data["fields"]["temperature"]
+        latest_humidity_data["STH01_1"] = data["fields"]["humidity"]
 
         print(res_payload + "\n")
     except Exception as e:
@@ -406,6 +409,7 @@ def on_message_STH01_2(client, userdata, msg):
         client.publish(req_msg["res_topic"], res_payload, )
 
         latest_heating_data["STH01_2"] = data["fields"]["temperature"]
+        latest_humidity_data["STH01_2"] = data["fields"]["humidity"]
 
         print(res_payload + "\n")
     except Exception as e:
@@ -420,6 +424,7 @@ def on_message_PID_CMD_REQ(client, userdata, msg):
         if cmd_msg["cmd"] == "pid_enable":
             # Send command to enable PID
             print("Enabling Cooling PID")
+            print("Latest humidity data:", latest_humidity_data)
             voltage_output.run_pid()
             print("Running Cooling PID")
             
@@ -513,6 +518,9 @@ client.message_callback_add(MQTT_LAMP_02_DT_REQ, grow_lamp_elixia_initialization
 client.message_callback_add(MQTT_PID_ENABLE_CMD_REQ, on_message_PID_CMD_REQ)
 client.message_callback_add(MQTT_REF_HUMID_CMD_REQ, voltage_output.on_message_REFHUMID_CMD_REQ)
 
+#Heating PID
+client.message_callback_add(MQTT_HEATING_PID_ENABLE_CMD_REQ, on_message_HEATING_PID_CMD_REQ)
+client.message_callback_add(MQTT_REF_TEMP_CMD_REQ, solid_state_relay.on_message_REFTEMP_CMD_REQ)
 # PWM ouput
 
 
