@@ -4,9 +4,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: 0
+    seconds: 1
   - platform: time_pattern
-    seconds: 30
+    seconds: 31
   condition: []
   action:
   - service: mqtt.publish
@@ -23,9 +23,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: 1
+    seconds: 2
   - platform: time_pattern
-    seconds: 31
+    seconds: 32
   condition: []
   action:
   - service: mqtt.publish
@@ -42,9 +42,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: 2
+    seconds: 3
   - platform: time_pattern
-    seconds: 32
+    seconds: 33
   condition: []
   action:
   - service: mqtt.publish
@@ -165,9 +165,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: 3
+    seconds: 4
   - platform: time_pattern
-    seconds: 33
+    seconds: 34
   condition: []
   action:
   - service: mqtt.publish
@@ -288,9 +288,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: 4
+    seconds: 6
   - platform: time_pattern
-    seconds: 34
+    seconds: 36
   condition: []
   action:
   - service: mqtt.publish
@@ -454,9 +454,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: 5
+    seconds: 7
   - platform: time_pattern
-    seconds: 35
+    seconds: 37
   condition: []
   action:
   - service: mqtt.publish
@@ -620,9 +620,7 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: 6 
-  - platform: time_pattern
-    seconds: 36
+    seconds: /10
   condition: []
   action:
   - service: mqtt.publish
@@ -656,9 +654,29 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: 7
+    seconds: 5
   - platform: time_pattern
-    seconds: 37
+    seconds: 11
+  - platform: time_pattern
+    seconds: 15
+  - platform: time_pattern
+    seconds: 21
+  - platform: time_pattern
+    seconds: 25
+  - platform: time_pattern
+    seconds: 29
+  - platform: time_pattern
+    seconds: 35
+  - platform: time_pattern
+    seconds: 41
+  - platform: time_pattern
+    seconds: 45
+  - platform: time_pattern
+    seconds: 51
+  - platform: time_pattern
+    seconds: 55
+  - platform: time_pattern
+    seconds: 59
   condition: []
   action:
   - service: mqtt.publish
@@ -1589,12 +1607,17 @@
 
   #PID
 - alias: {{PID_CMD_REQ_AUTOMATION_ALIAS}}
-  description: ''
+  id: "cooling_pid_automation"
+  description: 'Runs the cooling pid every 10 seconds if the toggle is ON'
   trigger:
   - platform: time_pattern
-    seconds: 10
-  - platform: time_pattern
-    seconds: 40
+    seconds: /5
+  #- platform: time_pattern
+    #seconds: 25
+  #- platform: time_pattern
+    #seconds: 40
+  #- platform: time_pattern
+    #seconds: 55
   condition: 
     - condition: state
       entity_id: input_boolean.pid_enable_toggle
@@ -1610,15 +1633,15 @@
       payload: '{"cmd": "pid_enable"}'
       
   mode: single
+ 
 
 
 - alias: {{HEATING_PID_CMD_REQ_AUTOMATION_ALIAS}}
-  description: ''
+  id: "heating_pid_automation"
+  description: 'Runs the heating pid every 10 seconds if toggle is ON'
   trigger:
   - platform: time_pattern
-    seconds: 11
-  - platform: time_pattern
-    seconds: 41
+    seconds: /10
   condition: 
     - condition: state
       entity_id: input_boolean.heating_pid_enable_toggle
@@ -1634,3 +1657,4 @@
       payload: '{"cmd": "pid_enable"}'
       
   mode: single
+  

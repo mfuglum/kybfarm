@@ -279,14 +279,14 @@ def on_message_SSR01(client, userdata, msg):
         elif cmd_msg["cmd"] == "on_for":
             solid_state_relay_1.turn_on_for(float(cmd_msg["time"]))
         
-        elif cmd_msg["cmd"] == "adjust_ssr_pwm":
-            period = float(cmd_msg["value_base_period"])
-            duty_cycle = float(cmd_msg["value_duty_cycle"])
-            solid_state_relay_1.set_pwm(period, duty_cycle)
-        elif cmd_msg["cmd"] == "ssr_stop_pwm_loop":
-            solid_state_relay_1.stop_pwm()
-
-            #Kanskje legge til start loop?
+        #Threading lock test
+        #elif cmd_msg["cmd"] == "adjust_ssr_pwm":
+        #    period = float(cmd_msg["value_base_period"])
+        #    duty_cycle = float(cmd_msg["value_duty_cycle"])
+        #    solid_state_relay_1.set_pwm(period, duty_cycle)
+        #elif cmd_msg["cmd"] == "ssr_stop_pwm_loop":
+        #    solid_state_relay_1.stop_pwm()
+       
         else:
             print("Invalid command")
     except Exception as e:

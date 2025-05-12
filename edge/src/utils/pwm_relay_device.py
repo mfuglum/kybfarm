@@ -18,6 +18,8 @@ class pwm_relay_device:
         # Set the pin to low as ssr relay is OFF in high state
         GPIO.output(pin, GPIO.LOW)
 
+        #Test with proper threading lock
+        """""
         self.period = 5.0
         self.duty_cycle = 0.0
         self._running = False
@@ -74,7 +76,7 @@ class pwm_relay_device:
                     time.sleep(off_time)
     
             
-
+    """
 
         # Turn the relay ON
     def turn_on(self):

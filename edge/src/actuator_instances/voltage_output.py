@@ -17,9 +17,18 @@ master = modbus_rtu.RtuMaster(serial.Serial(port=PORT,baudrate=9600, bytesize=8,
 master.set_timeout(5.0)
 master.set_verbose(True)
 
+previous_output = 0
+
+Ku = 3 # Stående svinginger med Kp på 2
+Tu = 120 # Periodetid på 55s
+Kp = 0.6 * Ku
+Ki = 2 * 1 / Tu 
+Kd = 0.125 * Tu 
+
 # PID for kjølebatteri
-cooling_pid = PIDController(Kp=1.3, Ki=0.03, Kd=0.05, mode = "cooling")
-MAX_COOLING_PID_OUTPUT = 50.0
+cooling_pid = PIDController(Kp=0.5, Ki=0.01, Kd=0.1, mode = "cooling") 
+
+MAX_COOLING_PID_OUTPUT = 10.0
 ref_humidity = 0  # Eller None, eller hva du vil som standard
 
 
@@ -89,48 +98,28 @@ def run_pid():
         # Henter sensor data fra sensoren før viften
         ref_humidity = latest_humidity_data["REF_HUMID"]
         humidity1 = latest_humidity_data["STH01_1"]
-        humidity2 = latest_humidity_data["STH01_2"]
+        #humidity2 = latest_humidity_data["STH01_2"]
         # Sjekker om det i det hele tatt er behov for å kjøre viften
-        if humidity1 > ref_humidity and humidity2 > ref_humidity:
+        
 
-            # PID-beregninger
-            cooling_signal = cooling_pid.calculate_control_signal(ref_humidity, humidity1)
+        # PID-beregninger
+        cooling_signal = cooling_pid.calculate_control_signal(ref_humidity, humidity1)
 
-            # Skaler til 0–10 og så til 0–10000
-            cooling_scaled = max(0.0, min(cooling_signal / MAX_COOLING_PID_OUTPUT, 1.0))
-            cooling_root = cooling_scaled ** 0.5  #Logarithmic waterflow
-            cooling_output = int(cooling_root * 10000)  # 0–10V signal
+        # Skaler til 0–10 og så til 0–10000
+        cooling_scaled = max(0.0, min(cooling_signal / MAX_COOLING_PID_OUTPUT, 1.0))
 
-            # === Disse to sendes ut som 0–10V analoge signaler ===
-            output[0] = cooling_output  # Kjøling
-            print("PID dehumid", output[0])
-        else:
-            # Ikke behov for viftekjøring – vi skrur den helt av (0)
-            output[0] = 0
+        cooling__output_scaled = int(1800 + cooling_scaled * 8200)
 
+        # === Disse to sendes ut som 0–10V analoge signaler ===
+        output[0] = cooling__output_scaled  # Kjøling
+        print("PID dehumid", output[0])
+        print("PID dehumid KP value", cooling_pid.Kp)
+        print("PID dehumid Ki value", cooling_pid.Ki)
+        print("PID dehumid Kd value", cooling_pid.Kd)
+      
         # Skriver til Modbus
         result = master.execute(1, cst.WRITE_MULTIPLE_REGISTERS, 0x00, 0x08, output_value=output)
         print("Result of write:", result)
     except Exception as exc:
         print("Error in dehumid control loop:", str(exc))
 
-
-
-
-
-"""try:
-    master.set_timeout(5.0)
-    master.set_verbose(True)
-
-    while(True):
-        output[0] = fan_output
-        output[1] = valve_output
-
-        #Read Input Registers Funtion:04H station:01H  address:00 length:08
-        red = master.execute(1, cst.WRITE_MULTIPLE_REGISTERS, 0x00, 0x08, output_value=output)
-        print(red)
-        time.sleep(1)
-
-except Exception as exc:
-    print(str(exc))
-"""
