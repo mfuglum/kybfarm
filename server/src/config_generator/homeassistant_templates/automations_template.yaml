@@ -1478,7 +1478,7 @@
   trigger:
   - platform: state
     entity_id:
-      - input_number.fan_normal_operation_toggle
+      - input_boolean.fan_normal_operation_toggle
     from: "off"
     to: "on"
   condition: []
@@ -1504,7 +1504,7 @@
   trigger:
   - platform: state
     entity_id:
-      - input_number.fan_normal_operation_toggle
+      - input_boolean.fan_normal_operation_toggle
     from: "on"
     to: "off"
   condition: []
@@ -1677,7 +1677,7 @@
       topic: {{MQTT_REF_CO2_CMD_REQ}}
       payload: >
         {
-          "cmd": "adjust_ref_CO2",
+          "cmd": "adjust_ref_co2",
           "res_topic": {{MQTT_REF_CO2_CMD_RES}},
           "value": "{{ REF_CO2 }}"
         }
