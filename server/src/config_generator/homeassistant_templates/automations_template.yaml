@@ -1605,6 +1605,34 @@
       
   mode: single
 
+
+- alias: {{MQTT_REF_CO2_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.co2_ref
+  condition: 
+    - condition: state
+      entity_id: input_boolean.co2_pid_enable_toggle
+      state: "on"
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_REF_CO2_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust_ref_CO2",
+          "res_topic": {{MQTT_REF_CO2_CMD_RES}},
+          "value": "{{ REF_CO2 }}"
+        }
+      
+  mode: single
+
+
   #PID
 - alias: {{COOLING_PID_CMD_REQ_AUTOMATION_ALIAS}}
   id: "cooling_pid_automation"
@@ -1689,4 +1717,18 @@
       from: "off"
       to: "on"
   action:
-    - service: input_number
+    - service: input_number.set_value
+      target: 
+        entity_id: "input_number.new_intake_fan_voltage"
+      data: 
+        value: 8
+    - service: input_boolean.turn_on
+      target:
+        entity_id: 
+          - input_boolean.co2_pid_enable_toggle
+          - input_boolean.heating_pid_enable_toggle
+          - input_boolean.cooling_pid_enable_toggle
+    - service: logbook.log
+      data:
+        name: "Grow Climate"
+        message: "All PIDs and Fan Voltage set. HVAC operation started."
