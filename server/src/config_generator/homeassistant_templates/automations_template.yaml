@@ -1606,7 +1606,7 @@
   mode: single
 
   #PID
-- alias: {{PID_CMD_REQ_AUTOMATION_ALIAS}}
+- alias: {{COOLING_PID_CMD_REQ_AUTOMATION_ALIAS}}
   id: "cooling_pid_automation"
   description: 'Runs the cooling pid every 10 seconds if the toggle is ON'
   trigger:
@@ -1620,7 +1620,7 @@
     #seconds: 55
   condition: 
     - condition: state
-      entity_id: input_boolean.pid_enable_toggle
+      entity_id: input_boolean.cooling_pid_enable_toggle
       state: "on"
 
   action:
@@ -1629,7 +1629,7 @@
     data_template:
       qos: 0
       retain: true
-      topic: {{MQTT_PID_ENABLE_CMD_REQ}}
+      topic: {{MQTT_COOLING_PID_ENABLE_CMD_REQ}}
       payload: '{"cmd": "pid_enable"}'
       
   mode: single
@@ -1658,3 +1658,35 @@
       
   mode: single
   
+- alias: {{CO2_PID_CMD_REQ_AUTOMATION_ALIAS}}
+  id: "co2_pid_automation"
+  description: 'Runs the CO2 pid every 10 seconds if toggle is ON'
+  trigger:
+  - platform: time_pattern
+    seconds: 0
+  condition: 
+    - condition: state
+      entity_id: input_boolean.co2_pid_enable_toggle
+      state: "on"
+
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_CO2_PID_ENABLE_CMD_REQ}}
+      payload: '{"cmd": "pid_enable"}'
+      
+  mode: single
+
+- alias : "Enable grow climate"
+  id: "grow_climate_automation"
+  description: "Enables all HVAC systems, preps the container for optimal growth climate"
+  trigger:
+    - platform: state
+      entity_id: "input_boolean.hvac_operation"
+      from: "off"
+      to: "on"
+  action:
+    - service: input_number

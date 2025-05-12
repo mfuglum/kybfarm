@@ -10,7 +10,6 @@ import json
 import time
 
 heating_pid = PIDController(Kp=4.5, Ki=0.25, Kd=0, mode ="heating")
-MAX_HEATING_PID_OUTPUT = 1  # 0–100% styring
 
 
 
@@ -55,14 +54,11 @@ def run_heating_pid():
         heating_signal = heating_pid.calculate_control_signal(ref_temperature, temperature1)
 
 
-        heating_scaled = max(0.0, min(heating_signal / MAX_HEATING_PID_OUTPUT, 1.0))
-        #heating_output = int(heating_scaled * 100)  # 0–100 %
-
-        print(" Heating scalded:", heating_scaled)
+        print(" Heating scalded:", heating_signal)
         
-        on_time = (heating_scaled * 10) - 0.5
+        on_time = (heating_signal * 10) - 0.5
         
-        print("Heating output [%]:", heating_scaled * 100)
+        print("Heating output [%]:", heating_signal * 100)
         
         if on_time > 0:
             print("Heating on for", on_time, "seconds")
