@@ -106,9 +106,9 @@
     name: "(ssr) Stop pwm loop"
     icon: "mdi:toggle-switch"
 
-  pid_enable_toggle:
+  cooling_pid_enable_toggle:
     name: "PID enable"
-    icon: "mdi:toggle-swich"
+    icon: "mdi:toggle-switch"
 
   heating_pid_enable_toggle:
     name: "Heating PID enable"
@@ -138,3 +138,7 @@
   lamp_control_toggle:
     name: "Lamp controller"
     icon: "mdi:ceiling-light"
+
+  hvac_operation:
+    name: "Enable grow climate"
+    icon: "mdi:toggle-switch"

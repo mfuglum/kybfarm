@@ -106,7 +106,7 @@ MQTT_LAMP_02_DT_REQ = os.getenv("MQTT_LAMP_02_DT_REQ")
 grow_lamp_elixia_initialization.lamp_2.update_ip_address(LAMP_02_IP)
 
 #PID
-MQTT_PID_ENABLE_CMD_REQ = os.getenv("MQTT_PID_ENABLE_CMD_REQ")
+MQTT_COOLING_PID_ENABLE_CMD_REQ = os.getenv("MQTT_COOLING_PID_ENABLE_CMD_REQ")
 MQTT_HEATING_PID_ENABLE_CMD_REQ = os.getenv("MQTT_HEATING_PID_ENABLE_CMD_REQ")
 MQTT_CO2_PID_ENABLE_CMD_REQ = os.getenv("MQTT_CO2_PID_ENABLE_CMD_REQ")
 
@@ -182,7 +182,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_VALVE_VOLTAGE_CMD_RES)
 
     #PID
-    client.subscribe(MQTT_PID_ENABLE_CMD_REQ)
+    client.subscribe(MQTT_COOLING_PID_ENABLE_CMD_REQ)
     client.subscribe(MQTT_HEATING_PID_ENABLE_CMD_REQ)
     client.subscribe(MQTT_CO2_PID_ENABLE_CMD_REQ)
 
@@ -426,7 +426,7 @@ def on_message_STH01_2(client, userdata, msg):
 
 
 #PDI
-def on_message_PID_CMD_REQ(client, userdata, msg):
+def on_message_COOLING_PID_CMD_REQ(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
         print(cmd_msg)
@@ -461,6 +461,24 @@ def on_message_HEATING_PID_CMD_REQ(client, userdata, msg):
             print("Invalid command")
     except Exception as e:
         print("PID enable error:", str(e))
+
+
+def on_message_CO2_PID_CMD_REQ(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        print(cmd_msg)
+        if cmd_msg["cmd"] == "pid_enable":
+            # Send command to enable PID
+            print("Enabling CO2 PID")
+            CO2_control.run_CO2_pid()
+            print("Running CO2 PID")
+            
+
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("CO2 PID enable error:", str(e))
+
 # Setup MQTT client for sensor host
 client = mqtt.Client()
 
@@ -524,7 +542,7 @@ client.message_callback_add(MQTT_LAMP_02_CMD_REQ, grow_lamp_elixia_initializatio
 client.message_callback_add(MQTT_LAMP_02_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_DT)
 
 # PID
-client.message_callback_add(MQTT_PID_ENABLE_CMD_REQ, on_message_PID_CMD_REQ)
+client.message_callback_add(MQTT_COOLING_PID_ENABLE_CMD_REQ, on_message_COOLING_PID_CMD_REQ)
 client.message_callback_add(MQTT_REF_HUMID_CMD_REQ, voltage_output.on_message_REFHUMID_CMD_REQ)
 
 #Heating PID
@@ -532,18 +550,9 @@ client.message_callback_add(MQTT_HEATING_PID_ENABLE_CMD_REQ, on_message_HEATING_
 client.message_callback_add(MQTT_REF_TEMP_CMD_REQ, solid_state_relay.on_message_REFTEMP_CMD_REQ)
 
 # CO2 PID
-client.message_callback_add(MQTT_CO2_PID_ENABLE_CMD_REQ, CO2_control.on_message_CO2_PID_CMD_REQ)
+client.message_callback_add(MQTT_CO2_PID_ENABLE_CMD_REQ, on_message_CO2_PID_CMD_REQ)
 client.message_callback_add(MQTT_REF_CO2_CMD_REQ, CO2_control.on_message_REFCO2_CMD_REQ)
 
-
-# Not implemented yet
-# Ønsket fuktighet
-#client.message_callback_add(MQTT_REF_HUMID_CMD_REQ, analog_output.on_message_REFHUMID_CMD_REQ) 
-# client.message_callback_add(MQTT_REF_HUMID_DT_REQ, analog_output.on_message_REFHUMID_DT)
-
-# Ønsket Temp
-#client.message_callback_add(MQTT_REF_TEMP_CMD_REQ, solid_state_relay.on_message_REFTEMP_CMD_REQ)
-# client.message_callback_add(MQTT_REF_HUMID_DT_REQ, analog_output.on_message_REFHUMID_DT)
 
 # Connect to the MQTT server
 try:
