@@ -19,7 +19,7 @@ class PIDController():
 
     def calculate_control_signal(self, setpoint: float, input_value: float) -> float:
         # Merk: positivt signal når input_value > setpoint (for avfukting)
-        error = input_value - setpoint
+        print("Mode:", self.mode)
         if self.mode == "cooling":
             error = input_value - setpoint
         elif self.mode == "heating":
@@ -38,6 +38,11 @@ class PIDController():
             self.integral = max(min(self.integral, self.max_integral), self.min_integral)
 
         control_signal = (self.Kp * error) + (self.Ki * self.integral) + (self.Kd * derivative)
+        print("Eror:", error)
+        print("Contribution Kp:", self.Kp * error)
+        print("Contribution Ki:", self.Ki * self.integral)
+        print("Contribution Kd:", self.Kd * derivative * (-1))
+        print("Total control signal:", control_signal)
 
         self.previous_time = current_time
         self.previous_error = error

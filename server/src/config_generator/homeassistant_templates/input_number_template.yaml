@@ -143,6 +143,15 @@
     max: 50
     step: 1
     mode: "box"
+
+  co2_ref:
+    name: "Target CO2"
+    initial: 400
+    min: 300
+    max: 1000
+    step: 10
+    mode: "box"
+    
   ssr_duty_cycle:
     name: "SSR duty cycle"
     initial: 0

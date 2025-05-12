@@ -31,8 +31,8 @@ from src.sensor_interfaces import (
 from src.actuator_instances import (relay_devices_initialization,
                                     grow_lamp_elixia_initialization,
                                     voltage_output,
-                                    #analog_output,  - Not connected
-                                    solid_state_relay  #- Not connected
+                                    solid_state_relay,
+                                    CO2_control
                                     ) 
 from src.utils.latest_pid_data import latest_heating_data, latest_humidity_data
 # Load environment variables from the .env file
@@ -108,6 +108,7 @@ grow_lamp_elixia_initialization.lamp_2.update_ip_address(LAMP_02_IP)
 #PID
 MQTT_PID_ENABLE_CMD_REQ = os.getenv("MQTT_PID_ENABLE_CMD_REQ")
 MQTT_HEATING_PID_ENABLE_CMD_REQ = os.getenv("MQTT_HEATING_PID_ENABLE_CMD_REQ")
+MQTT_CO2_PID_ENABLE_CMD_REQ = os.getenv("MQTT_CO2_PID_ENABLE_CMD_REQ")
 
 
 # Ønsket fuktighet
@@ -117,6 +118,10 @@ MQTT_REF_HUMID_CMD_RES = os.getenv("MQTT_REF_HUMID_CMD_RES")
 # Ønsket temperatur
 MQTT_REF_TEMP_CMD_REQ = os.getenv("MQTT_REF_TEMP_CMD_REQ")
 MQTT_REF_TEMP_CMD_RES = os.getenv("MQTT_REF_TEMP_CMD_RES")
+
+#Ønsket CO2
+MQTT_REF_CO2_CMD_REQ = os.getenv("MQTT_REF_CO2_CMD_REQ")
+MQTT_REF_CO2_CMD_RES = os.getenv("MQTT_REF_CO2_CMD_RES")
 
 # Configure MQTT
 def on_connect(client, userdata, flags, rc):
@@ -166,6 +171,9 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_REF_HUMID_CMD_RES)
     client.subscribe(MQTT_REF_TEMP_CMD_REQ)
     client.subscribe(MQTT_REF_TEMP_CMD_RES)
+    client.subscribe(MQTT_REF_CO2_CMD_REQ)
+    client.subscribe(MQTT_REF_CO2_CMD_RES)
+
 
     # 0 - 10V control
     client.subscribe(MQTT_FAN_VOLTAGE_CMD_REQ)
@@ -176,6 +184,7 @@ def on_connect(client, userdata, flags, rc):
     #PID
     client.subscribe(MQTT_PID_ENABLE_CMD_REQ)
     client.subscribe(MQTT_HEATING_PID_ENABLE_CMD_REQ)
+    client.subscribe(MQTT_CO2_PID_ENABLE_CMD_REQ)
 
 
 
@@ -426,7 +435,7 @@ def on_message_PID_CMD_REQ(client, userdata, msg):
             print("Enabling Cooling PID")
             print("Latest humidity data:", latest_humidity_data)
             voltage_output.run_pid()
-            print("Running Cooling PID")
+            #print("Running Cooling PID")
             
 
         else:
@@ -445,7 +454,7 @@ def on_message_HEATING_PID_CMD_REQ(client, userdata, msg):
             # Send command to enable PID
             print("Enabling Heating PID")
             solid_state_relay.run_heating_pid()
-            print("Running Heating PID")
+            #print("Running Heating PID")
             
 
         else:
@@ -521,7 +530,10 @@ client.message_callback_add(MQTT_REF_HUMID_CMD_REQ, voltage_output.on_message_RE
 #Heating PID
 client.message_callback_add(MQTT_HEATING_PID_ENABLE_CMD_REQ, on_message_HEATING_PID_CMD_REQ)
 client.message_callback_add(MQTT_REF_TEMP_CMD_REQ, solid_state_relay.on_message_REFTEMP_CMD_REQ)
-# PWM ouput
+
+# CO2 PID
+client.message_callback_add(MQTT_CO2_PID_ENABLE_CMD_REQ, CO2_control.on_message_CO2_PID_CMD_REQ)
+client.message_callback_add(MQTT_REF_CO2_CMD_REQ, CO2_control.on_message_REFCO2_CMD_REQ)
 
 
 # Not implemented yet
@@ -625,7 +637,6 @@ try:
                                                 slaveaddress=70, 
                                                 debug=False)
     print(sensor_STH01_1)
-    print("Slave address:", sensor_STH01_1.get_slave_address() )
 except Exception as e:
     print("STH01-1, error:", str(e))
 
@@ -634,7 +645,6 @@ try:
                                                 slaveaddress=69, 
                                                 debug=False)
     print(sensor_STH01_2)
-    print("Slave address:", sensor_STH01_2.get_slave_address() )
 except Exception as e:
     print("STH01-2, error:", str(e))
 

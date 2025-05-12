@@ -114,7 +114,9 @@
     name: "Heating PID enable"
     icon: "mdi:toggle-switch"
 
-
+  co2_pid_enable_toggle:
+    name: "CO2 PID enable"
+    icon: "mdi:toggle-switch"
 
 
   mix_control_toggle:
