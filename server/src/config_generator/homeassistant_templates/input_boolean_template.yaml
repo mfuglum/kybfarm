@@ -135,6 +135,10 @@
     name: "New intake fan controller"
     icon: "mdi:fan"
 
+  fan_normal_operation_toggle:
+    name: "Enable normal fan operation"
+    icon: "mdi:fan"
+
   lamp_control_toggle:
     name: "Lamp controller"
     icon: "mdi:ceiling-light"
