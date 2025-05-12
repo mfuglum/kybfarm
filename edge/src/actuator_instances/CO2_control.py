@@ -35,6 +35,8 @@ def run_CO2_pid():
 
 
         CO2_signal = CO2_pid.calculate_control_signal(ref_CO2, CO2)
+        if CO2_signal is None:
+            raise ValueError("CO2 PID did not return a valid signal!")
 
         if CO2_signal < 0.1:
             on_time = 0

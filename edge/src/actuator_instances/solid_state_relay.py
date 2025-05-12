@@ -46,17 +46,15 @@ def run_heating_pid():
         elif temperature3 is not None and temperature3 > 50:
             heating_signal = 0.0
             print("ALERT: Temperature after heater is too high:", temperature3)
+        else:
+            
+            heating_signal = heating_pid.calculate_control_signal(ref_temperature, temperature1)
         
-        
+        if heating_signal is None:
+            raise ValueError("Heating PID did not return a valid signal!")
     
-
-        # PID-beregninger
-        heating_signal = heating_pid.calculate_control_signal(ref_temperature, temperature1)
-
-
-        print(" Heating scalded:", heating_signal)
         
-        on_time = (heating_signal * 10) - 0.5
+        on_time = (heating_signal * 10) * 0.95
         
         print("Heating output [%]:", heating_signal * 100)
         
