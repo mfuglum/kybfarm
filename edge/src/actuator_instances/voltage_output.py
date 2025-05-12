@@ -9,7 +9,7 @@ import modbus_tk.defines as cst
 
 
 from src.utils.pid_controller import PIDController
-from src.utils.latest_pid_data import latest_humidity_data
+from src.utils.latest_pid_data import latest_humidity_data, cooling_pid_settings
 
 
 PORT="/dev/ttySC0"
@@ -19,14 +19,8 @@ master.set_verbose(True)
 
 previous_output = 0
 
-Ku = 3 # Stående svinginger med Kp på 2
-Tu = 120 # Periodetid på 55s
-Kp = 0.6 * Ku
-Ki = 2 * 1 / Tu 
-Kd = 0.125 * Tu 
-
 # PID for kjølebatteri
-cooling_pid = PIDController(Kp=0.5, Ki=0.01, Kd=0.1, mode = "cooling") 
+cooling_pid = PIDController(Kp=0.0, Ki=0.0, Kd=0.0, mode = "cooling") 
 
 MAX_COOLING_PID_OUTPUT = 10.0
 ref_humidity = 0  # Eller None, eller hva du vil som standard
@@ -100,10 +94,24 @@ def run_pid():
         humidity1 = latest_humidity_data["STH01_1"]
         #humidity2 = latest_humidity_data["STH01_2"]
         # Sjekker om det i det hele tatt er behov for å kjøre viften
+
+        # Finn nærmeste referansefuktighet og hent tilhørende PID-parametre
+        closest_ref = min(cooling_pid_settings.keys(), key=lambda k: abs(k - ref_humidity))
+        latest_setting = cooling_pid_settings[closest_ref]
+
+        cooling_pid.Kp = latest_setting["Kp"]
+        cooling_pid.Ki = latest_setting["Ki"]
+        cooling_pid.Kd = latest_setting["Kd"]
+
+        print(f"Using closest PID setting for ref humidity: {closest_ref}")
+        print(f"  → Kp: {cooling_pid.Kp}, Ki: {cooling_pid.Ki}, Kd: {cooling_pid.Kd}")
         
 
         # PID-beregninger
         cooling_signal = cooling_pid.calculate_control_signal(ref_humidity, humidity1)
+        if cooling_signal is None:
+            raise ValueError("Cooling PID did not return a valid signal!")
+
 
         # Skaler til 0–10 og så til 0–10000
         cooling_scaled = max(0.0, min(cooling_signal / MAX_COOLING_PID_OUTPUT, 1.0))
