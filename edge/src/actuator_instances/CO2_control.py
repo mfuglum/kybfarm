@@ -15,7 +15,7 @@ def on_message_REFCO2_CMD_REQ(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
         print("Desired CO2 level", cmd_msg, "\n")
-        if cmd_msg["cmd"] == "adjust_ref_CO2":
+        if cmd_msg["cmd"] == "adjust_ref_co2":
             latest_CO2_data["REF_CO2"]= float((cmd_msg["value"]))
             ref_CO2 = latest_CO2_data["REF_CO2"]
             

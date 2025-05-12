@@ -34,7 +34,7 @@ from src.actuator_instances import (relay_devices_initialization,
                                     solid_state_relay,
                                     CO2_control
                                     ) 
-from src.utils.latest_pid_data import latest_heating_data, latest_humidity_data
+from src.utils.latest_pid_data import latest_heating_data, latest_humidity_data, latest_CO2_data
 # Load environment variables from the .env file
 load_dotenv()
 
@@ -381,6 +381,7 @@ def on_message_CO2_VOC_1(client, userdata, msg):
         client.publish(req_msg["res_topic"], res_payload, )
 
         latest_heating_data["CO2_VOC_1"] = data["fields"]["temperature"]
+        latest_CO2_data["CO2_VOC_1"] = data["fields"]["co2"]
 
 
         print(res_payload + "\n")
