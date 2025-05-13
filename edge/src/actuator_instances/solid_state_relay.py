@@ -16,7 +16,7 @@ heating_pid = PIDController(Kp=4.5, Ki=0.25, Kd=0, mode ="heating")
 def on_message_REFTEMP_CMD_REQ(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
-        print("Desired temperature", cmd_msg, "\n")
+        print("Desired temperature", cmd_msg["value"], "\n")
         if cmd_msg["cmd"] == "adjust_ref_temp":
             latest_heating_data["REF_TEMP"]= float((cmd_msg["value"]))
             ref_temperature = latest_heating_data["REF_TEMP"]
