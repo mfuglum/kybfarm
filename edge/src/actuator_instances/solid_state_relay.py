@@ -49,6 +49,8 @@ def run_heating_pid():
         else:
             
             heating_signal = heating_pid.calculate_control_signal(ref_temperature, temperature1)
+            heating_scaled = max(0.0, min(heating_signal, 1.0))
+
         
         if heating_signal is None:
             raise ValueError("Heating PID did not return a valid signal!")

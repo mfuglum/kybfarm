@@ -35,16 +35,18 @@ def run_CO2_pid():
 
 
         CO2_signal = CO2_pid.calculate_control_signal(ref_CO2, CO2)
-        if CO2_signal is None:
+        CO2_scaled = max(0.0, min(CO2_signal, 1.0))
+
+        if CO2_scaled is None:
             raise ValueError("CO2 PID did not return a valid signal!")
 
-        if CO2_signal < 0.1:
+        if CO2_scaled < 0.1:
             on_time = 0
         else:
-            on_time = CO2_signal
+            on_time = CO2_scaled
 
         
-        print("CO2 output [%]:", CO2_signal * 100)
+        print("CO2 output [%]:", CO2_scaled * 100)
         
         if on_time > 0:
             print("CO2 on for", on_time, "seconds")
