@@ -4,7 +4,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_01_DT_REQ_INTERVAL_SEC}}
+    seconds: 1
+  - platform: time_pattern
+    seconds: 31
   condition: []
   action:
   - service: mqtt.publish
@@ -21,7 +23,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_02_DT_REQ_INTERVAL_SEC}}
+    seconds: 2
+  - platform: time_pattern
+    seconds: 32
   condition: []
   action:
   - service: mqtt.publish
@@ -38,7 +42,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_03_DT_REQ_INTERVAL_SEC}}
+    seconds: 3
+  - platform: time_pattern
+    seconds: 33
   condition: []
   action:
   - service: mqtt.publish
@@ -159,7 +165,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_04_DT_REQ_INTERVAL_SEC}}
+    seconds: 4
+  - platform: time_pattern
+    seconds: 34
   condition: []
   action:
   - service: mqtt.publish
@@ -280,7 +288,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_05_DT_REQ_INTERVAL_SEC}}
+    seconds: 6
+  - platform: time_pattern
+    seconds: 36
   condition: []
   action:
   - service: mqtt.publish
@@ -444,7 +454,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_06_DT_REQ_INTERVAL_SEC}}
+    seconds: 7
+  - platform: time_pattern
+    seconds: 37
   condition: []
   action:
   - service: mqtt.publish
@@ -608,7 +620,7 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_11_DT_REQ_INTERVAL_SEC}}
+    seconds: /10
   condition: []
   action:
   - service: mqtt.publish
@@ -621,11 +633,88 @@
         "data": "ha_req" }'
   mode: single
 
+#- alias: {{SENSOR_12_DT_REQ_AUTOMATION_ALIAS}} 
+#  description: ''
+#  trigger:
+#  - platform: time_pattern
+#    seconds: /{{SENSOR_12_DT_REQ_INTERVAL_SEC}}
+#  condition: []
+#  action:
+#  - service: mqtt.publish
+#    metadata: {}
+#    data:
+#     qos: 0
+#      retain: false
+#      topic: {{MQTT_SENSOR_12_DT_REQ}}
+#      payload: '{"req_topic": {{MQTT_SENSOR_12_DT_REQ}}, "res_topic": {{MQTT_SENSOR_12_DT_RES}},
+#        "data": "ha_req" }'
+#  mode: single
+
+- alias: {{SENSOR_13_DT_REQ_AUTOMATION_ALIAS}} 
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: 5
+  - platform: time_pattern
+    seconds: 11
+  - platform: time_pattern
+    seconds: 15
+  - platform: time_pattern
+    seconds: 21
+  - platform: time_pattern
+    seconds: 25
+  - platform: time_pattern
+    seconds: 29
+  - platform: time_pattern
+    seconds: 35
+  - platform: time_pattern
+    seconds: 41
+  - platform: time_pattern
+    seconds: 45
+  - platform: time_pattern
+    seconds: 51
+  - platform: time_pattern
+    seconds: 55
+  - platform: time_pattern
+    seconds: 59
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_13_DT_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_13_DT_REQ}}, "res_topic": {{MQTT_SENSOR_13_DT_RES}},
+        "data": "ha_req" }'
+  mode: single
+
+- alias: {{SENSOR_14_DT_REQ_AUTOMATION_ALIAS}} 
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: 8
+  - platform: time_pattern
+    seconds: 38
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SENSOR_14_DT_REQ}}
+      payload: '{"req_topic": {{MQTT_SENSOR_14_DT_REQ}}, "res_topic": {{MQTT_SENSOR_14_DT_RES}},
+        "data": "ha_req" }'
+  mode: single
+
 - alias: {{SENSOR_10_DT_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /{{SENSOR_10_DT_REQ_INTERVAL_SEC}}
+    seconds: 9
+  - platform: time_pattern
+    seconds: 39
   condition: []
   action:
   - service: mqtt.publish
@@ -654,7 +743,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_01_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -673,7 +762,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_01_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -692,7 +781,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_02_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -711,7 +800,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_02_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -730,7 +819,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_03_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -749,7 +838,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_03_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -768,7 +857,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_04_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -787,7 +876,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_04_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -806,7 +895,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_05_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -825,7 +914,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_05_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -844,7 +933,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_06_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -863,7 +952,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_06_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -882,7 +971,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_07_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -901,7 +990,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_07_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -920,7 +1009,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_08_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -939,7 +1028,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_08_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -958,7 +1047,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_09_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -977,7 +1066,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_09_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -996,7 +1085,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_10_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1015,7 +1104,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_10_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1034,7 +1123,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_11_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1053,7 +1142,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_11_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1072,7 +1161,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_12_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1091,7 +1180,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_12_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1111,7 +1200,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_13_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1130,7 +1219,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_13_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1149,7 +1238,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_14_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1168,7 +1257,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_14_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1187,7 +1276,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_15_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1206,7 +1295,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_15_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
@@ -1225,7 +1314,7 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_16_CMD_REQ}}
       payload: '{ "cmd": "on"}'
   mode: single
@@ -1244,12 +1333,222 @@
     metadata: {}
     data:
       qos: 0
-      retain: false
+      retain: true
       topic: {{MQTT_RELAY_16_CMD_REQ}}
       payload: '{"cmd": "off"}'
   mode: single
 
-# Elixia grow lamp
+- alias: {{SOLID_STATE_RELAY_01_CMD_REQ_ON_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.solid_state_relay1
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: true
+      topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
+      payload: '{"cmd": "on"}'
+  mode: single
+
+- alias: {{SOLID_STATE_RELAY_01_CMD_REQ_OFF_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.solid_state_relay1
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data:
+      qos: 0
+      retain: true
+      topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
+      payload: '{"cmd": "off"}'
+  mode: single
+
+- alias: {{SOLID_STATE_RELAY_01_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.ssr_duty_cycle
+      - input_number.ssr_base_period
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust_ssr_pwm",
+          "res_topic": {{MQTT_SOLID_STATE_RELAY_01_CMD_RES}},
+          "value_duty_cycle": "{{ SSR_DUTY_CYCLE }}",
+          "value_base_period": "{{SSR_BASE_PERIOD}}"
+        }
+      
+  mode: single
+
+- alias: {{SOLID_STATE_RELAY_01_CMD_REQ_STOP_PWM_LOOP_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.solid_state_relay_stop_loop
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "ssr_stop_pwm_loop",
+          "res_topic": {{MQTT_SOLID_STATE_RELAY_01_CMD_RES}},
+          "value": "{{ SSR_STOP_LOOP }}"
+        }
+      
+  mode: single
+
+- alias: {{SOLID_STATE_RELAY_01_CMD_REQ_TURN_ON_FOR_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.ssr_turn_on_for
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: false
+      topic: {{MQTT_SOLID_STATE_RELAY_01_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "on_for",
+          "time": "{{ SSR_TIME }}"
+        }
+      
+  mode: single
+
+
+
+# Fan voltage
+- alias: {{MQTT_FAN_VOLTAGE_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.new_intake_fan_voltage
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_FAN_VOLTAGE_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust",
+          "res_topic": {{MQTT_FAN_VOLTAGE_CMD_RES}},
+          "value": "{{ MQTT_FAN_VOLTAGE_STATE }}"
+        }
+      
+  mode: single
+
+# Fan voltage
+- alias: "Enable normal fan operation"
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.fan_normal_operation_toggle
+    from: "off"
+    to: "on"
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_FAN_VOLTAGE_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust",
+          "res_topic": {{MQTT_FAN_VOLTAGE_CMD_RES}},
+          "value": "8"
+        }
+      
+  mode: single
+
+  # Fan voltage
+- alias: "Disable normal fan operation"
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.fan_normal_operation_toggle
+    from: "on"
+    to: "off"
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_FAN_VOLTAGE_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust",
+          "res_topic": {{MQTT_FAN_VOLTAGE_CMD_RES}},
+          "value": "0"
+        }
+      
+  mode: single
+
+  # Valve voltage
+- alias: {{MQTT_VALVE_VOLTAGE_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.valve_voltage
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_VALVE_VOLTAGE_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust",
+          "res_topic": {{MQTT_VALVE_VOLTAGE_CMD_RES}},
+          "value": "{{ MQTT_VALVE_VOLTAGE_STATE }}"
+        }
+      
+  mode: single
+
+# Elixia grow lamp1
 - alias: {{LAMP_01_CMD_REQ_AUTOMATION_ALIAS}}
   description: ''
   trigger:
@@ -1271,7 +1570,243 @@
         {
           "cmd": "adjust_intensity",
           "res_topic": {{MQTT_LAMP_01_CMD_RES}},
-          "intensity": "{{ CHANNEL_450NM_STATE }}:{{ CHANNEL_660NM_STATE }}:{{ CHANNEL_735NM_STATE }}:{{ CHANNEL_5700K_STATE }}"
+          "intensity": "{{ L1CHANNEL_450NM_STATE }}:{{ L1CHANNEL_660NM_STATE }}:{{ L1CHANNEL_735NM_STATE }}:{{ L1CHANNEL_5700K_STATE }}"
         }
       
   mode: single
+
+
+  # Elixia grow lamp2
+- alias: {{LAMP_02_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.elixia_2_channel_450nm
+      - input_number.elixia_2_channel_660nm
+      - input_number.elixia_2_channel_735nm
+      - input_number.elixia_2_channel_5700k
+  condition: []
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: false
+      topic: {{MQTT_LAMP_02_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust_intensity",
+          "res_topic": {{MQTT_LAMP_02_CMD_RES}},
+          "intensity": "{{ L2CHANNEL_450NM_STATE }}:{{ L2CHANNEL_660NM_STATE }}:{{ L2CHANNEL_735NM_STATE }}:{{ L2CHANNEL_5700K_STATE }}"
+        }
+      
+  mode: single
+
+  # Ønsket fuktighet
+- alias: {{MQTT_REF_HUMID_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.humid_ref
+  condition: 
+    - condition: state
+      entity_id: input_boolean.pid_enable_toggle
+      state: "on"
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_REF_HUMID_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust_ref_humid",
+          "res_topic": {{MQTT_REF_HUMID_CMD_RES}},
+          "value": "{{ REF_HUMID }}"
+        }
+      
+  mode: single
+
+    # Ønsket temp
+- alias: {{MQTT_REF_TEMP_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.temp_ref
+  condition: 
+    - condition: state
+      entity_id: input_boolean.heating_pid_enable_toggle
+      state: "on"
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_REF_TEMP_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust_ref_temp",
+          "res_topic": {{MQTT_REF_TEMP_CMD_RES}},
+          "value": "{{ REF_TEMP }}"
+        }
+      
+  mode: single
+
+
+- alias: {{MQTT_REF_CO2_CMD_REQ_AUTOMATION_ALIAS}}
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - input_number.co2_ref
+  condition: 
+    - condition: state
+      entity_id: input_boolean.co2_pid_enable_toggle
+      state: "on"
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_REF_CO2_CMD_REQ}}
+      payload: >
+        {
+          "cmd": "adjust_ref_co2",
+          "res_topic": {{MQTT_REF_CO2_CMD_RES}},
+          "value": "{{ REF_CO2 }}"
+        }
+      
+  mode: single
+
+
+  #PID
+- alias: {{COOLING_PID_CMD_REQ_AUTOMATION_ALIAS}}
+  id: "cooling_pid_automation"
+  description: 'Runs the cooling pid every 10 seconds if the toggle is ON'
+  trigger:
+  - platform: time_pattern
+    seconds: /5
+  #- platform: time_pattern
+    #seconds: 25
+  #- platform: time_pattern
+    #seconds: 40
+  #- platform: time_pattern
+    #seconds: 55
+  condition: 
+    - condition: state
+      entity_id: input_boolean.cooling_pid_enable_toggle
+      state: "on"
+
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_COOLING_PID_ENABLE_CMD_REQ}}
+      payload: '{"cmd": "pid_enable"}'
+      
+  mode: single
+ 
+
+
+- alias: {{HEATING_PID_CMD_REQ_AUTOMATION_ALIAS}}
+  id: "heating_pid_automation"
+  description: 'Runs the heating pid every 10 seconds if toggle is ON'
+  trigger:
+  - platform: time_pattern
+    seconds: /10
+  condition: 
+    - condition: state
+      entity_id: input_boolean.heating_pid_enable_toggle
+      state: "on"
+
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_HEATING_PID_ENABLE_CMD_REQ}}
+      payload: '{"cmd": "pid_enable"}'
+      
+  mode: single
+  
+- alias: {{CO2_PID_CMD_REQ_AUTOMATION_ALIAS}}
+  id: "co2_pid_automation"
+  description: 'Runs the CO2 pid every 10 seconds if toggle is ON'
+  trigger:
+  - platform: time_pattern
+    seconds: 0
+  condition: 
+    - condition: state
+      entity_id: input_boolean.co2_pid_enable_toggle
+      state: "on"
+
+  action:
+  - service: mqtt.publish
+    metadata: {}
+    data_template:
+      qos: 0
+      retain: true
+      topic: {{MQTT_CO2_PID_ENABLE_CMD_REQ}}
+      payload: '{"cmd": "pid_enable"}'
+      
+  mode: single
+
+- alias : "Enable grow climate"
+  id: "grow_climate_enable_automation"
+  description: "Enables all HVAC systems, preps the container for optimal growth climate"
+  trigger:
+    - platform: state
+      entity_id: "input_boolean.hvac_operation"
+      from: "off"
+      to: "on"
+  action:
+    - service: input_number.set_value
+      target: 
+        entity_id: "input_number.new_intake_fan_voltage"
+      data: 
+        value: 8
+    - service: input_boolean.turn_on
+      target:
+        entity_id: 
+          - input_boolean.co2_pid_enable_toggle
+          - input_boolean.heating_pid_enable_toggle
+          - input_boolean.cooling_pid_enable_toggle
+    - service: logbook.log
+      data:
+        name: "Grow Climate Enable"
+        message: "All PIDs and Fan Voltage set. HVAC operation started."
+
+- alias : "Disable grow climate"
+  id: "grow_climate_disable_automation"
+  description: "Disable all HVAC systems"
+  trigger:
+    - platform: state
+      entity_id: "input_boolean.hvac_operation"
+      from: "on"
+      to: "off"
+  action:
+    - service: input_number.set_value
+      target: 
+        entity_id: "input_number.new_intake_fan_voltage"
+      data: 
+        value: 0
+    - service: input_boolean.turn_off
+      target:
+        entity_id: 
+          - input_boolean.co2_pid_enable_toggle
+          - input_boolean.heating_pid_enable_toggle
+          - input_boolean.cooling_pid_enable_toggle
+    - service: logbook.log
+      data:
+        name: "Grow Climate disable"
+        message: "All PIDs and Fan Voltage turned off. HVAC operation halted."
+

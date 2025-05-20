@@ -12,7 +12,7 @@ class grow_lamp_elixia:
                 res_topic: response topic,
             }
     """
-    def __init__ (self, ip_address="10.53.11.93"):
+    def __init__ (self, ip_address):
         self.ip_address = ip_address
         self.base_url = f"http://{self.ip_address}/"
 
