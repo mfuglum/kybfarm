@@ -139,8 +139,11 @@
     name: "Enable normal fan operation"
     icon: "mdi:fan"
 
-  lamp_control_toggle:
-    name: "Lamp controller"
+  lamp1_control_toggle:
+    name: "Lamp1 controller"
+    icon: "mdi:ceiling-light"
+  lamp2_control_toggle:
+    name: "Lamp2 controller"
     icon: "mdi:ceiling-light"
 
   hvac_operation:

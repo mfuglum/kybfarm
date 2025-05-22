@@ -3,13 +3,12 @@
 
 from src.actuator_instances.relay_devices_initialization import solid_state_relay_1
 
-from src.utils.pid_controller import PIDController # Kode for PID kontroller
+from src.utils.controllers import PIDController # Kode for PID kontroller
 from src.utils.latest_pid_data import latest_heating_data
 
 import json
-import time
 
-heating_pid = PIDController(Kp=4.5, Ki=0.25, Kd=0, mode ="heating")
+heating_pid = PIDController(Kp=4.5, Ki=0.25, Kd=0, mode ="heating", max_integral=40, min_integral=-40)
 
 
 
@@ -49,23 +48,23 @@ def run_heating_pid():
         else:
             
             heating_signal = heating_pid.calculate_control_signal(ref_temperature, temperature1)
-            heating_scaled = max(0.0, min(heating_signal, 1.0))
+            heating_scaled = max(0.0, min(heating_signal/10, 1.0))
 
         
         if heating_signal is None:
             raise ValueError("Heating PID did not return a valid signal!")
     
         
-        on_time = (heating_signal * 10) * 0.95
+        on_time = (heating_scaled * 10) * 0.95
         
-        print("Heating output [%]:", heating_signal * 100)
+        print("Heating output [%]:", heating_scaled * 100)
         
         if on_time > 0:
             print("Heating on for", on_time, "seconds")
-            solid_state_relay_1.turn_on_for(on_time)
+            solid_state_relay_1.turn_on_for_ssr(on_time)
         else:
             print("Heating off")
-            solid_state_relay_1.turn_off()
+            solid_state_relay_1.turn_off_ssr()
         
 
     except Exception as exc:
