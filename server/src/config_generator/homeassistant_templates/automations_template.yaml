@@ -1612,7 +1612,7 @@
       - input_number.humid_ref
   condition: 
     - condition: state
-      entity_id: input_boolean.pid_enable_toggle
+      entity_id: input_boolean.cooling_pid_enable_toggle
       state: "on"
   action:
   - service: mqtt.publish
@@ -1743,7 +1743,7 @@
   description: 'Runs the CO2 pid every 10 seconds if toggle is ON'
   trigger:
   - platform: time_pattern
-    seconds: 0
+    seconds: /30
   condition: 
     - condition: state
       entity_id: input_boolean.co2_pid_enable_toggle
@@ -1759,54 +1759,4 @@
       payload: '{"cmd": "pid_enable"}'
       
   mode: single
-
-- alias : "Enable grow climate"
-  id: "grow_climate_enable_automation"
-  description: "Enables all HVAC systems, preps the container for optimal growth climate"
-  trigger:
-    - platform: state
-      entity_id: "input_boolean.hvac_operation"
-      from: "off"
-      to: "on"
-  action:
-    - service: input_number.set_value
-      target: 
-        entity_id: "input_number.new_intake_fan_voltage"
-      data: 
-        value: 8
-    - service: input_boolean.turn_on
-      target:
-        entity_id: 
-          - input_boolean.co2_pid_enable_toggle
-          - input_boolean.heating_pid_enable_toggle
-          - input_boolean.cooling_pid_enable_toggle
-    - service: logbook.log
-      data:
-        name: "Grow Climate Enable"
-        message: "All PIDs and Fan Voltage set. HVAC operation started."
-
-- alias : "Disable grow climate"
-  id: "grow_climate_disable_automation"
-  description: "Disable all HVAC systems"
-  trigger:
-    - platform: state
-      entity_id: "input_boolean.hvac_operation"
-      from: "on"
-      to: "off"
-  action:
-    - service: input_number.set_value
-      target: 
-        entity_id: "input_number.new_intake_fan_voltage"
-      data: 
-        value: 0
-    - service: input_boolean.turn_off
-      target:
-        entity_id: 
-          - input_boolean.co2_pid_enable_toggle
-          - input_boolean.heating_pid_enable_toggle
-          - input_boolean.cooling_pid_enable_toggle
-    - service: logbook.log
-      data:
-        name: "Grow Climate disable"
-        message: "All PIDs and Fan Voltage turned off. HVAC operation halted."
 

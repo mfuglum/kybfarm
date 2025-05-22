@@ -2,12 +2,12 @@ import json
 import time
 
 
-from src.utils.p_controller import PController # Kode for PID kontroller
+from src.utils.controllers import PIController # Kode for PID kontroller
 from src.actuator_instances.relay_devices_initialization import relay_13
 
-from src.utils.latest_pid_data import latest_CO2_data
+from src.utils.latest_pid_data import latest_CO2_data, CO2_pi_settings
 
-CO2_pid = PController(Kp=0.1)
+CO2_pi = PIController(Kp=0, Ki = 0)
 
 
 
@@ -32,15 +32,31 @@ def run_CO2_pid():
    
         ref_CO2 = latest_CO2_data["REF_CO2"]
         CO2 = latest_CO2_data["CO2_VOC_1"]
+        print("Ref_CO2:", ref_CO2)
+        print("Latest CO2:", CO2)
+
+        # Finn nærmeste referansefuktighet og hent tilhørende PI-parametre
+        closest_ref = min(CO2_pi_settings.keys(), key=lambda k: abs(k - ref_CO2))
+        latest_setting = CO2_pi_settings[closest_ref]
+
+        CO2_pi.Kp = latest_setting["Kp"]
+        CO2_pi.Ki = latest_setting["Ki"]
+
+        print("Using closest PI setting for ref CO2:", closest_ref)
+        print(f"  → Kp: {CO2_pi.Kp}, Ki: {CO2_pi.Ki}")
+        
 
 
-        CO2_signal = CO2_pid.calculate_control_signal(ref_CO2, CO2)
-        CO2_scaled = max(0.0, min(CO2_signal, 1.0))
+        CO2_signal = CO2_pi.calculate_control_signal(ref_CO2, CO2)
+        print("CO2 sign", CO2_signal)
+
+        CO2_scaled = max(0.0, min(CO2_signal/10, 1.0))
+        print("CO2 scaled", CO2_scaled)
 
         if CO2_scaled is None:
             raise ValueError("CO2 PID did not return a valid signal!")
 
-        if CO2_scaled < 0.1:
+        if CO2_scaled < 0.1: # Ingen frekvens over 10Hz for å skåne mekanisk rele
             on_time = 0
         else:
             on_time = CO2_scaled

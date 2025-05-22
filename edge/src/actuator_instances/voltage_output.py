@@ -8,7 +8,7 @@ from modbus_tk import modbus_rtu
 import modbus_tk.defines as cst
 
 
-from src.utils.pid_controller import PIDController
+from src.utils.controllers import PIDController
 from src.utils.latest_pid_data import latest_humidity_data, cooling_pid_settings
 
 
@@ -103,7 +103,7 @@ def run_pid():
         cooling_pid.Ki = latest_setting["Ki"]
         cooling_pid.Kd = latest_setting["Kd"]
 
-        print(f"Using closest PID setting for ref humidity: {closest_ref}")
+        print("Using closest PID setting for ref humidity:", closest_ref)
         print(f"  → Kp: {cooling_pid.Kp}, Ki: {cooling_pid.Ki}, Kd: {cooling_pid.Kd}")
         
 
