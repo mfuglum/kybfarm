@@ -32,15 +32,21 @@ class relay_device:
         # Create a thread to turn off the relay after the specified time (seconds)
         threading.Timer(time, self.turn_off).start()
 
-    # Turn the relay ON
+
+    """
+    The solid state relay has its own functions because it operates differently than the normal relays.
+    The other relays are active-low, while the solid state relay is active-high.
+    
+    """
+    # Turn the solid state relay ON
     def turn_on_ssr(self):
         GPIO.output(self.pin, GPIO.HIGH)
         
-    # Turn the relay OFF
+    # Turn the solid state relay OFF
     def turn_off_ssr(self):
         GPIO.output(self.pin, GPIO.LOW)
 
-    # Turn the relay ON for a specified amount of time (seconds)
+    # Turn the solid state relay ON for a specified amount of time (seconds)
     def turn_on_for_ssr(self, time):
         self.turn_on_ssr()
         # Create a thread to turn off the relay after the specified time (seconds)

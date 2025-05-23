@@ -5,7 +5,7 @@ class PController():
 
     def __init__(self, Kp: float):
         """
-        Initializes the P controller with specified gains
+        Initializes the P controller with specified gain.
 
         Parameters:
             Kp: The proportional gain.
@@ -23,12 +23,9 @@ class PController():
         Returns:
             control_signal: The output value from the P controller.
         """
-        # Initialize calculation parameters
-        error =  setpoint - input_value
+        error = setpoint - input_value
         print("error:", error)
-        # P calculations
         control_signal = (self.Kp * error)
-
         return control_signal
 
 
@@ -37,7 +34,7 @@ class PIController():
 
     def __init__(self, Kp: float, Ki: float, max_integral: float = 10, min_integral: float = -10):
         """
-        Initializes the PID controller with specified gains
+        Initializes the PI controller with specified gains and integral windup limits.
 
         Parameters:
             Kp: The proportional gain.
@@ -51,7 +48,7 @@ class PIController():
         self.min_integral = min_integral
 
         # Initialize internal states
-        self.previous_time = None  # Initialize as None to indicate first call of calculate_control_signal()
+        self.previous_time = None  # Indicates first call of calculate_control_signal()
         self.integral = 0
 
     def calculate_control_signal(self, setpoint: float, input_value: float) -> float:
@@ -65,21 +62,18 @@ class PIController():
         Returns:
             control_signal: The output value from the PI controller.
         """
-
-        # Initialize calculation parameters
         error = setpoint - input_value
         current_time = time.time()
 
         if self.previous_time is None:
-            # Skip derivative and integral term on the first call due to no time having passed.
+            # Skip integral term on the first call due to no time having passed.
             derivative = 0
         else:
-            # PID calculations
             delta_time = current_time - self.previous_time
             self.integral += error * delta_time
-            self.integral = max(min(self.integral, self.max_integral), self.min_integral)  # Anti-Windup
+            # Anti-windup: Clamp the integral term
+            self.integral = max(min(self.integral, self.max_integral), self.min_integral)
 
-        # Calculate output value
         control_signal = (self.Kp * error) + (self.Ki * self.integral) 
 
         # Update for next calculation
@@ -93,9 +87,7 @@ class PIController():
         print("Contribution Ki:", self.Ki * self.integral)
         print("Total control signal:", control_signal)
 
-
         return control_signal
-
 
 
 class PDController():
@@ -103,7 +95,7 @@ class PDController():
 
     def __init__(self, Kp: float, Kd: float):
         """
-        Initializes the PD controller with specified gains
+        Initializes the PD controller with specified gains.
 
         Parameters:
             Kp: The proportional gain.
@@ -127,21 +119,17 @@ class PDController():
         Returns:
             control_signal: The output value from the PD controller.
         """
-        # Initialize calculation parameters
         error = setpoint - input_value
         current_time = time.time()
 
-        # Check if it is the first call
         if self.previous_time is None:
             # Skip derivative term on the first call due to no time having passed.
             derivative = 0
         else:
-            # PD calculations
             delta_time = current_time - self.previous_time
             delta_error = error - self.previous_error
             derivative = delta_error / delta_time if delta_time > 0 else 0
 
-        # Calculate output value
         control_signal = (self.Kp * error) + (self.Kd * derivative)
 
         # Update for next calculation
@@ -151,14 +139,31 @@ class PDController():
         return control_signal
 
 
-
-
-# ---------------------------------------
-# PID Controller-class
-# ---------------------------------------
-
 class PIDController():
+    """
+    A Proportional-Integral-Derivative (PID) controller with selectable mode for cooling or heating.
+
+    Attributes:
+        Kp: Proportional gain.
+        Ki: Integral gain.
+        Kd: Derivative gain.
+        mode: "cooling" or "heating" (affects error sign).
+        max_integral: Upper limit for integral windup.
+        min_integral: Lower limit for integral windup.
+    """
+
     def __init__(self, Kp: float, Ki: float, Kd: float, mode: str = "cooling", max_integral: float = 10, min_integral: float = -10):
+        """
+        Initializes the PID controller with specified gains, mode, and integral windup limits.
+
+        Parameters:
+            Kp: The proportional gain.
+            Ki: The integral gain.
+            Kd: The derivative gain.
+            mode: "cooling" or "heating" (determines error sign).
+            max_integral: Upper limit for integral windup.
+            min_integral: Lower limit for integral windup.
+        """
         self.Kp = Kp
         self.Ki = Ki
         self.Kd = Kd
@@ -171,7 +176,19 @@ class PIDController():
         self.integral = 0
 
     def calculate_control_signal(self, setpoint: float, input_value: float) -> float:
-        # Merk: positivt signal når input_value > setpoint (for avfukting)
+        """
+        Calculates the control output value based on the setpoint and current input value.
+
+        For "cooling" mode, error = input_value - setpoint (positive signal when input > setpoint).
+        For "heating" mode, error = setpoint - input_value (positive signal when input < setpoint).
+
+        Parameters:
+            setpoint: The desired target value.
+            input_value: The current value of the input.
+
+        Returns:
+            control_signal: The output value from the PID controller (never negative).
+        """
         print("Mode:", self.mode)
         if self.mode == "cooling":
             error = input_value - setpoint
@@ -188,6 +205,7 @@ class PIDController():
             delta_error = error - self.previous_error
             derivative = delta_error / delta_time if delta_time > 0 else 0
             self.integral += error * delta_time
+            # Anti-windup: Clamp the integral term
             self.integral = max(min(self.integral, self.max_integral), self.min_integral)
 
         control_signal = (self.Kp * error) + (self.Ki * self.integral) + (self.Kd * derivative)
@@ -200,5 +218,5 @@ class PIDController():
         self.previous_time = current_time
         self.previous_error = error
 
-        # Returner aldri negativt signal
+        # Never return a negative signal
         return max(0.0, control_signal)

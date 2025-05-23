@@ -6,6 +6,19 @@ LAMP_01_IP = ""
 LAMP_02_IP = ""
 
 def on_message_LAMP01_CMD_REQ(client, userdata, msg):
+    """
+    MQTT callback for handling commands to Lamp 1.
+
+    Expects a JSON payload with:
+        - "cmd": command string, e.g., "adjust_intensity"
+        - "intensity": intensity settings (if applicable)
+        - "res_topic": topic to publish the response
+
+    Supported commands:
+        - "adjust_intensity": Sets the channel intensities for lamp 1.
+
+    Publishes the response to the specified response topic.
+    """
     cmd_msg = json.loads(msg.payload)
     try:
         print("LAMP01", cmd_msg, "\n")
@@ -15,12 +28,25 @@ def on_message_LAMP01_CMD_REQ(client, userdata, msg):
         #     lamp_1.turn_off()
         else:
             print("Invalid command")
-        res_payload = res_payload = json.dumps(response)
+        res_payload = json.dumps(response)
         client.publish(cmd_msg["res_topic"], res_payload)
     except Exception as e:
         print("Lamp 1, command error:", str(e))
 
 def on_message_LAMP01_DT(client, userdata, msg):
+    """
+    MQTT callback for handling diagnostic/status requests for Lamp 1.
+
+    Expects a JSON payload with:
+        - "req": request string, e.g., "get_diagnostic_data" or "get_status"
+        - "res_topic": topic to publish the response
+
+    Supported requests:
+        - "get_diagnostic_data": Returns diagnostic data from lamp 1.
+        - "get_status": Returns status information from lamp 1.
+
+    Publishes the response to the specified response topic.
+    """
     msg = json.loads(msg.payload)
     try:
         print("LAMP01", msg, "\n")
@@ -43,6 +69,8 @@ except Exception as e:
 
 
 def on_message_LAMP02_CMD_REQ(client, userdata, msg):
+    # Same structure as on_message_LAMP01_CMD_REQ, but for lamp_2
+
     cmd_msg = json.loads(msg.payload)
     try:
         print("LAMP02", cmd_msg, "\n")
@@ -52,12 +80,14 @@ def on_message_LAMP02_CMD_REQ(client, userdata, msg):
         #     lamp_1.turn_off()
         else:
             print("Invalid command")
-        res_payload = res_payload = json.dumps(response)
+        res_payload = json.dumps(response)
         client.publish(cmd_msg["res_topic"], res_payload)
     except Exception as e:
         print("Lamp 2, command error:", str(e))
 
 def on_message_LAMP02_DT(client, userdata, msg):
+    # Same structure as on_message_LAMP01_DT, but for lamp_2
+
     msg = json.loads(msg.payload)
     try:
         print("LAMP02", msg, "\n")

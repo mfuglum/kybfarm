@@ -1,17 +1,15 @@
-# Henter sensor data
 
-
+#Import necessary tools
 from src.actuator_instances.relay_devices_initialization import solid_state_relay_1
-
-from src.utils.controllers import PIDController # Kode for PID kontroller
+from src.utils.controllers import PIDController
 from src.utils.latest_pid_data import latest_heating_data
-
 import json
 
+#Instantiate heating pid
 heating_pid = PIDController(Kp=4.5, Ki=0.25, Kd=0, mode ="heating", max_integral=40, min_integral=-40)
 
 
-
+#MQTT callback for handling temperature reference setpoint commands
 def on_message_REFTEMP_CMD_REQ(client, userdata, msg):
     cmd_msg = json.loads(msg.payload)
     try:
@@ -28,14 +26,24 @@ def on_message_REFTEMP_CMD_REQ(client, userdata, msg):
         print("Desired temperature, command error:", str(e))
 
 def run_heating_pid():
+
+    """
+    Runs the heating PI control loop:
+        - Fetches the latest data availbale
+        - Checks safety conditions
+        - Calculates the control signal
+        - Scales the signal and applies the on time to the solid state relay
+        - Makes sure the solid state relay is off if the signal is zero
+    """
     try:
 
-   
+        #Get reference value set in HA and temp values
         ref_temperature = latest_heating_data["REF_TEMP"]
         temperature1 = latest_heating_data["STH01_1"]
         temperature2 = latest_heating_data["STH01_2"]
         temperature3 = latest_heating_data["CO2_VOC_1"]
 
+        #Safety checks
         if temperature1 is not None and temperature1> 50:
             heating_signal = 0.0
             print("ALERT: Temperature before fan is too high:", temperature1)
@@ -46,7 +54,7 @@ def run_heating_pid():
             heating_signal = 0.0
             print("ALERT: Temperature after heater is too high:", temperature3)
         else:
-            
+            #Scale the signal to fit in the 10s time frame
             heating_signal = heating_pid.calculate_control_signal(ref_temperature, temperature1)
             heating_scaled = max(0.0, min(heating_signal/10, 1.0))
 
@@ -54,11 +62,12 @@ def run_heating_pid():
         if heating_signal is None:
             raise ValueError("Heating PID did not return a valid signal!")
     
-        
+        #The 0.95 is to make sure that the relay has time to finish. Stops it from getting called while the thread is already running.
         on_time = (heating_scaled * 10) * 0.95
         
         print("Heating output [%]:", heating_scaled * 100)
         
+        #Send it to the relay
         if on_time > 0:
             print("Heating on for", on_time, "seconds")
             solid_state_relay_1.turn_on_for_ssr(on_time)

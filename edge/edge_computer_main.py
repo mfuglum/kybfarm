@@ -530,10 +530,10 @@ client.message_callback_add(MQTT_SOLID_STATE_RELAY_01_CMD_REQ, relay_devices_ini
 # Voltage output
 #Fan
 client.message_callback_add(MQTT_FAN_VOLTAGE_CMD_REQ, voltage_output.on_message_FAN_VOLTAGE_CMD_REQ)
-#client.message_callback_add(MQTT_FAN_VOLTAGE_CMD_RES, voltage_output.on_message_FAN_VOLTAGE_CMD_RES)
+client.message_callback_add(MQTT_FAN_VOLTAGE_CMD_RES, voltage_output.on_message_FAN_VOLTAGE_CMD_RES)
 #Valve
 client.message_callback_add(MQTT_VALVE_VOLTAGE_CMD_REQ, voltage_output.on_message_VALVE_VOLTAGE_CMD_REQ)
-#client.message_callback_add(MQTT_VALVE_VOLTAGE_CMD_RES, voltage_output.on_message_VALVE_VOLTAGE_CMD_RES)
+client.message_callback_add(MQTT_VALVE_VOLTAGE_CMD_RES, voltage_output.on_message_VALVE_VOLTAGE_CMD_RES)
 
 # Grow lamp1 Elixia
 client.message_callback_add(MQTT_LAMP_01_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_CMD_REQ)
