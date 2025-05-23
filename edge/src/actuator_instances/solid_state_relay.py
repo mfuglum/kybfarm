@@ -1,12 +1,12 @@
 
 #Import necessary tools
 from src.actuator_instances.relay_devices_initialization import solid_state_relay_1
-from src.utils.controllers import PIDController
+from src.utils.controllers import PIController
 from src.utils.latest_pid_data import latest_heating_data
 import json
 
 #Instantiate heating pid
-heating_pid = PIDController(Kp=4.5, Ki=0.25, Kd=0, mode ="heating", max_integral=40, min_integral=-40)
+heating_pid = PIController(Kp=4.5, Ki=0.25, mode ="heating", max_integral=40, min_integral=-40)
 
 
 #MQTT callback for handling temperature reference setpoint commands
