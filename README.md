@@ -1,4 +1,4 @@
-# IoT Platform for Vertical Farming: Software Manual {#app:sw_manual}
+# IoT Platform for Vertical Farming: Software Manual
 
 The [Kybfarm Embed repository](https://github.com/mfuglum/kybfarm/)
 provides an open-source Internet of Things (IoT) platform framework for
@@ -8,7 +8,7 @@ guidance.
 The repository is available at:\
 <https://github.com/mfuglum/kybfarm/>
 
-## Introduction {#sec:intro_sw_manual}
+## Introduction 
 
 The design of the Kybfarm Embed framework enables the management and
 automation of vertical farming systems. It leverages containerization
@@ -25,18 +25,25 @@ kybfarm/
 |-- edge/
 |   |-- src/
 |   |   |-- actuator_instances/
+|   |   |   |-- CO2_control.py
 |   |   |   |-- grow_lamp_elixia_initialization.py
-|   |   |   `-- relay_devices_initialization.py
+|   |   |   |-- relay_devices_initialization.py
+|   |   |   |-- solid_state_relay.py
+|   |   |   `-- voltage_output.py
 |   |   |-- sensor_interfaces/
 |   |   |   |-- sensor_BMP280_I2C.py
+|   |   |   |-- sensor_CO2_VOC_modbus.py
 |   |   |   |-- sensor_SCD41_I2C.py
 |   |   |   |-- sensor_SEC01_modbus.py
 |   |   |   |-- sensor_SLIGHT01_modbus.py
 |   |   |   |-- sensor_SPAR02_modbus.py
 |   |   |   |-- sensor_SPH01_modbus.py
+|   |   |   |-- sensor_STH01_modbus.py
 |   |   |   `-- sensor_SYM01_modbus.py
 |   |   `-- utils/
+|   |       |-- controllers.py
 |   |       |-- grow_lamp_elixia.py
+|   |       |-- latest_pid_data.py
 |   |       `-- relay_device.py
 |   |-- auto_launch_at_reboot.sh
 |   |-- edge_computer_main.py
@@ -68,9 +75,9 @@ kybfarm/
 `-- kybfarm-docker-compose.yaml
 ```
 
-## Getting Started {#sec:getting_started__sw_manual}
+## Getting Started 
 
-### Prerequisites {#sec:prerequisites_sw_manual}
+### Prerequisites 
 
 #### Server:
 
@@ -136,7 +143,7 @@ features of Docker Desktop:
     flags (which is required if you access a container's files from an
     external interface).
 
-## Installation {#sec:installation_sw_manual}
+## Installation 
 
 ### Server Setup
 
@@ -287,7 +294,7 @@ features of Docker Desktop:
 
     When added, save and exit.
 
-## Running the Platform {#sec:running_platform_sw_manual}
+## Running the Platform 
 
 ### Server Setup
 
@@ -309,7 +316,7 @@ To manually activate the virtual environment and start the script:
         source /path/to/kybfarm/edge/venv/bin/activate
         python /path/to/kybfarm/edge/edge_computer_main.py
 
-## Server Components {#sec:server_components_sw_manual}
+## Server Components
 
 Docker-Compose orchestrates all of the listed components based on the
 content of the file `kybfarm-docker-compose.yaml`.
@@ -399,7 +406,7 @@ content of the file `kybfarm-docker-compose.yaml`.
     final configuration files on startup if provided with the
     appropriate location.
 
-## Edge Components {#sec:edge_components_sw_manual}
+## Edge Components 
 
 ### Sensors
 
@@ -495,7 +502,7 @@ communication controller.
 
   - Subscribe to topics and handle data/command requests
 
-## MQTT Topic Convention {#sec:mqtt_convention_sw_manual}
+## MQTT Topic Convention 
 
 A well-defined MQTT topic structure ensures efficient communication:
 
@@ -513,7 +520,7 @@ A well-defined MQTT topic structure ensures efficient communication:
 
 Embed response topics in the payload to avoid hardcoding.
 
-## Development Guidelines {#sec:development_guide_sw_manual}
+## Development Guidelines 
 
 ### Recommended Development Flow
 
@@ -590,7 +597,7 @@ to this directory:
 
 ### On Edge / Raspberry Pi
 
-#### Stop Current Cronjob {#subsubsec:stop-current-cronjob}
+#### Stop Current Cronjob 
 
 1.  Check the status of cron jobs:
 
@@ -744,7 +751,7 @@ points can be useful in such situations:
   in the GUI, and see if it deviates from the one provided in the
   environment file.
 
-## Miscellaneous {#sec:misc_sw_manual}
+## Miscellaneous 
 
 ### Raspberry Pi 4B with RS485 Adapter
 
@@ -775,7 +782,7 @@ with Raspberry Pi 4B for Modbus RTU communication:
 
     - `ttySC1`
 
-## Glossary {#sec:gloassary_sw_manual}
+## Glossary 
 
 GPIO
 
