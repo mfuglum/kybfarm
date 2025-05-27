@@ -96,7 +96,7 @@
     step: 1
     mode: "box"
 
-  lamp_blue:
+  lamp1_blue:
     name: "Lamp blue amplitude"
     initial: 0 
     min: 0
@@ -104,7 +104,7 @@
     step: 1
     mode: "box"
 
-  lamp_green:
+  lamp1_green:
     name: "Lamp green amplitude"
     initial: 0 
     min: 0
@@ -112,7 +112,7 @@
     step: 1
     mode: "box"
 
-  lamp_red:
+  lamp1_red:
     name: "Lamp red amplitude"
     initial: 0 
     min: 0
@@ -120,7 +120,7 @@
     step: 1
     mode: "box"
 
-  lamp_far_red:
+  lamp1_far_red:
     name: "Lamp far_red amplitude"
     initial: 0 
     min: 0
@@ -128,12 +128,51 @@
     step: 1
     mode: "box"
 
+<<<<<<< HEAD
+=======
+  lamp2_blue:
+    name: "Lamp blue amplitude"
+    initial: 0 
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+  lamp2_green:
+    name: "Lamp green amplitude"
+    initial: 0 
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+  lamp2_red:
+    name: "Lamp red amplitude"
+    initial: 0 
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+  lamp2_far_red:
+    name: "Lamp far_red amplitude"
+    initial: 0 
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+>>>>>>> hvac
   humid_ref:
     name: "Target humidity"
     initial: 50
     min: 30
     max: 80
+<<<<<<< HEAD
     step: 1
+=======
+    step: 0.1
+>>>>>>> hvac
     mode: "box"
 
   temp_ref:
@@ -141,7 +180,11 @@
     initial: 20
     min: 10
     max: 50
+<<<<<<< HEAD
     step: 1
+=======
+    step: 0.1
+>>>>>>> hvac
     mode: "box"
 
   co2_ref:

@@ -273,11 +273,19 @@ def on_message_SSR01(client, userdata, msg):
     try:
         print("SSR01", cmd_msg, "\n")
         if cmd_msg["cmd"] == "on":
+<<<<<<< HEAD
             solid_state_relay_1.turn_on()
         elif cmd_msg["cmd"] == "off":
             solid_state_relay_1.turn_off()
         elif cmd_msg["cmd"] == "on_for":
             solid_state_relay_1.turn_on_for(float(cmd_msg["time"]))
+=======
+            solid_state_relay_1.turn_on_ssr()
+        elif cmd_msg["cmd"] == "off":
+            solid_state_relay_1.turn_off_ssr()
+        elif cmd_msg["cmd"] == "on_for":
+            solid_state_relay_1.turn_on_for_ssr(float(cmd_msg["time"]))
+>>>>>>> hvac
         
         #Threading lock test
         #elif cmd_msg["cmd"] == "adjust_ssr_pwm":
@@ -310,6 +318,10 @@ try:
     relay_14 = relay_device.relay_device(GPIO_PIN["relay_14"])
     relay_15 = relay_device.relay_device(GPIO_PIN["relay_15"])
     relay_16 = relay_device.relay_device(GPIO_PIN["relay_16"])
+<<<<<<< HEAD
     solid_state_relay_1 = pwm_relay_device.pwm_relay_device(GPIO_PIN["solid_state_relay_1"])
+=======
+    solid_state_relay_1 = relay_device.relay_device(GPIO_PIN["solid_state_relay_1"])
+>>>>>>> hvac
 except Exception as e:
     print("Relay device initialization error:", str(e))

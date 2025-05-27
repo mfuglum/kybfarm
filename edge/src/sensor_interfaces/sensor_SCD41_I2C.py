@@ -1,5 +1,12 @@
 # Ref https://learn.adafruit.com/adafruit-scd-40-and-scd-41/python-circuitpython
 
+"""
+This sensor does not exist and is not implemented
+"""
+
+
+
+
 # import time
 import board
 # import digitalio # For use with SPI

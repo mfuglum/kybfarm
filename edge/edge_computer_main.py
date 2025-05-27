@@ -25,7 +25,10 @@ from src.sensor_interfaces import (
                                    sensor_SEC01_modbus,
                                    sensor_SPH01_modbus,
                                    sensor_CO2_VOC_modbus,
+<<<<<<< HEAD
                                    #sensor_C02_VOC_modbus1, # Legger til ny VOC sensor # Legger til ny temp sensor - Not connected
+=======
+>>>>>>> hvac
                                    sensor_STH01_modbus # Legger til ny temp sensor - Not connected
                                    )
 from src.actuator_instances import (relay_devices_initialization,
@@ -454,10 +457,16 @@ def on_message_HEATING_PID_CMD_REQ(client, userdata, msg):
         if cmd_msg["cmd"] == "pid_enable":
             # Send command to enable PID
             print("Enabling Heating PID")
+<<<<<<< HEAD
             solid_state_relay.run_heating_pid()
             #print("Running Heating PID")
             
 
+=======
+            print("Latest heating data:", latest_heating_data)
+
+            solid_state_relay.run_heating_pid()
+>>>>>>> hvac
         else:
             print("Invalid command")
     except Exception as e:
@@ -471,6 +480,11 @@ def on_message_CO2_PID_CMD_REQ(client, userdata, msg):
         if cmd_msg["cmd"] == "pid_enable":
             # Send command to enable PID
             print("Enabling CO2 PID")
+<<<<<<< HEAD
+=======
+            print("Latest CO2 data:", latest_CO2_data)
+
+>>>>>>> hvac
             CO2_control.run_CO2_pid()
             print("Running CO2 PID")
             
@@ -530,10 +544,17 @@ client.message_callback_add(MQTT_SOLID_STATE_RELAY_01_CMD_REQ, relay_devices_ini
 # Voltage output
 #Fan
 client.message_callback_add(MQTT_FAN_VOLTAGE_CMD_REQ, voltage_output.on_message_FAN_VOLTAGE_CMD_REQ)
+<<<<<<< HEAD
 #client.message_callback_add(MQTT_FAN_VOLTAGE_CMD_RES, voltage_output.on_message_FAN_VOLTAGE_CMD_RES)
 #Valve
 client.message_callback_add(MQTT_VALVE_VOLTAGE_CMD_REQ, voltage_output.on_message_VALVE_VOLTAGE_CMD_REQ)
 #client.message_callback_add(MQTT_VALVE_VOLTAGE_CMD_RES, voltage_output.on_message_VALVE_VOLTAGE_CMD_RES)
+=======
+client.message_callback_add(MQTT_FAN_VOLTAGE_CMD_RES, voltage_output.on_message_FAN_VOLTAGE_CMD_RES)
+#Valve
+client.message_callback_add(MQTT_VALVE_VOLTAGE_CMD_REQ, voltage_output.on_message_VALVE_VOLTAGE_CMD_REQ)
+client.message_callback_add(MQTT_VALVE_VOLTAGE_CMD_RES, voltage_output.on_message_VALVE_VOLTAGE_CMD_RES)
+>>>>>>> hvac
 
 # Grow lamp1 Elixia
 client.message_callback_add(MQTT_LAMP_01_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_CMD_REQ)
@@ -570,7 +591,7 @@ try:
     print(sensor_SLIGHT01)
 except Exception as e:
     print("SLIGHT01, error:", str(e))
-
+time.sleep(0.1)
 # Activate SPAR-02 sensor
 try:
     sensor_SPAR02 = sensor_SPAR02_modbus.SPAR02(   portname='/dev/ttySC1',
@@ -579,6 +600,7 @@ try:
     print(sensor_SPAR02)
 except Exception as e:
     print("SPAR02, error:", str(e))
+time.sleep(0.1)
 
 # Activate SEC-01-1 sensor
 try: 
@@ -588,6 +610,7 @@ try:
     print(sensor_SEC01_1)
 except Exception as e:
     print("SEC01-1, error:", str(e))
+time.sleep(0.1)
 
 # Activate SEC-01-2 sensor
 try: 
@@ -597,6 +620,7 @@ try:
     print(sensor_SEC01_2)
 except Exception as e:
     print("SEC01-2, error:", str(e))
+time.sleep(0.1)
 
 # Activate SPH-01-1 sensor
 try:
@@ -606,6 +630,7 @@ try:
     print(sensor_SPH01_1)
 except Exception as e:
     print("SPH01-1, error:", str(e))
+time.sleep(0.1)
 
 # Activate SPH-01-2 sensor
 try:
@@ -615,6 +640,7 @@ try:
     print(sensor_SPH01_2)
 except Exception as e:
     print("SPH01-2, error:", str(e))
+time.sleep(0.1)
 
 # Activate SYM-01 sensor
 try:
@@ -624,6 +650,7 @@ try:
     print(sensor_SYM01)
 except Exception as e:
     print("SYM01, error:", str(e))
+time.sleep(0.1)
 
 try:
     sensor_CO2_VOC_1 = sensor_CO2_VOC_modbus.CO2_VOC(   portname='/dev/ttySC0',
@@ -631,7 +658,12 @@ try:
                                                 debug=False)
     print(sensor_CO2_VOC_1)
 except Exception as e:
+<<<<<<< HEAD
     print("CO2_VOC, error:", str(e))
+=======
+    print("CO2_VOC_1, error:", str(e))
+time.sleep(0.1)
+>>>>>>> hvac
 
 
 try:
@@ -640,7 +672,12 @@ try:
                                                 debug=False)
     print(sensor_CO2_VOC_2)
 except Exception as e:
+<<<<<<< HEAD
     print("CO2_VOC1, error:", str(e))
+=======
+    print("CO2_VOC_2, error:", str(e))
+time.sleep(0.1)
+>>>>>>> hvac
 
 try:
     sensor_STH01_1 = sensor_STH01_modbus.STH01(   portname='/dev/ttySC0',
@@ -649,6 +686,10 @@ try:
     print(sensor_STH01_1)
 except Exception as e:
     print("STH01-1, error:", str(e))
+<<<<<<< HEAD
+=======
+time.sleep(0.1)
+>>>>>>> hvac
 
 try:
     sensor_STH01_2 = sensor_STH01_modbus.STH01(   portname='/dev/ttySC0',

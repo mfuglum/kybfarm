@@ -1612,7 +1612,11 @@
       - input_number.humid_ref
   condition: 
     - condition: state
+<<<<<<< HEAD
       entity_id: input_boolean.pid_enable_toggle
+=======
+      entity_id: input_boolean.cooling_pid_enable_toggle
+>>>>>>> hvac
       state: "on"
   action:
   - service: mqtt.publish
@@ -1743,7 +1747,11 @@
   description: 'Runs the CO2 pid every 10 seconds if toggle is ON'
   trigger:
   - platform: time_pattern
+<<<<<<< HEAD
     seconds: 0
+=======
+    seconds: /30
+>>>>>>> hvac
   condition: 
     - condition: state
       entity_id: input_boolean.co2_pid_enable_toggle
@@ -1760,6 +1768,7 @@
       
   mode: single
 
+<<<<<<< HEAD
 - alias : "Enable grow climate"
   id: "grow_climate_enable_automation"
   description: "Enables all HVAC systems, preps the container for optimal growth climate"
@@ -1810,3 +1819,5 @@
         name: "Grow Climate disable"
         message: "All PIDs and Fan Voltage turned off. HVAC operation halted."
 
+=======
+>>>>>>> hvac
