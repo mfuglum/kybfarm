@@ -17,8 +17,7 @@ interfaces enable control over actuators and data acquisition from
 sensors on the edge-side. The repository comprises the software for both
 server and edge, allowing one environment file for common parameters.
 Dedicated directories contain the server- and edge-specific code.
-[\[lst:repo_structure\]](#lst:repo_structure){reference-type="ref+label"
-reference="lst:repo_structure"} outlines the repository structure:
+The repository structure is outlined below:
 
 ``` {#lst:repo_structure caption="Outline of repository structure for Kybfarm Embed." label="lst:repo_structure"}
 kybfarm/
