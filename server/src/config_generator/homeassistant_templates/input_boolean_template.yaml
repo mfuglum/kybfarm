@@ -99,9 +99,24 @@
   relay_16:
     name: "(rl16) Peristaltic pump 3 "
     icon: "mdi:toggle-switch"
+  solid_state_relay1:
+    name: "(ssr1) Heating battery"
+    icon: "mdi:heating-coil"
+  solid_state_relay_stop_loop:
+    name: "(ssr) Stop pwm loop"
+    icon: "mdi:toggle-switch"
 
+  cooling_pid_enable_toggle:
+    name: "PID enable"
+    icon: "mdi:toggle-switch"
 
+  heating_pid_enable_toggle:
+    name: "Heating PID enable"
+    icon: "mdi:toggle-switch"
 
+  co2_pid_enable_toggle:
+    name: "CO2 PID enable"
+    icon: "mdi:toggle-switch"
 
 
   mix_control_toggle:
@@ -116,6 +131,21 @@
     name: "Intake fan controller"
     icon: "mdi:fan"
 
-  lamp_control_toggle:
-    name: "Lamp controller"
+  new_intake_fan_toggle:
+    name: "New intake fan controller"
+    icon: "mdi:fan"
+
+  fan_normal_operation_toggle:
+    name: "Enable normal fan operation"
+    icon: "mdi:fan"
+
+  lamp1_control_toggle:
+    name: "Lamp1 controller"
     icon: "mdi:ceiling-light"
+  lamp2_control_toggle:
+    name: "Lamp2 controller"
+    icon: "mdi:ceiling-light"
+
+  hvac_operation:
+    name: "Enable grow climate"
+    icon: "mdi:toggle-switch"
