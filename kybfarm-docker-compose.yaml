@@ -1,15 +1,10 @@
 version: "3"
 
 services:
-  config_generator:
-    container_name: config_generator 
-    build: server/src/config_generator
-    volumes:
-      - ./.env:/app/.env
-      - ./server/homeassistant/config:/app/server/homeassistant/config
-      - ./server/appdaemon/config:/app/server/appdaemon/config
-      - ./server/src/config_generator/config_generator.py:/app/server/src/config_generator/config_generator.py
-
+  requirements:
+    container_name: requirements 
+    build: server/src
+    
   homeassistant:
     container_name: homeassistant_kybfarm
     image: ghcr.io/home-assistant/home-assistant:stable
@@ -22,7 +17,7 @@ services:
     ports:
       - 8123:8123
     depends_on:
-      - config_generator
+      - requirements
       - influxdb
     env_file:
       - .env
@@ -37,7 +32,7 @@ services:
     ports:
       - 5050:5050
     depends_on:
-      - config_generator
+      - requirements
       - homeassistant
     env_file:
       - .env
@@ -65,7 +60,7 @@ services:
     ports:
       - 1883:1883
     depends_on:
-      - config_generator
+      - requirements
     env_file:
       - .env
 

@@ -1,0 +1,1156 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "core.restore_state",
+  "data": [
+    {
+      "state": {"entity_id":"conversation.home_assistant","state":"unknown","attributes":{"friendly_name":"Home Assistant","supported_features":1},"last_changed":"2025-06-04T08:14:26.302149+00:00","last_reported":"2025-06-04T08:14:26.302149+00:00","last_updated":"2025-06-04T08:14:26.302149+00:00","context":{"id":"01JWX02ZZYEYYXDHZMNP84RTF3","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_select.calibrate_s_ec_01_1","state":"Normal Operation","attributes":{"options":["Normal Operation","Initiate calibration for EC 1413us/cm","Register calibration for EC 1413us/cm","Initiate calibration for EC 12880us/cm","Register calibration for EC 12880us/cm"],"editable":false,"icon":"mdi:electron-framework","friendly_name":"Calibrate S-EC-01-1"},"last_changed":"2025-06-04T08:14:26.552235+00:00","last_reported":"2025-06-04T08:14:26.552235+00:00","last_updated":"2025-06-04T08:14:26.552235+00:00","context":{"id":"01JWX0307RF47WEFXQCX2FG430","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_select.calibrate_s_ec_01_2","state":"Normal Operation","attributes":{"options":["Normal Operation","Initiate calibration for EC 1413us/cm","Register calibration for EC 1413us/cm","Initiate calibration for EC 12880us/cm","Register calibration for EC 12880us/cm"],"editable":false,"icon":"mdi:electron-framework","friendly_name":"Calibrate S-EC-01-2"},"last_changed":"2025-06-04T08:14:26.552319+00:00","last_reported":"2025-06-04T08:14:26.552319+00:00","last_updated":"2025-06-04T08:14:26.552319+00:00","context":{"id":"01JWX0307RY2KRNKPZ4AQE7SN4","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_select.calibrate_s_ph_01_1","state":"Normal Operation","attributes":{"options":["Normal Operation","Initiate calibration for pH 4.01","Register calibration for pH 4.01","Initiate calibration for pH 7.00","Register calibration for pH 7.00","Initiate calibration for pH 10.01","Register calibration for pH 10.01"],"editable":false,"icon":"mdi:electron-framework","friendly_name":"Calibrate S-pH-01-1"},"last_changed":"2025-06-04T08:14:26.552398+00:00","last_reported":"2025-06-04T08:14:26.552398+00:00","last_updated":"2025-06-04T08:14:26.552398+00:00","context":{"id":"01JWX0307RJA06QETSKEHYTRMD","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_select.calibrate_s_ph_01_2","state":"Normal Operation","attributes":{"options":["Normal Operation","Initiate calibration for pH 4.01","Register calibration for pH 4.01","Initiate calibration for pH 7.00","Register calibration for pH 7.00","Initiate calibration for pH 10.01","Register calibration for pH 10.01"],"editable":false,"icon":"mdi:electron-framework","friendly_name":"Calibrate S-pH-01-2"},"last_changed":"2025-06-04T08:14:26.552444+00:00","last_reported":"2025-06-04T08:14:26.552444+00:00","last_updated":"2025-06-04T08:14:26.552444+00:00","context":{"id":"01JWX0307RP99ERW0HAFAFJA2R","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_select.new_intake_fan_modes","state":"Off","attributes":{"options":["Off","Low","Medium","High"],"editable":false,"icon":"mdi:electron-framework","friendly_name":"New intake fan modes"},"last_changed":"2025-06-04T08:14:26.552484+00:00","last_reported":"2025-06-04T08:14:26.552484+00:00","last_updated":"2025-06-04T08:14:26.552484+00:00","context":{"id":"01JWX0307RRQ6T0ZFNHND7VMXJ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"person.kybfarm","state":"unknown","attributes":{"editable":true,"id":"kybfarm","device_trackers":["device_tracker.kasper_gaup_sin_iphone"],"user_id":"3751d6cb83f34915842870f8ceb7542e","friendly_name":"kybfarm"},"last_changed":"2025-06-04T08:14:26.552585+00:00","last_reported":"2025-06-04T08:14:30.635310+00:00","last_updated":"2025-06-04T08:14:30.635310+00:00","context":{"id":"01JWX0347B7CKBRW86BPJPS8F8","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_1","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl1) Water pump 350 "},"last_changed":"2025-06-04T08:14:26.552761+00:00","last_reported":"2025-06-04T08:14:26.552761+00:00","last_updated":"2025-06-04T08:14:26.552761+00:00","context":{"id":"01JWX0307R678C7FADR57SZHR1","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_2","state":"on","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl2) Water pump 5k"},"last_changed":"2025-06-06T08:52:04.623184+00:00","last_reported":"2025-06-06T08:52:04.623184+00:00","last_updated":"2025-06-06T08:52:04.623184+00:00","context":{"id":"01JX271BCEJYPY8PXYRKEKXDF8","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_3","state":"on","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl3) Air pump "},"last_changed":"2025-06-04T08:14:26.552857+00:00","last_reported":"2025-06-04T08:14:26.552857+00:00","last_updated":"2025-06-04T08:14:26.552857+00:00","context":{"id":"01JWX0307REWBGM8JF9JN82X68","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_4","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl4) Internal fans"},"last_changed":"2025-06-04T08:14:26.552896+00:00","last_reported":"2025-06-04T08:14:26.552896+00:00","last_updated":"2025-06-04T08:14:26.552896+00:00","context":{"id":"01JWX0307RV78M7MRN3E871YT9","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_5","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl5) Intake fan"},"last_changed":"2025-06-04T08:14:26.552932+00:00","last_reported":"2025-06-04T08:14:26.552932+00:00","last_updated":"2025-06-04T08:14:26.552932+00:00","context":{"id":"01JWX0307RG08J3T7FA1TBFQ0Y","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_6","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl6) Humidifier "},"last_changed":"2025-06-04T08:14:26.552969+00:00","last_reported":"2025-06-04T08:14:26.552969+00:00","last_updated":"2025-06-04T08:14:26.552969+00:00","context":{"id":"01JWX0307RXYAFR6V7YJZJYXEE","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_7","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl7) Dehumidifier "},"last_changed":"2025-06-04T08:14:26.553004+00:00","last_reported":"2025-06-04T08:14:26.553004+00:00","last_updated":"2025-06-04T08:14:26.553004+00:00","context":{"id":"01JWX0307S88SSWTYBTHGM6EHK","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_8","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl8) Heater "},"last_changed":"2025-06-04T08:14:26.553042+00:00","last_reported":"2025-06-04T08:14:26.553042+00:00","last_updated":"2025-06-04T08:14:26.553042+00:00","context":{"id":"01JWX0307SRK9TJ7TD33TJPS33","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_9","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl9) Extra "},"last_changed":"2025-06-04T08:14:26.553080+00:00","last_reported":"2025-06-04T08:14:26.553080+00:00","last_updated":"2025-06-04T08:14:26.553080+00:00","context":{"id":"01JWX0307SD21WM31HK3GGREH0","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_10","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl10) Extra "},"last_changed":"2025-06-04T08:14:26.553115+00:00","last_reported":"2025-06-04T08:14:26.553115+00:00","last_updated":"2025-06-04T08:14:26.553115+00:00","context":{"id":"01JWX0307SXGG9EHWNBJ6ZHS61","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_11","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl11) Solenoid 1 "},"last_changed":"2025-06-04T08:14:26.553350+00:00","last_reported":"2025-06-04T08:14:26.553350+00:00","last_updated":"2025-06-04T08:14:26.553350+00:00","context":{"id":"01JWX0307SAVMXQZ731ZFXC64K","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_12","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl12) Solenoid 2 "},"last_changed":"2025-06-06T08:47:14.354532+00:00","last_reported":"2025-06-06T08:47:14.354532+00:00","last_updated":"2025-06-06T08:47:14.354532+00:00","context":{"id":"01JX26RFXH0VPQ8AYN8GMVEHV2","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_13","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl13) Extra "},"last_changed":"2025-06-04T08:14:26.553444+00:00","last_reported":"2025-06-04T08:14:26.553444+00:00","last_updated":"2025-06-04T08:14:26.553444+00:00","context":{"id":"01JWX0307S3B3322P6ZHPHEHPV","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_14","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl14) Peristaltic pump 1 "},"last_changed":"2025-06-04T08:14:26.553479+00:00","last_reported":"2025-06-04T08:14:26.553479+00:00","last_updated":"2025-06-04T08:14:26.553479+00:00","context":{"id":"01JWX0307SFE9BYHS5Z7B377YN","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_15","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl15) Peristaltic pump 2 "},"last_changed":"2025-06-04T08:14:26.553513+00:00","last_reported":"2025-06-04T08:14:26.553513+00:00","last_updated":"2025-06-04T08:14:26.553513+00:00","context":{"id":"01JWX0307SAWRJF41M0XQM0HJA","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.relay_16","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(rl16) Peristaltic pump 3 "},"last_changed":"2025-06-04T08:14:26.553549+00:00","last_reported":"2025-06-04T08:14:26.553549+00:00","last_updated":"2025-06-04T08:14:26.553549+00:00","context":{"id":"01JWX0307SBJA2TQ319FZERF3Z","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.solid_state_relay1","state":"off","attributes":{"editable":false,"icon":"mdi:heating-coil","friendly_name":"(ssr1) Heating battery"},"last_changed":"2025-06-04T08:14:26.553586+00:00","last_reported":"2025-06-04T08:14:26.553586+00:00","last_updated":"2025-06-04T08:14:26.553586+00:00","context":{"id":"01JWX0307SS3BCSDEMNS4KY7NQ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.solid_state_relay_stop_loop","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"(ssr) Stop pwm loop"},"last_changed":"2025-06-04T08:14:26.553625+00:00","last_reported":"2025-06-04T08:14:26.553625+00:00","last_updated":"2025-06-04T08:14:26.553625+00:00","context":{"id":"01JWX0307SF2P4TKYEXSVDFT0M","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.cooling_pid_enable_toggle","state":"on","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"PID enable"},"last_changed":"2025-06-04T08:14:26.553660+00:00","last_reported":"2025-06-04T08:14:26.553660+00:00","last_updated":"2025-06-04T08:14:26.553660+00:00","context":{"id":"01JWX0307S97VXMCEGQ570RAB2","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.heating_pid_enable_toggle","state":"on","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"Heating PID enable"},"last_changed":"2025-06-04T08:14:26.553694+00:00","last_reported":"2025-06-04T08:14:26.553694+00:00","last_updated":"2025-06-04T08:14:26.553694+00:00","context":{"id":"01JWX0307S75KJYMPG9XAJYJ3D","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.co2_pid_enable_toggle","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"CO2 PID enable"},"last_changed":"2025-06-04T08:14:26.553738+00:00","last_reported":"2025-06-04T08:14:26.553738+00:00","last_updated":"2025-06-04T08:14:26.553738+00:00","context":{"id":"01JWX0307SFDBA4BGZPAWR74ZD","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.mix_control_toggle","state":"off","attributes":{"editable":false,"icon":"mdi:pot-mix","friendly_name":"Mixing controller"},"last_changed":"2025-06-04T08:14:26.553775+00:00","last_reported":"2025-06-04T08:14:26.553775+00:00","last_updated":"2025-06-04T08:14:26.553775+00:00","context":{"id":"01JWX0307SYXXZ3QTQJ536XNHY","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.grow_control_toggle","state":"off","attributes":{"editable":false,"icon":"mdi:water-pump","friendly_name":"Grow tank controller"},"last_changed":"2025-06-04T08:14:26.553810+00:00","last_reported":"2025-06-04T08:14:26.553810+00:00","last_updated":"2025-06-04T08:14:26.553810+00:00","context":{"id":"01JWX0307SGA84M63Y7NDSBKVK","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.intake_fan_toggle","state":"off","attributes":{"editable":false,"icon":"mdi:fan","friendly_name":"Intake fan controller"},"last_changed":"2025-06-04T08:14:26.553843+00:00","last_reported":"2025-06-04T08:14:26.553843+00:00","last_updated":"2025-06-04T08:14:26.553843+00:00","context":{"id":"01JWX0307SWGWJT3HRY8D9EZB2","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.new_intake_fan_toggle","state":"off","attributes":{"editable":false,"icon":"mdi:fan","friendly_name":"New intake fan controller"},"last_changed":"2025-06-04T08:14:26.553881+00:00","last_reported":"2025-06-04T08:14:26.553881+00:00","last_updated":"2025-06-04T08:14:26.553881+00:00","context":{"id":"01JWX0307STGBMTG0544ZKH0PS","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.fan_normal_operation_toggle","state":"on","attributes":{"editable":false,"icon":"mdi:fan","friendly_name":"Enable normal fan operation"},"last_changed":"2025-06-04T08:14:26.553918+00:00","last_reported":"2025-06-04T08:14:26.553918+00:00","last_updated":"2025-06-04T08:14:26.553918+00:00","context":{"id":"01JWX0307SXA8RRGA4R95AS1FC","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.lamp1_control_toggle","state":"on","attributes":{"editable":false,"icon":"mdi:ceiling-light","friendly_name":"Lamp1 controller"},"last_changed":"2025-06-06T08:41:41.453935+00:00","last_reported":"2025-06-06T08:41:41.453935+00:00","last_updated":"2025-06-06T08:41:41.453935+00:00","context":{"id":"01JX26EATDJZAV1T8YB3ZJ8SFG","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.lamp2_control_toggle","state":"on","attributes":{"editable":false,"icon":"mdi:ceiling-light","friendly_name":"Lamp2 controller"},"last_changed":"2025-06-06T08:41:38.644099+00:00","last_reported":"2025-06-06T08:41:38.644099+00:00","last_updated":"2025-06-06T08:41:38.644099+00:00","context":{"id":"01JX26E82K6F6T33B6XFS1YZCH","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.hvac_operation","state":"off","attributes":{"editable":false,"icon":"mdi:toggle-switch","friendly_name":"Enable grow climate"},"last_changed":"2025-06-04T08:14:26.554021+00:00","last_reported":"2025-06-04T08:14:26.554021+00:00","last_updated":"2025-06-04T08:14:26.554021+00:00","context":{"id":"01JWX0307TZMMNVF70ZYAWYF60","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.elixia_1_channel_450nm","state":"70.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Elixia-1, Channel: 450nm"},"last_changed":"2025-06-06T08:41:41.479911+00:00","last_reported":"2025-06-06T08:41:41.479911+00:00","last_updated":"2025-06-06T08:41:41.479911+00:00","context":{"id":"01JX26EAV7VVEHW1Z175KN71QM","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.elixia_1_channel_660nm","state":"560.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Elixia-1, Channel: 660nm"},"last_changed":"2025-06-06T08:41:41.493832+00:00","last_reported":"2025-06-06T08:41:41.493832+00:00","last_updated":"2025-06-06T08:41:41.493832+00:00","context":{"id":"01JX26EAVNNVZ8TNFN5ATHS89B","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.elixia_1_channel_735nm","state":"0.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Elixia-1, Channel: 735nm"},"last_changed":"2025-06-06T08:41:41.498584+00:00","last_reported":"2025-06-06T08:41:41.498584+00:00","last_updated":"2025-06-06T08:41:41.498584+00:00","context":{"id":"01JX26EAVTA81RSANB3F413ZZ3","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.elixia_1_channel_5700k","state":"70.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Elixia-1, Channel: 5700K"},"last_changed":"2025-06-06T08:41:41.487815+00:00","last_reported":"2025-06-06T08:41:41.487815+00:00","last_updated":"2025-06-06T08:41:41.487815+00:00","context":{"id":"01JX26EAVF8QAEM82HR4EHFR6A","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.elixia_2_channel_450nm","state":"70.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Elixia-2, Channel: 450nm"},"last_changed":"2025-06-06T08:41:38.671219+00:00","last_reported":"2025-06-06T08:41:38.671219+00:00","last_updated":"2025-06-06T08:41:38.671219+00:00","context":{"id":"01JX26E83FG4A83DX0HVWSTAZ8","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.elixia_2_channel_660nm","state":"560.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Elixia-2, Channel: 660nm"},"last_changed":"2025-06-06T08:41:38.682662+00:00","last_reported":"2025-06-06T08:41:38.682662+00:00","last_updated":"2025-06-06T08:41:38.682662+00:00","context":{"id":"01JX26E83TG8D8ABYT428BSVY2","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.elixia_2_channel_735nm","state":"0.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Elixia-2, Channel: 735nm","last_changed":"2025-06-04T20:00:00.059515+00:00","last_reported":"2025-06-04T20:00:00.059515+00:00","last_updated":"2025-06-04T20:00:00.059515+00:00","context":{"id":"01JWY8EXHVJWNYVW62EKDZF9S9","user_id":"04b7d14a2097443b88980ed11d841409"}},"last_changed":"2025-06-06T08:41:38.687428+00:00","last_reported":"2025-06-06T08:41:38.687428+00:00","last_updated":"2025-06-06T08:41:38.687428+00:00","context":{"id":"01JX26E83ZYB6HY6W62EK7JVQE","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.elixia_2_channel_5700k","state":"70.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Elixia-2, Channel: 5700K"},"last_changed":"2025-06-06T08:41:38.676272+00:00","last_reported":"2025-06-06T08:41:38.676272+00:00","last_updated":"2025-06-06T08:41:38.676272+00:00","context":{"id":"01JX26E83MTKQZKRZ5RJ41F9YF","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.ec_ref","state":"0.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":2.0,"step":0.05,"mode":"box","friendly_name":"EC reference for mixing tank"},"last_changed":"2025-06-04T08:14:26.554515+00:00","last_reported":"2025-06-04T08:14:26.554515+00:00","last_updated":"2025-06-04T08:14:26.554515+00:00","context":{"id":"01JWX0307THRT7YMHHW486R68A","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.intake_fan_temp_low","state":"24.0","attributes":{"initial":24.0,"editable":false,"min":0.0,"max":30.0,"step":1.0,"mode":"box","friendly_name":"Intake fan min temp"},"last_changed":"2025-06-04T08:14:26.554552+00:00","last_reported":"2025-06-04T08:14:26.554552+00:00","last_updated":"2025-06-04T08:14:26.554552+00:00","context":{"id":"01JWX0307TJVD4NT6SS2JN4C8V","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.intake_fan_temp_high","state":"25.0","attributes":{"initial":25.0,"editable":false,"min":0.0,"max":30.0,"step":1.0,"mode":"box","friendly_name":"Intake fan max temp"},"last_changed":"2025-06-04T08:14:26.554588+00:00","last_reported":"2025-06-04T08:14:26.554588+00:00","last_updated":"2025-06-04T08:14:26.554588+00:00","context":{"id":"01JWX0307T5RDGE5T33W29B2HX","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.intake_fan_humid_low","state":"60.0","attributes":{"initial":60.0,"editable":false,"min":0.0,"max":100.0,"step":1.0,"mode":"box","friendly_name":"Intake fan min humid"},"last_changed":"2025-06-04T08:14:26.554625+00:00","last_reported":"2025-06-04T08:14:26.554625+00:00","last_updated":"2025-06-04T08:14:26.554625+00:00","context":{"id":"01JWX0307TK03GWNEZ9YSC4WZC","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.intake_fan_humid_high","state":"70.0","attributes":{"initial":70.0,"editable":false,"min":0.0,"max":100.0,"step":1.0,"mode":"box","friendly_name":"Intake fan max humid"},"last_changed":"2025-06-04T08:14:26.554662+00:00","last_reported":"2025-06-04T08:14:26.554662+00:00","last_updated":"2025-06-04T08:14:26.554662+00:00","context":{"id":"01JWX0307TG6959VMZ1N4XGSQ9","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.lamp1_blue","state":"70.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Lamp 1 blue amplitude"},"last_changed":"2025-06-04T16:54:12.917170+00:00","last_reported":"2025-06-04T16:54:12.917170+00:00","last_updated":"2025-06-04T16:54:12.917170+00:00","context":{"id":"01JWXXTQNM49AT3V2RJ111275W","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.lamp1_green","state":"70.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Lamp 1 green amplitude"},"last_changed":"2025-06-04T16:54:24.352692+00:00","last_reported":"2025-06-04T16:54:24.352692+00:00","last_updated":"2025-06-04T16:54:24.352692+00:00","context":{"id":"01JWXXV2V0H5XC4417R6N5KAJH","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.lamp1_red","state":"560.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Lamp 1 red amplitude"},"last_changed":"2025-06-04T16:54:26.899136+00:00","last_reported":"2025-06-04T16:54:26.899136+00:00","last_updated":"2025-06-04T16:54:26.899136+00:00","context":{"id":"01JWXXV5AJXNS0X0SWKY20SDTY","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.lamp1_far_red","state":"0.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Lamp 1 far_red amplitude"},"last_changed":"2025-06-04T08:14:26.554809+00:00","last_reported":"2025-06-04T08:14:26.554809+00:00","last_updated":"2025-06-04T08:14:26.554809+00:00","context":{"id":"01JWX0307T6ENEQ5PY1QVH8VBD","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.lamp2_blue","state":"70.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Lamp 2 blue amplitude"},"last_changed":"2025-06-04T16:54:49.978636+00:00","last_reported":"2025-06-04T16:54:49.978636+00:00","last_updated":"2025-06-04T16:54:49.978636+00:00","context":{"id":"01JWXXVVVTDHT9NHCSC64K1KQA","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.lamp2_green","state":"70.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Lamp 2 green amplitude"},"last_changed":"2025-06-04T16:54:46.360834+00:00","last_reported":"2025-06-04T16:54:46.360834+00:00","last_updated":"2025-06-04T16:54:46.360834+00:00","context":{"id":"01JWXXVRARAJ9R064EV12V3BSK","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.lamp2_red","state":"560.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Lamp 2 red amplitude"},"last_changed":"2025-06-04T16:54:43.411333+00:00","last_reported":"2025-06-04T16:54:43.411333+00:00","last_updated":"2025-06-04T16:54:43.411333+00:00","context":{"id":"01JWXXVNEJ4Z0KH7RN04G0JKWN","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.lamp2_far_red","state":"0.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1000.0,"step":1.0,"mode":"box","friendly_name":"Lamp 2 far_red amplitude"},"last_changed":"2025-06-04T08:14:26.554955+00:00","last_reported":"2025-06-04T08:14:26.554955+00:00","last_updated":"2025-06-04T08:14:26.554955+00:00","context":{"id":"01JWX0307T8QENMKDMKWXPE7Y0","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.humid_ref","state":"60.0","attributes":{"initial":50.0,"editable":false,"min":30.0,"max":80.0,"step":0.1,"mode":"box","friendly_name":"Target humidity"},"last_changed":"2025-06-06T08:47:26.284199+00:00","last_reported":"2025-06-06T08:47:26.284199+00:00","last_updated":"2025-06-06T08:47:26.284199+00:00","context":{"id":"01JX26RVJB6JBK27VDTBMVWPST","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.temp_ref","state":"22.0","attributes":{"initial":20.0,"editable":false,"min":10.0,"max":50.0,"step":0.1,"mode":"box","friendly_name":"Target temp"},"last_changed":"2025-06-06T08:47:29.916849+00:00","last_reported":"2025-06-06T08:47:29.916849+00:00","last_updated":"2025-06-06T08:47:29.916849+00:00","context":{"id":"01JX26RZ3W4AM8E6DPZCYYTHXE","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.co2_ref","state":"400.0","attributes":{"initial":400.0,"editable":false,"min":300.0,"max":1000.0,"step":10.0,"mode":"box","friendly_name":"Target CO2"},"last_changed":"2025-06-04T08:14:26.555062+00:00","last_reported":"2025-06-04T08:14:26.555062+00:00","last_updated":"2025-06-04T08:14:26.555062+00:00","context":{"id":"01JWX0307V5HDQ6KKJ1MHVHBHZ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.ssr_duty_cycle","state":"0.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":1.0,"step":0.1,"mode":"box","friendly_name":"SSR duty cycle"},"last_changed":"2025-06-04T08:14:26.555094+00:00","last_reported":"2025-06-04T08:14:26.555094+00:00","last_updated":"2025-06-04T08:14:26.555094+00:00","context":{"id":"01JWX0307VMFJCCM9AB779WCFG","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.ssr_base_period","state":"1.0","attributes":{"initial":1.0,"editable":false,"min":0.1,"max":20.0,"step":0.1,"mode":"box","friendly_name":"SSR base period"},"last_changed":"2025-06-04T08:14:26.555127+00:00","last_reported":"2025-06-04T08:14:26.555127+00:00","last_updated":"2025-06-04T08:14:26.555127+00:00","context":{"id":"01JWX0307VGE08GRW3AH6N29JE","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.ssr_turn_on_for","state":"0.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":60.0,"step":1.0,"mode":"box","friendly_name":"SSR on time"},"last_changed":"2025-06-04T08:14:26.555166+00:00","last_reported":"2025-06-04T08:14:26.555166+00:00","last_updated":"2025-06-04T08:14:26.555166+00:00","context":{"id":"01JWX0307VESVVY8MSAKFX6GD4","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.new_intake_fan_voltage","state":"0.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":10.0,"step":0.1,"mode":"box","friendly_name":"Fan manual voltage"},"last_changed":"2025-06-06T12:09:31.889795+00:00","last_reported":"2025-06-06T12:09:31.889795+00:00","last_updated":"2025-06-06T12:09:31.889795+00:00","context":{"id":"01JX2JAWZH7FKK29647D09YYKB","parent_id":null,"user_id":"04b7d14a2097443b88980ed11d841409"}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.valve_voltage","state":"0.0","attributes":{"initial":0.0,"editable":false,"min":0.0,"max":10.0,"step":0.1,"mode":"box","friendly_name":"Valve manual voltage"},"last_changed":"2025-06-04T08:14:26.555380+00:00","last_reported":"2025-06-04T08:14:26.555380+00:00","last_updated":"2025-06-04T08:14:26.555380+00:00","context":{"id":"01JWX0307V2MM5YMB9ZBP6RNKN","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_text.calibration_status","state":"Normal Operation","attributes":{"editable":false,"min":0,"max":100,"pattern":null,"mode":"text","icon":"mdi:chart-bell-curve","friendly_name":"Calibration status:"},"last_changed":"2025-06-04T08:14:27.147516+00:00","last_reported":"2025-06-04T08:14:27.147516+00:00","last_updated":"2025-06-04T08:14:27.147516+00:00","context":{"id":"01JWX030TB026VJ5RMB3JKTKK8","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_datetime.lamp_start_time","state":"06:00:00","attributes":{"has_date":false,"has_time":true,"editable":false,"hour":6,"minute":0,"second":0,"timestamp":21600,"friendly_name":"Lamp start time"},"last_changed":"2025-06-04T08:14:27.237303+00:00","last_reported":"2025-06-04T08:14:27.237303+00:00","last_updated":"2025-06-04T08:14:27.237303+00:00","context":{"id":"01JWX030X5B1RQW6P2FFR27PNF","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"input_datetime.lamp_finish_time","state":"22:00:00","attributes":{"has_date":false,"has_time":true,"editable":false,"hour":22,"minute":0,"second":0,"timestamp":79200,"friendly_name":"Lamp end time"},"last_changed":"2025-06-04T08:14:27.237412+00:00","last_reported":"2025-06-04T08:14:27.237412+00:00","last_updated":"2025-06-04T08:14:27.237412+00:00","context":{"id":"01JWX030X582TPRQ3GR4FEC5AX","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"tts.google_en_com","state":"unknown","attributes":{"friendly_name":"Google Translate en com"},"last_changed":"2025-06-04T08:14:27.396328+00:00","last_reported":"2025-06-04T08:14:27.396328+00:00","last_updated":"2025-06-04T08:14:27.396328+00:00","context":{"id":"01JWX031249D6CV0KDXHY1FN9C","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"device_tracker.kasper_gaup_sin_iphone","state":"unknown","attributes":{"source_type":"gps","friendly_name":"Kasper Gaup sin iPhone"},"last_changed":"2025-06-04T08:14:27.452750+00:00","last_reported":"2025-06-04T08:14:27.452750+00:00","last_updated":"2025-06-04T08:14:27.452750+00:00","context":{"id":"01JWX0313WC0V57CPCQH0N7QY7","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_storage","state":"unavailable","attributes":{"unit_of_measurement":"% available","icon":"mdi:dots-square","friendly_name":"Kasper Gaup sin iPhone Storage"},"last_changed":"2025-06-04T08:14:27.453082+00:00","last_reported":"2025-06-04T08:14:27.453082+00:00","last_updated":"2025-06-04T08:14:27.453082+00:00","context":{"id":"01JWX0313X4YV8P1KBT8Y8ABZ7","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "unavailable",
+        "native_unit_of_measurement": "% available"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_battery_state","state":"Not Charging","attributes":{"Low Power Mode":true,"icon":"mdi:battery-50","friendly_name":"Kasper Gaup sin iPhone Battery State"},"last_changed":"2025-06-04T08:14:27.453204+00:00","last_reported":"2025-06-04T08:14:27.453204+00:00","last_updated":"2025-06-04T08:14:27.453204+00:00","context":{"id":"01JWX0313X6H065M7Y6CV3ZB6S","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "Not Charging",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_battery_level","state":"50","attributes":{"unit_of_measurement":"%","device_class":"battery","icon":"mdi:battery-50","friendly_name":"Kasper Gaup sin iPhone Battery Level"},"last_changed":"2025-06-04T08:14:27.453336+00:00","last_reported":"2025-06-04T08:14:27.453336+00:00","last_updated":"2025-06-04T08:14:27.453336+00:00","context":{"id":"01JWX0313X4HR3T8KCSVB796SY","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": 50,
+        "native_unit_of_measurement": "%"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_sim_2","state":"unavailable","attributes":{"icon":"mdi:dots-square","friendly_name":"Kasper Gaup sin iPhone SIM 2"},"last_changed":"2025-06-04T08:14:27.453438+00:00","last_reported":"2025-06-04T08:14:27.453438+00:00","last_updated":"2025-06-04T08:14:27.453438+00:00","context":{"id":"01JWX0313XDRD9E5B018Y6TE4H","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "unavailable",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_geocoded_location","state":"Unknown","attributes":{"icon":"mdi:map","friendly_name":"Kasper Gaup sin iPhone Geocoded Location"},"last_changed":"2025-06-04T08:14:27.453532+00:00","last_reported":"2025-06-04T08:14:27.453532+00:00","last_updated":"2025-06-04T08:14:27.453532+00:00","context":{"id":"01JWX0313XZMERHJ9Y8AQJ4VCF","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "Unknown",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_sim_1","state":"unavailable","attributes":{"icon":"mdi:dots-square","friendly_name":"Kasper Gaup sin iPhone SIM 1"},"last_changed":"2025-06-04T08:14:27.453618+00:00","last_reported":"2025-06-04T08:14:27.453618+00:00","last_updated":"2025-06-04T08:14:27.453618+00:00","context":{"id":"01JWX0313X2HNK5BNSKC40GXVM","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "unavailable",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_last_update_trigger","state":"unavailable","attributes":{"icon":"mdi:dots-square","friendly_name":"Kasper Gaup sin iPhone Last Update Trigger"},"last_changed":"2025-06-04T08:14:27.453697+00:00","last_reported":"2025-06-04T08:14:27.453697+00:00","last_updated":"2025-06-04T08:14:27.453697+00:00","context":{"id":"01JWX0313XT74FCBFCC73V7V65","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "unavailable",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_app_version","state":"2025.5","attributes":{"icon":"mdi:cellphone","friendly_name":"Kasper Gaup sin iPhone App Version"},"last_changed":"2025-06-04T08:14:27.453784+00:00","last_reported":"2025-06-04T08:14:27.453784+00:00","last_updated":"2025-06-04T08:14:27.453784+00:00","context":{"id":"01JWX0313X1EP9DWNDPYGXXA1T","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "2025.5",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_location_permission","state":"Denied","attributes":{"icon":"mdi:map","friendly_name":"Kasper Gaup sin iPhone Location permission"},"last_changed":"2025-06-04T08:14:27.453869+00:00","last_reported":"2025-06-04T08:14:27.453869+00:00","last_updated":"2025-06-04T08:14:27.453869+00:00","context":{"id":"01JWX0313XXTP70PDQH990BRH9","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "Denied",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_audio_output","state":"unavailable","attributes":{"icon":"mdi:dots-square","friendly_name":"Kasper Gaup sin iPhone Audio Output"},"last_changed":"2025-06-04T08:14:27.453948+00:00","last_reported":"2025-06-04T08:14:27.453948+00:00","last_updated":"2025-06-04T08:14:27.453948+00:00","context":{"id":"01JWX0313XDA6SJX9KTR38EQ0R","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "unavailable",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_connection_type","state":"unavailable","attributes":{"icon":"mdi:dots-square","friendly_name":"Kasper Gaup sin iPhone Connection Type"},"last_changed":"2025-06-04T08:14:27.454028+00:00","last_reported":"2025-06-04T08:14:27.454028+00:00","last_updated":"2025-06-04T08:14:27.454028+00:00","context":{"id":"01JWX0313Y3TF5538JG5N31713","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "unavailable",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_bssid","state":"unavailable","attributes":{"icon":"mdi:dots-square","friendly_name":"Kasper Gaup sin iPhone BSSID"},"last_changed":"2025-06-04T08:14:27.454105+00:00","last_reported":"2025-06-04T08:14:27.454105+00:00","last_updated":"2025-06-04T08:14:27.454105+00:00","context":{"id":"01JWX0313Y6E3R4E57P4DBQM00","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "unavailable",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.kasper_gaup_sin_iphone_ssid","state":"unavailable","attributes":{"icon":"mdi:dots-square","friendly_name":"Kasper Gaup sin iPhone SSID"},"last_changed":"2025-06-04T08:14:27.454186+00:00","last_reported":"2025-06-04T08:14:27.454186+00:00","last_updated":"2025-06-04T08:14:27.454186+00:00","context":{"id":"01JWX0313YRJA1CWG4C7T2DMGC","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "unavailable",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.s_light_01_request","state":"off","attributes":{"last_triggered":"2025-05-13T09:18:31.376129+00:00","mode":"single","current":0,"friendly_name":"S-LIGHT-01 Request"},"last_changed":"2025-06-04T08:14:27.480080+00:00","last_reported":"2025-06-04T08:14:27.480080+00:00","last_updated":"2025-06-04T08:14:27.480080+00:00","context":{"id":"01JWX0314R7KP0FH3FNH67R33B","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.s_par_02_request","state":"on","attributes":{"last_triggered":"2025-06-06T12:22:32.244595+00:00","mode":"single","current":0,"friendly_name":"S-PAR-02 Request"},"last_changed":"2025-06-04T08:14:27.480200+00:00","last_reported":"2025-06-06T12:22:32.247139+00:00","last_updated":"2025-06-06T12:22:32.247139+00:00","context":{"id":"01JX2K2Q1M9H83KWAVEN0X60NB","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.s_ec_01_1_request","state":"on","attributes":{"last_triggered":"2025-06-06T12:22:33.309427+00:00","mode":"single","current":0,"friendly_name":"S-EC-01-1 Request"},"last_changed":"2025-06-04T08:14:27.480306+00:00","last_reported":"2025-06-06T12:22:33.311653+00:00","last_updated":"2025-06-06T12:22:33.311653+00:00","context":{"id":"01JX2K2R2XZ3QV02VEZSN7NQ5S","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.initiate_calibration_for_ec_sensor_1_for_1413us_cm_reference","state":"on","attributes":{"last_triggered":"2025-05-27T12:24:01.904346+00:00","mode":"single","current":0,"friendly_name":"Initiate calibration for EC sensor 1  for 1413us/cm reference"},"last_changed":"2025-06-04T08:14:27.480417+00:00","last_reported":"2025-06-04T08:14:27.480417+00:00","last_updated":"2025-06-04T08:14:27.480417+00:00","context":{"id":"01JWX0314RNABQR63JXC8PKAAX","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.register_calibration_for_ec_sensor_1_for_1413us_cm_reference","state":"on","attributes":{"last_triggered":"2025-05-27T12:34:09.895733+00:00","mode":"single","current":0,"friendly_name":"Register calibration for EC sensor 1  for 1413us/cm reference"},"last_changed":"2025-06-04T08:14:27.480486+00:00","last_reported":"2025-06-04T08:14:27.480486+00:00","last_updated":"2025-06-04T08:14:27.480486+00:00","context":{"id":"01JWX0314R8HH6SCM5N8SYADP0","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.return_to_normal_operation_ec_sensor_1","state":"on","attributes":{"last_triggered":"2025-05-27T12:47:45.417371+00:00","mode":"single","current":0,"friendly_name":"Return to normal operation EC sensor 1"},"last_changed":"2025-06-04T08:14:27.480549+00:00","last_reported":"2025-06-04T08:14:27.480549+00:00","last_updated":"2025-06-04T08:14:27.480549+00:00","context":{"id":"01JWX0314RMGKP21X7HRRENCK9","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.initiate_calibration_for_ec_sensor_1_for_12880us_cm_reference","state":"on","attributes":{"last_triggered":"2025-05-27T12:17:05.012629+00:00","mode":"single","current":0,"friendly_name":"Initiate calibration for EC sensor 1  for 12880us/cm reference"},"last_changed":"2025-06-04T08:14:27.480613+00:00","last_reported":"2025-06-04T08:14:27.480613+00:00","last_updated":"2025-06-04T08:14:27.480613+00:00","context":{"id":"01JWX0314RZ2XXVKZ2WZKF9ADQ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.register_calibration_for_ec_sensor_1_for_12880us_cm_reference","state":"on","attributes":{"last_triggered":"2025-05-27T12:47:40.458595+00:00","mode":"single","current":0,"friendly_name":"Register calibration for EC sensor 1  for 12880us/cm reference"},"last_changed":"2025-06-04T08:14:27.480673+00:00","last_reported":"2025-06-04T08:14:27.480673+00:00","last_updated":"2025-06-04T08:14:27.480673+00:00","context":{"id":"01JWX0314RKHYZ4W1ZTFX4DXSS","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.s_ec_01_2_request","state":"on","attributes":{"last_triggered":"2025-06-06T12:22:34.301337+00:00","mode":"single","current":0,"friendly_name":"S-EC-01-2 Request"},"last_changed":"2025-06-04T08:14:27.480727+00:00","last_reported":"2025-06-06T12:22:34.303671+00:00","last_updated":"2025-06-06T12:22:34.303671+00:00","context":{"id":"01JX2K2S1XQ59H34KR6HN3Y565","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.initiate_calibration_for_ec_sensor_2_for_1413us_cm_reference","state":"on","attributes":{"last_triggered":"2025-05-27T12:48:57.460409+00:00","mode":"single","current":0,"friendly_name":"Initiate calibration for EC sensor 2  for 1413us/cm reference"},"last_changed":"2025-06-04T08:14:27.480796+00:00","last_reported":"2025-06-04T08:14:27.480796+00:00","last_updated":"2025-06-04T08:14:27.480796+00:00","context":{"id":"01JWX0314R8A9NDHYBW8G48W96","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.register_calibration_for_ec_sensor_2_for_1413us_cm_reference","state":"on","attributes":{"last_triggered":"2025-05-27T12:50:20.494910+00:00","mode":"single","current":0,"friendly_name":"Register calibration for EC sensor 2  for 1413us/cm reference"},"last_changed":"2025-06-04T08:14:27.480857+00:00","last_reported":"2025-06-04T08:14:27.480857+00:00","last_updated":"2025-06-04T08:14:27.480857+00:00","context":{"id":"01JWX0314RKNPG9KP1Y4VF0BRP","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.return_to_normal_operation_ec_sensor_2","state":"on","attributes":{"last_triggered":"2025-05-27T12:50:28.768230+00:00","mode":"single","current":0,"friendly_name":"Return to normal operation EC sensor 2"},"last_changed":"2025-06-04T08:14:27.480913+00:00","last_reported":"2025-06-04T08:14:27.480913+00:00","last_updated":"2025-06-04T08:14:27.480913+00:00","context":{"id":"01JWX0314RVY43CACT37DPD43A","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.initiate_calibration_for_ec_sensor_2_for_12880us_cm_reference","state":"on","attributes":{"last_triggered":"2025-05-27T12:25:51.732534+00:00","mode":"single","current":0,"friendly_name":"Initiate calibration for EC sensor 2  for 12880us/cm reference"},"last_changed":"2025-06-04T08:14:27.480972+00:00","last_reported":"2025-06-04T08:14:27.480972+00:00","last_updated":"2025-06-04T08:14:27.480972+00:00","context":{"id":"01JWX0314R9S13P0M51TWFZXV2","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.register_calibration_for_ec_sensor_2_for_12880us_cm_reference","state":"on","attributes":{"last_triggered":"2025-05-27T12:41:42.412084+00:00","mode":"single","current":0,"friendly_name":"Register calibration for EC sensor 2  for 12880us/cm reference"},"last_changed":"2025-06-04T08:14:27.481039+00:00","last_reported":"2025-06-04T08:14:27.481039+00:00","last_updated":"2025-06-04T08:14:27.481039+00:00","context":{"id":"01JWX0314S965E28X6V06ZN0QX","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.s_ph_01_1_request","state":"on","attributes":{"last_triggered":"2025-06-06T12:22:36.056218+00:00","mode":"single","current":0,"friendly_name":"S-PH-01-1 Request"},"last_changed":"2025-06-04T08:14:27.481094+00:00","last_reported":"2025-06-06T12:22:36.057224+00:00","last_updated":"2025-06-06T12:22:36.057224+00:00","context":{"id":"01JX2K2TRR6WBKRBHQC12ECTT4","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.initiate_calibration_for_ph_sensor_1_for_4_01ph_reference","state":"on","attributes":{"last_triggered":"2024-09-25T09:12:15.784240+00:00","mode":"single","current":0,"friendly_name":"Initiate calibration for pH sensor 1  for 4.01pH reference"},"last_changed":"2025-06-04T08:14:27.481150+00:00","last_reported":"2025-06-04T08:14:27.481150+00:00","last_updated":"2025-06-04T08:14:27.481150+00:00","context":{"id":"01JWX0314SBNNERTDBMQ4CPTPJ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.register_calibration_for_ph_sensor_1_for_4_01ph_reference","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Register calibration for pH sensor 1  for 4.01pH reference"},"last_changed":"2025-06-04T08:14:27.481209+00:00","last_reported":"2025-06-04T08:14:27.481209+00:00","last_updated":"2025-06-04T08:14:27.481209+00:00","context":{"id":"01JWX0314SJWN8H720FNXHXKMX","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.return_to_normal_operation_ph_sensor_1","state":"on","attributes":{"last_triggered":"2024-09-25T13:51:58.077552+00:00","mode":"single","current":0,"friendly_name":"Return to normal operation pH sensor 1"},"last_changed":"2025-06-04T08:14:27.481269+00:00","last_reported":"2025-06-04T08:14:27.481269+00:00","last_updated":"2025-06-04T08:14:27.481269+00:00","context":{"id":"01JWX0314SZ6MNX57QCDBPNZR9","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.initiate_calibration_for_ph_sensor_1_for_7_00ph_reference","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Initiate calibration for pH sensor 1  for 7.00pH reference"},"last_changed":"2025-06-04T08:14:27.481366+00:00","last_reported":"2025-06-04T08:14:27.481366+00:00","last_updated":"2025-06-04T08:14:27.481366+00:00","context":{"id":"01JWX0314SWBVYC96MX4C2N2QA","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.register_calibration_for_ph_sensor_1_for_7_00ph_reference","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Register calibration for pH sensor 1  for 7.00pH reference"},"last_changed":"2025-06-04T08:14:27.481455+00:00","last_reported":"2025-06-04T08:14:27.481455+00:00","last_updated":"2025-06-04T08:14:27.481455+00:00","context":{"id":"01JWX0314S7E99BEAC7D19QS15","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.initiate_calibration_for_ph_sensor_1_for_10_01ph_reference","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Initiate calibration for pH sensor 1  for 10.01pH reference"},"last_changed":"2025-06-04T08:14:27.481511+00:00","last_reported":"2025-06-04T08:14:27.481511+00:00","last_updated":"2025-06-04T08:14:27.481511+00:00","context":{"id":"01JWX0314SPCJABWBAB3CW96NA","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.register_calibration_for_ph_sensor_1_for_10_01ph_reference","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Register calibration for pH sensor 1  for 10.01pH reference"},"last_changed":"2025-06-04T08:14:27.481567+00:00","last_reported":"2025-06-04T08:14:27.481567+00:00","last_updated":"2025-06-04T08:14:27.481567+00:00","context":{"id":"01JWX0314SFYRYE8REAF7DTJY4","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.s_ph_01_2_request","state":"on","attributes":{"last_triggered":"2025-06-06T12:22:37.278472+00:00","mode":"single","current":0,"friendly_name":"S-PH-01-2 Request"},"last_changed":"2025-06-04T08:14:27.481626+00:00","last_reported":"2025-06-06T12:22:37.280854+00:00","last_updated":"2025-06-06T12:22:37.280854+00:00","context":{"id":"01JX2K2VYYYTE3JR5VM4QNZQM0","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.initiate_calibration_for_ph_sensor_2_for_4_01ph_reference","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Initiate calibration for pH sensor 2  for 4.01pH reference"},"last_changed":"2025-06-04T08:14:27.481685+00:00","last_reported":"2025-06-04T08:14:27.481685+00:00","last_updated":"2025-06-04T08:14:27.481685+00:00","context":{"id":"01JWX0314S1K67HF0EDPEA36H6","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.register_calibration_for_ph_sensor_2_for_4_01ph_reference","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Register calibration for pH sensor 2  for 4.01pH reference"},"last_changed":"2025-06-04T08:14:27.481744+00:00","last_reported":"2025-06-04T08:14:27.481744+00:00","last_updated":"2025-06-04T08:14:27.481744+00:00","context":{"id":"01JWX0314ST8R45G3WD3Z15YYP","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.return_to_normal_operation_ph_sensor_2","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Return to normal operation pH sensor 2"},"last_changed":"2025-06-04T08:14:27.481798+00:00","last_reported":"2025-06-04T08:14:27.481798+00:00","last_updated":"2025-06-04T08:14:27.481798+00:00","context":{"id":"01JWX0314SERZ7CDAK962QFK13","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.initiate_calibration_for_ph_sensor_2_for_7_00ph_reference","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Initiate calibration for pH sensor 2  for 7.00pH reference"},"last_changed":"2025-06-04T08:14:27.481858+00:00","last_reported":"2025-06-04T08:14:27.481858+00:00","last_updated":"2025-06-04T08:14:27.481858+00:00","context":{"id":"01JWX0314SVJMYDSKDZMQSTDTE","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.register_calibration_for_ph_sensor_2_for_7_00ph_reference","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Register calibration for pH sensor 2  for 7.00pH reference"},"last_changed":"2025-06-04T08:14:27.481916+00:00","last_reported":"2025-06-04T08:14:27.481916+00:00","last_updated":"2025-06-04T08:14:27.481916+00:00","context":{"id":"01JWX0314SA5TCFCB4D1H62WZD","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.initiate_calibration_for_ph_sensor_2_for_10_01ph_reference","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Initiate calibration for pH sensor 2  for 10.01pH reference"},"last_changed":"2025-06-04T08:14:27.481970+00:00","last_reported":"2025-06-04T08:14:27.481970+00:00","last_updated":"2025-06-04T08:14:27.481970+00:00","context":{"id":"01JWX0314SBDTFVWHS07QXMWSY","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.register_calibration_for_ph_sensor_2_for_10_01ph_reference","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Register calibration for pH sensor 2  for 10.01pH reference"},"last_changed":"2025-06-04T08:14:27.482029+00:00","last_reported":"2025-06-04T08:14:27.482029+00:00","last_updated":"2025-06-04T08:14:27.482029+00:00","context":{"id":"01JWX0314T5ZZ5M6RKN3YHRJAE","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.co2voc_1_request","state":"on","attributes":{"last_triggered":"2025-06-06T12:22:50.495697+00:00","mode":"single","current":0,"friendly_name":"CO2VOC_1 Request"},"last_changed":"2025-06-04T08:14:27.482084+00:00","last_reported":"2025-06-06T12:22:50.498169+00:00","last_updated":"2025-06-06T12:22:50.498169+00:00","context":{"id":"01JX2K38VZZJ18HX87XCDGTQRZ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.sth01_1_request","state":"on","attributes":{"last_triggered":"2025-06-06T12:22:55.284109+00:00","mode":"single","current":0,"friendly_name":"STH01_1 Request"},"last_changed":"2025-06-04T08:14:27.482139+00:00","last_reported":"2025-06-06T12:22:55.286532+00:00","last_updated":"2025-06-06T12:22:55.286532+00:00","context":{"id":"01JX2K3DHKCDHEC7TKQ0W9E3GT","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.sth01_2_request","state":"on","attributes":{"last_triggered":"2025-06-06T12:22:38.311212+00:00","mode":"single","current":0,"friendly_name":"STH01_2 Request"},"last_changed":"2025-06-04T08:14:27.482192+00:00","last_reported":"2025-06-06T12:22:38.313516+00:00","last_updated":"2025-06-06T12:22:38.313516+00:00","context":{"id":"01JX2K2WZ6MF1GC1SKMZ0T4N2C","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.s_ym_01_request","state":"on","attributes":{"last_triggered":"2025-06-06T12:22:39.353592+00:00","mode":"single","current":0,"friendly_name":"S-YM-01 Request"},"last_changed":"2025-06-04T08:14:27.482246+00:00","last_reported":"2025-06-06T12:22:39.355928+00:00","last_updated":"2025-06-06T12:22:39.355928+00:00","context":{"id":"01JX2K2XZS4ETNPCE4YTSQVQCT","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_01_turn_on","state":"on","attributes":{"last_triggered":"2025-05-27T14:47:24.170230+00:00","mode":"single","current":0,"friendly_name":"Relay 01, Turn on"},"last_changed":"2025-06-04T08:14:27.482306+00:00","last_reported":"2025-06-04T08:14:27.482306+00:00","last_updated":"2025-06-04T08:14:27.482306+00:00","context":{"id":"01JWX0314TTNFH9NH7EVBY00TX","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_01_turn_off","state":"on","attributes":{"last_triggered":"2025-05-27T14:48:13.264039+00:00","mode":"single","current":0,"friendly_name":"Relay 01, Turn off"},"last_changed":"2025-06-04T08:14:27.482394+00:00","last_reported":"2025-06-04T08:14:27.482394+00:00","last_updated":"2025-06-04T08:14:27.482394+00:00","context":{"id":"01JWX0314TVGCWKMY7ZAT4ZD3B","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_02_turn_on","state":"on","attributes":{"last_triggered":"2025-06-06T08:52:04.623861+00:00","mode":"single","current":0,"friendly_name":"Relay 02, Turn on"},"last_changed":"2025-06-04T08:14:27.482445+00:00","last_reported":"2025-06-06T08:52:04.627165+00:00","last_updated":"2025-06-06T08:52:04.627165+00:00","context":{"id":"01JX271BCFMBBSVSBQ6XBGTEWC","parent_id":"01JX271BCEJYPY8PXYRKEKXDF8","user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_02_turn_off","state":"on","attributes":{"last_triggered":"2025-06-06T08:52:02.708805+00:00","mode":"single","current":0,"friendly_name":"Relay 02, Turn off"},"last_changed":"2025-06-04T08:14:27.482501+00:00","last_reported":"2025-06-06T08:52:02.712050+00:00","last_updated":"2025-06-06T08:52:02.712050+00:00","context":{"id":"01JX2719GMVBZSYB2684QYPF52","parent_id":"01JX2719GKD78Y1R3NPN1FEXVE","user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_03_turn_on","state":"on","attributes":{"last_triggered":"2025-05-22T16:09:08.366070+00:00","mode":"single","current":0,"friendly_name":"Relay 03, Turn on"},"last_changed":"2025-06-04T08:14:27.482550+00:00","last_reported":"2025-06-04T08:14:27.482550+00:00","last_updated":"2025-06-04T08:14:27.482550+00:00","context":{"id":"01JWX0314TXPRSDRQ262WFXKM7","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_03_turn_off","state":"on","attributes":{"last_triggered":"2025-05-22T16:09:06.739536+00:00","mode":"single","current":0,"friendly_name":"Relay 03, Turn off"},"last_changed":"2025-06-04T08:14:27.482601+00:00","last_reported":"2025-06-04T08:14:27.482601+00:00","last_updated":"2025-06-04T08:14:27.482601+00:00","context":{"id":"01JWX0314TNB60T0BNM6VA32YA","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_04_turn_on","state":"on","attributes":{"last_triggered":"2025-05-26T18:07:43.377791+00:00","mode":"single","current":0,"friendly_name":"Relay 04, Turn on"},"last_changed":"2025-06-04T08:14:27.482652+00:00","last_reported":"2025-06-04T08:14:27.482652+00:00","last_updated":"2025-06-04T08:14:27.482652+00:00","context":{"id":"01JWX0314T5DZSQF491GQYRTPZ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_04_turn_off","state":"on","attributes":{"last_triggered":"2025-05-26T18:26:13.117104+00:00","mode":"single","current":0,"friendly_name":"Relay 04, Turn off"},"last_changed":"2025-06-04T08:14:27.482707+00:00","last_reported":"2025-06-04T08:14:27.482707+00:00","last_updated":"2025-06-04T08:14:27.482707+00:00","context":{"id":"01JWX0314TZYDPPXRKRVBH91VX","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_05_turn_on","state":"on","attributes":{"last_triggered":"2025-02-05T11:26:24.565363+00:00","mode":"single","current":0,"friendly_name":"Relay 05, Turn on"},"last_changed":"2025-06-04T08:14:27.482764+00:00","last_reported":"2025-06-04T08:14:27.482764+00:00","last_updated":"2025-06-04T08:14:27.482764+00:00","context":{"id":"01JWX0314TE6RVHQTXJZE3GB40","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_05_turn_off","state":"on","attributes":{"last_triggered":"2025-02-05T11:26:29.102955+00:00","mode":"single","current":0,"friendly_name":"Relay 05, Turn off"},"last_changed":"2025-06-04T08:14:27.482813+00:00","last_reported":"2025-06-04T08:14:27.482813+00:00","last_updated":"2025-06-04T08:14:27.482813+00:00","context":{"id":"01JWX0314TWGBHAVR1F75R3T9F","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_06_turn_on","state":"on","attributes":{"last_triggered":"2024-10-15T16:38:31.738314+00:00","mode":"single","current":0,"friendly_name":"Relay 06, Turn on"},"last_changed":"2025-06-04T08:14:27.482865+00:00","last_reported":"2025-06-04T08:14:27.482865+00:00","last_updated":"2025-06-04T08:14:27.482865+00:00","context":{"id":"01JWX0314T4WJXC024G1F7TMRW","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_06_turn_off","state":"on","attributes":{"last_triggered":"2024-10-15T18:33:42.310426+00:00","mode":"single","current":0,"friendly_name":"Relay 06, Turn off"},"last_changed":"2025-06-04T08:14:27.482916+00:00","last_reported":"2025-06-04T08:14:27.482916+00:00","last_updated":"2025-06-04T08:14:27.482916+00:00","context":{"id":"01JWX0314T850RQ4GTAKBN6ZZQ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_07_turn_on","state":"on","attributes":{"last_triggered":"2024-10-15T16:38:32.143495+00:00","mode":"single","current":0,"friendly_name":"Relay 07, Turn on"},"last_changed":"2025-06-04T08:14:27.482965+00:00","last_reported":"2025-06-04T08:14:27.482965+00:00","last_updated":"2025-06-04T08:14:27.482965+00:00","context":{"id":"01JWX0314TAT44V1MNZPPV8A6P","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_07_turn_off","state":"on","attributes":{"last_triggered":"2024-10-15T18:33:40.737192+00:00","mode":"single","current":0,"friendly_name":"Relay 07, Turn off"},"last_changed":"2025-06-04T08:14:27.483017+00:00","last_reported":"2025-06-04T08:14:27.483017+00:00","last_updated":"2025-06-04T08:14:27.483017+00:00","context":{"id":"01JWX0314VTFZHJR4Y4181HVGD","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_08_turn_on","state":"on","attributes":{"last_triggered":"2024-10-15T18:33:40.018294+00:00","mode":"single","current":0,"friendly_name":"Relay 08, Turn on"},"last_changed":"2025-06-04T08:14:27.483067+00:00","last_reported":"2025-06-04T08:14:27.483067+00:00","last_updated":"2025-06-04T08:14:27.483067+00:00","context":{"id":"01JWX0314V3WVTHXWYVQ15DJSH","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_08_turn_off","state":"on","attributes":{"last_triggered":"2024-10-15T18:33:41.019280+00:00","mode":"single","current":0,"friendly_name":"Relay 08, Turn off"},"last_changed":"2025-06-04T08:14:27.483119+00:00","last_reported":"2025-06-04T08:14:27.483119+00:00","last_updated":"2025-06-04T08:14:27.483119+00:00","context":{"id":"01JWX0314VGH862HZVK9W2Q9X1","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_09_turn_on","state":"on","attributes":{"last_triggered":"2025-05-22T10:28:08.269436+00:00","mode":"single","current":0,"friendly_name":"Relay 09, Turn on"},"last_changed":"2025-06-04T08:14:27.483174+00:00","last_reported":"2025-06-04T08:14:27.483174+00:00","last_updated":"2025-06-04T08:14:27.483174+00:00","context":{"id":"01JWX0314VYWGGGQQ2RX8ESB71","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_09_turn_off","state":"on","attributes":{"last_triggered":"2025-05-22T10:28:09.192456+00:00","mode":"single","current":0,"friendly_name":"Relay 09, Turn off"},"last_changed":"2025-06-04T08:14:27.483227+00:00","last_reported":"2025-06-04T08:14:27.483227+00:00","last_updated":"2025-06-04T08:14:27.483227+00:00","context":{"id":"01JWX0314VP9YQWPZSK7PK5461","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_10_turn_on","state":"on","attributes":{"last_triggered":"2025-05-31T12:59:40.599684+00:00","mode":"single","current":0,"friendly_name":"Relay 10, Turn on"},"last_changed":"2025-06-04T08:14:27.483280+00:00","last_reported":"2025-06-04T08:14:27.483280+00:00","last_updated":"2025-06-04T08:14:27.483280+00:00","context":{"id":"01JWX0314VVF546WBMSWYDTYHZ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_10_turn_off","state":"on","attributes":{"last_triggered":"2025-05-31T13:01:23.629945+00:00","mode":"single","current":0,"friendly_name":"Relay 10, Turn off"},"last_changed":"2025-06-04T08:14:27.483389+00:00","last_reported":"2025-06-04T08:14:27.483389+00:00","last_updated":"2025-06-04T08:14:27.483389+00:00","context":{"id":"01JWX0314VD2H95S20EQXE4P2H","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_11_turn_on","state":"on","attributes":{"last_triggered":"2025-05-27T15:13:54.419472+00:00","mode":"single","current":0,"friendly_name":"Relay 11, Turn on"},"last_changed":"2025-06-04T08:14:27.483447+00:00","last_reported":"2025-06-04T08:14:27.483447+00:00","last_updated":"2025-06-04T08:14:27.483447+00:00","context":{"id":"01JWX0314V04PJFB5CZ7244ZQ8","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_11_turn_off","state":"on","attributes":{"last_triggered":"2025-05-27T15:14:19.978005+00:00","mode":"single","current":0,"friendly_name":"Relay 11, Turn off"},"last_changed":"2025-06-04T08:14:27.483500+00:00","last_reported":"2025-06-04T08:14:27.483500+00:00","last_updated":"2025-06-04T08:14:27.483500+00:00","context":{"id":"01JWX0314VZ3A4FS4QMGZA9ZH6","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_12_turn_on","state":"on","attributes":{"last_triggered":"2025-06-06T08:47:12.407825+00:00","mode":"single","current":0,"friendly_name":"Relay 12, Turn on"},"last_changed":"2025-06-04T08:14:27.483551+00:00","last_reported":"2025-06-06T08:47:12.414628+00:00","last_updated":"2025-06-06T08:47:12.414628+00:00","context":{"id":"01JX26RE0QMSGM11VB0XXAG5RS","parent_id":"01JX26RE0P93XYJQ1WSHC8HDCJ","user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_12_turn_off","state":"on","attributes":{"last_triggered":"2025-06-06T08:47:14.355275+00:00","mode":"single","current":0,"friendly_name":"Relay 12, Turn off"},"last_changed":"2025-06-04T08:14:27.483607+00:00","last_reported":"2025-06-06T08:47:14.361079+00:00","last_updated":"2025-06-06T08:47:14.361079+00:00","context":{"id":"01JX26RFXJ0SWE9HDW4B46W5M2","parent_id":"01JX26RFXH0VPQ8AYN8GMVEHV2","user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_13_turn_on","state":"on","attributes":{"last_triggered":"2025-05-13T10:13:38.552219+00:00","mode":"single","current":0,"friendly_name":"Relay 13, Turn on"},"last_changed":"2025-06-04T08:14:27.483747+00:00","last_reported":"2025-06-04T08:14:27.483747+00:00","last_updated":"2025-06-04T08:14:27.483747+00:00","context":{"id":"01JWX0314VCP6X2MC1MV2EGCNK","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_13_turn_off","state":"on","attributes":{"last_triggered":"2025-05-13T10:13:46.476353+00:00","mode":"single","current":0,"friendly_name":"Relay 13, Turn off"},"last_changed":"2025-06-04T08:14:27.483801+00:00","last_reported":"2025-06-04T08:14:27.483801+00:00","last_updated":"2025-06-04T08:14:27.483801+00:00","context":{"id":"01JWX0314V1X5A97JRC2C5ZMTP","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_14_turn_on","state":"on","attributes":{"last_triggered":"2025-05-27T13:14:26.990959+00:00","mode":"single","current":0,"friendly_name":"Relay 14, Turn on"},"last_changed":"2025-06-04T08:14:27.483855+00:00","last_reported":"2025-06-04T08:14:27.483855+00:00","last_updated":"2025-06-04T08:14:27.483855+00:00","context":{"id":"01JWX0314VW5BSBJKWQJYJYQT8","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_14_turn_off","state":"on","attributes":{"last_triggered":"2025-05-27T13:40:45.446955+00:00","mode":"single","current":0,"friendly_name":"Relay 14, Turn off"},"last_changed":"2025-06-04T08:14:27.483907+00:00","last_reported":"2025-06-04T08:14:27.483907+00:00","last_updated":"2025-06-04T08:14:27.483907+00:00","context":{"id":"01JWX0314VKGQJQCZHPWRH3XFF","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_15_turn_on","state":"on","attributes":{"last_triggered":"2025-05-27T13:14:27.334292+00:00","mode":"single","current":0,"friendly_name":"Relay 15, Turn on"},"last_changed":"2025-06-04T08:14:27.483961+00:00","last_reported":"2025-06-04T08:14:27.483961+00:00","last_updated":"2025-06-04T08:14:27.483961+00:00","context":{"id":"01JWX0314V6NGCP7ATWYA4YC87","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_15_turn_off","state":"on","attributes":{"last_triggered":"2025-05-27T13:40:45.786446+00:00","mode":"single","current":0,"friendly_name":"Relay 15, Turn off"},"last_changed":"2025-06-04T08:14:27.484011+00:00","last_reported":"2025-06-04T08:14:27.484011+00:00","last_updated":"2025-06-04T08:14:27.484011+00:00","context":{"id":"01JWX0314WHEP1H29677821V18","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_16_turn_on","state":"on","attributes":{"last_triggered":"2025-05-27T13:14:27.751213+00:00","mode":"single","current":0,"friendly_name":"Relay 16, Turn on"},"last_changed":"2025-06-04T08:14:27.484061+00:00","last_reported":"2025-06-04T08:14:27.484061+00:00","last_updated":"2025-06-04T08:14:27.484061+00:00","context":{"id":"01JWX0314WRCNPNV5SVE61CCBQ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.relay_16_turn_off","state":"on","attributes":{"last_triggered":"2025-05-27T13:40:46.136518+00:00","mode":"single","current":0,"friendly_name":"Relay 16, Turn off"},"last_changed":"2025-06-04T08:14:27.484113+00:00","last_reported":"2025-06-04T08:14:27.484113+00:00","last_updated":"2025-06-04T08:14:27.484113+00:00","context":{"id":"01JWX0314W9TRMXGZDNFDZFWGS","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.solid_state_relay_01_turn_on","state":"on","attributes":{"last_triggered":"2025-05-27T09:26:44.847700+00:00","mode":"single","current":0,"friendly_name":"Solid state relay 01, Turn on"},"last_changed":"2025-06-04T08:14:27.484170+00:00","last_reported":"2025-06-04T08:14:27.484170+00:00","last_updated":"2025-06-04T08:14:27.484170+00:00","context":{"id":"01JWX0314WH25GQD4J8WW1YRRQ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.solid_state_relay_01_turn_off","state":"on","attributes":{"last_triggered":"2025-05-27T09:26:45.927600+00:00","mode":"single","current":0,"friendly_name":"Solid state relay 01, Turn off"},"last_changed":"2025-06-04T08:14:27.484226+00:00","last_reported":"2025-06-04T08:14:27.484226+00:00","last_updated":"2025-06-04T08:14:27.484226+00:00","context":{"id":"01JWX0314WVE7T25QANR5CNERG","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.solid_state_relay_01_update_state","state":"on","attributes":{"last_triggered":"2025-05-04T09:01:26.477075+00:00","mode":"single","current":0,"friendly_name":"Solid state relay 01, Update state"},"last_changed":"2025-06-04T08:14:27.484281+00:00","last_reported":"2025-06-04T08:14:27.484281+00:00","last_updated":"2025-06-04T08:14:27.484281+00:00","context":{"id":"01JWX0314WQ6S144XMJ1JTMTEB","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.solid_state_relay_01_stop_pwm_loop","state":"off","attributes":{"last_triggered":"2025-04-09T11:05:51.060584+00:00","mode":"single","current":0,"friendly_name":"Solid state relay 01, Stop PWM loop"},"last_changed":"2025-06-04T08:14:27.484798+00:00","last_reported":"2025-06-04T08:14:27.484798+00:00","last_updated":"2025-06-04T08:14:27.484798+00:00","context":{"id":"01JWX0314WXY7TAYFV2BST0KTS","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.solid_state_relay_01_turn_on_for_states_input_number_ssr_turn_on_for_round_0_seconds","state":"on","attributes":{"last_triggered":"2025-05-04T10:07:22.617878+00:00","mode":"single","current":0,"friendly_name":"Solid state relay 01, Turn on for {{ states('input_number.ssr_turn_on_for') | round(0) }} seconds"},"last_changed":"2025-06-04T08:14:27.484889+00:00","last_reported":"2025-06-04T08:14:27.484889+00:00","last_updated":"2025-06-04T08:14:27.484889+00:00","context":{"id":"01JWX0314WXGBV32M5GMKV4WPJ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.fan_voltage_update","state":"on","attributes":{"last_triggered":"2025-06-06T12:09:31.890417+00:00","mode":"single","current":0,"friendly_name":"Fan voltage, Update"},"last_changed":"2025-06-04T08:14:27.484947+00:00","last_reported":"2025-06-06T12:09:31.895524+00:00","last_updated":"2025-06-06T12:09:31.895524+00:00","context":{"id":"01JX2JAWZJNR27F1YQ3H7EHQJF","parent_id":"01JX2JAWZH7FKK29647D09YYKB","user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.enable_normal_fan_operation","state":"on","attributes":{"last_triggered":"2025-05-27T12:53:55.972475+00:00","mode":"single","current":0,"friendly_name":"Enable normal fan operation"},"last_changed":"2025-06-04T08:14:27.485011+00:00","last_reported":"2025-06-04T08:14:27.485011+00:00","last_updated":"2025-06-04T08:14:27.485011+00:00","context":{"id":"01JWX0314X6MZFX461EFB1HRQ5","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.disable_normal_fan_operation","state":"on","attributes":{"last_triggered":"2025-05-27T12:10:06.316611+00:00","mode":"single","current":0,"friendly_name":"Disable normal fan operation"},"last_changed":"2025-06-04T08:14:27.485066+00:00","last_reported":"2025-06-04T08:14:27.485066+00:00","last_updated":"2025-06-04T08:14:27.485066+00:00","context":{"id":"01JWX0314XTS68NN8RGRRAHJ7Z","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.valve_voltage_update","state":"on","attributes":{"last_triggered":"2025-05-27T15:53:23.391441+00:00","mode":"single","current":0,"friendly_name":"Valve voltage, Update"},"last_changed":"2025-06-04T08:14:27.485124+00:00","last_reported":"2025-06-04T08:14:27.485124+00:00","last_updated":"2025-06-04T08:14:27.485124+00:00","context":{"id":"01JWX0314X3RFWZ45WHVWW0RQ1","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.lamp_01_update_led_intensity","state":"on","attributes":{"last_triggered":"2025-06-06T08:41:41.500019+00:00","mode":"single","current":0,"friendly_name":"Lamp 01, Update LED intensity"},"last_changed":"2025-06-04T08:14:27.485177+00:00","last_reported":"2025-06-06T08:41:41.501912+00:00","last_updated":"2025-06-06T08:41:41.501912+00:00","context":{"id":"01JX26EAVVFKNMVZA0557KNMR6","parent_id":"01JX26EAVTA81RSANB3F413ZZ3","user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.lamp_02_update_led_intensity","state":"on","attributes":{"last_triggered":"2025-06-06T08:41:38.690609+00:00","mode":"single","current":0,"friendly_name":"Lamp 02, Update LED intensity"},"last_changed":"2025-06-04T08:14:27.485238+00:00","last_reported":"2025-06-06T08:41:38.693408+00:00","last_updated":"2025-06-06T08:41:38.693408+00:00","context":{"id":"01JX26E842N6K6GJTCD63PKERY","parent_id":"01JX26E83ZYB6HY6W62EK7JVQE","user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.ref_humid_update_ref_humid","state":"on","attributes":{"last_triggered":"2025-06-06T08:47:26.285036+00:00","mode":"single","current":0,"friendly_name":"Ref Humid, Update Ref humid"},"last_changed":"2025-06-04T08:14:27.485293+00:00","last_reported":"2025-06-06T08:47:26.291416+00:00","last_updated":"2025-06-06T08:47:26.291416+00:00","context":{"id":"01JX26RVJCJ71HVRNWWP33KAKT","parent_id":"01JX26RVJB6JBK27VDTBMVWPST","user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.ref_temp_update_ref_temp","state":"on","attributes":{"last_triggered":"2025-06-06T08:47:29.917673+00:00","mode":"single","current":0,"friendly_name":"Ref temp, Update Ref temp"},"last_changed":"2025-06-04T08:14:27.485417+00:00","last_reported":"2025-06-06T08:47:29.923729+00:00","last_updated":"2025-06-06T08:47:29.923729+00:00","context":{"id":"01JX26RZ3XEA46A7N9N4GTJ2Y1","parent_id":"01JX26RZ3W4AM8E6DPZCYYTHXE","user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.ref_co2_update_ref_co2","state":"on","attributes":{"last_triggered":"2025-05-27T10:54:10.459932+00:00","mode":"single","current":0,"friendly_name":"Ref CO2, Update Ref CO2"},"last_changed":"2025-06-04T08:14:27.485472+00:00","last_reported":"2025-06-04T08:14:27.485472+00:00","last_updated":"2025-06-04T08:14:27.485472+00:00","context":{"id":"01JWX0314X7WA8J73W752CJ13H","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.pid_enable_disable","state":"on","attributes":{"id":"cooling_pid_automation","last_triggered":"2025-06-06T12:22:55.420967+00:00","mode":"single","current":0,"friendly_name":"Cooling PID, enable/disable"},"last_changed":"2025-06-04T08:14:27.485542+00:00","last_reported":"2025-06-06T12:22:55.421901+00:00","last_updated":"2025-06-06T12:22:55.421901+00:00","context":{"id":"01JX2K3DNWQGT3QN3V7235R1T0","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.heating_pid_enable_disable","state":"on","attributes":{"id":"heating_pid_automation","last_triggered":"2025-06-06T12:22:50.179699+00:00","mode":"single","current":0,"friendly_name":"Heating PID, enable/disable"},"last_changed":"2025-06-04T08:14:27.485606+00:00","last_reported":"2025-06-06T12:22:50.182377+00:00","last_updated":"2025-06-06T12:22:50.182377+00:00","context":{"id":"01JX2K38J36HP9HKTGMFNQ92HQ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.co2_pid_enable_disable","state":"on","attributes":{"id":"co2_pid_automation","last_triggered":"2025-05-27T11:08:00.416939+00:00","mode":"single","current":0,"friendly_name":"CO2 PID, enable/disable"},"last_changed":"2025-06-04T08:14:27.485667+00:00","last_reported":"2025-06-04T08:14:27.485667+00:00","last_updated":"2025-06-04T08:14:27.485667+00:00","context":{"id":"01JWX0314X7KT7FE5J0JM7E44H","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_light_01_light","state":"unknown","attributes":{"unit_of_measurement":"lx","icon":"mdi:brightness-5","friendly_name":"S-LIGHT-01 Light"},"last_changed":"2025-06-04T08:23:49.927232+00:00","last_reported":"2025-06-04T08:23:49.927232+00:00","last_updated":"2025-06-04T08:23:49.927232+00:00","context":{"id":"01JWX0M6D7JQJT1P7XJ8SQ2FM9","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": "lx"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_par_02_par","state":"177","attributes":{"unit_of_measurement":"µmol/m²/s","icon":"mdi:weather-sunny","friendly_name":"S-PAR-02 PAR"},"last_changed":"2025-06-06T12:22:32.457249+00:00","last_reported":"2025-06-06T12:22:32.457249+00:00","last_updated":"2025-06-06T12:22:32.457249+00:00","context":{"id":"01JX2K2Q89VCTTAKV09GTKMDYP","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "177",
+        "native_unit_of_measurement": "µmol/m²/s"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_ec_01_1_ec","state":"1350","attributes":{"unit_of_measurement":"µS/cm","icon":"mdi:electron-framework","friendly_name":"S-EC-01-1 EC"},"last_changed":"2025-06-06T12:13:33.477968+00:00","last_reported":"2025-06-06T12:13:33.477968+00:00","last_updated":"2025-06-06T12:13:33.477968+00:00","context":{"id":"01JX2JJ8X5JTT04XP8R2KJ203P","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "1350",
+        "native_unit_of_measurement": "µS/cm"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_ec_01_1_temperature","state":"20.6","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer","friendly_name":"S-EC-01-1 Temperature"},"last_changed":"2025-06-06T12:16:03.189152+00:00","last_reported":"2025-06-06T12:16:03.189152+00:00","last_updated":"2025-06-06T12:16:03.189152+00:00","context":{"id":"01JX2JPV3N26CWDBFDE9C1KKHX","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "20.6",
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_ec_01_1_tds","state":"675","attributes":{"unit_of_measurement":"mg/L","icon":"mdi:water","friendly_name":"S-EC-01-1 TDS"},"last_changed":"2025-06-06T12:11:33.475753+00:00","last_reported":"2025-06-06T12:11:33.475753+00:00","last_updated":"2025-06-06T12:11:33.475753+00:00","context":{"id":"01JX2JEKQ36T8RVM4HT6H0VPGG","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "675",
+        "native_unit_of_measurement": "mg/L"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.ec_sensor_1_calibrated","state":"0","attributes":{"unit_of_measurement":"timestamp","icon":"mdi:electron-framework","friendly_name":"EC sensor 1 calibrated"},"last_changed":"2025-06-04T08:24:00.521101+00:00","last_reported":"2025-06-04T08:24:00.521101+00:00","last_updated":"2025-06-04T08:24:00.521101+00:00","context":{"id":"01JWX0MGR934563VNABS2VD8XV","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "0",
+        "native_unit_of_measurement": "timestamp"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_ec_01_2_ec","state":"1690","attributes":{"unit_of_measurement":"µS/cm","icon":"mdi:electron-framework","friendly_name":"S-EC-01-2 EC"},"last_changed":"2025-06-06T12:20:04.194824+00:00","last_reported":"2025-06-06T12:20:04.194824+00:00","last_updated":"2025-06-06T12:20:04.194824+00:00","context":{"id":"01JX2JY6F2X1PHA9VCASB9GXQQ","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "1690",
+        "native_unit_of_measurement": "µS/cm"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_ec_01_2_temperature","state":"19.4","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer","friendly_name":"S-EC-01-2 Temperature"},"last_changed":"2025-06-06T12:20:04.195027+00:00","last_reported":"2025-06-06T12:20:04.195027+00:00","last_updated":"2025-06-06T12:20:04.195027+00:00","context":{"id":"01JX2JY6F3NNK5TF4YD76S4KT7","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "19.4",
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_ec_01_2_tds","state":"845","attributes":{"unit_of_measurement":"mg/L","icon":"mdi:water","friendly_name":"S-EC-01-2 TDS"},"last_changed":"2025-06-06T12:20:04.195141+00:00","last_reported":"2025-06-06T12:20:04.195141+00:00","last_updated":"2025-06-06T12:20:04.195141+00:00","context":{"id":"01JX2JY6F3Z45167CS3BA70MKK","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "845",
+        "native_unit_of_measurement": "mg/L"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.ec_sensor_2_calibrated","state":"0","attributes":{"unit_of_measurement":"timestamp","icon":"mdi:electron-framework","friendly_name":"EC sensor 2 calibrated"},"last_changed":"2025-06-04T08:24:01.494874+00:00","last_reported":"2025-06-04T08:24:01.494874+00:00","last_updated":"2025-06-04T08:24:01.494874+00:00","context":{"id":"01JWX0MHPPY2H9XCTR24WDVEBG","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "0",
+        "native_unit_of_measurement": "timestamp"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_ph_01_1_ph","state":"0","attributes":{"unit_of_measurement":"pH","icon":"mdi:ph","friendly_name":"S-PH-01-1 pH"},"last_changed":"2025-06-04T08:24:03.213613+00:00","last_reported":"2025-06-04T08:24:03.213613+00:00","last_updated":"2025-06-04T08:24:03.213613+00:00","context":{"id":"01JWX0MKCDZ728C2TWXJP662SW","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "0",
+        "native_unit_of_measurement": "pH"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_ph_01_1_temperature","state":"25.72","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer","friendly_name":"S-PH-01-1 Temperature"},"last_changed":"2025-06-06T12:22:36.112098+00:00","last_reported":"2025-06-06T12:22:36.112098+00:00","last_updated":"2025-06-06T12:22:36.112098+00:00","context":{"id":"01JX2K2TTGE7W8Q8TD9WHA28BY","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "25.72",
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.ph_sensor_1_calibrated","state":"0","attributes":{"unit_of_measurement":"timestamp","icon":"mdi:ph","friendly_name":"pH sensor 1 calibrated"},"last_changed":"2025-06-04T08:24:03.213900+00:00","last_reported":"2025-06-04T08:24:03.213900+00:00","last_updated":"2025-06-04T08:24:03.213900+00:00","context":{"id":"01JWX0MKCDEDANMZH1SSY3JGRH","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "0",
+        "native_unit_of_measurement": "timestamp"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_ph_01_2_ph","state":"unknown","attributes":{"unit_of_measurement":"pH","icon":"mdi:ph","friendly_name":"S-PH-01-2 pH"},"last_changed":"2025-06-04T08:23:49.929625+00:00","last_reported":"2025-06-04T08:23:49.929625+00:00","last_updated":"2025-06-04T08:23:49.929625+00:00","context":{"id":"01JWX0M6D94K31QQ385T9GZ70T","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": "pH"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_ph_01_2_temperature","state":"unknown","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer","friendly_name":"S-PH-01-2 Temperature"},"last_changed":"2025-06-04T08:23:49.929792+00:00","last_reported":"2025-06-04T08:23:49.929792+00:00","last_updated":"2025-06-04T08:23:49.929792+00:00","context":{"id":"01JWX0M6D9BZP127C3QEH1MC5M","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.ph_sensor_2_calibrated","state":"unknown","attributes":{"unit_of_measurement":"timestamp","icon":"mdi:ph","friendly_name":"pH sensor 2 calibrated"},"last_changed":"2025-06-04T08:23:49.929948+00:00","last_reported":"2025-06-04T08:23:49.929948+00:00","last_updated":"2025-06-04T08:23:49.929948+00:00","context":{"id":"01JWX0M6D9DXGJB68N25HTAHNM","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": "timestamp"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.co2_voc_1_temperature","state":"22","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer","friendly_name":"CO2_VOC_1 Temperature"},"last_changed":"2025-06-06T12:22:40.407010+00:00","last_reported":"2025-06-06T12:22:40.407010+00:00","last_updated":"2025-06-06T12:22:40.407010+00:00","context":{"id":"01JX2K2Z0QG081NXKRZG19N4QP","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "22",
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.co2_voc_1_humidity","state":"53","attributes":{"unit_of_measurement":"%[RH]","icon":"mdi:water-percent","friendly_name":"CO2_VOC_1 Humidity"},"last_changed":"2025-06-06T12:22:40.407178+00:00","last_reported":"2025-06-06T12:22:40.407178+00:00","last_updated":"2025-06-06T12:22:40.407178+00:00","context":{"id":"01JX2K2Z0QPHFX87QSC45M7A5D","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "53",
+        "native_unit_of_measurement": "%[RH]"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.co2_voc_1_co2","state":"508","attributes":{"unit_of_measurement":"ppm","icon":"mdi:smoke","friendly_name":"CO2_VOC_1 CO2"},"last_changed":"2025-06-06T12:22:50.407720+00:00","last_reported":"2025-06-06T12:22:50.407720+00:00","last_updated":"2025-06-06T12:22:50.407720+00:00","context":{"id":"01JX2K38S7ACE7K12BHJHPKGDW","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "508",
+        "native_unit_of_measurement": "ppm"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.co2_voc_1_dewpoint","state":"12","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer-water","friendly_name":"CO2_VOC_1 Dewpoint"},"last_changed":"2025-06-06T12:22:40.651560+00:00","last_reported":"2025-06-06T12:22:40.651560+00:00","last_updated":"2025-06-06T12:22:40.651560+00:00","context":{"id":"01JX2K2Z8BV0S7B6E78HCR2GHP","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "12",
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.co2_voc_1_volume_flow","state":"0","attributes":{"unit_of_measurement":"m3/s","icon":"mdi:air-filter","friendly_name":"CO2_VOC_1 Volume Flow"},"last_changed":"2025-06-04T08:23:50.654624+00:00","last_reported":"2025-06-04T08:23:50.654624+00:00","last_updated":"2025-06-04T08:23:50.654624+00:00","context":{"id":"01JWX0M73YYANB1D7W7MP254ED","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "0",
+        "native_unit_of_measurement": "m3/s"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.co2_voc_2_temperature","state":"unknown","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer","friendly_name":"CO2_VOC_2 Temperature"},"last_changed":"2025-06-04T08:23:49.930910+00:00","last_reported":"2025-06-04T08:23:49.930910+00:00","last_updated":"2025-06-04T08:23:49.930910+00:00","context":{"id":"01JWX0M6DAFC8NYDGEVTYKTG2A","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.co2_voc_2_humidity","state":"unknown","attributes":{"unit_of_measurement":"%[RH]","icon":"mdi:water-percent","friendly_name":"CO2_VOC_2 Humidity"},"last_changed":"2025-06-04T08:23:49.931059+00:00","last_reported":"2025-06-04T08:23:49.931059+00:00","last_updated":"2025-06-04T08:23:49.931059+00:00","context":{"id":"01JWX0M6DB4WHRR2VYNR0VQ5H4","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": "%[RH]"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.co2_voc_2_co2","state":"unknown","attributes":{"unit_of_measurement":"ppm","icon":"mdi:smoke","friendly_name":"CO2_VOC_2 CO2"},"last_changed":"2025-06-04T08:23:49.931224+00:00","last_reported":"2025-06-04T08:23:49.931224+00:00","last_updated":"2025-06-04T08:23:49.931224+00:00","context":{"id":"01JWX0M6DBPK6YYEDH9E5253BD","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": "ppm"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.co2_voc_2_dewpoint","state":"unknown","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer-water","friendly_name":"CO2_VOC_2 Dewpoint"},"last_changed":"2025-06-04T08:23:49.931381+00:00","last_reported":"2025-06-04T08:23:49.931381+00:00","last_updated":"2025-06-04T08:23:49.931381+00:00","context":{"id":"01JWX0M6DB2DRSWX6NQ00NZNTC","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.co2_voc_2_volume_flow","state":"unknown","attributes":{"unit_of_measurement":"m3/s","icon":"mdi:air-filter","friendly_name":"CO2_VOC_2 Volume Flow"},"last_changed":"2025-06-04T08:23:49.931550+00:00","last_reported":"2025-06-04T08:23:49.931550+00:00","last_updated":"2025-06-04T08:23:49.931550+00:00","context":{"id":"01JWX0M6DB14CHB2CZ3H52808X","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": "m3/s"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.sth01_1_temperature","state":"23.62","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer","friendly_name":"STH01_1 Temperature"},"last_changed":"2025-06-06T12:22:45.364499+00:00","last_reported":"2025-06-06T12:22:45.364499+00:00","last_updated":"2025-06-06T12:22:45.364499+00:00","context":{"id":"01JX2K33VMQQB7TRJDK7MBBZ1J","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "23.62",
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.sth01_1_humidity","state":"36.72","attributes":{"unit_of_measurement":"%[RH]","icon":"mdi:water-percent","friendly_name":"STH01_1 Humidity"},"last_changed":"2025-06-06T12:22:55.452178+00:00","last_reported":"2025-06-06T12:22:55.452178+00:00","last_updated":"2025-06-06T12:22:55.452178+00:00","context":{"id":"01JX2K3DPWTXC5WDYCR2Z79JDN","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "36.72",
+        "native_unit_of_measurement": "%[RH]"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.sth01_1_dewpoint","state":"7.98","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer-water","friendly_name":"STH01_1 Dewpoint"},"last_changed":"2025-06-06T12:22:55.452225+00:00","last_reported":"2025-06-06T12:22:55.452225+00:00","last_updated":"2025-06-06T12:22:55.452225+00:00","context":{"id":"01JX2K3DPW3YFS5808AS59M85R","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "7.98",
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.sth01_2_temperature","state":"40.23","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer","friendly_name":"STH01_2 Temperature"},"last_changed":"2025-06-06T12:22:38.440693+00:00","last_reported":"2025-06-06T12:22:38.440693+00:00","last_updated":"2025-06-06T12:22:38.440693+00:00","context":{"id":"01JX2K2X38NT3VFE2XKVSKSRJC","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "40.23",
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.sth01_2_humidity","state":"20.79","attributes":{"unit_of_measurement":"%[RH]","icon":"mdi:water-percent","friendly_name":"STH01_2 Humidity"},"last_changed":"2025-06-06T12:22:38.440758+00:00","last_reported":"2025-06-06T12:22:38.440758+00:00","last_updated":"2025-06-06T12:22:38.440758+00:00","context":{"id":"01JX2K2X383DJSG006WK3T5NX4","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "20.79",
+        "native_unit_of_measurement": "%[RH]"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.sth01_2_dewpoint","state":"13.55","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer-water","friendly_name":"STH01_2 Dewpoint"},"last_changed":"2025-06-06T12:22:38.440556+00:00","last_reported":"2025-06-06T12:22:38.440556+00:00","last_updated":"2025-06-06T12:22:38.440556+00:00","context":{"id":"01JX2K2X38ZGM9PZQ4FW82QR5B","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "13.55",
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.dummy_control_signal_temperature","state":"1.3","attributes":{"unit_of_measurement":"[float]","icon":"mdi:heat-wave","friendly_name":"Dummy Control Signal Temperature"},"last_changed":"2025-06-06T12:20:04.207031+00:00","last_reported":"2025-06-06T12:20:04.207031+00:00","last_updated":"2025-06-06T12:20:04.207031+00:00","context":{"id":"01JX2JY6FF8TTB7Q9DB8DYV3ZR","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "1.3",
+        "native_unit_of_measurement": "[float]"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_ym_01_temperature","state":"24.11","attributes":{"unit_of_measurement":"°C","icon":"mdi:thermometer","friendly_name":"S-YM-01 Temperature"},"last_changed":"2025-06-06T12:22:09.198914+00:00","last_reported":"2025-06-06T12:22:09.198914+00:00","last_updated":"2025-06-06T12:22:09.198914+00:00","context":{"id":"01JX2K20HEJZ0TGJV8BVGFS2JX","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "24.11",
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s_ym_01_leaf_wetness","state":"0.57","attributes":{"unit_of_measurement":"%[Leaf Wetness]","icon":"mdi:water-percent","friendly_name":"S-YM-01 Leaf Wetness"},"last_changed":"2025-06-06T12:12:09.199866+00:00","last_reported":"2025-06-06T12:12:09.199866+00:00","last_updated":"2025-06-06T12:12:09.199866+00:00","context":{"id":"01JX2JFPKF9WJD9SJJED3RAV3E","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "0.57",
+        "native_unit_of_measurement": "%[Leaf Wetness]"
+      },
+      "last_seen": "2025-06-06T12:22:58.033710+00:00"
+    }
+  ]
+}
