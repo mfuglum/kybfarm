@@ -1,0 +1,17 @@
+appdaemon:
+  latitude: 0
+  longitude: 0
+  elevation: 30
+  time_zone: Europe/Berlin
+  log_level: "DEBUG"
+  plugins:
+    HASS:
+      type: hass
+      ha_url: http://172.26.64.197:8123
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2NWI2YmZlMTEwZDg0YTkyOGZjYzRhZDgyNjM2MTg1NCIsImlhdCI6MTc0ODk0MjA4OCwiZXhwIjoyMDY0MzAyMDg4fQ.9YLWPXXlEWRCbRdgqRcJqYe-secwsstNrkNJpw31KsY
+      cert_verify: True
+http:
+  url: "http://0.0.0.0:5050"
+admin:
+api:
+hadashboard:
