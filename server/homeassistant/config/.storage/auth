@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "auth",
+  "data": {
+    "users": [
+      {
+        "id": "9bfce78794924358ad2bbdabdce5355f",
+        "group_ids": [
+          "system-read-only"
+        ],
+        "is_owner": false,
+        "is_active": true,
+        "name": "Home Assistant Content",
+        "system_generated": true,
+        "local_only": false
+      },
+      {
+        "id": "04b7d14a2097443b88980ed11d841409",
+        "group_ids": [
+          "system-admin"
+        ],
+        "is_owner": false,
+        "is_active": true,
+        "name": "kybfarm",
+        "system_generated": false,
+        "local_only": false
+      }
+    ],
+    "groups": [
+      {
+        "id": "system-admin",
+        "name": "Administrators"
+      },
+      {
+        "id": "system-users",
+        "name": "Users"
+      },
+      {
+        "id": "system-read-only",
+        "name": "Read Only"
+      }
+    ],
+    "credentials": [
+      {
+        "id": "3d6d9937f8e74229b2d98a83792254f1",
+        "user_id": "04b7d14a2097443b88980ed11d841409",
+        "auth_provider_type": "homeassistant",
+        "auth_provider_id": null,
+        "data": {
+          "username": "kybfarm"
+        }
+      }
+    ],
+    "refresh_tokens": [
+      {
+        "id": "4a71b5fd54b04930bb2b4ffe773ed8ef",
+        "user_id": "9bfce78794924358ad2bbdabdce5355f",
+        "client_id": null,
+        "client_name": null,
+        "client_icon": null,
+        "token_type": "system",
+        "created_at": "2025-06-03T09:08:46.766826+00:00",
+        "access_token_expiration": 1800.0,
+        "token": "a68ce8d026da3107c8172fc844a8f00c04da6c8270bbb6bac66ed9ebfef44706ff8e3f0f17b5a0cfc0bd4e3e2ab512f32c6d17aa4354079cefa00256b694f621",
+        "jwt_key": "b8ad013bbd6a3ebbdf7b3471a0c16470573ddf99fc30b974022bb3bed822b396fc42c2f2147ccdcda949b2bff3f0a9291da5ad9b200749fb5bc500fc80987859",
+        "last_used_at": null,
+        "last_used_ip": null,
+        "expire_at": null,
+        "credential_id": null,
+        "version": "2025.5.3"
+      },
+      {
+        "id": "08a80effbbbd402b8065a9a50113a340",
+        "user_id": "04b7d14a2097443b88980ed11d841409",
+        "client_id": "http://172.26.64.197:8123/",
+        "client_name": null,
+        "client_icon": null,
+        "token_type": "normal",
+        "created_at": "2025-06-03T09:11:40.214427+00:00",
+        "access_token_expiration": 1800.0,
+        "token": "194e8ddb5a33bbe35bd323002c94d4b3590817d2e8ecc4eb22d2b24df67f96a3371fc7e4771035de9471792caba1b754368b1e0cd586a39a1ba1dfdf3f07c8cd",
+        "jwt_key": "bb0ce83e5d50094445d4f58475b3706ecc154d59501b91182b29fb8670a6da517f336ea85f1298cd7b6d5f6aa950cfa40599c73d1e20fb37bc9d0e0d93d6f355",
+        "last_used_at": "2025-06-06T12:09:13.641760+00:00",
+        "last_used_ip": "172.26.31.3",
+        "expire_at": 1756987753.64176,
+        "credential_id": "3d6d9937f8e74229b2d98a83792254f1",
+        "version": "2025.5.3"
+      },
+      {
+        "id": "5bf239f0263f4e7bbcd8c838b772bf49",
+        "user_id": "04b7d14a2097443b88980ed11d841409",
+        "client_id": null,
+        "client_name": "Kybfarm",
+        "client_icon": null,
+        "token_type": "long_lived_access_token",
+        "created_at": "2025-06-06T08:52:53.494942+00:00",
+        "access_token_expiration": 315360000.0,
+        "token": "ca1917df970f3931df8ea6801d01e3cedd44979c102bd77873761d6b39b1caf28b9f414c251a0f7db177c5cf465f125fa7484f135f604688051f920b1480c567",
+        "jwt_key": "a3c7ae864672b6879b174f29e23f49c9b53e7b9d8889f6ecb6f18441b2abb8c2b3d485a5af6cb77504923e43b172f6d7d799b8790a93c8b51f0f5ef67cfc1cd6",
+        "last_used_at": "2025-06-06T08:52:53.495065+00:00",
+        "last_used_ip": null,
+        "expire_at": null,
+        "credential_id": null,
+        "version": "2025.5.3"
+      }
+    ]
+  }
+}
