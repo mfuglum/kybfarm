@@ -1,0 +1,99 @@
+  relay_1:
+    name: "(rl1) Water pump 350 "
+    icon: "mdi:toggle-switch"
+  relay_2:
+    name: "(rl2) Water pump 5k"
+    icon: "mdi:toggle-switch"
+  relay_3:
+    name: "(rl3) Air pump "
+    icon: "mdi:toggle-switch"
+  # These were mixed
+  relay_4:
+    name: "(rl4) Internal fans"
+    icon: "mdi:toggle-switch"
+  relay_5:
+    name: "(rl5) Intake fan"
+    icon: "mdi:toggle-switch"
+  relay_6:
+    name: "(rl6) Humidifier "
+    icon: "mdi:toggle-switch"
+  relay_7:
+    name: "(rl7) Dehumidifier "
+    icon: "mdi:toggle-switch"
+  relay_8:
+    name: "(rl8) Heater "
+    icon: "mdi:toggle-switch"
+  relay_9:
+    name: "(rl9) Extra "
+    icon: "mdi:toggle-switch"
+  relay_10:
+    name: "(rl10) Extra "
+    icon: "mdi:toggle-switch"
+  relay_11:
+    name: "(rl11) Solenoid 1 "
+    icon: "mdi:toggle-switch"
+  relay_12:
+    name: "(rl12) Solenoid 2 "
+    icon: "mdi:toggle-switch"
+  relay_13:
+    name: "(rl13) Extra "
+    icon: "mdi:toggle-switch"
+  relay_14:
+    name: "(rl14) Peristaltic pump 1 "
+    icon: "mdi:toggle-switch"
+  relay_15:
+    name: "(rl15) Peristaltic pump 2 "
+    icon: "mdi:toggle-switch"
+  relay_16:
+    name: "(rl16) Peristaltic pump 3 "
+    icon: "mdi:toggle-switch"
+  solid_state_relay1:
+    name: "(ssr1) Heating battery"
+    icon: "mdi:heating-coil"
+  solid_state_relay_stop_loop:
+    name: "(ssr) Stop pwm loop"
+    icon: "mdi:toggle-switch"
+
+  cooling_pid_enable_toggle:
+    name: "PID enable"
+    icon: "mdi:toggle-switch"
+
+  heating_pid_enable_toggle:
+    name: "Heating PID enable"
+    icon: "mdi:toggle-switch"
+
+  co2_pid_enable_toggle:
+    name: "CO2 PID enable"
+    icon: "mdi:toggle-switch"
+
+
+  mix_control_toggle:
+    name: "Mixing controller"
+    icon: "mdi:pot-mix"
+
+  grow_control_toggle:
+    name: "Grow tank controller"
+    icon: "mdi:water-pump"
+
+  intake_fan_toggle:
+    name: "Intake fan controller"
+    icon: "mdi:fan"
+
+  new_intake_fan_toggle:
+    name: "New intake fan controller"
+    icon: "mdi:fan"
+
+  fan_normal_operation_toggle:
+    name: "Enable normal fan operation"
+    icon: "mdi:fan"
+
+  lamp1_control_toggle:
+    name: "Lamp1 controller"
+    icon: "mdi:ceiling-light"
+  lamp2_control_toggle:
+    name: "Lamp2 controller"
+    icon: "mdi:ceiling-light"
+
+  hvac_operation:
+    name: "Enable grow climate"
+    icon: "mdi:toggle-switch"

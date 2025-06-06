@@ -1,0 +1,23 @@
+  api_version: 2
+  ssl: false
+  host: 172.26.64.197 # Replace with the IP address of the host machine running InfluxDB
+  port: 8086
+  token: "c1y9eoFmPj6dV4Ro1OHBLWQViF4xxyCv11jv8BPjpvWKa-MFncjz1ZqIDsEd3Q_C38HS6dYgbjJvugwx4ivhig==" # Replace with the all-access API token generated in InfluxDB 
+  organization: kybfarm
+  bucket: FarmData
+  tags:
+    source: HA
+  tags_attributes:
+    - friendly_name
+  default_measurement: units
+  exclude:
+    entities:
+      - zone.home
+    domains:
+      - persistent_notification
+      - person
+  include:
+    domains:
+      - sensor
+      - binary_sensor
+ #     - 
