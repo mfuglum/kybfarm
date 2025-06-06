@@ -1,1 +1,0 @@
-The config_generator generates all configuration for Home Assistant.
