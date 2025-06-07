@@ -1,0 +1,70 @@
+# ┌────────────────────────────────────────────────────────────────────────────┐
+# │                         Home Assistant Automation Config                   │
+# │                         KYBFarm - PID Controller Loops                     │
+# └────────────────────────────────────────────────────────────────────────────┘
+
+# ───────────────────────────── COOLING PID AUTOMATION ─────────────────────────── #
+- alias: "Cooling PID, enable/disable"
+  id: "cooling_pid_automation"
+  description: "Runs the cooling PID every 5 seconds if the toggle is ON"
+  trigger:
+    - platform: time_pattern
+      seconds: "/5"
+  condition:
+    - condition: state
+      entity_id: input_boolean.cooling_pid_enable_toggle
+      state: "on"
+  action:
+    - service: mqtt.publish
+      metadata: {}
+      data_template:
+        qos: 0
+        retain: true
+        topic: "cmd/cooling_pid/req"
+        payload: '{"cmd": "pid_enable"}'
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+# ───────────────────────────── HEATING PID AUTOMATION ─────────────────────────── #
+- alias: "Heating PID, enable/disable"
+  id: "heating_pid_automation"
+  description: "Runs the heating PID every 10 seconds if the toggle is ON"
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+  condition:
+    - condition: state
+      entity_id: input_boolean.heating_pid_enable_toggle
+      state: "on"
+  action:
+    - service: mqtt.publish
+      metadata: {}
+      data_template:
+        qos: 0
+        retain: true
+        topic: "cmd/heating_pid/req"
+        payload: '{"cmd": "pid_enable"}'
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+# ────────────────────────────── CO2 PID AUTOMATION ────────────────────────────── #
+- alias: "CO2 PID, enable/disable"
+  id: "co2_pid_automation"
+  description: "Runs the CO2 PID every 30 seconds if the toggle is ON"
+  trigger:
+    - platform: time_pattern
+      seconds: "/30"
+  condition:
+    - condition: state
+      entity_id: input_boolean.co2_pid_enable_toggle
+      state: "on"
+  action:
+    - service: mqtt.publish
+      metadata: {}
+      data_template:
+        qos: 0
+        retain: true
+        topic: "cmd/co2_pid/req"
+        payload: '{"cmd": "pid_enable"}'
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
