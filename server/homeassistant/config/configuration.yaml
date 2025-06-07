@@ -1,35 +1,34 @@
-#Loads default set of integrations. Do not remove.
+# Loads default set of integrations. Do not remove.
 default_config:
 
-#Load frontend themes from the themes folder
+# Load frontend themes from the themes folder
 frontend:
   themes: !include_dir_merge_named themes
 
-#Add additional containers directly to the Home Assistant dashboard
+# Include custom dashboards for external services
 panel_iframe:
   appdaemon:
     title: "AppDaemon"
     icon: "mdi:application"
-    url: "http://172.26.64.197:5050" # Replace with the IP address of the host machine running AppDaemon
+    url: "http://172.26.64.197:5050"
     require_admin: true
   influxdb:
     title: "InfluxDB"
     icon: "mdi:database"
-    url: "http://172.26.64.197:8086" # Replace with the IP address of the host machine running InfluxDB
+    url: "http://172.26.64.197:8086"
     require_admin: true
 
+# External service configuration
+mqtt:
+  sensor: !include include/sensors.yaml
 
-#Include other configuration files
-#------------------------------------------------------------------------------#
-mqtt: 
-  sensor: !include include/sensors.yaml #Sensors configuration
-automation: !include include/automations.yaml #Automations configuration
-influxdb: !include include/influxdb.yaml #InfluxDB Database configuration
+automation: !include_dir_merge_list include/automations
 
-#Helpers for GUI
+influxdb: !include include/influxdb.yaml
+
+# GUI helpers split into directory
 input_number: !include include/GUI_helpers/input_number.yaml
 input_boolean: !include include/GUI_helpers/input_boolean.yaml
 input_select: !include include/GUI_helpers/input_select.yaml
 input_text: !include include/GUI_helpers/input_text.yaml
 input_datetime: !include include/GUI_helpers/input_datetime.yaml
-#------------------------------------------------------------------------------#

@@ -1,0 +1,195 @@
+# ┌────────────────────────────────────────────────────────────────────────────┐
+# │                       Home Assistant Sensor Automations                    │
+# │                   KYBFarm - MQTT Sensor Request Scheduler                  │
+# └────────────────────────────────────────────────────────────────────────────┘
+
+
+# ────────────────────────────── TEMPLATE FORMAT ───────────────────────────── #
+# - alias: "SENSOR_NAME Request"
+#   trigger:
+#     - platform: time_pattern
+#       seconds: xx
+#   action:
+#     - service: mqtt.publish
+#       data:
+#         topic: "mqtt/request/topic"
+#         payload: '{"req_topic": "...", "res_topic": "...", "data": "ha_req"}'
+# ───────────────────────────────────────────────────────────────────────────── #
+
+
+# ─────────────────────────────── S-LIGHT-01 [Light] ────────────────────────── #
+- alias: "S-LIGHT-01 Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 1
+    - platform: time_pattern
+      seconds: 31
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/slight01/req"
+        payload: '{"req_topic": "dt/gf/slight01/req", "res_topic": "dt/gf/slight01/res", "data": "ha_req"}'
+  
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+
+# ──────────────── S-PAR-02 [Photosynthetically Active Radiation] ───────────── #
+- alias: "S-PAR-02 Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 2
+    - platform: time_pattern
+      seconds: 32
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/spar02/req"
+        payload: '{"req_topic": "dt/gf/spar02/req", "res_topic": "dt/gf/spar02/res", "data": "ha_req"}'
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+
+# ───────────────────────────── S-EC-01-1 [EC Sensor 1] ─────────────────────── #
+- alias: "S-EC-01-1 Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 3
+    - platform: time_pattern
+      seconds: 33
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sec01/1/req"
+        payload: '{"req_topic": "dt/gf/sec01/1/req", "res_topic": "dt/gf/sec01/1/res", "data": "ha_req"}'
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+# ───────────────────────────── S-EC-01-2 [EC Sensor 2] ─────────────────────── #
+- alias: "S-EC-01-2 Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 4
+    - platform: time_pattern
+      seconds: 34
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sec01/2/req"
+        payload: '{"req_topic": "dt/gf/sec01/2/req", "res_topic": "dt/gf/sec01/2/res", "data": "ha_req"}'
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+
+# ────────────────────────────── S-PH-01-1 [pH Sensor 1] ────────────────────── #
+- alias: "S-PH-01-1 Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 6
+    - platform: time_pattern
+      seconds: 36
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sph01/1/req"
+        payload: '{"req_topic": "dt/gf/sph01/1/req", "res_topic": "dt/gf/sph01/1/res", "data": "ha_req"}'
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+
+# ────────────────────────────── S-PH-01-2 [pH Sensor 2] ────────────────────── #
+- alias: "S-PH-01-2 Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 7
+    - platform: time_pattern
+      seconds: 37
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sph01/2/req"
+        payload: '{"req_topic": "dt/gf/sph01/2/req", "res_topic": "dt/gf/sph01/2/res", "data": "ha_req"}'
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+
+# ─────────────────────────────── CO2VOC_1 [CO2 Sensor] ─────────────────────── #
+- alias: "CO2VOC_1 Request"
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/CO2VOC/1/req"
+        payload: '{"req_topic": "dt/gf/CO2VOC/1/req", "res_topic": "dt/gf/CO2VOC/1/res", "data": "ha_req"}'
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+
+# ──────────────────────────────── STH01_1 [T/H Sensor 1] ───────────────────── #
+- alias: "STH01_1 Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 5
+    - platform: time_pattern
+      seconds: 11
+    - platform: time_pattern
+      seconds: 15
+    - platform: time_pattern
+      seconds: 21
+    - platform: time_pattern
+      seconds: 25
+    - platform: time_pattern
+      seconds: 29
+    - platform: time_pattern
+      seconds: 35
+    - platform: time_pattern
+      seconds: 41
+    - platform: time_pattern
+      seconds: 45
+    - platform: time_pattern
+      seconds: 51
+    - platform: time_pattern
+      seconds: 55
+    - platform: time_pattern
+      seconds: 59
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/STH01/1/req"
+        payload: '{"req_topic": "dt/gf/STH01/1/req", "res_topic": "dt/gf/STH01/1/res", "data": "ha_req"}'
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+
+# ──────────────────────────────── STH01_2 [T/H Sensor 2] ───────────────────── #
+- alias: "STH01_2 Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 8
+    - platform: time_pattern
+      seconds: 38
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/STH01/2/req"
+        payload: '{"req_topic": "dt/gf/STH01/2/req", "res_topic": "dt/gf/STH01/2/res", "data": "ha_req"}'
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+
+# ────────────────────────────── S-YM-01 [Leaf Wetness] ─────────────────────── #
+- alias: "S-YM-01 Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 9
+    - platform: time_pattern
+      seconds: 39
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sym01/req"
+        payload: '{"req_topic": "dt/gf/sym01/req", "res_topic": "dt/gf/sym01/res", "data": "ha_req"}'
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #

@@ -1,0 +1,141 @@
+# ┌────────────────────────────────────────────────────────────────────────────┐
+# │              Fan, Valve, and Lamp Voltage Control Automations             │
+# │                    KYBFarm - Actuator Voltage via MQTT                    │
+# └────────────────────────────────────────────────────────────────────────────┘
+
+
+# ─────────────────────────────── FAN VOLTAGE CONTROL ───────────────────────── #
+
+- alias: "Fan Voltage - Update"
+  trigger:
+    - platform: state
+      entity_id: input_number.new_intake_fan_voltage
+  action:
+    - service: mqtt.publish
+      data_template:
+        qos: 0
+        retain: true
+        topic: "cmd/fan_voltage/req"
+        payload: >
+          {
+            "cmd": "adjust",
+            "res_topic": "cmd/fan_voltage/res",
+            "value": "{{ states('input_number.new_intake_fan_voltage') | round(2) }}"
+          }
+
+- alias: "Fan Voltage - Enable Normal Operation"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.fan_normal_operation_toggle
+      from: "off"
+      to: "on"
+  action:
+    - service: mqtt.publish
+      data_template:
+        qos: 0
+        retain: true
+        topic: "cmd/fan_voltage/req"
+        payload: >
+          {
+            "cmd": "adjust",
+            "res_topic": "cmd/fan_voltage/res",
+            "value": "8"
+          }
+
+- alias: "Fan Voltage - Disable Normal Operation"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.fan_normal_operation_toggle
+      from: "on"
+      to: "off"
+  action:
+    - service: mqtt.publish
+      data_template:
+        qos: 0
+        retain: true
+        topic: "cmd/fan_voltage/req"
+        payload: >
+          {
+            "cmd": "adjust",
+            "res_topic": "cmd/fan_voltage/res",
+            "value": "0"
+          }
+
+# ───────────────────────────────────────────────────────────────────────────── #
+
+
+
+# ─────────────────────────────── VALVE VOLTAGE CONTROL ─────────────────────── #
+
+- alias: "Valve Voltage - Update"
+  trigger:
+    - platform: state
+      entity_id: input_number.valve_voltage
+  action:
+    - service: mqtt.publish
+      data_template:
+        qos: 0
+        retain: true
+        topic: "cmd/valve_voltage/req"
+        payload: >
+          {
+            "cmd": "adjust",
+            "res_topic": "cmd/valve_voltage/res",
+            "value": "{{ states('input_number.valve_voltage') | round(2) }}"
+          }
+
+# ───────────────────────────────────────────────────────────────────────────── #
+
+
+
+# ─────────────────────────────── ELIXIA GROW LAMP 01 ───────────────────────── #
+
+- alias: "Elixia Lamp 01 - Update LED Intensity"
+  trigger:
+    - platform: state
+      entity_id:
+        - input_number.elixia_1_channel_450nm
+        - input_number.elixia_1_channel_660nm
+        - input_number.elixia_1_channel_735nm
+        - input_number.elixia_1_channel_5700k
+  action:
+    - service: mqtt.publish
+      data_template:
+        qos: 0
+        retain: false
+        topic: "cmd/lamp01/req"
+        payload: >
+          {
+            "cmd": "adjust_intensity",
+            "res_topic": "cmd/lamp01/res",
+            "intensity": "{{ states('input_number.elixia_1_channel_450nm') | round(0) }}:{{ states('input_number.elixia_1_channel_660nm') | round(0) }}:{{ states('input_number.elixia_1_channel_735nm') | round(0) }}:{{ states('input_number.elixia_1_channel_5700k') | round(0) }}"
+          }
+
+# ───────────────────────────────────────────────────────────────────────────── #
+
+
+
+# ─────────────────────────────── ELIXIA GROW LAMP 02 ───────────────────────── #
+
+- alias: "Elixia Lamp 02 - Update LED Intensity"
+  trigger:
+    - platform: state
+      entity_id:
+        - input_number.elixia_2_channel_450nm
+        - input_number.elixia_2_channel_660nm
+        - input_number.elixia_2_channel_735nm
+        - input_number.elixia_2_channel_5700k
+  action:
+    - service: mqtt.publish
+      data_template:
+        qos: 0
+        retain: false
+        topic: "cmd/lamp02/req"
+        payload: >
+          {
+            "cmd": "adjust_intensity",
+            "res_topic": "cmd/lamp02/res",
+            "intensity": "{{ states('input_number.elixia_2_channel_450nm') | round(0) }}:{{ states('input_number.elixia_2_channel_660nm') | round(0) }}:{{ states('input_number.elixia_2_channel_735nm') | round(0) }}:{{ states('input_number.elixia_2_channel_5700k') | round(0) }}"
+          }
+
+# ───────────────────────────────────────────────────────────────────────────── #
