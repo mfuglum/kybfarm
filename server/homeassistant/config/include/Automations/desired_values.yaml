@@ -1,0 +1,82 @@
+# ┌────────────────────────────────────────────────────────────────────────────┐
+# │                         Home Assistant Automation Config                   │
+# │                         KYBFarm - Desired Values (Setpoints)              │
+# └────────────────────────────────────────────────────────────────────────────┘
+
+# ──────────────────────────────── HUMIDITY SETPOINT ───────────────────────────── #
+- alias: "Ref Humid, Update Ref humid"
+  description: "Update desired humidity setpoint when humid_ref changes"
+  trigger:
+    - platform: state
+      entity_id: input_number.humid_ref
+  condition:
+    - condition: state
+      entity_id: input_boolean.cooling_pid_enable_toggle
+      state: "on"
+  action:
+    - service: mqtt.publish
+      metadata: {}
+      data_template:
+        qos: 0
+        retain: true
+        topic: "cmd/refhumid/req"
+        payload: >
+          {
+            "cmd": "adjust_ref_humid",
+            "res_topic": "cmd/refhumid/res",
+            "value": "{{ states('input_number.humid_ref') | round(1) }}"
+          }
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+# ─────────────────────────────── TEMPERATURE SETPOINT ─────────────────────────── #
+- alias: "Ref Temp, Update Ref temp"
+  description: "Update desired temperature setpoint when temp_ref changes"
+  trigger:
+    - platform: state
+      entity_id: input_number.temp_ref
+  condition:
+    - condition: state
+      entity_id: input_boolean.heating_pid_enable_toggle
+      state: "on"
+  action:
+    - service: mqtt.publish
+      metadata: {}
+      data_template:
+        qos: 0
+        retain: true
+        topic: "cmd/reftemp/req"
+        payload: >
+          {
+            "cmd": "adjust_ref_temp",
+            "res_topic": "cmd/reftemp/res",
+            "value": "{{ states('input_number.temp_ref') | round(1) }}"
+          }
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
+
+# ───────────────────────────────── CO2 SETPOINT ──────────────────────────────── #
+- alias: "Ref CO2, Update Ref CO2"
+  description: "Update desired CO2 level when co2_ref changes"
+  trigger:
+    - platform: state
+      entity_id: input_number.co2_ref
+  condition:
+    - condition: state
+      entity_id: input_boolean.co2_pid_enable_toggle
+      state: "on"
+  action:
+    - service: mqtt.publish
+      metadata: {}
+      data_template:
+        qos: 0
+        retain: true
+        topic: "cmd/refco2/req"
+        payload: >
+          {
+            "cmd": "adjust_ref_co2",
+            "res_topic": "cmd/refco2/res",
+            "value": "{{ states('input_number.co2_ref') | round(0) }}"
+          }
+  mode: single
+# ───────────────────────────────────────────────────────────────────────────── #
