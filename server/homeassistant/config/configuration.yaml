@@ -5,24 +5,11 @@ default_config:
 frontend:
   themes: !include_dir_merge_named themes
 
-# Include custom dashboards for external services
-panel_iframe:
-  appdaemon:
-    title: "AppDaemon"
-    icon: "mdi:application"
-    url: "http://172.26.64.197:5050"
-    require_admin: true
-  influxdb:
-    title: "InfluxDB"
-    icon: "mdi:database"
-    url: "http://172.26.64.197:8086"
-    require_admin: true
-
 # External service configuration
 mqtt:
   sensor: !include include/sensors.yaml
 
-automation: !include_dir_merge_list include/automations
+automation: !include_dir_merge_list include/Automations
 
 influxdb: !include include/influxdb.yaml
 

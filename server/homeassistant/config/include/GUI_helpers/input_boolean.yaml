@@ -7,7 +7,6 @@
   relay_3:
     name: "(rl3) Air pump "
     icon: "mdi:toggle-switch"
-  # These were mixed
   relay_4:
     name: "(rl4) Internal fans"
     icon: "mdi:toggle-switch"

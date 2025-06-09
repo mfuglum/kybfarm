@@ -1,4 +1,4 @@
-
+# ─────────────── Elixia Lamp 1 Channel entities ─────────────── #
   elixia_1_channel_450nm:
     name: "Elixia-1, Channel: 450nm"
     initial: 0
@@ -28,6 +28,7 @@
     step: 1
     mode: "box"
 
+  # ─────────────── Elixia Lamp 2 Channel entities ─────────────── #
   elixia_2_channel_450nm:
     name: "Elixia-2, Channel: 450nm"
     initial: 0
@@ -51,6 +52,72 @@
     mode: "box"
   elixia_2_channel_5700k:
     name: "Elixia-2, Channel: 5700K"
+    initial: 0
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+# ─────────────── Elixia Lamp 1 Set Channels ─────────────── #
+  elixia_1_set_channel_450nm:
+    name: "Elixia 1 Set Channel 450nm:"
+    initial: 0
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+  elixia_1_set_channel_5700k:
+    name: "Elixia 1 Set Channel 5700K:"
+    initial: 0
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+  elixia_1_set_channel_660nm:
+    name: "Elixia 1 Set Channel 660nm:"
+    initial: 0
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+  elixia_1_set_channel_735nm:
+    name: "Elixia 1 Set Channel 735nm:"
+    initial: 0
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+# ─────────────── Elixia Lamp 2 Set Channels ─────────────── #
+  elixia_2_set_channel_450nm:
+    name: "Elixia 2 Set Channel 450nm:"
+    initial: 0
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+  elixia_2_set_channel_5700k:
+    name: "Elixia 2 Set Channel 5700K:"
+    initial: 0
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+  elixia_2_set_channel_660nm:
+    name: "Elixia 2 Set Channel 660nm:"
+    initial: 0
+    min: 0
+    max: 1000
+    step: 1
+    mode: "box"
+
+  elixia_2_set_channel_735nm:
+    name: "Elixia 2 Set Channel 735nm:"
     initial: 0
     min: 0
     max: 1000
@@ -93,70 +160,6 @@
     initial: 70
     min: 0
     max: 100
-    step: 1
-    mode: "box"
-
-  lamp1_blue:
-    name: "Lamp blue amplitude"
-    initial: 0 
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-
-  lamp1_green:
-    name: "Lamp green amplitude"
-    initial: 0 
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-
-  lamp1_red:
-    name: "Lamp red amplitude"
-    initial: 0 
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-
-  lamp1_far_red:
-    name: "Lamp far_red amplitude"
-    initial: 0 
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-
-  lamp2_blue:
-    name: "Lamp blue amplitude"
-    initial: 0 
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-
-  lamp2_green:
-    name: "Lamp green amplitude"
-    initial: 0 
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-
-  lamp2_red:
-    name: "Lamp red amplitude"
-    initial: 0 
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-
-  lamp2_far_red:
-    name: "Lamp far_red amplitude"
-    initial: 0 
-    min: 0
-    max: 1000
     step: 1
     mode: "box"
 
