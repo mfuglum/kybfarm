@@ -1,3 +1,120 @@
 hello_world:
   module: hello
   class: HelloWorld
+
+dummy_control:
+  module: dummy_control
+  class: DummyControl
+  gain: 0.5
+  reference_value: 22.0
+  sensor: sensor.s_ec_01_2_temperature
+  control_signal_topic: "ha/desktop_gf/actuators/temperature"
+
+
+air_pump_controller:
+  module: air_pump_controller
+  class: Air_pump_controller
+  id: "input_boolean.relay_3"
+  
+intake_fan_controller:
+  module: intake_fan_controller
+  class: Intake_fan_controller
+  humidity_sensor_id: "sensor.scd_41_humidity"
+  temp_sensor_id: "sensor.scd_41_temperature"
+  intake_fan_id: "input_boolean.relay_5"
+  humid_low_id: "input_number.intake_fan_humid_low"
+  humid_high_id: "input_number.intake_fan_humid_high"
+  temp_low_id: "input_number.intake_fan_temp_low"
+  temp_high_id: "input_number.intake_fan_temp_high"
+  toggle_id: "input_boolean.intake_fan_toggle"
+
+new_intake_fan_controller:
+  module: new_intake_fan_controller
+  class: new_Intake_fan_controller
+  fan_mode_id: "input_select.new_intake_fan_modes"
+  fan_voltage_id: "input_number.new_intake_fan_voltage"
+  fan_manual_toggle_id: "input_boolean.new_intake_fan_toggle"
+
+lamp1_controller:
+  module: lamp_control
+  class: Lamp_control
+  name: "Lamp 1 Controller"
+  amplitude_ids:
+    - "input_number.elixia_1_channel_450nm"
+    - "input_number.elixia_1_channel_5700k"
+    - "input_number.elixia_1_channel_660nm"
+    - "input_number.elixia_1_channel_735nm"
+  set_values_ids:
+    - "input_number.elixia_1_set_channel_450nm"
+    - "input_number.elixia_1_set_channel_5700k"
+    - "input_number.elixia_1_set_channel_660nm"
+    - "input_number.elixia_1_set_channel_735nm"
+  start_time_id: "input_datetime.lamp1_start_time"
+  finish_time_id: "input_datetime.lamp1_finish_time"
+  toggle_id: "input_boolean.lamp1_control_toggle"
+
+
+lamp2_controller:
+  module: lamp_control
+  class: Lamp_control
+  name: "Lamp 2 Controller"
+  amplitude_ids:
+    - "input_number.elixia_2_channel_450nm"
+    - "input_number.elixia_2_channel_5700k"
+    - "input_number.elixia_2_channel_660nm"
+    - "input_number.elixia_2_channel_735nm"
+  set_values_ids:
+    - "input_number.elixia_2_set_channel_450nm"
+    - "input_number.elixia_2_set_channel_5700k"
+    - "input_number.elixia_2_set_channel_660nm"
+    - "input_number.elixia_2_set_channel_735nm"
+  start_time_id: "input_datetime.lamp2_start_time"
+  finish_time_id: "input_datetime.lamp2_finish_time"
+  toggle_id: "input_boolean.lamp2_control_toggle"
+
+
+
+
+
+mixing_tank_ec_controller:
+  module: new_mixing_tank_ec_controller
+  class: Mixing_tank_ec_controller
+  ratio:
+    - 0.6
+    - 1.8
+    - 1.2
+  flow_rates:
+    - 0.0004347
+    - 0.0003436
+    - 0.000357
+  ec_constant: 0.0034
+  margin: 0.01
+  tank_vol: 350
+  pump_ids: 
+    - "input_boolean.relay_14"
+    - "input_boolean.relay_15"
+    - "input_boolean.relay_16"
+  sensor_id: "sensor.s_ec_01_2_ec" 
+  mixing_wait_time: 200
+  toggle_id: "input_boolean.mix_control_toggle" 
+  ec_ref_id: "input_number.ec_ref"
+  mix_tank_pump_id: "input_boolean.relay_2" 
+
+
+
+grow_tank_ec_controller:
+  module: new_grow_controller
+  class: Grow_tank_ec_controller
+  flow_rate: 0.0486111
+  vol_mix_tank: 350
+  vol_growth_tank: 100
+  grow_tank_ec_sensor_id: "sensor.s_ec_01_1_ec"
+  mix_tank_ec_sensor_id: "sensor.s_ec_01_2_ec"
+  solenoid_id: "input_boolean.relay_11"
+  n_tau: 4
+  tau: 70 
+  max_run_time: 100
+  drain_time: 150
+  toggle_id: "input_boolean.grow_control_toggle"
+  reset_time: 3600
+  mix_tank_pump_id: "input_boolean.relay_2"

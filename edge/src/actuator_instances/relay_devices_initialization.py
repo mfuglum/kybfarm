@@ -19,6 +19,7 @@ GPIO_PIN = {
     "relay_14": 12,
     "relay_15": 13,
     "relay_16": 16,
+    "solid_state_relay_1": 26,
     "float_switch_1": 7,
     "float_switch_2": 0,
     "float_switch_3": 1,
@@ -266,6 +267,30 @@ def on_message_RLY16(client, userdata, msg):
     except Exception as e:
         print("Relay 16, command error:", str(e))
 
+def on_message_SSR01(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        print("SSR01", cmd_msg, "\n")
+        if cmd_msg["cmd"] == "on":
+            solid_state_relay_1.turn_on_ssr()
+        elif cmd_msg["cmd"] == "off":
+            solid_state_relay_1.turn_off_ssr()
+        elif cmd_msg["cmd"] == "on_for":
+            solid_state_relay_1.turn_on_for_ssr(float(cmd_msg["time"]))
+        
+        #Threading lock test
+        #elif cmd_msg["cmd"] == "adjust_ssr_pwm":
+        #    period = float(cmd_msg["value_base_period"])
+        #    duty_cycle = float(cmd_msg["value_duty_cycle"])
+        #    solid_state_relay_1.set_pwm(period, duty_cycle)
+        #elif cmd_msg["cmd"] == "ssr_stop_pwm_loop":
+        #    solid_state_relay_1.stop_pwm()
+       
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("Solid State Relay 01, command error:", str(e))
+
 # Activate relay devices
 try:
     relay_1 = relay_device.relay_device(GPIO_PIN["relay_1"])
@@ -284,5 +309,6 @@ try:
     relay_14 = relay_device.relay_device(GPIO_PIN["relay_14"])
     relay_15 = relay_device.relay_device(GPIO_PIN["relay_15"])
     relay_16 = relay_device.relay_device(GPIO_PIN["relay_16"])
+    solid_state_relay_1 = relay_device.relay_device(GPIO_PIN["solid_state_relay_1"])
 except Exception as e:
     print("Relay device initialization error:", str(e))
