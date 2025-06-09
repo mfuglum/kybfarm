@@ -20,7 +20,7 @@ master.set_verbose(True)
 previous_output = 0
 
 # PID for kjølebatteri
-cooling_pid = PIDController(Kp=0.0, Ki=0.0, Kd=0.0, mode = "cooling") 
+cooling_pid = PIDController(Kp=0.0, Ki=0.0, Kd=0.0,  mode = "cooling", max_integral=10, min_integral=-10) 
 
 MAX_COOLING_PID_OUTPUT = 10.0
 ref_humidity = 0  # Eller None, eller hva du vil som standard
