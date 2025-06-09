@@ -44,7 +44,7 @@ class relay_device:
     def turn_on_for_ssr(self, time):
         self.turn_on_ssr()
         # Create a thread to turn off the relay after the specified time (seconds)
-        threading.Timer(time, self.turn_off).start()
+        threading.Timer(time, self.turn_off_ssr).start()
 
 
     
