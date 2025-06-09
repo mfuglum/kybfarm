@@ -31,6 +31,24 @@ class relay_device:
         self.turn_on()
         # Create a thread to turn off the relay after the specified time (seconds)
         threading.Timer(time, self.turn_off).start()
+
+    # Turn the relay ON
+    def turn_on_ssr(self):
+        GPIO.output(self.pin, GPIO.HIGH)
+        
+    # Turn the relay OFF
+    def turn_off_ssr(self):
+        GPIO.output(self.pin, GPIO.LOW)
+
+    # Turn the relay ON for a specified amount of time (seconds)
+    def turn_on_for_ssr(self, time):
+        self.turn_on_ssr()
+        # Create a thread to turn off the relay after the specified time (seconds)
+        threading.Timer(time, self.turn_off).start()
+
+
+    
+    
     
     # Cleanup the GPIO i.e. set all used pins in program back to input mode
     # def cleanup(self):
