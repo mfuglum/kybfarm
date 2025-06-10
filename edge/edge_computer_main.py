@@ -643,7 +643,7 @@ time.sleep(0.1)
 
 try:
     sensor_CO2_VOC_2 = sensor_CO2_VOC_modbus.CO2_VOC(   portname='/dev/ttySC0',
-                                                slaveaddress=23, 
+                                                slaveaddress=1, 
                                                 debug=False)
     print(sensor_CO2_VOC_2)
 except Exception as e:
