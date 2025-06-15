@@ -3,14 +3,13 @@
 # │                    KYBFarm - MQTT Controlled SSR Logic                     │
 # └────────────────────────────────────────────────────────────────────────────┘
 
-
-# ─────────────────────────────── SSR 01 - Turn ON ─────────────────────────── #
-- alias: "Solid State Relay 01 - Turn ON"
+# ──────────────── SSR 01 • Turn ON ────────────────
+- alias: "SSR 01 • Turn ON"
   trigger:
     - platform: state
       entity_id: input_boolean.solid_state_relay1
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -18,16 +17,14 @@
         retain: true
         topic: "cmd/solid_state_relay01/req"
         payload: '{"cmd": "on"}'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-
-# ────────────────────────────── SSR 01 - Turn OFF ─────────────────────────── #
-- alias: "Solid State Relay 01 - Turn OFF"
+# ──────────────── SSR 01 • Turn OFF ────────────────
+- alias: "SSR 01 • Turn OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.solid_state_relay1
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -35,11 +32,9 @@
         retain: true
         topic: "cmd/solid_state_relay01/req"
         payload: '{"cmd": "off"}'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-
-# ───────────── SSR 01 - Update PWM with Duty Cycle & Base Period ──────────── #
-- alias: "Solid State Relay 01 - Update PWM (Duty + Period)"
+# ───── SSR 01 • Update PWM with Duty Cycle and Base Period ─────
+- alias: "SSR 01 • Update PWM"
   trigger:
     - platform: state
       entity_id:
@@ -56,13 +51,11 @@
             "cmd": "adjust_ssr_pwm",
             "res_topic": "cmd/solid_state_relay01/res",
             "value_duty_cycle": "{{ states('input_number.ssr_duty_cycle') | round(1) }}",
-            "value_base_period": "{{ states('input_number.ssr_base_period') | round(0) }}"
+            "value_base_period": "{{ states('input_number.ssr_base_period') | round(1) }}"
           }
-# ───────────────────────────────────────────────────────────────────────────── #
 
-
-# ────────────────────── SSR 01 - Stop PWM Loop Immediately ────────────────── #
-- alias: "Solid State Relay 01 - Stop PWM Loop"
+# ───── SSR 01 • Stop PWM Loop Immediately ─────
+- alias: "SSR 01 • Stop PWM Loop"
   trigger:
     - platform: state
       entity_id: input_boolean.solid_state_relay_stop_loop
@@ -78,11 +71,9 @@
             "res_topic": "cmd/solid_state_relay01/res",
             "value": "{{ states('input_boolean.solid_state_relay_stop_loop') }}"
           }
-# ───────────────────────────────────────────────────────────────────────────── #
 
-
-# ─────────────── SSR 01 - Turn ON for N Seconds via Input Number ──────────── #
-- alias: "Solid State Relay 01 - ON for N Seconds"
+# ───── SSR 01 • ON for N Seconds ─────
+- alias: "SSR 01 • ON for N Seconds"
   trigger:
     - platform: state
       entity_id: input_number.ssr_turn_on_for
@@ -97,4 +88,3 @@
             "cmd": "on_for",
             "time": "{{ states('input_number.ssr_turn_on_for') | round(0) }}"
           }
-# ───────────────────────────────────────────────────────────────────────────── #

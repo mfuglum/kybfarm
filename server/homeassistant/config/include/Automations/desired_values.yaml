@@ -1,10 +1,11 @@
 # ┌────────────────────────────────────────────────────────────────────────────┐
-# │                         Home Assistant Automation Config                   │
-# │                         KYBFarm - Desired Values (Setpoints)              │
+# │                    Home Assistant Automation Config - KYBFarm             │
+# │                        Desired Values (Setpoints)                         │
 # └────────────────────────────────────────────────────────────────────────────┘
 
-# ──────────────────────────────── HUMIDITY SETPOINT ───────────────────────────── #
-- alias: "Ref Humid, Update Ref humid"
+
+# ─────────────────────────────── [Humidity] Setpoint ───────────────────────────── #
+- alias: "Setpoint • Humidity"
   description: "Update desired humidity setpoint when humid_ref changes"
   trigger:
     - platform: state
@@ -27,10 +28,10 @@
             "value": "{{ states('input_number.humid_ref') | round(1) }}"
           }
   mode: single
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── TEMPERATURE SETPOINT ─────────────────────────── #
-- alias: "Ref Temp, Update Ref temp"
+
+# ─────────────────────────────── [Temperature] Setpoint ─────────────────────────── #
+- alias: "Setpoint • Temperature"
   description: "Update desired temperature setpoint when temp_ref changes"
   trigger:
     - platform: state
@@ -53,11 +54,11 @@
             "value": "{{ states('input_number.temp_ref') | round(1) }}"
           }
   mode: single
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ───────────────────────────────── CO2 SETPOINT ──────────────────────────────── #
-- alias: "Ref CO2, Update Ref CO2"
-  description: "Update desired CO2 level when co2_ref changes"
+
+# ───────────────────────────────── [CO₂] Setpoint ───────────────────────────────── #
+- alias: "Setpoint • CO₂"
+  description: "Update desired CO₂ level when co2_ref changes"
   trigger:
     - platform: state
       entity_id: input_number.co2_ref
@@ -79,4 +80,3 @@
             "value": "{{ states('input_number.co2_ref') | round(0) }}"
           }
   mode: single
-# ───────────────────────────────────────────────────────────────────────────── #

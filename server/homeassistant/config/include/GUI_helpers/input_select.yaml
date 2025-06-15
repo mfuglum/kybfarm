@@ -1,55 +1,57 @@
-  calibrate_s_ec_01_1:
-    name: "Calibrate S-EC-01-1"
-    icon: "mdi:electron-framework"
-    options: [
-      "Normal Operation",
-      "Initiate calibration for EC 1413us/cm",
-      "Register calibration for EC 1413us/cm",
-      "Initiate calibration for EC 12880us/cm",
-      "Register calibration for EC 12880us/cm"
-    ]
-  calibrate_s_ec_01_2:
-    name: "Calibrate S-EC-01-2"
-    icon: "mdi:electron-framework"
-    options: [
-      "Normal Operation",
-      "Initiate calibration for EC 1413us/cm",
-      "Register calibration for EC 1413us/cm",
-      "Initiate calibration for EC 12880us/cm",
-      "Register calibration for EC 12880us/cm"
-    ]
-  calibrate_s_ph_01_1:
-    name: "Calibrate S-pH-01-1"
-    icon: "mdi:electron-framework"
-    options: [
-      "Normal Operation",
-      "Initiate calibration for pH 4.01",
-      "Register calibration for pH 4.01",
-      "Initiate calibration for pH 7.00",
-      "Register calibration for pH 7.00",
-      "Initiate calibration for pH 10.01",
-      "Register calibration for pH 10.01"
-    ]
-  calibrate_s_ph_01_2:
-    name: "Calibrate S-pH-01-2"
-    icon: "mdi:electron-framework"
-    options: [
-      "Normal Operation",
-      "Initiate calibration for pH 4.01",
-      "Register calibration for pH 4.01",
-      "Initiate calibration for pH 7.00",
-      "Register calibration for pH 7.00",
-      "Initiate calibration for pH 10.01",
-      "Register calibration for pH 10.01"
-    ]
+# ┌────────────────────────────────────────────────────────────┐
+# │                  Input Select Entities - KYBFarm           │
+# └────────────────────────────────────────────────────────────┘
 
-  new_intake_fan_modes:
-    name: "New intake fan modes"
-    icon: "mdi:electron-framework"
-    initial: "Off"
-    options: [
-      "Off",
-      "Low",
-      "Medium",
-      "High"
-    ]
+calibrate_s_ec_01_1:
+  name: "[S-EC-01-1] Calibration"
+  icon: "mdi:water-check"
+  options:
+    - "Normal Operation"
+    - "Start EC Calibration (1413 µS/cm)"
+    - "Confirm EC Calibration (1413 µS/cm)"
+    - "Start EC Calibration (12880 µS/cm)"
+    - "Confirm EC Calibration (12880 µS/cm)"
+
+calibrate_s_ec_01_2:
+  name: "[S-EC-01-2] Calibration"
+  icon: "mdi:water-check"
+  options:
+    - "Normal Operation"
+    - "Start EC Calibration (1413 µS/cm)"
+    - "Confirm EC Calibration (1413 µS/cm)"
+    - "Start EC Calibration (12880 µS/cm)"
+    - "Confirm EC Calibration (12880 µS/cm)"
+
+calibrate_s_ph_01_1:
+  name: "[S-pH-01-1] Calibration"
+  icon: "mdi:beaker-check"
+  options:
+    - "Normal Operation"
+    - "Start pH Calibration (4.01)"
+    - "Confirm pH Calibration (4.01)"
+    - "Start pH Calibration (7.00)"
+    - "Confirm pH Calibration (7.00)"
+    - "Start pH Calibration (10.01)"
+    - "Confirm pH Calibration (10.01)"
+
+calibrate_s_ph_01_2:
+  name: "[S-pH-01-2] Calibration"
+  icon: "mdi:beaker-check"
+  options:
+    - "Normal Operation"
+    - "Start pH Calibration (4.01)"
+    - "Confirm pH Calibration (4.01)"
+    - "Start pH Calibration (7.00)"
+    - "Confirm pH Calibration (7.00)"
+    - "Start pH Calibration (10.01)"
+    - "Confirm pH Calibration (10.01)"
+
+new_intake_fan_modes:
+  name: "[Intake Fan] Mode"
+  icon: "mdi:fan-speed-3"
+  initial: "Off"
+  options:
+    - "Off"
+    - "Low"
+    - "Medium"
+    - "High"

@@ -1,20 +1,24 @@
-  lamp1_start_time:
-    name: Lamp 1 start time 
-    has_date: false
-    has_time: true
+# ┌────────────────────────────────────────────────────────────────────────────┐
+# │                     Home Assistant Input Datetime Entities                │
+# │                      KYBFarm - Light Control Scheduling                   │
+# └────────────────────────────────────────────────────────────────────────────┘
 
-  lamp1_finish_time:
-    name: Lamp 1 end time 
-    has_date: false
-    has_time: true
+lamp1_start_time:
+  name: "[Lamp 1] Start Time"
+  has_date: false
+  has_time: true
 
+lamp1_finish_time:
+  name: "[Lamp 1] End Time"
+  has_date: false
+  has_time: true
 
-  lamp2_start_time:
-    name: Lamp 2 start time 
-    has_date: false
-    has_time: true
+lamp2_start_time:
+  name: "[Lamp 2] Start Time"
+  has_date: false
+  has_time: true
 
-  lamp2_finish_time:
-    name: Lamp 2 end time 
-    has_date: false
-    has_time: true
+lamp2_finish_time:
+  name: "[Lamp 2] End Time"
+  has_date: false
+  has_time: true

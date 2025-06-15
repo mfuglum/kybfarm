@@ -1,15 +1,16 @@
 # ┌────────────────────────────────────────────────────────────────────────────┐
-# │                           RELAY AUTOMATIONS                                │
-# │            Forward input_booleans to MQTT relay control topics             │
+# │                        Relay Automations – KYBFarm                         │
+# │         Forward input_booleans to MQTT relay control request topics        │
 # └────────────────────────────────────────────────────────────────────────────┘
 
-# ─────────────────────────────── Relay 01 ─────────────────────────────────── #
-- alias: "Relay 01 - Turn ON"
+
+# ────────────────────────────── [Relay 01] Control ───────────────────────────── #
+- alias: "Relay 01 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_1
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -18,12 +19,12 @@
         topic: "cmd/relay01/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 01 - Turn OFF"
+- alias: "Relay 01 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_1
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -31,15 +32,15 @@
         retain: true
         topic: "cmd/relay01/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 02 ─────────────────────────────────── #
-- alias: "Relay 02 - Turn ON"
+
+# ────────────────────────────── [Relay 02] Control ───────────────────────────── #
+- alias: "Relay 02 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_2
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -48,12 +49,12 @@
         topic: "cmd/relay02/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 02 - Turn OFF"
+- alias: "Relay 02 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_2
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -61,15 +62,15 @@
         retain: true
         topic: "cmd/relay02/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 03 ─────────────────────────────────── #
-- alias: "Relay 03 - Turn ON"
+
+# ────────────────────────────── [Relay 03] Control ───────────────────────────── #
+- alias: "Relay 03 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_3
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -78,12 +79,12 @@
         topic: "cmd/relay03/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 03 - Turn OFF"
+- alias: "Relay 03 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_3
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -91,15 +92,15 @@
         retain: true
         topic: "cmd/relay03/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 04 ─────────────────────────────────── #
-- alias: "Relay 04 - Turn ON"
+
+# ────────────────────────────── [Relay 04] Control ───────────────────────────── #
+- alias: "Relay 04 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_4
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -108,12 +109,12 @@
         topic: "cmd/relay04/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 04 - Turn OFF"
+- alias: "Relay 04 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_4
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -121,15 +122,15 @@
         retain: true
         topic: "cmd/relay04/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 05 ─────────────────────────────────── #
-- alias: "Relay 05 - Turn ON"
+
+# ────────────────────────────── [Relay 05] Control ───────────────────────────── #
+- alias: "Relay 05 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_5
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -138,12 +139,12 @@
         topic: "cmd/relay05/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 05 - Turn OFF"
+- alias: "Relay 05 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_5
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -151,15 +152,15 @@
         retain: true
         topic: "cmd/relay05/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 06 ─────────────────────────────────── #
-- alias: "Relay 06 - Turn ON"
+
+# ────────────────────────────── [Relay 06] Control ───────────────────────────── #
+- alias: "Relay 06 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_6
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -168,12 +169,12 @@
         topic: "cmd/relay06/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 06 - Turn OFF"
+- alias: "Relay 06 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_6
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -181,15 +182,15 @@
         retain: true
         topic: "cmd/relay06/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 07 ─────────────────────────────────── #
-- alias: "Relay 07 - Turn ON"
+
+# ────────────────────────────── [Relay 07] Control ───────────────────────────── #
+- alias: "Relay 07 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_7
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -198,12 +199,12 @@
         topic: "cmd/relay07/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 07 - Turn OFF"
+- alias: "Relay 07 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_7
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -211,15 +212,15 @@
         retain: true
         topic: "cmd/relay07/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 08 ─────────────────────────────────── #
-- alias: "Relay 08 - Turn ON"
+
+# ────────────────────────────── [Relay 08] Control ───────────────────────────── #
+- alias: "Relay 08 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_8
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -228,12 +229,12 @@
         topic: "cmd/relay08/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 08 - Turn OFF"
+- alias: "Relay 08 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_8
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -241,15 +242,15 @@
         retain: true
         topic: "cmd/relay08/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 09 ─────────────────────────────────── #
-- alias: "Relay 09 - Turn ON"
+
+# ────────────────────────────── [Relay 09] Control ───────────────────────────── #
+- alias: "Relay 09 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_9
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -258,12 +259,12 @@
         topic: "cmd/relay09/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 09 - Turn OFF"
+- alias: "Relay 09 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_9
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -271,15 +272,15 @@
         retain: true
         topic: "cmd/relay09/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 10 ─────────────────────────────────── #
-- alias: "Relay 10 - Turn ON"
+
+# ────────────────────────────── [Relay 10] Control ───────────────────────────── #
+- alias: "Relay 10 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_10
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -288,12 +289,12 @@
         topic: "cmd/relay10/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 10 - Turn OFF"
+- alias: "Relay 10 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_10
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -301,15 +302,15 @@
         retain: true
         topic: "cmd/relay10/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 11 ─────────────────────────────────── #
-- alias: "Relay 11 - Turn ON"
+
+# ────────────────────────────── [Relay 11] Control ───────────────────────────── #
+- alias: "Relay 11 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_11
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -318,12 +319,12 @@
         topic: "cmd/relay11/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 11 - Turn OFF"
+- alias: "Relay 11 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_11
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -331,15 +332,15 @@
         retain: true
         topic: "cmd/relay11/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 12 ─────────────────────────────────── #
-- alias: "Relay 12 - Turn ON"
+
+# ────────────────────────────── [Relay 12] Control ───────────────────────────── #
+- alias: "Relay 12 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_12
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -348,12 +349,12 @@
         topic: "cmd/relay12/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 12 - Turn OFF"
+- alias: "Relay 12 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_12
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -361,15 +362,15 @@
         retain: true
         topic: "cmd/relay12/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 13 ─────────────────────────────────── #
-- alias: "Relay 13 - Turn ON"
+
+# ────────────────────────────── [Relay 13] Control ───────────────────────────── #
+- alias: "Relay 13 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_13
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -378,12 +379,12 @@
         topic: "cmd/relay13/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 13 - Turn OFF"
+- alias: "Relay 13 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_13
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -391,15 +392,15 @@
         retain: true
         topic: "cmd/relay13/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 14 ─────────────────────────────────── #
-- alias: "Relay 14 - Turn ON"
+
+# ────────────────────────────── [Relay 14] Control ───────────────────────────── #
+- alias: "Relay 14 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_14
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -408,12 +409,12 @@
         topic: "cmd/relay14/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 14 - Turn OFF"
+- alias: "Relay 14 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_14
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -421,15 +422,15 @@
         retain: true
         topic: "cmd/relay14/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 15 ─────────────────────────────────── #
-- alias: "Relay 15 - Turn ON"
+
+# ────────────────────────────── [Relay 15] Control ───────────────────────────── #
+- alias: "Relay 15 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_15
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -438,12 +439,12 @@
         topic: "cmd/relay15/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 15 - Turn OFF"
+- alias: "Relay 15 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_15
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -451,15 +452,15 @@
         retain: true
         topic: "cmd/relay15/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
 
-# ─────────────────────────────── Relay 16 ─────────────────────────────────── #
-- alias: "Relay 16 - Turn ON"
+
+# ────────────────────────────── [Relay 16] Control ───────────────────────────── #
+- alias: "Relay 16 • ON"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_16
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: mqtt.publish
       data:
@@ -468,12 +469,12 @@
         topic: "cmd/relay16/req"
         payload: '{ "cmd": "on" }'
 
-- alias: "Relay 16 - Turn OFF"
+- alias: "Relay 16 • OFF"
   trigger:
     - platform: state
       entity_id: input_boolean.relay_16
-      from: 'on'
-      to: 'off'
+      from: "on"
+      to: "off"
   action:
     - service: mqtt.publish
       data:
@@ -481,5 +482,3 @@
         retain: true
         topic: "cmd/relay16/req"
         payload: '{ "cmd": "off" }'
-# ───────────────────────────────────────────────────────────────────────────── #
-

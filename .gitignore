@@ -1,6 +1,19 @@
 .env
 .venv
 __pycache__
-secrets.yaml
-server/influxdb
+# ────────────────────────────── AppDaemon ──────────────────────────────
+/server/appdaemon/config/*
+!/server/appdaemon/config/apps/
 
+# ───────────────────────────── Home Assistant ──────────────────────────
+/server/homeassistant/config/*
+!/server/homeassistant/config/configuration.yaml
+!/server/homeassistant/config/include/
+# If you want to exclude specific generated files under /include/, you can add:
+/server/homeassistant/config/include/influxdb.yaml
+
+# ────────────────────────────── Mosquitto ──────────────────────────────
+/server/mosquitto/
+
+# ────────────────────────────── InfluxDB ───────────────────────────────
+/server/influxdb/

@@ -1,98 +1,120 @@
-  relay_1:
-    name: "(rl1) Water pump 350 "
-    icon: "mdi:toggle-switch"
-  relay_2:
-    name: "(rl2) Water pump 5k"
-    icon: "mdi:toggle-switch"
-  relay_3:
-    name: "(rl3) Air pump "
-    icon: "mdi:toggle-switch"
-  relay_4:
-    name: "(rl4) Internal fans"
-    icon: "mdi:toggle-switch"
-  relay_5:
-    name: "(rl5) Intake fan"
-    icon: "mdi:toggle-switch"
-  relay_6:
-    name: "(rl6) Humidifier "
-    icon: "mdi:toggle-switch"
-  relay_7:
-    name: "(rl7) Dehumidifier "
-    icon: "mdi:toggle-switch"
-  relay_8:
-    name: "(rl8) Heater "
-    icon: "mdi:toggle-switch"
-  relay_9:
-    name: "(rl9) Extra "
-    icon: "mdi:toggle-switch"
-  relay_10:
-    name: "(rl10) Extra "
-    icon: "mdi:toggle-switch"
-  relay_11:
-    name: "(rl11) Solenoid 1 "
-    icon: "mdi:toggle-switch"
-  relay_12:
-    name: "(rl12) Solenoid 2 "
-    icon: "mdi:toggle-switch"
-  relay_13:
-    name: "(rl13) Extra "
-    icon: "mdi:toggle-switch"
-  relay_14:
-    name: "(rl14) Peristaltic pump 1 "
-    icon: "mdi:toggle-switch"
-  relay_15:
-    name: "(rl15) Peristaltic pump 2 "
-    icon: "mdi:toggle-switch"
-  relay_16:
-    name: "(rl16) Peristaltic pump 3 "
-    icon: "mdi:toggle-switch"
-  solid_state_relay1:
-    name: "(ssr1) Heating battery"
-    icon: "mdi:heating-coil"
-  solid_state_relay_stop_loop:
-    name: "(ssr) Stop pwm loop"
-    icon: "mdi:toggle-switch"
+# ┌────────────────────────────────────────────────────────────────────────────┐
+# │                        Home Assistant Input Booleans                       │
+# │                     KYBFarm - Manual Control Switches                     │
+# └────────────────────────────────────────────────────────────────────────────┘
 
-  cooling_pid_enable_toggle:
-    name: "PID enable"
-    icon: "mdi:toggle-switch"
+relay_1:
+  name: "[RL1] Water Pump 350"
+  icon: "mdi:water-pump"
 
-  heating_pid_enable_toggle:
-    name: "Heating PID enable"
-    icon: "mdi:toggle-switch"
+relay_2:
+  name: "[RL2] Water Pump 5K"
+  icon: "mdi:water-pump"
 
-  co2_pid_enable_toggle:
-    name: "CO2 PID enable"
-    icon: "mdi:toggle-switch"
+relay_3:
+  name: "[RL3] Air Pump"
+  icon: "mdi:chart-bubble"
 
+relay_4:
+  name: "[RL4] Internal Fans"
+  icon: "mdi:fan"
 
-  mix_control_toggle:
-    name: "Mixing controller"
-    icon: "mdi:pot-mix"
+relay_5:
+  name: "[RL5] Intake Fan"
+  icon: "mdi:fan-chevron-down"
 
-  grow_control_toggle:
-    name: "Grow tank controller"
-    icon: "mdi:water-pump"
+relay_6:
+  name: "[RL6] Humidifier"
+  icon: "mdi:air-humidifier"
 
-  intake_fan_toggle:
-    name: "Intake fan controller"
-    icon: "mdi:fan"
+relay_7:
+  name: "[RL7] Dehumidifier"
+  icon: "mdi:air-humidifier-off"
 
-  new_intake_fan_toggle:
-    name: "New intake fan controller"
-    icon: "mdi:fan"
+relay_8:
+  name: "[RL8] Heater"
+  icon: "mdi:radiator"
 
-  fan_normal_operation_toggle:
-    name: "Enable normal fan operation"
-    icon: "mdi:fan"
+relay_9:
+  name: "[RL9] Extra"
+  icon: "mdi:toggle-switch"
 
-  lamp1_control_toggle:
-    name: "Lamp1 controller"
-    icon: "mdi:ceiling-light"
-  lamp2_control_toggle:
-    name: "Lamp2 controller"
-    icon: "mdi:ceiling-light"
+relay_10:
+  name: "[RL10] Extra"
+  icon: "mdi:toggle-switch"
 
-  hvac_operation:
-    name: "Enable grow climate"
-    icon: "mdi:toggle-switch"
+relay_11:
+  name: "[RL11] Solenoid 1"
+  icon: "mdi:valve"
+
+relay_12:
+  name: "[RL12] Solenoid 2"
+  icon: "mdi:valve"
+
+relay_13:
+  name: "[RL13] Extra"
+  icon: "mdi:toggle-switch"
+
+relay_14:
+  name: "[RL14] Peristaltic Pump 1"
+  icon: "mdi:pump"
+
+relay_15:
+  name: "[RL15] Peristaltic Pump 2"
+  icon: "mdi:pump"
+
+relay_16:
+  name: "[RL16] Peristaltic Pump 3"
+  icon: "mdi:pump"
+
+solid_state_relay1:
+  name: "[SSR1] Heating Battery"
+  icon: "mdi:heating-coil"
+
+solid_state_relay_stop_loop:
+  name: "[SSR] Stop PWM Loop"
+  icon: "mdi:power-off"
+
+cooling_pid_enable_toggle:
+  name: "[PID] Cooling Enable"
+  icon: "mdi:thermometer-minus"
+
+heating_pid_enable_toggle:
+  name: "[PID] Heating Enable"
+  icon: "mdi:thermometer-plus"
+
+co2_pid_enable_toggle:
+  name: "[PID] CO₂ Enable"
+  icon: "mdi:molecule-co2"
+
+mix_control_toggle:
+  name: "[CTRL] Mixing Tank"
+  icon: "mdi:pot-mix"
+
+grow_control_toggle:
+  name: "[CTRL] Grow Tank"
+  icon: "mdi:hydro-power"
+
+intake_fan_toggle:
+  name: "[CTRL] Intake Fan"
+  icon: "mdi:fan"
+
+new_intake_fan_toggle:
+  name: "[CTRL] New Intake Fan"
+  icon: "mdi:fan"
+
+fan_normal_operation_toggle:
+  name: "[CTRL] Enable Normal Fan Op"
+  icon: "mdi:fan-auto"
+
+lamp1_control_toggle:
+  name: "[CTRL] Lamp 1"
+  icon: "mdi:ceiling-light"
+
+lamp2_control_toggle:
+  name: "[CTRL] Lamp 2"
+  icon: "mdi:ceiling-light"
+
+hvac_operation:
+  name: "[HVAC] Climate Control"
+  icon: "mdi:air-filter"
