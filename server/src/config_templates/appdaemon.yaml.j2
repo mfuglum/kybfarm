@@ -1,0 +1,19 @@
+appdaemon:
+  latitude: {{ LATITUDE | default(0) }}
+  longitude: {{ LONGITUDE | default(0) }}
+  elevation: {{ ELEVATION | default(30) }}
+  time_zone: "{{ TIME_ZONE | default('Europe/Berlin') }}"
+  log_level: "DEBUG"
+  plugins:
+    HASS:
+      type: hass
+      ha_url: "http://{{ HOST_IP }}:8123"
+      cert_verify: true
+      token: "{{ TOKEN }}"
+
+http:
+  url: "http://0.0.0.0:{{ APPDAEMON_PORT | default(5050) }}"
+
+admin:
+api:
+hadashboard:
