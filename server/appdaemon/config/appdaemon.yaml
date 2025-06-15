@@ -7,9 +7,9 @@ appdaemon:
   plugins:
     HASS:
       type: hass
-      ha_url: http://172.26.64.197:8123
+      ha_url: http://172.26.31.3:8123
       cert_verify: True
-      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMGMzODYyMjJlMGM0MTkyOTAxODhhMDMzMWRhZWY2ZCIsImlhdCI6MTc0OTgwNDUyOCwiZXhwIjoyMDY1MTY0NTI4fQ.Kcbg9jw-uL_CYmFMMjJCzW02ynt5Macagi2KYbR9pk4
+      token: replace_this_with_long_lived_access_token_created_in_home_assistant
 http:
   url: "http://0.0.0.0:5050"
 admin:
