@@ -1,12 +1,11 @@
 # ┌────────────────────────────────────────────────────────────────────────────┐
-# │              Fan, Valve, and Lamp Voltage Control Automations             │
-# │                    KYBFarm - Actuator Voltage via MQTT                    │
+# │              Actuator Voltage Control Automations - KYBFarm               │
+# │          Controls for Fan, Valve, and Elixia Lamps via MQTT               │
 # └────────────────────────────────────────────────────────────────────────────┘
 
 
-# ─────────────────────────────── FAN VOLTAGE CONTROL ───────────────────────── #
-
-- alias: "Fan Voltage - Update"
+# ─────────────────────────────── [Fan Voltage] Control ─────────────────────────── #
+- alias: "Fan • Manual Voltage Update"
   trigger:
     - platform: state
       entity_id: input_number.new_intake_fan_voltage
@@ -23,7 +22,7 @@
             "value": "{{ states('input_number.new_intake_fan_voltage') | round(2) }}"
           }
 
-- alias: "Fan Voltage - Enable Normal Operation"
+- alias: "Fan • Enable Normal Operation"
   trigger:
     - platform: state
       entity_id: input_boolean.fan_normal_operation_toggle
@@ -42,7 +41,7 @@
             "value": "8"
           }
 
-- alias: "Fan Voltage - Disable Normal Operation"
+- alias: "Fan • Disable Normal Operation"
   trigger:
     - platform: state
       entity_id: input_boolean.fan_normal_operation_toggle
@@ -61,13 +60,9 @@
             "value": "0"
           }
 
-# ───────────────────────────────────────────────────────────────────────────── #
 
-
-
-# ─────────────────────────────── VALVE VOLTAGE CONTROL ─────────────────────── #
-
-- alias: "Valve Voltage - Update"
+# ─────────────────────────────── [Valve Voltage] Control ───────────────────────── #
+- alias: "Valve • Manual Voltage Update"
   trigger:
     - platform: state
       entity_id: input_number.valve_voltage
@@ -84,13 +79,9 @@
             "value": "{{ states('input_number.valve_voltage') | round(2) }}"
           }
 
-# ───────────────────────────────────────────────────────────────────────────── #
 
-
-
-# ─────────────────────────────── ELIXIA GROW LAMP 01 ───────────────────────── #
-
-- alias: "Elixia Lamp 01 - Update LED Intensity"
+# ─────────────────────────────── [Lamp 01] Elixia Intensity ────────────────────── #
+- alias: "Elixia Lamp 1 • Update Intensity"
   trigger:
     - platform: state
       entity_id:
@@ -111,13 +102,9 @@
             "intensity": "{{ states('input_number.elixia_1_channel_450nm') | round(0) }}:{{ states('input_number.elixia_1_channel_660nm') | round(0) }}:{{ states('input_number.elixia_1_channel_735nm') | round(0) }}:{{ states('input_number.elixia_1_channel_5700k') | round(0) }}"
           }
 
-# ───────────────────────────────────────────────────────────────────────────── #
 
-
-
-# ─────────────────────────────── ELIXIA GROW LAMP 02 ───────────────────────── #
-
-- alias: "Elixia Lamp 02 - Update LED Intensity"
+# ─────────────────────────────── [Lamp 02] Elixia Intensity ────────────────────── #
+- alias: "Elixia Lamp 2 • Update Intensity"
   trigger:
     - platform: state
       entity_id:
@@ -137,5 +124,3 @@
             "res_topic": "cmd/lamp02/res",
             "intensity": "{{ states('input_number.elixia_2_channel_450nm') | round(0) }}:{{ states('input_number.elixia_2_channel_660nm') | round(0) }}:{{ states('input_number.elixia_2_channel_735nm') | round(0) }}:{{ states('input_number.elixia_2_channel_5700k') | round(0) }}"
           }
-
-# ───────────────────────────────────────────────────────────────────────────── #

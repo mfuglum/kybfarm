@@ -1,232 +1,241 @@
-# ─────────────── Elixia Lamp 1 Channel entities ─────────────── #
-  elixia_1_channel_450nm:
-    name: "Elixia-1, Channel: 450nm"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-  elixia_1_channel_660nm:
-    name: "Elixia-1, Channel: 660nm"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-  elixia_1_channel_735nm:
-    name: "Elixia-1, Channel: 735nm"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-  elixia_1_channel_5700k:
-    name: "Elixia-1, Channel: 5700K"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
+# ┌────────────────────────────────────────────────────────────┐
+# │                  Elixia Lamp Channel Controls              │
+# │                     KYBFarm - Input Numbers                │
+# └────────────────────────────────────────────────────────────┘
 
-  # ─────────────── Elixia Lamp 2 Channel entities ─────────────── #
-  elixia_2_channel_450nm:
-    name: "Elixia-2, Channel: 450nm"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-  elixia_2_channel_660nm:
-    name: "Elixia-2, Channel: 660nm"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-  elixia_2_channel_735nm:
-    name: "Elixia-2, Channel: 735nm"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-  elixia_2_channel_5700k:
-    name: "Elixia-2, Channel: 5700K"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
+# ─────────────── Elixia Lamp 1 Raw Channel Levels ─────────────── #
+elixia_1_channel_450nm:
+  name: "[Elixia 1] Channel 450nm"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
+
+elixia_1_channel_660nm:
+  name: "[Elixia 1] Channel 660nm"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
+
+elixia_1_channel_735nm:
+  name: "[Elixia 1] Channel 735nm"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
+
+elixia_1_channel_5700k:
+  name: "[Elixia 1] Channel 5700K"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
+
+# ─────────────── Elixia Lamp 2 Raw Channel Levels ─────────────── #
+elixia_2_channel_450nm:
+  name: "[Elixia 2] Channel 450nm"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
+
+elixia_2_channel_660nm:
+  name: "[Elixia 2] Channel 660nm"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
+
+elixia_2_channel_735nm:
+  name: "[Elixia 2] Channel 735nm"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
+
+elixia_2_channel_5700k:
+  name: "[Elixia 2] Channel 5700K"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
 
 # ─────────────── Elixia Lamp 1 Set Channels ─────────────── #
-  elixia_1_set_channel_450nm:
-    name: "Elixia 1 Set Channel 450nm:"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
+elixia_1_set_channel_450nm:
+  name: "[Elixia 1] Set Channel 450nm"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
 
-  elixia_1_set_channel_5700k:
-    name: "Elixia 1 Set Channel 5700K:"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
+elixia_1_set_channel_5700k:
+  name: "[Elixia 1] Set Channel 5700K"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
 
-  elixia_1_set_channel_660nm:
-    name: "Elixia 1 Set Channel 660nm:"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
+elixia_1_set_channel_660nm:
+  name: "[Elixia 1] Set Channel 660nm"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
 
-  elixia_1_set_channel_735nm:
-    name: "Elixia 1 Set Channel 735nm:"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
+elixia_1_set_channel_735nm:
+  name: "[Elixia 1] Set Channel 735nm"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
 
 # ─────────────── Elixia Lamp 2 Set Channels ─────────────── #
-  elixia_2_set_channel_450nm:
-    name: "Elixia 2 Set Channel 450nm:"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
+elixia_2_set_channel_450nm:
+  name: "[Elixia 2] Set Channel 450nm"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
 
-  elixia_2_set_channel_5700k:
-    name: "Elixia 2 Set Channel 5700K:"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
+elixia_2_set_channel_5700k:
+  name: "[Elixia 2] Set Channel 5700K"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
 
-  elixia_2_set_channel_660nm:
-    name: "Elixia 2 Set Channel 660nm:"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
+elixia_2_set_channel_660nm:
+  name: "[Elixia 2] Set Channel 660nm"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
 
-  elixia_2_set_channel_735nm:
-    name: "Elixia 2 Set Channel 735nm:"
-    initial: 0
-    min: 0
-    max: 1000
-    step: 1
-    mode: "box"
-
+elixia_2_set_channel_735nm:
+  name: "[Elixia 2] Set Channel 735nm"
+  initial: 0
+  min: 0
+  max: 1000
+  step: 1
+  mode: "box"
 
 
   ec_ref:
-    name: "EC reference for mixing tank"
-    initial: 0 
-    min: 0
-    max: 2
-    step: 0.05
-    mode: "box"
+  name: "[Mixing Tank] EC Reference"
+  initial: 0
+  min: 0
+  max: 2
+  step: 0.05
+  mode: "box"
 
-  intake_fan_temp_low:
-    name: "Intake fan min temp"
-    initial: 24 
-    min: 0
-    max: 30
-    step: 1
-    mode: "box"
-  intake_fan_temp_high:
-    name: "Intake fan max temp"
-    initial: 25
-    min: 0
-    max: 30
-    step: 1
-    mode: "box"
-  intake_fan_humid_low:
-    name: "Intake fan min humid"
-    initial: 60
-    min: 0
-    max: 100
-    step: 1
-    mode: "box"
-  intake_fan_humid_high:
-    name: "Intake fan max humid"
-    initial: 70
-    min: 0
-    max: 100
-    step: 1
-    mode: "box"
+intake_fan_temp_low:
+  name: "[Intake Fan] Min Temperature"
+  initial: 24
+  min: 0
+  max: 30
+  step: 1
+  mode: "box"
 
-  humid_ref:
-    name: "Target humidity"
-    initial: 50
-    min: 30
-    max: 80
-    step: 0.1
-    mode: "box"
+intake_fan_temp_high:
+  name: "[Intake Fan] Max Temperature"
+  initial: 25
+  min: 0
+  max: 30
+  step: 1
+  mode: "box"
 
-  temp_ref:
-    name: "Target temp"
-    initial: 20
-    min: 10
-    max: 50
-    step: 0.1
-    mode: "box"
+intake_fan_humid_low:
+  name: "[Intake Fan] Min Humidity"
+  initial: 60
+  min: 0
+  max: 100
+  step: 1
+  mode: "box"
 
-  co2_ref:
-    name: "Target CO2"
-    initial: 400
-    min: 300
-    max: 1000
-    step: 10
-    mode: "box"
-    
-  ssr_duty_cycle:
-    name: "SSR duty cycle"
-    initial: 0
-    min: 0
-    max: 1
-    step: 0.1
-    mode: "box"
+intake_fan_humid_high:
+  name: "[Intake Fan] Max Humidity"
+  initial: 70
+  min: 0
+  max: 100
+  step: 1
+  mode: "box"
 
-  ssr_base_period:
-    name: "SSR base period"
-    initial: 1
-    min: 0.1
-    max: 20
-    step: 0.1
-    mode: "box"
+humid_ref:
+  name: "[HVAC] Target Humidity"
+  initial: 50
+  min: 30
+  max: 80
+  step: 0.1
+  mode: "box"
 
-  ssr_turn_on_for:
-    name: "SSR on time"
-    initial: 0
-    min: 0
-    max: 60
-    step: 1
-    mode: "box"
-  
-  new_intake_fan_voltage:
-    name: "Fan manual voltage"
-    initial: 0
-    min: 0
-    max: 10
-    step: 0.1
-    mode: "box"
+temp_ref:
+  name: "[HVAC] Target Temperature"
+  initial: 20
+  min: 10
+  max: 50
+  step: 0.1
+  mode: "box"
 
-  valve_voltage:
-    name: "Valve manual voltage"
-    initial: 0
-    min: 0
-    max: 10
-    step: 0.1
-    mode: "box"
+co2_ref:
+  name: "[HVAC] Target CO₂"
+  initial: 400
+  min: 300
+  max: 1000
+  step: 10
+  mode: "box"
 
-  
+ssr_duty_cycle:
+  name: "[SSR] Duty Cycle"
+  initial: 0
+  min: 0
+  max: 1
+  step: 0.1
+  mode: "box"
 
-  
+ssr_base_period:
+  name: "[SSR] Base Period (s)"
+  initial: 1
+  min: 0.1
+  max: 20
+  step: 0.1
+  mode: "box"
+
+ssr_turn_on_for:
+  name: "[SSR] On Time (s)"
+  initial: 0
+  min: 0
+  max: 60
+  step: 1
+  mode: "box"
+
+new_intake_fan_voltage:
+  name: "[Fan] Manual Voltage (V)"
+  initial: 0
+  min: 0
+  max: 10
+  step: 0.1
+  mode: "box"
+
+valve_voltage:
+  name: "[Valve] Manual Voltage (V)"
+  initial: 0
+  min: 0
+  max: 10
+  step: 0.1
+  mode: "box"

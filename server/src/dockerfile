@@ -1,18 +1,17 @@
 FROM python:3.10.6
 
-# Create a directory for the app
-# RUN mkdir /app
-
-# Set the working directory
 WORKDIR /app
 
-# Copy the requirements file
+# Install only the essentials
 COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install the requirements
-RUN pip install -r requirements.txt
+# Copy script and templates
+COPY generate_configs.py .
+COPY config_templates/ ./templates/
 
-# Copy the rest of the files
-COPY . .
+# Make output dir in case volume is empty
+RUN mkdir -p /app/output
 
-
+# Default command
+CMD ["python", "generate_configs.py"]

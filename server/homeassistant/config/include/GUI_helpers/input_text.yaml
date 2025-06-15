@@ -1,6 +1,9 @@
+# ┌────────────────────────────────────────────────────────────┐
+# │                  Input Text Entities - KYBFarm             │
+# └────────────────────────────────────────────────────────────┘
 
-  calibration_status:
-    name: "Calibration status:"
-    icon: "mdi:chart-bell-curve"
-    initial: "Normal Operation"
-    mode: "text"
+calibration_status:
+  name: "[Calibration] Status"
+  icon: "mdi:chart-bell-curve"
+  initial: "Normal Operation"
+  mode: "text"
