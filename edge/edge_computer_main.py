@@ -1,17 +1,22 @@
 #!/home/user1/Desktop/kybfarm/edge/venv/bin/python
-"""This is the main file to run on the edge computer.
+"""
+This is the main file to run on the edge computer.
 It is subscribing to MQTT topics for data and command requests, and publishing the requested data or status to the MQTT broker.
 To run this file create a python virtual envronment in kybfarm/edge/ and install the required packages from requirements.txt:
+
 Create venv:
     python3 -m venv venv
+
 Activate venv:
     source venv/bin/activate
+
 Install required packages:
     pip install -r requirements.txt
 
 Run the file:
     python edge_computer_main.py
 """
+# ───────────── Imports ─────────────
 import paho.mqtt.client as mqtt
 import json
 import time
@@ -34,93 +39,84 @@ from src.actuator_instances import (relay_devices_initialization,
                                     CO2_control
                                     ) 
 from src.utils.latest_pid_data import latest_heating_data, latest_humidity_data, latest_CO2_data
-# Load environment variables from the .env file
+
+# ───────────── Load Environmental Files ─────────────
 load_dotenv()
 
-# Fetch MQTT config values from .env file
-MQTT_HOST = os.getenv("MOSQUITTO_BROKER_IP")
-MQTT_PORT = int(os.getenv("MOSQUITTO_BROKER_PORT"))
-MQTT_KEEP_ALIVE = int(os.getenv("MQTT_EDGE_KEEP_ALIVE"))
+# ───────────── MQTT Broker Configuration ─────────────
+MQTT_HOST        = os.getenv("MOSQUITTO_BROKER_IP")
+MQTT_PORT        = int(os.getenv("MOSQUITTO_BROKER_PORT"))
+MQTT_KEEP_ALIVE  = int(os.getenv("MQTT_EDGE_KEEP_ALIVE"))
 
-# MQTT data (dt) request (req) topics
-MQTT_SLIGTH01_DT_REQ = os.getenv("MQTT_SENSOR_01_DT_REQ")
-MQTT_SPAR02_DT_REQ = os.getenv("MQTT_SENSOR_02_DT_REQ")
-MQTT_SEC01_1_DT_REQ = os.getenv("MQTT_SENSOR_03_DT_REQ")
-MQTT_SEC01_2_DT_REQ = os.getenv("MQTT_SENSOR_04_DT_REQ")
-MQTT_SPH01_1_DT_REQ = os.getenv("MQTT_SENSOR_05_DT_REQ")
-MQTT_SPH01_2_DT_REQ = os.getenv("MQTT_SENSOR_06_DT_REQ")
-MQTT_SYM01_DT_REQ = os.getenv("MQTT_SENSOR_10_DT_REQ")
-MQTT_CO2VOC_1_DT_REQ = os.getenv("MQTT_SENSOR_11_DT_REQ") # Endrer denne til riktig topic
-MQTT_CO2VOC_2_DT_REQ = os.getenv("MQTT_SENSOR_12_DT_REQ") # Legger til ny VOC sensor
-MQTT_STH01_1_DT_REQ = os.getenv("MQTT_SENSOR_13_DT_REQ") # Legger til ny temp sensor
-MQTT_STH01_2_DT_REQ = os.getenv("MQTT_SENSOR_14_DT_REQ") # Legger til ny temp sensor
+# ───────────── Sensor Data Topics (DT_REQ) ─────────────
+MQTT_SLIGTH01_DT_REQ     = os.getenv("MQTT_DT_REQ_SOIL_LIGHT_1")
+MQTT_SPAR02_DT_REQ       = os.getenv("MQTT_DT_REQ_SOIL_PAR_2")
+MQTT_SEC01_1_DT_REQ      = os.getenv("MQTT_DT_REQ_EC_SENSOR_1")
+MQTT_SEC01_2_DT_REQ      = os.getenv("MQTT_DT_REQ_EC_SENSOR_2")
+MQTT_SPH01_1_DT_REQ      = os.getenv("MQTT_DT_REQ_PH_SENSOR_1")
+MQTT_SPH01_2_DT_REQ      = os.getenv("MQTT_DT_REQ_PH_SENSOR_2")
+MQTT_SYM01_DT_REQ        = os.getenv("MQTT_DT_REQ_WATER_FLOW")
+MQTT_CO2VOC_1_DT_REQ     = os.getenv("MQTT_DT_REQ_CO2_VOC_1")
+MQTT_CO2VOC_2_DT_REQ     = os.getenv("MQTT_DT_REQ_CO2_VOC_2")
+MQTT_STH01_1_DT_REQ      = os.getenv("MQTT_DT_REQ_TEMP_HUMIDITY_1")
+MQTT_STH01_2_DT_REQ      = os.getenv("MQTT_DT_REQ_TEMP_HUMIDITY_2")
+
+# ───────────── Sensor Command Topics (CMD_REQ) ─────────────
+MQTT_SEC01_1_CMD_REQ     = os.getenv("MQTT_CMD_REQ_EC_SENSOR_1")
+MQTT_SEC01_2_CMD_REQ     = os.getenv("MQTT_CMD_REQ_EC_SENSOR_2")
+MQTT_SPH01_1_CMD_REQ     = os.getenv("MQTT_CMD_REQ_PH_SENSOR_1")
+MQTT_SPH01_2_CMD_REQ     = os.getenv("MQTT_CMD_REQ_PH_SENSOR_2")
 
 
-# MQTT command (cmd) topics
-# Relays #
-MQTT_RELAY_01_CMD_REQ = os.getenv("MQTT_RELAY_01_CMD_REQ")
-MQTT_RELAY_02_CMD_REQ = os.getenv("MQTT_RELAY_02_CMD_REQ")
-MQTT_RELAY_03_CMD_REQ = os.getenv("MQTT_RELAY_03_CMD_REQ")
-MQTT_RELAY_04_CMD_REQ = os.getenv("MQTT_RELAY_04_CMD_REQ")
-MQTT_RELAY_05_CMD_REQ = os.getenv("MQTT_RELAY_05_CMD_REQ")
-MQTT_RELAY_06_CMD_REQ = os.getenv("MQTT_RELAY_06_CMD_REQ")
-MQTT_RELAY_07_CMD_REQ = os.getenv("MQTT_RELAY_07_CMD_REQ")
-MQTT_RELAY_08_CMD_REQ = os.getenv("MQTT_RELAY_08_CMD_REQ")
-MQTT_RELAY_09_CMD_REQ = os.getenv("MQTT_RELAY_09_CMD_REQ")
-MQTT_RELAY_10_CMD_REQ = os.getenv("MQTT_RELAY_10_CMD_REQ")
-MQTT_RELAY_11_CMD_REQ = os.getenv("MQTT_RELAY_11_CMD_REQ")
-MQTT_RELAY_12_CMD_REQ = os.getenv("MQTT_RELAY_12_CMD_REQ")
-MQTT_RELAY_13_CMD_REQ = os.getenv("MQTT_RELAY_13_CMD_REQ")
-MQTT_RELAY_14_CMD_REQ = os.getenv("MQTT_RELAY_14_CMD_REQ")
-MQTT_RELAY_15_CMD_REQ = os.getenv("MQTT_RELAY_15_CMD_REQ")
-MQTT_RELAY_16_CMD_REQ = os.getenv("MQTT_RELAY_16_CMD_REQ")
-#Solid state relay
+# ───────────── Relay Control Topics ─────────────
+MQTT_RELAY_01_CMD_REQ    = os.getenv("MQTT_RELAY_01_CMD_REQ")
+MQTT_RELAY_02_CMD_REQ    = os.getenv("MQTT_RELAY_02_CMD_REQ")
+MQTT_RELAY_03_CMD_REQ    = os.getenv("MQTT_RELAY_03_CMD_REQ")
+MQTT_RELAY_04_CMD_REQ    = os.getenv("MQTT_RELAY_04_CMD_REQ")
+MQTT_RELAY_05_CMD_REQ    = os.getenv("MQTT_RELAY_05_CMD_REQ")
+MQTT_RELAY_06_CMD_REQ    = os.getenv("MQTT_RELAY_06_CMD_REQ")
+MQTT_RELAY_07_CMD_REQ    = os.getenv("MQTT_RELAY_07_CMD_REQ")
+MQTT_RELAY_08_CMD_REQ    = os.getenv("MQTT_RELAY_08_CMD_REQ")
+MQTT_RELAY_09_CMD_REQ    = os.getenv("MQTT_RELAY_09_CMD_REQ")
+MQTT_RELAY_10_CMD_REQ    = os.getenv("MQTT_RELAY_10_CMD_REQ")
+MQTT_RELAY_11_CMD_REQ    = os.getenv("MQTT_RELAY_11_CMD_REQ")
+MQTT_RELAY_12_CMD_REQ    = os.getenv("MQTT_RELAY_12_CMD_REQ")
+MQTT_RELAY_13_CMD_REQ    = os.getenv("MQTT_RELAY_13_CMD_REQ")
+MQTT_RELAY_14_CMD_REQ    = os.getenv("MQTT_RELAY_14_CMD_REQ")
+MQTT_RELAY_15_CMD_REQ    = os.getenv("MQTT_RELAY_15_CMD_REQ")
+MQTT_RELAY_16_CMD_REQ    = os.getenv("MQTT_RELAY_16_CMD_REQ")
 MQTT_SOLID_STATE_RELAY_01_CMD_REQ = os.getenv("MQTT_SOLID_STATE_RELAY_01_CMD_REQ")
 
-# Sensors #
-MQTT_SEC01_1_CMD_REQ = os.getenv("MQTT_SENSOR_03_CMD_REQ")
-MQTT_SEC01_2_CMD_REQ = os.getenv("MQTT_SENSOR_04_CMD_REQ")
-MQTT_SPH01_1_CMD_REQ = os.getenv("MQTT_SENSOR_05_CMD_REQ")
-MQTT_SPH01_2_CMD_REQ = os.getenv("MQTT_SENSOR_06_CMD_REQ")
+# ───────────── Voltage Control ─────────────
+MQTT_FAN_VOLTAGE_CMD_REQ    = os.getenv("MQTT_FAN_VOLTAGE_CMD_REQ")
+MQTT_FAN_VOLTAGE_CMD_RES    = os.getenv("MQTT_FAN_VOLTAGE_CMD_RES")
+MQTT_VALVE_VOLTAGE_CMD_REQ  = os.getenv("MQTT_VALVE_VOLTAGE_CMD_REQ")
+MQTT_VALVE_VOLTAGE_CMD_RES  = os.getenv("MQTT_VALVE_VOLTAGE_CMD_RES")
 
-# Voltage output #
-MQTT_FAN_VOLTAGE_CMD_REQ = os.getenv("MQTT_FAN_VOLTAGE_CMD_REQ")
-MQTT_FAN_VOLTAGE_CMD_RES = os.getenv("MQTT_FAN_VOLTAGE_CMD_RES")
-
-MQTT_VALVE_VOLTAGE_CMD_REQ = os.getenv("MQTT_VALVE_VOLTAGE_CMD_REQ")
-MQTT_VALVE_VOLTAGE_CMD_RES = os.getenv("MQTT_VALVE_VOLTAGE_CMD_RES")
-
-# Grow Lamp1 Elixia #
-LAMP_01_IP = os.getenv("LAMP_01_IP")
-MQTT_LAMP_01_CMD_REQ = os.getenv("MQTT_LAMP_01_CMD_REQ")
-MQTT_LAMP_01_DT_REQ = os.getenv("MQTT_LAMP_01_DT_REQ")
-# Update IP of lamp1
+# ───────────── Grow Lamp 1 (Elixia) ─────────────
+LAMP_01_IP                = os.getenv("LAMP_01_IP")
+MQTT_LAMP_01_CMD_REQ      = os.getenv("MQTT_LAMP_01_CMD_REQ")
+MQTT_LAMP_01_DT_REQ       = os.getenv("MQTT_LAMP_01_DT_REQ")
 grow_lamp_elixia_initialization.lamp_1.update_ip_address(LAMP_01_IP)
 
-# Grow Lamp2 Elixia #
-LAMP_02_IP = os.getenv("LAMP_02_IP")
-MQTT_LAMP_02_CMD_REQ = os.getenv("MQTT_LAMP_02_CMD_REQ")
-MQTT_LAMP_02_DT_REQ = os.getenv("MQTT_LAMP_02_DT_REQ")
-#Update IP of lamp2
+# ───────────── Grow Lamp 2 (Elixia) ─────────────
+LAMP_02_IP                = os.getenv("LAMP_02_IP")
+MQTT_LAMP_02_CMD_REQ      = os.getenv("MQTT_LAMP_02_CMD_REQ")
+MQTT_LAMP_02_DT_REQ       = os.getenv("MQTT_LAMP_02_DT_REQ")
 grow_lamp_elixia_initialization.lamp_2.update_ip_address(LAMP_02_IP)
 
-#PID
+# ───────────── PID Controllers ─────────────
 MQTT_COOLING_PID_ENABLE_CMD_REQ = os.getenv("MQTT_COOLING_PID_ENABLE_CMD_REQ")
 MQTT_HEATING_PID_ENABLE_CMD_REQ = os.getenv("MQTT_HEATING_PID_ENABLE_CMD_REQ")
-MQTT_CO2_PID_ENABLE_CMD_REQ = os.getenv("MQTT_CO2_PID_ENABLE_CMD_REQ")
+MQTT_CO2_PID_ENABLE_CMD_REQ     = os.getenv("MQTT_CO2_PID_ENABLE_CMD_REQ")
 
-
-# Ønsket fuktighet
-MQTT_REF_HUMID_CMD_REQ = os.getenv("MQTT_REF_HUMID_CMD_REQ")
-MQTT_REF_HUMID_CMD_RES = os.getenv("MQTT_REF_HUMID_CMD_RES")
-
-# Ønsket temperatur
-MQTT_REF_TEMP_CMD_REQ = os.getenv("MQTT_REF_TEMP_CMD_REQ")
-MQTT_REF_TEMP_CMD_RES = os.getenv("MQTT_REF_TEMP_CMD_RES")
-
-#Ønsket CO2
-MQTT_REF_CO2_CMD_REQ = os.getenv("MQTT_REF_CO2_CMD_REQ")
-MQTT_REF_CO2_CMD_RES = os.getenv("MQTT_REF_CO2_CMD_RES")
+# ───────────── Reference Setpoints ─────────────
+MQTT_REF_HUMID_CMD_REQ    = os.getenv("MQTT_REF_HUMID_CMD_REQ")
+MQTT_REF_HUMID_CMD_RES    = os.getenv("MQTT_REF_HUMID_CMD_RES")
+MQTT_REF_TEMP_CMD_REQ     = os.getenv("MQTT_REF_TEMP_CMD_REQ")
+MQTT_REF_TEMP_CMD_RES     = os.getenv("MQTT_REF_TEMP_CMD_RES")
+MQTT_REF_CO2_CMD_REQ      = os.getenv("MQTT_REF_CO2_CMD_REQ")
+MQTT_REF_CO2_CMD_RES      = os.getenv("MQTT_REF_CO2_CMD_RES")
 
 # Configure MQTT
 def on_connect(client, userdata, flags, rc):
