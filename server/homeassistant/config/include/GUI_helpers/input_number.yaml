@@ -136,7 +136,7 @@ elixia_2_set_channel_735nm:
   mode: "box"
 
 
-  ec_ref:
+ec_ref:
   name: "[Mixing Tank] EC Reference"
   initial: 0
   min: 0
