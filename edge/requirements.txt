@@ -22,3 +22,4 @@ RPi.GPIO==0.7.1
 sysv-ipc==1.1.0
 typing-extensions==4.8.0
 urllib3==2.2.1
+PyYAML==6.0.1
