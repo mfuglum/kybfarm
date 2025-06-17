@@ -202,8 +202,8 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 # Assign sensor-specific callbacks
-client.message_callback_add(MQTT_DT_REQ["par_gt1"], on_message_SLIGHT01)
-client.message_callback_add(MQTT_DT_REQ["par_gt2"], on_message_SPAR02)
+client.message_callback_add(MQTT_DT_REQ["par_gt1"], on_message_SPAR02_1)
+client.message_callback_add(MQTT_DT_REQ["par_gt2"], on_message_SPAR02_2)
 client.message_callback_add(MQTT_DT_REQ["ec_gt1"], on_message_SEC01_GT1)
 client.message_callback_add(MQTT_CMD_REQ["ec_gt1"], on_message_SEC01_GT1_CMD)
 client.message_callback_add(MQTT_DT_REQ["ec_gt2"], on_message_SEC01_GT2)
