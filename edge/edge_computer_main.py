@@ -3,12 +3,14 @@
 ╔══════════════════════════════════════════════════════════════════════════╗
 ║               KYBFarm Edge Computer Main Controller Script               ║
 ╠══════════════════════════════════════════════════════════════════════════╣
-║ This script runs on the edge computer (e.g., Jetson Nano/RPi). It:       ║
+║ This script runs on the edge computer (e.g., Jetson Nano / Raspberry Pi).║
+║                                                                          ║
+║ It performs the following tasks:                                         ║
 ║ • Subscribes to MQTT data and command topics                             ║
-║ • Interacts with Modbus sensors and actuators                            ║
+║ • Interacts with Modbus and I²C sensors and actuators                    ║
 ║ • Publishes sensor data and system responses over MQTT                   ║
 ║                                                                          ║
-║ Setup:                                                                   ║
+║ Setup Instructions:                                                      ║
 ║   cd kybfarm/edge                                                        ║
 ║   python3 -m venv venv                                                   ║
 ║   source venv/bin/activate                                               ║
@@ -17,14 +19,14 @@
 ╚══════════════════════════════════════════════════════════════════════════╝
 """
 
-# ─────────────────────── System / Third-Party Imports ─────────────────────── #
+# ───────────────────────────── System / Third-Party Imports ───────────────────────────── #
 import os
 import time
 import json
 from dotenv import load_dotenv
 import paho.mqtt.client as mqtt
 
-# ──────────────────────────────── Sensor Modules ───────────────────────────── #
+# ───────────────────────────────────── Sensor Modules ──────────────────────────────────── #
 from src.sensor_interfaces import (
     sensor_SYM01_modbus,
     sensor_SPAR02_modbus,
@@ -36,7 +38,7 @@ from src.sensor_interfaces import (
     sensor_SCD41_I2C
 )
 
-# ─────────────────────────────── Actuator Modules ──────────────────────────── #
+# ───────────────────────────────────── Actuator Modules ────────────────────────────────── #
 from src.actuator_instances import (
     relay_devices_initialization,
     grow_lamp_elixia_initialization,
@@ -45,7 +47,7 @@ from src.actuator_instances import (
     CO2_control
 )
 
-# ──────────────────────────────── PID State Buffer ─────────────────────────── #
+# ────────────────────────────────────── PID State Buffer ───────────────────────────────── #
 from src.utils.latest_pid_data import (
     latest_heating_data,
     latest_humidity_data,
@@ -145,150 +147,433 @@ MQTT_REF_CMDS = {
     "co2_res":      os.getenv("MQTT_REF_CO2_CMD_RES")
 }
 
-# ────────────────────── Generic fallback for unknown topics ────────────────────── #
-def on_message(client, userdata, msg):
-    print(f"\n[MQTT] Unhandled message on topic: {msg.topic}\nPayload: {msg.payload}")
-
-# ───────────────────────────── On Connect Callback ───────────────────────────── #
+# ─────────────── MQTT Connection Handler ─────────────── #
 def on_connect(client, userdata, flags, rc):
-    print(f"[MQTT] Connected with result code {rc}")
+    print("Connected with code " + str(rc))
 
+    # Subscribe in on_connect to renew subscriptions in case of lost connection
+    # Sensors #
     for topic in MQTT_DT_REQ.values():
-        if topic:
-            client.subscribe(topic)
-            print(f"[MQTT] Subscribed to data request: {topic}")
+        client.subscribe(topic)
 
     for topic in MQTT_CMD_REQ.values():
-        if topic:
-            client.subscribe(topic)
-            print(f"[MQTT] Subscribed to command request: {topic}")
+        client.subscribe(topic)
 
+    # Actuators #
     for topic in MQTT_RELAY_CMD.values():
-        if topic:
-            client.subscribe(topic)
-            print(f"[MQTT] Subscribed to relay: {topic}")
+        client.subscribe(topic)
 
-    if MQTT_SSR_CMD:
-        client.subscribe(MQTT_SSR_CMD)
-        print(f"[MQTT] Subscribed to SSR: {MQTT_SSR_CMD}")
-
-    # Lamps
+    client.subscribe(MQTT_SSR_CMD)
     client.subscribe(MQTT_LAMP_01_CMD_REQ)
     client.subscribe(MQTT_LAMP_01_DT_REQ)
     client.subscribe(MQTT_LAMP_02_CMD_REQ)
     client.subscribe(MQTT_LAMP_02_DT_REQ)
 
-    # Reference commands
     for topic in MQTT_REF_CMDS.values():
-        if topic:
-            client.subscribe(topic)
+        client.subscribe(topic)
 
-    # 0–10V control
+    # 0 - 10V control
     for topic in MQTT_VOLTAGE_CMD.values():
-        if topic:
-            client.subscribe(topic)
+        client.subscribe(topic)
 
-    # PID enable topics
+    # PID Enable
     for topic in MQTT_PID_CMD.values():
-        if topic:
-            client.subscribe(topic)
+        client.subscribe(topic)
 
 
-# ───────────────────────────── MQTT Setup ───────────────────────────── #
+# ─────────────── callback functions ─────────────── #
+def on_message(client, userdata, msg):
+    print("\n" + msg.topic + ":\n", msg.payload)
+
+
+# PAR Sensor Handlers
+def create_par_handler(sensor_obj, label):
+    def handler(client, userdata, msg):
+        req_msg = json.loads(msg.payload)
+        try:
+            res_payload = json.dumps(sensor_obj.fetch_and_return_data())
+            client.publish(req_msg["res_topic"], res_payload)
+            print(f"{label} →", res_payload + "\n")
+        except Exception as e:
+            print(f"{label}, data fetch error:", str(e))
+    return handler
+
+on_message_par_gt1 = create_par_handler(sensor_PAR02_1, "par_gt1")
+on_message_par_gt2 = create_par_handler(sensor_PAR02_2, "par_gt2")
+
+# EC Sensor Handlers
+def create_ec_handlers(sensor_obj, label):
+    def on_data(client, userdata, msg):
+        req_msg = json.loads(msg.payload)
+        try:
+            res_payload = json.dumps(sensor_obj.fetch_and_return_data())
+            client.publish(req_msg["res_topic"], res_payload)
+            print(f"{label} →", res_payload + "\n")
+        except Exception as e:
+            print(f"{label}, data fetch error:", str(e))
+
+    def on_cmd(client, userdata, msg):
+        cmd_msg = json.loads(msg.payload)
+        try:
+            print(cmd_msg)
+            if cmd_msg["cmd"] == "calibrate_ec_1413":
+                payload = json.dumps(sensor_obj.calibrate_ec_1413us())
+                client.publish(cmd_msg["res_topic"], payload)
+            elif cmd_msg["cmd"] == "calibrate_ec_12880":
+                payload = json.dumps(sensor_obj.calibrate_ec_12880us())
+                client.publish(cmd_msg["res_topic"], payload)
+            elif cmd_msg["cmd"] == "set_temperature_compensation":
+                sensor_obj.set_temperature_compensation(float(cmd_msg["value"]))
+            else:
+                print("Invalid command")
+        except Exception as e:
+            print(f"{label}, command error:", str(e))
+
+    return on_data, on_cmd
+
+on_message_ec_gt1, on_message_ec_gt1_cmd = create_ec_handlers(sensor_EC_GT1, "ec_gt1")
+on_message_ec_gt2, on_message_ec_gt2_cmd = create_ec_handlers(sensor_EC_GT2, "ec_gt2")
+on_message_ec_mx,  on_message_ec_mx_cmd  = create_ec_handlers(sensor_EC_MX,  "ec_mx")
+
+# pH Sensor Handlers
+def create_ph_handlers(sensor_obj, label):
+    def on_data(client, userdata, msg):
+        req_msg = json.loads(msg.payload)
+        try:
+            res_payload = json.dumps(sensor_obj.fetch_and_return_data())
+            client.publish(req_msg["res_topic"], res_payload)
+            print(f"{label} →", res_payload + "\n")
+        except Exception as e:
+            print(f"{label}, data fetch error:", str(e))
+
+    def on_cmd(client, userdata, msg):
+        cmd_msg = json.loads(msg.payload)
+        try:
+            print(cmd_msg)
+            if cmd_msg["cmd"] == "calibrate_ph_0401":
+                payload = json.dumps(sensor_obj.calibrate_ph_0401())
+                client.publish(cmd_msg["res_topic"], payload)
+            elif cmd_msg["cmd"] == "calibrate_ph_0700":
+                payload = json.dumps(sensor_obj.calibrate_ph_0700())
+                client.publish(cmd_msg["res_topic"], payload)
+            elif cmd_msg["cmd"] == "calibrate_ph_1001":
+                payload = json.dumps(sensor_obj.calibrate_ph_1001())
+                client.publish(cmd_msg["res_topic"], payload)
+            elif cmd_msg["cmd"] == "set_temperature_compensation":
+                sensor_obj.set_temperature_compensation(float(cmd_msg["value"]))
+            else:
+                print("Invalid command")
+        except Exception as e:
+            print(f"{label}, command error:", str(e))
+
+    return on_data, on_cmd
+
+on_message_ph_gt1, on_message_ph_gt1_cmd = create_ph_handlers(sensor_PH_GT1, "ph_gt1")
+on_message_ph_gt2, on_message_ph_gt2_cmd = create_ph_handlers(sensor_PH_GT2, "ph_gt2")
+on_message_ph_mx,  on_message_ph_mx_cmd  = create_ph_handlers(sensor_PH_MX,  "ph_mx")
+
+def on_message_SYM01(client, userdata, msg):
+    req_msg = json.loads(msg.payload)
+    try:
+        res_payload = json.dumps(sensor_SYM01.fetch_and_return_data())
+        client.publish(req_msg["res_topic"], res_payload)
+        print(res_payload + "\n")
+    except Exception as e:
+        print("SYM01, data fetch error:", str(e))
+
+
+def on_message_CO2_VOC_1(client, userdata, msg):
+    req_msg = json.loads(msg.payload)
+    try:
+        data = sensor_CO2_VOC_1.fetch_and_return_data()
+        res_payload = json.dumps(data)
+        client.publish(req_msg["res_topic"], res_payload, )
+
+        latest_heating_data["CO2_VOC_1"] = data["fields"]["temperature"]
+        latest_CO2_data["CO2_VOC_1"] = data["fields"]["co2"]
+
+
+        print(res_payload + "\n")
+    except Exception as e:
+        print("CO2_VOC_1, data fetch error:", str(e))
+
+def create_sth_handler(sensor_obj, label):
+    def handler(client, userdata, msg):
+        req_msg = json.loads(msg.payload)
+        try:
+            data = sensor_obj.fetch_and_return_data(sensor_name=label)
+            res_payload = json.dumps(data)
+            client.publish(req_msg["res_topic"], res_payload)
+            latest_heating_data[label] = data["fields"]["temperature"]
+            latest_humidity_data[label] = data["fields"]["humidity"]
+            print(f"{label} →", res_payload + "\n")
+        except Exception as e:
+            print(f"{label}, data fetch error:", str(e))
+    return handler
+
+on_message_sth01_1 = create_sth_handler(sensor_STH01_1, "STH01_1")
+on_message_sth01_2 = create_sth_handler(sensor_STH01_2, "STH01_2")
+
+
+#PDI
+def on_message_COOLING_PID_CMD_REQ(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        print(cmd_msg)
+        if cmd_msg["cmd"] == "pid_enable":
+            # Send command to enable PID
+            print("Enabling Cooling PID")
+            print("Latest humidity data:", latest_humidity_data)
+            voltage_output.run_pid()
+            #print("Running Cooling PID")
+            
+
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("PID enable error:", str(e))
+
+
+def on_message_HEATING_PID_CMD_REQ(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        print(cmd_msg)
+        if cmd_msg["cmd"] == "pid_enable":
+            # Send command to enable PID
+            print("Enabling Heating PID")
+            print("Latest heating data:", latest_heating_data)
+
+            solid_state_relay.run_heating_pid()
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("PID enable error:", str(e))
+
+
+def on_message_CO2_PID_CMD_REQ(client, userdata, msg):
+    cmd_msg = json.loads(msg.payload)
+    try:
+        print(cmd_msg)
+        if cmd_msg["cmd"] == "pid_enable":
+            # Send command to enable PID
+            print("Enabling CO2 PID")
+            print("Latest CO2 data:", latest_CO2_data)
+
+            CO2_control.run_CO2_pid()
+            print("Running CO2 PID")
+            
+
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("CO2 PID enable error:", str(e))
+
+# Setup MQTT client for sensor host
 client = mqtt.Client()
 
-# Assign generic callbacks
+# Assign the generic callback functions for the client
 client.on_connect = on_connect
 client.on_message = on_message
 
-# Assign sensor-specific callbacks
-client.message_callback_add(MQTT_DT_REQ["par_gt1"], on_message_SPAR02_1)
-client.message_callback_add(MQTT_DT_REQ["par_gt2"], on_message_SPAR02_2)
-client.message_callback_add(MQTT_DT_REQ["ec_gt1"], on_message_SEC01_GT1)
-client.message_callback_add(MQTT_CMD_REQ["ec_gt1"], on_message_SEC01_GT1_CMD)
-client.message_callback_add(MQTT_DT_REQ["ec_gt2"], on_message_SEC01_GT2)
-client.message_callback_add(MQTT_CMD_REQ["ec_gt2"], on_message_SEC01_GT2_CMD)
-client.message_callback_add(MQTT_DT_REQ["ec_mx"], on_message_SEC01_MX)
-client.message_callback_add(MQTT_CMD_REQ["ec_mx"], on_message_SEC01_MX_CMD)
-client.message_callback_add(MQTT_DT_REQ["ph_gt1"], on_message_SPH01_GT1)
-client.message_callback_add(MQTT_CMD_REQ["ph_gt1"], on_message_SPH01_GT1_CMD)
-client.message_callback_add(MQTT_DT_REQ["ph_gt2"], on_message_SPH01_GT2)
-client.message_callback_add(MQTT_CMD_REQ["ph_gt2"], on_message_SPH01_GT2_CMD)
-client.message_callback_add(MQTT_DT_REQ["ph_mx"], on_message_SPH01_MX)
-client.message_callback_add(MQTT_CMD_REQ["ph_mx"], on_message_SPH01_MX_CMD)
-client.message_callback_add(MQTT_DT_REQ["sym01"], on_message_SYM01)
-client.message_callback_add(MQTT_DT_REQ["co2voc"], on_message_CO2_VOC_1)
-client.message_callback_add(MQTT_DT_REQ["sth01_1"], on_message_STH01_1)
-client.message_callback_add(MQTT_DT_REQ["sth01_2"], on_message_STH01_2)
+# Assign the specific callback functions for the client
+# Sensors #
+# EC sensors
+client.message_callback_add(MQTT_DT_REQ["ec_gt1"], on_message_ec_gt1)
+client.message_callback_add(MQTT_CMD_REQ["ec_gt1"], on_message_ec_gt1_cmd)
+client.message_callback_add(MQTT_DT_REQ["ec_gt2"], on_message_ec_gt2)
+client.message_callback_add(MQTT_CMD_REQ["ec_gt2"], on_message_ec_gt2_cmd)
+client.message_callback_add(MQTT_DT_REQ["ec_mx"],  on_message_ec_mx)
+client.message_callback_add(MQTT_CMD_REQ["ec_mx"],  on_message_ec_mx_cmd)
 
-# Relay control callbacks
-for i in range(1, 17):
-    topic = MQTT_RELAY_CMD.get(i)
-    if topic:
-        client.message_callback_add(topic, getattr(relay_devices_initialization, f"on_message_RLY{i:02}"))
+# pH sensors
+client.message_callback_add(MQTT_DT_REQ["ph_gt1"], on_message_ph_gt1)
+client.message_callback_add(MQTT_CMD_REQ["ph_gt1"], on_message_ph_gt1_cmd)
+client.message_callback_add(MQTT_DT_REQ["ph_gt2"], on_message_ph_gt2)
+client.message_callback_add(MQTT_CMD_REQ["ph_gt2"], on_message_ph_gt2_cmd)
+client.message_callback_add(MQTT_DT_REQ["ph_mx"],  on_message_ph_mx)
+client.message_callback_add(MQTT_CMD_REQ["ph_mx"],  on_message_ph_mx_cmd)
+
+# STH01 sensors
+client.message_callback_add(MQTT_DT_REQ["sth01_1"], on_message_sth01_1)
+client.message_callback_add(MQTT_DT_REQ["sth01_2"], on_message_sth01_2)
+
+# PAR sensors (assuming callbacks are defined)
+client.message_callback_add(MQTT_DT_REQ["par_gt1"], on_message_par_gt1)
+client.message_callback_add(MQTT_DT_REQ["par_gt2"], on_message_par_gt2)
+
+# CO₂ VOC sensor
+client.message_callback_add(MQTT_DT_REQ["co2voc"], on_message_CO2_VOC_1)
+
+# SYM flow sensor
+client.message_callback_add(MQTT_DT_REQ["sym01"], on_message_SYM01)
+
+
+
+# Actuators #
+# Relays
+client.message_callback_add(MQTT_RELAY_CMD[1],  relay_devices_initialization.on_message_RLY01)
+client.message_callback_add(MQTT_RELAY_CMD[2],  relay_devices_initialization.on_message_RLY02)
+client.message_callback_add(MQTT_RELAY_CMD[3],  relay_devices_initialization.on_message_RLY03)
+client.message_callback_add(MQTT_RELAY_CMD[4],  relay_devices_initialization.on_message_RLY04)
+client.message_callback_add(MQTT_RELAY_CMD[5],  relay_devices_initialization.on_message_RLY05)
+client.message_callback_add(MQTT_RELAY_CMD[6],  relay_devices_initialization.on_message_RLY06)
+client.message_callback_add(MQTT_RELAY_CMD[7],  relay_devices_initialization.on_message_RLY07)
+client.message_callback_add(MQTT_RELAY_CMD[8],  relay_devices_initialization.on_message_RLY08)
+client.message_callback_add(MQTT_RELAY_CMD[9],  relay_devices_initialization.on_message_RLY09)
+client.message_callback_add(MQTT_RELAY_CMD[10], relay_devices_initialization.on_message_RLY10)
+client.message_callback_add(MQTT_RELAY_CMD[11], relay_devices_initialization.on_message_RLY11)
+client.message_callback_add(MQTT_RELAY_CMD[12], relay_devices_initialization.on_message_RLY12)
+client.message_callback_add(MQTT_RELAY_CMD[13], relay_devices_initialization.on_message_RLY13)
+client.message_callback_add(MQTT_RELAY_CMD[14], relay_devices_initialization.on_message_RLY14)
+client.message_callback_add(MQTT_RELAY_CMD[15], relay_devices_initialization.on_message_RLY15)
+client.message_callback_add(MQTT_RELAY_CMD[16], relay_devices_initialization.on_message_RLY16)
 
 # Solid state relay
-if MQTT_SSR_CMD:
-    client.message_callback_add(MQTT_SSR_CMD, relay_devices_initialization.on_message_SSR01)
+client.message_callback_add(MQTT_SSR_CMD, relay_devices_initialization.on_message_SSR01)
 
-# Voltage-controlled outputs
+# Voltage output
+#Fan
 client.message_callback_add(MQTT_VOLTAGE_CMD["fan_cmd"], voltage_output.on_message_FAN_VOLTAGE_CMD_REQ)
+client.message_callback_add(MQTT_VOLTAGE_CMD["fan_res"], voltage_output.on_message_FAN_VOLTAGE_CMD_RES)
+#Valve
 client.message_callback_add(MQTT_VOLTAGE_CMD["valve_cmd"], voltage_output.on_message_VALVE_VOLTAGE_CMD_REQ)
+client.message_callback_add(MQTT_VOLTAGE_CMD["valve_res"], voltage_output.on_message_VALVE_VOLTAGE_CMD_RES)
 
-# Grow lamps
+# Grow lamp1 Elixia
 client.message_callback_add(MQTT_LAMP_01_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_CMD_REQ)
 client.message_callback_add(MQTT_LAMP_01_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_DT)
+# Grow lamp2 Elixia
 client.message_callback_add(MQTT_LAMP_02_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_CMD_REQ)
 client.message_callback_add(MQTT_LAMP_02_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_DT)
 
-# PID control callbacks
+# ───────────── PID Control & Setpoints ───────────── #
+
+# Cooling PID
 client.message_callback_add(MQTT_PID_CMD["cooling"], on_message_COOLING_PID_CMD_REQ)
 client.message_callback_add(MQTT_REF_CMDS["humidity_req"], voltage_output.on_message_REFHUMID_CMD_REQ)
+client.message_callback_add(MQTT_REF_CMDS["humidity_res"], voltage_output.on_message_REFHUMID_CMD_REQ)
+
+# Heating PID
 client.message_callback_add(MQTT_PID_CMD["heating"], on_message_HEATING_PID_CMD_REQ)
 client.message_callback_add(MQTT_REF_CMDS["temp_req"], solid_state_relay.on_message_REFTEMP_CMD_REQ)
+client.message_callback_add(MQTT_REF_CMDS["temp_res"], solid_state_relay.on_message_REFTEMP_CMD_REQ)
+
+# CO₂ PID
 client.message_callback_add(MQTT_PID_CMD["co2"], on_message_CO2_PID_CMD_REQ)
 client.message_callback_add(MQTT_REF_CMDS["co2_req"], CO2_control.on_message_REFCO2_CMD_REQ)
+client.message_callback_add(MQTT_REF_CMDS["co2_res"], CO2_control.on_message_REFCO2_CMD_REQ)
 
-            
 
-# ───────────────────────────── Main Execution ───────────────────────────── #
+# Connect to the MQTT server
 try:
     client.connect(MQTT_HOST, MQTT_PORT, MQTT_KEEP_ALIVE)
     client.loop_start()
-    print("[MQTT] Client loop started")
-except Exception as e:
-    print("[MQTT] Connection failed:", str(e))
+except:
+    print("\nConnection failed\n")
 
-# ───────────────────────────── Sensor Initialization ───────────────────────────── #
-def initialize_sensor(name, cls, port, addr):
-    try:
-        instance = cls(portname=port, slaveaddress=addr, debug=False)
-        print(f"[{name}] Initialized at address {addr} on {port}")
-        return instance
-    except Exception as e:
-        print(f"[{name}] Initialization error:", str(e))
-        return None
 
-sensor_SLIGHT01 = initialize_sensor("SLIGHT01", sensor_SLIGHT01_modbus.SLIGHT01, "/dev/ttySC1", 1)
-sensor_SPAR02 = initialize_sensor("SPAR02", sensor_SPAR02_modbus.SPAR02, "/dev/ttySC1", 34)
-sensor_SEC01_1 = initialize_sensor("SEC01_GT1", sensor_SEC01_modbus.SEC01, "/dev/ttySC1", 3)
-sensor_SEC01_2 = initialize_sensor("SEC01_GT2", sensor_SEC01_modbus.SEC01, "/dev/ttySC1", 4)
-sensor_SPH01_1 = initialize_sensor("SPH01_GT1", sensor_SPH01_modbus.SPH01, "/dev/ttySC1", 5)
-sensor_SPH01_2 = initialize_sensor("SPH01_GT2", sensor_SPH01_modbus.SPH01, "/dev/ttySC1", 6)
-sensor_SYM01    = initialize_sensor("SYM01", sensor_SYM01_modbus.SYM01, "/dev/ttySC1", 11)
-sensor_CO2_VOC_1 = initialize_sensor("CO2_VOC_1", sensor_CO2_VOC_modbus.CO2_VOC, "/dev/ttySC0", 7)
-sensor_CO2_VOC_2 = initialize_sensor("CO2_VOC_2", sensor_CO2_VOC_modbus.CO2_VOC, "/dev/ttySC0", 1)
-sensor_STH01_1 = initialize_sensor("STH01_1", sensor_STH01_modbus.STH01, "/dev/ttySC0", 70)
-sensor_STH01_2 = initialize_sensor("STH01_2", sensor_STH01_modbus.STH01, "/dev/ttySC0", 69)
+# ───────────────────────────── Activate Sensors ───────────────────────────── #
 
-# ───────────────────────────── Main Loop ───────────────────────────── #
+# PAR Sensors
 try:
+    sensor_PAR02_1 = sensor_SPAR02_modbus.SPAR02(portname='/dev/ttySC1', slaveaddress=1, debug=False)
+    print(sensor_PAR02_1)
+except Exception as e:
+    print("PAR02_1, error:", str(e))
+time.sleep(0.1)
+
+try:
+    sensor_PAR02_2 = sensor_SPAR02_modbus.SPAR02(portname='/dev/ttySC1', slaveaddress=34, debug=False)
+    print(sensor_PAR02_2)
+except Exception as e:
+    print("PAR02_2, error:", str(e))
+time.sleep(0.1)
+
+# EC Sensors
+try:
+    sensor_EC_GT1 = sensor_SEC01_modbus.SEC01(portname='/dev/ttySC1', slaveaddress=5, debug=False)
+    print(sensor_EC_GT1)
+except Exception as e:
+    print("EC_GT1, error:", str(e))
+time.sleep(0.1)
+
+try:
+    sensor_EC_GT2 = sensor_SEC01_modbus.SEC01(portname='/dev/ttySC1', slaveaddress=6, debug=False)
+    print(sensor_EC_GT2)
+except Exception as e:
+    print("EC_GT2, error:", str(e))
+time.sleep(0.1)
+
+try:
+    sensor_EC_MX = sensor_SEC01_modbus.SEC01(portname='/dev/ttySC1', slaveaddress=7, debug=False)
+    print(sensor_EC_MX)
+except Exception as e:
+    print("EC_MX, error:", str(e))
+time.sleep(0.1)
+
+# pH Sensors
+try:
+    sensor_PH_GT1 = sensor_SPH01_modbus.SPH01(portname='/dev/ttySC1', slaveaddress=8, debug=False)
+    print(sensor_PH_GT1)
+except Exception as e:
+    print("PH_GT1, error:", str(e))
+time.sleep(0.1)
+
+try:
+    sensor_PH_GT2 = sensor_SPH01_modbus.SPH01(portname='/dev/ttySC1', slaveaddress=9, debug=False)
+    print(sensor_PH_GT2)
+except Exception as e:
+    print("PH_GT2, error:", str(e))
+time.sleep(0.1)
+
+try:
+    sensor_PH_MX = sensor_SPH01_modbus.SPH01(portname='/dev/ttySC1', slaveaddress=10, debug=False)
+    print(sensor_PH_MX)
+except Exception as e:
+    print("PH_MX, error:", str(e))
+time.sleep(0.1)
+
+# SYM Sensor
+try:
+    sensor_SYM01 = sensor_SYM01_modbus.SYM01(portname='/dev/ttySC1', slaveaddress=12, debug=False)
+    print(sensor_SYM01)
+except Exception as e:
+    print("SYM01, error:", str(e))
+time.sleep(0.1)
+
+# CO₂ Sensor
+try:
+    sensor_CO2_VOC_1 = sensor_CO2_VOC_modbus.CO2_VOC(portname='/dev/ttySC0', slaveaddress=7, debug=False)
+    print(sensor_CO2_VOC_1)
+except Exception as e:
+    print("CO2_VOC_1, error:", str(e))
+time.sleep(0.1)
+
+# STH Sensors
+try:
+    sensor_STH01_1 = sensor_STH01_modbus.STH01(portname='/dev/ttySC0', slaveaddress=69, debug=False)
+    print(sensor_STH01_1)
+except Exception as e:
+    print("STH01_1, error:", str(e))
+time.sleep(0.1)
+
+try:
+    sensor_STH01_2 = sensor_STH01_modbus.STH01(portname='/dev/ttySC0', slaveaddress=70, debug=False)
+    print(sensor_STH01_2)
+except Exception as e:
+    print("STH01_2, error:", str(e))
+time.sleep(0.1)
+
+
+
+# Start main loop #
+try:
+    # Main loop
     while True:
         time.sleep(15)
 except KeyboardInterrupt:
-    print("[Main Loop] Interrupted by user")
+    print("Keyboard interrupt")
 except Exception as e:
-    print("[Main Loop] Error:", str(e))
-finally:
-    client.loop_stop()
-    print("[MQTT] Client loop stopped")
+    print("\nException, error: ", str(e))
+
+client.loop_stop()
