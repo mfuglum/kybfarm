@@ -70,8 +70,8 @@ MQTT_DT_REQ = {
     "ph_gt1":      os.getenv("MQTT_DT_REQ_PH_GT1"),
     "ph_gt2":      os.getenv("MQTT_DT_REQ_PH_GT2"),
     "ph_mx":       os.getenv("MQTT_DT_REQ_PH_MX"),
-    "par_gt1":     os.getenv("MQTT_DT_REQ_PAR_GT1"),
-    "par_gt2":     os.getenv("MQTT_DT_REQ_PAR_GT2"),
+    "par02_1":     os.getenv("MQTT_DT_REQ_par02_1"),
+    "par02_2":     os.getenv("MQTT_DT_REQ_par02_2"),
     "sth01_1":     os.getenv("MQTT_DT_REQ_STH_1"),
     "sth01_2":     os.getenv("MQTT_DT_REQ_STH_2"),
     "co2voc":      os.getenv("MQTT_DT_REQ_CO2_VOC"),
@@ -198,8 +198,8 @@ def create_par_handler(sensor_obj, label):
             print(f"{label}, data fetch error:", str(e))
     return handler
 
-on_message_par_gt1 = create_par_handler(sensor_PAR02_1, "par_gt1")
-on_message_par_gt2 = create_par_handler(sensor_PAR02_2, "par_gt2")
+on_message_par02_1 = create_par_handler(sensor_PAR02_1, "par02_1")
+on_message_par02_2 = create_par_handler(sensor_PAR02_2, "par02_2")
 
 # EC Sensor Handlers
 def create_ec_handlers(sensor_obj, label):
@@ -398,8 +398,8 @@ client.message_callback_add(MQTT_DT_REQ["sth01_1"], on_message_sth01_1)
 client.message_callback_add(MQTT_DT_REQ["sth01_2"], on_message_sth01_2)
 
 # PAR sensors (assuming callbacks are defined)
-client.message_callback_add(MQTT_DT_REQ["par_gt1"], on_message_par_gt1)
-client.message_callback_add(MQTT_DT_REQ["par_gt2"], on_message_par_gt2)
+client.message_callback_add(MQTT_DT_REQ["par02_1"], on_message_par02_1)
+client.message_callback_add(MQTT_DT_REQ["par02_2"], on_message_par02_2)
 
 # CO₂ VOC sensor
 client.message_callback_add(MQTT_DT_REQ["co2voc"], on_message_CO2_VOC_1)
