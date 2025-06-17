@@ -1,15 +1,16 @@
 # ┌────────────────────────────────────────────────────────────────────────────┐
 # │                     Sensor Calibration Automations - KYBFarm              │
-# │             EC Sensor Calibration [S-EC-01-1, S-EC-01-2] via MQTT          │
+# │             EC Sensor Calibration [S-EC-01_GT1, _GT2, _MX] via MQTT        │
 # └────────────────────────────────────────────────────────────────────────────┘
 
-# ──────────────── S-EC-01-1 [EC Sensor 1] ────────────────
+
+# ──────────────── S-EC-01_GT1 [Grow Tank 1] ────────────────
 
 # Initiate 1413us/cm
-- alias: "S-EC-01-1 • Initiate EC 1413us/cm"
+- alias: "S-EC-01_GT1 • Initiate EC 1413us/cm"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ec_01_1
+      entity_id: input_select.calibrate_s_ec_01_gt1
       from: "*"
       to: "Initiate calibration for EC 1413us/cm"
   action:
@@ -21,10 +22,10 @@
   mode: single
 
 # Register 1413us/cm
-- alias: "S-EC-01-1 • Register EC 1413us/cm"
+- alias: "S-EC-01_GT1 • Register EC 1413us/cm"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ec_01_1
+      entity_id: input_select.calibrate_s_ec_01_gt1
       from: "*"
       to: "Register calibration for EC 1413us/cm"
   action:
@@ -35,15 +36,15 @@
         entity_id: input_text.calibration_status
     - service: mqtt.publish
       data:
-        topic: "cmd/sec01/1/req"
-        payload: '{"cmd": "calibrate_ec_1413", "res_topic": "dt/gf/sec01/1/res"}'
+        topic: "cmd/ec_gt1/req"
+        payload: '{"cmd": "calibrate_ec_1413", "res_topic": "dt/gf/sec01/gt1/res"}'
   mode: single
 
 # Initiate 12880us/cm
-- alias: "S-EC-01-1 • Initiate EC 12880us/cm"
+- alias: "S-EC-01_GT1 • Initiate EC 12880us/cm"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ec_01_1
+      entity_id: input_select.calibrate_s_ec_01_gt1
       from: "*"
       to: "Initiate calibration for EC 12880us/cm"
   action:
@@ -55,10 +56,10 @@
   mode: single
 
 # Register 12880us/cm
-- alias: "S-EC-01-1 • Register EC 12880us/cm"
+- alias: "S-EC-01_GT1 • Register EC 12880us/cm"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ec_01_1
+      entity_id: input_select.calibrate_s_ec_01_gt1
       from: "*"
       to: "Register calibration for EC 12880us/cm"
   action:
@@ -69,33 +70,33 @@
         entity_id: input_text.calibration_status
     - service: mqtt.publish
       data:
-        topic: "cmd/sec01/1/req"
-        payload: '{"cmd": "calibrate_ec_12880", "res_topic": "dt/gf/sec01/1/res"}'
+        topic: "cmd/ec_gt1/req"
+        payload: '{"cmd": "calibrate_ec_12880", "res_topic": "dt/gf/sec01/gt1/res"}'
   mode: single
 
 # Return to Normal
-- alias: "S-EC-01-1 • Return to Normal"
+- alias: "S-EC-01_GT1 • Return to Normal"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ec_01_1
+      entity_id: input_select.calibrate_s_ec_01_gt1
       from: "*"
       to: "Normal Operation"
   action:
     - service: input_text.set_value
       data:
-        value: "S-EC-01-1 back to normal operation."
+        value: "S-EC-01_GT1 back to normal operation."
       target:
         entity_id: input_text.calibration_status
   mode: single
 
 
-# ──────────────── S-EC-01-2 [EC Sensor 2] ────────────────
+# ──────────────── S-EC-01_GT2 [Grow Tank 2] ────────────────
 
 # Initiate 1413us/cm
-- alias: "S-EC-01-2 • Initiate EC 1413us/cm"
+- alias: "S-EC-01_GT2 • Initiate EC 1413us/cm"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ec_01_2
+      entity_id: input_select.calibrate_s_ec_01_gt2
       from: "*"
       to: "Initiate calibration for EC 1413us/cm"
   action:
@@ -107,10 +108,10 @@
   mode: single
 
 # Register 1413us/cm
-- alias: "S-EC-01-2 • Register EC 1413us/cm"
+- alias: "S-EC-01_GT2 • Register EC 1413us/cm"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ec_01_2
+      entity_id: input_select.calibrate_s_ec_01_gt2
       from: "*"
       to: "Register calibration for EC 1413us/cm"
   action:
@@ -121,15 +122,15 @@
         entity_id: input_text.calibration_status
     - service: mqtt.publish
       data:
-        topic: "cmd/sec01/2/req"
-        payload: '{"cmd": "calibrate_ec_1413", "res_topic": "dt/gf/sec01/2/res"}'
+        topic: "cmd/ec_gt2/req"
+        payload: '{"cmd": "calibrate_ec_1413", "res_topic": "dt/gf/sec01/gt2/res"}'
   mode: single
 
 # Initiate 12880us/cm
-- alias: "S-EC-01-2 • Initiate EC 12880us/cm"
+- alias: "S-EC-01_GT2 • Initiate EC 12880us/cm"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ec_01_2
+      entity_id: input_select.calibrate_s_ec_01_gt2
       from: "*"
       to: "Initiate calibration for EC 12880us/cm"
   action:
@@ -141,10 +142,10 @@
   mode: single
 
 # Register 12880us/cm
-- alias: "S-EC-01-2 • Register EC 12880us/cm"
+- alias: "S-EC-01_GT2 • Register EC 12880us/cm"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ec_01_2
+      entity_id: input_select.calibrate_s_ec_01_gt2
       from: "*"
       to: "Register calibration for EC 12880us/cm"
   action:
@@ -155,32 +156,119 @@
         entity_id: input_text.calibration_status
     - service: mqtt.publish
       data:
-        topic: "cmd/sec01/2/req"
-        payload: '{"cmd": "calibrate_ec_12880", "res_topic": "dt/gf/sec01/2/res"}'
+        topic: "cmd/ec_gt2/req"
+        payload: '{"cmd": "calibrate_ec_12880", "res_topic": "dt/gf/sec01/gt2/res"}'
   mode: single
 
 # Return to Normal
-- alias: "S-EC-01-2 • Return to Normal"
+- alias: "S-EC-01_GT2 • Return to Normal"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ec_01_2
+      entity_id: input_select.calibrate_s_ec_01_gt2
       from: "*"
       to: "Normal Operation"
   action:
     - service: input_text.set_value
       data:
-        value: "S-EC-01-2 back to normal operation."
+        value: "S-EC-01_GT2 back to normal operation."
       target:
         entity_id: input_text.calibration_status
   mode: single
 
-# ──────────────── S-PH-01-1 [pH Sensor 1] ────────────────
 
-# Initiate 4.01pH
-- alias: "S-PH-01-1 • Initiate pH 4.01"
+# ──────────────── S-EC-01_MX [Mixing Tank] ────────────────
+
+# Initiate 1413us/cm
+- alias: "S-EC-01_MX • Initiate EC 1413us/cm"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_1
+      entity_id: input_select.calibrate_s_ec_01_mx
+      from: "*"
+      to: "Initiate calibration for EC 1413us/cm"
+  action:
+    - service: input_text.set_value
+      data:
+        value: "Immerse probe in 1413 µS/cm solution, then register calibration."
+      target:
+        entity_id: input_text.calibration_status
+  mode: single
+
+# Register 1413us/cm
+- alias: "S-EC-01_MX • Register EC 1413us/cm"
+  trigger:
+    - platform: state
+      entity_id: input_select.calibrate_s_ec_01_mx
+      from: "*"
+      to: "Register calibration for EC 1413us/cm"
+  action:
+    - service: input_text.set_value
+      data:
+        value: "Calibration registered for 1413 µS/cm."
+      target:
+        entity_id: input_text.calibration_status
+    - service: mqtt.publish
+      data:
+        topic: "cmd/ec_mx/req"
+        payload: '{"cmd": "calibrate_ec_1413", "res_topic": "dt/gf/sec01/mx/res"}'
+  mode: single
+
+# Initiate 12880us/cm
+- alias: "S-EC-01_MX • Initiate EC 12880us/cm"
+  trigger:
+    - platform: state
+      entity_id: input_select.calibrate_s_ec_01_mx
+      from: "*"
+      to: "Initiate calibration for EC 12880us/cm"
+  action:
+    - service: input_text.set_value
+      data:
+        value: "Immerse probe in 12880 µS/cm solution, then register calibration."
+      target:
+        entity_id: input_text.calibration_status
+  mode: single
+
+# Register 12880us/cm
+- alias: "S-EC-01_MX • Register EC 12880us/cm"
+  trigger:
+    - platform: state
+      entity_id: input_select.calibrate_s_ec_01_mx
+      from: "*"
+      to: "Register calibration for EC 12880us/cm"
+  action:
+    - service: input_text.set_value
+      data:
+        value: "Calibration registered for 12880 µS/cm."
+      target:
+        entity_id: input_text.calibration_status
+    - service: mqtt.publish
+      data:
+        topic: "cmd/ec_mx/req"
+        payload: '{"cmd": "calibrate_ec_12880", "res_topic": "dt/gf/sec01/mx/res"}'
+  mode: single
+
+# Return to Normal
+- alias: "S-EC-01_MX • Return to Normal"
+  trigger:
+    - platform: state
+      entity_id: input_select.calibrate_s_ec_01_mx
+      from: "*"
+      to: "Normal Operation"
+  action:
+    - service: input_text.set_value
+      data:
+        value: "S-EC-01_MX back to normal operation."
+      target:
+        entity_id: input_text.calibration_status
+  mode: single
+
+
+# ──────────────── S-PH-01_GT1 [Grow Tank 1] ────────────────
+
+# Initiate 4.01pH
+- alias: "S-PH-01_GT1 • Initiate pH 4.01"
+  trigger:
+    - platform: state
+      entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
       to: "Initiate calibration for pH 4.01"
   action:
@@ -189,12 +277,13 @@
         value: "Immerse probe in pH 4.01, then register calibration."
       target:
         entity_id: input_text.calibration_status
+  mode: single
 
 # Register 4.01pH
-- alias: "S-PH-01-1 • Register pH 4.01"
+- alias: "S-PH-01_GT1 • Register pH 4.01"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_1
+      entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
       to: "Register calibration for pH 4.01"
   action:
@@ -205,14 +294,15 @@
         entity_id: input_text.calibration_status
     - service: mqtt.publish
       data:
-        topic: "cmd/sph01/1/req"
-        payload: '{ "cmd": "calibrate_ph_0401", "res_topic": "dt/gf/sph01/1/res"}'
+        topic: "cmd/ph_gt1/req"
+        payload: '{ "cmd": "calibrate_ph_0401", "res_topic": "dt/gf/sph01/gt1/res"}'
+  mode: single
 
 # Initiate 7.00pH
-- alias: "S-PH-01-1 • Initiate pH 7.00"
+- alias: "S-PH-01_GT1 • Initiate pH 7.00"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_1
+      entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
       to: "Initiate calibration for pH 7.00"
   action:
@@ -221,12 +311,13 @@
         value: "Immerse probe in pH 7.00, then register calibration."
       target:
         entity_id: input_text.calibration_status
+  mode: single
 
 # Register 7.00pH
-- alias: "S-PH-01-1 • Register pH 7.00"
+- alias: "S-PH-01_GT1 • Register pH 7.00"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_1
+      entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
       to: "Register calibration for pH 7.00"
   action:
@@ -237,14 +328,15 @@
         entity_id: input_text.calibration_status
     - service: mqtt.publish
       data:
-        topic: "cmd/sph01/1/req"
-        payload: '{ "cmd": "calibrate_ph_0700", "res_topic": "dt/gf/sph01/1/res"}'
+        topic: "cmd/ph_gt1/req"
+        payload: '{ "cmd": "calibrate_ph_0700", "res_topic": "dt/gf/sph01/gt1/res"}'
+  mode: single
 
 # Initiate 10.01pH
-- alias: "S-PH-01-1 • Initiate pH 10.01"
+- alias: "S-PH-01_GT1 • Initiate pH 10.01"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_1
+      entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
       to: "Initiate calibration for pH 10.01"
   action:
@@ -253,12 +345,13 @@
         value: "Immerse probe in pH 10.01, then register calibration."
       target:
         entity_id: input_text.calibration_status
+  mode: single
 
 # Register 10.01pH
-- alias: "S-PH-01-1 • Register pH 10.01"
+- alias: "S-PH-01_GT1 • Register pH 10.01"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_1
+      entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
       to: "Register calibration for pH 10.01"
   action:
@@ -269,31 +362,33 @@
         entity_id: input_text.calibration_status
     - service: mqtt.publish
       data:
-        topic: "cmd/sph01/1/req"
-        payload: '{ "cmd": "calibrate_ph_1001", "res_topic": "dt/gf/sph01/1/res"}'
+        topic: "cmd/ph_gt1/req"
+        payload: '{ "cmd": "calibrate_ph_1001", "res_topic": "dt/gf/sph01/gt1/res"}'
+  mode: single
 
 # Return to Normal
-- alias: "S-PH-01-1 • Return to Normal"
+- alias: "S-PH-01_GT1 • Return to Normal"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_1
+      entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
       to: "Normal Operation"
   action:
     - service: input_text.set_value
       data:
-        value: "S-PH-01-1 back to normal operation."
+        value: "S-PH-01_GT1 back to normal operation."
       target:
         entity_id: input_text.calibration_status
+  mode: single
 
 
-# ──────────────── S-PH-01-2 [pH Sensor 2] ────────────────
+# ──────────────── S-PH-01_GT2 [Grow Tank 2] ────────────────
 
 # Initiate 4.01pH
-- alias: "S-PH-01-2 • Initiate pH 4.01"
+- alias: "S-PH-01_GT2 • Initiate pH 4.01"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_2
+      entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
       to: "Initiate calibration for pH 4.01"
   action:
@@ -302,12 +397,13 @@
         value: "Immerse probe in pH 4.01, then register calibration."
       target:
         entity_id: input_text.calibration_status
+  mode: single
 
 # Register 4.01pH
-- alias: "S-PH-01-2 • Register pH 4.01"
+- alias: "S-PH-01_GT2 • Register pH 4.01"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_2
+      entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
       to: "Register calibration for pH 4.01"
   action:
@@ -318,14 +414,15 @@
         entity_id: input_text.calibration_status
     - service: mqtt.publish
       data:
-        topic: "cmd/sph01/2/req"
-        payload: '{ "cmd": "calibrate_ph_0401", "res_topic": "dt/gf/sph01/2/res"}'
+        topic: "cmd/ph_gt2/req"
+        payload: '{ "cmd": "calibrate_ph_0401", "res_topic": "dt/gf/sph01/gt2/res"}'
+  mode: single
 
 # Initiate 7.00pH
-- alias: "S-PH-01-2 • Initiate pH 7.00"
+- alias: "S-PH-01_GT2 • Initiate pH 7.00"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_2
+      entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
       to: "Initiate calibration for pH 7.00"
   action:
@@ -334,12 +431,13 @@
         value: "Immerse probe in pH 7.00, then register calibration."
       target:
         entity_id: input_text.calibration_status
+  mode: single
 
 # Register 7.00pH
-- alias: "S-PH-01-2 • Register pH 7.00"
+- alias: "S-PH-01_GT2 • Register pH 7.00"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_2
+      entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
       to: "Register calibration for pH 7.00"
   action:
@@ -350,14 +448,15 @@
         entity_id: input_text.calibration_status
     - service: mqtt.publish
       data:
-        topic: "cmd/sph01/2/req"
-        payload: '{ "cmd": "calibrate_ph_0700", "res_topic": "dt/gf/sph01/2/res"}'
+        topic: "cmd/ph_gt2/req"
+        payload: '{ "cmd": "calibrate_ph_0700", "res_topic": "dt/gf/sph01/gt2/res"}'
+  mode: single
 
 # Initiate 10.01pH
-- alias: "S-PH-01-2 • Initiate pH 10.01"
+- alias: "S-PH-01_GT2 • Initiate pH 10.01"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_2
+      entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
       to: "Initiate calibration for pH 10.01"
   action:
@@ -366,12 +465,13 @@
         value: "Immerse probe in pH 10.01, then register calibration."
       target:
         entity_id: input_text.calibration_status
+  mode: single
 
 # Register 10.01pH
-- alias: "S-PH-01-2 • Register pH 10.01"
+- alias: "S-PH-01_GT2 • Register pH 10.01"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_2
+      entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
       to: "Register calibration for pH 10.01"
   action:
@@ -382,19 +482,140 @@
         entity_id: input_text.calibration_status
     - service: mqtt.publish
       data:
-        topic: "cmd/sph01/2/req"
-        payload: '{ "cmd": "calibrate_ph_1001", "res_topic": "dt/gf/sph01/2/res"}'
+        topic: "cmd/ph_gt2/req"
+        payload: '{ "cmd": "calibrate_ph_1001", "res_topic": "dt/gf/sph01/gt2/res"}'
+  mode: single
 
 # Return to Normal
-- alias: "S-PH-01-2 • Return to Normal"
+- alias: "S-PH-01_GT2 • Return to Normal"
   trigger:
     - platform: state
-      entity_id: input_select.calibrate_s_ph_01_2
+      entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
       to: "Normal Operation"
   action:
     - service: input_text.set_value
       data:
-        value: "S-PH-01-2 back to normal operation."
+        value: "S-PH-01_GT2 back to normal operation."
       target:
         entity_id: input_text.calibration_status
+  mode: single
+
+# ──────────────── S-PH-01_MX [Mixing Tank] ────────────────
+
+# Initiate 4.01pH
+- alias: "S-PH-01_MX • Initiate pH 4.01"
+  trigger:
+    - platform: state
+      entity_id: input_select.calibrate_s_ph_01_mx
+      from: null
+      to: "Initiate calibration for pH 4.01"
+  action:
+    - service: input_text.set_value
+      data:
+        value: "Immerse probe in pH 4.01, then register calibration."
+      target:
+        entity_id: input_text.calibration_status
+  mode: single
+
+# Register 4.01pH
+- alias: "S-PH-01_MX • Register pH 4.01"
+  trigger:
+    - platform: state
+      entity_id: input_select.calibrate_s_ph_01_mx
+      from: null
+      to: "Register calibration for pH 4.01"
+  action:
+    - service: input_text.set_value
+      data:
+        value: "Calibration registered for pH 4.01."
+      target:
+        entity_id: input_text.calibration_status
+    - service: mqtt.publish
+      data:
+        topic: "cmd/ph_mx/req"
+        payload: '{ "cmd": "calibrate_ph_0401", "res_topic": "dt/gf/sph01/mx/res"}'
+  mode: single
+
+# Initiate 7.00pH
+- alias: "S-PH-01_MX • Initiate pH 7.00"
+  trigger:
+    - platform: state
+      entity_id: input_select.calibrate_s_ph_01_mx
+      from: null
+      to: "Initiate calibration for pH 7.00"
+  action:
+    - service: input_text.set_value
+      data:
+        value: "Immerse probe in pH 7.00, then register calibration."
+      target:
+        entity_id: input_text.calibration_status
+  mode: single
+
+# Register 7.00pH
+- alias: "S-PH-01_MX • Register pH 7.00"
+  trigger:
+    - platform: state
+      entity_id: input_select.calibrate_s_ph_01_mx
+      from: null
+      to: "Register calibration for pH 7.00"
+  action:
+    - service: input_text.set_value
+      data:
+        value: "Calibration registered for pH 7.00."
+      target:
+        entity_id: input_text.calibration_status
+    - service: mqtt.publish
+      data:
+        topic: "cmd/ph_mx/req"
+        payload: '{ "cmd": "calibrate_ph_0700", "res_topic": "dt/gf/sph01/mx/res"}'
+  mode: single
+
+# Initiate 10.01pH
+- alias: "S-PH-01_MX • Initiate pH 10.01"
+  trigger:
+    - platform: state
+      entity_id: input_select.calibrate_s_ph_01_mx
+      from: null
+      to: "Initiate calibration for pH 10.01"
+  action:
+    - service: input_text.set_value
+      data:
+        value: "Immerse probe in pH 10.01, then register calibration."
+      target:
+        entity_id: input_text.calibration_status
+  mode: single
+
+# Register 10.01pH
+- alias: "S-PH-01_MX • Register pH 10.01"
+  trigger:
+    - platform: state
+      entity_id: input_select.calibrate_s_ph_01_mx
+      from: null
+      to: "Register calibration for pH 10.01"
+  action:
+    - service: input_text.set_value
+      data:
+        value: "Calibration registered for pH 10.01."
+      target:
+        entity_id: input_text.calibration_status
+    - service: mqtt.publish
+      data:
+        topic: "cmd/ph_mx/req"
+        payload: '{ "cmd": "calibrate_ph_1001", "res_topic": "dt/gf/sph01/mx/res"}'
+  mode: single
+
+# Return to Normal
+- alias: "S-PH-01_MX • Return to Normal"
+  trigger:
+    - platform: state
+      entity_id: input_select.calibrate_s_ph_01_mx
+      from: null
+      to: "Normal Operation"
+  action:
+    - service: input_text.set_value
+      data:
+        value: "S-PH-01_MX back to normal operation."
+      target:
+        entity_id: input_text.calibration_status
+  mode: single

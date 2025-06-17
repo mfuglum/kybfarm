@@ -3,22 +3,8 @@
 # │                   KYBFarm - MQTT Sensor Request Scheduler                  │
 # └────────────────────────────────────────────────────────────────────────────┘
 
-# ──────────────── S-LIGHT-01 [Light] ────────────────
-- alias: "S-LIGHT-01 • Request"
-  trigger:
-    - platform: time_pattern
-      seconds: 1
-    - platform: time_pattern
-      seconds: 31
-  action:
-    - service: mqtt.publish
-      data:
-        topic: "dt/gf/slight01/req"
-        payload: '{"req_topic": "dt/gf/slight01/req", "res_topic": "dt/gf/slight01/res", "data": "ha_req"}'
-  mode: single
-
-# ──────────────── S-PAR-02 [PAR] ────────────────
-- alias: "S-PAR-02 • Request"
+# ──────────────── S-PAR-02 GT1 ────────────────
+- alias: "S-PAR-02 GT1 • Request"
   trigger:
     - platform: time_pattern
       seconds: 2
@@ -27,12 +13,26 @@
   action:
     - service: mqtt.publish
       data:
-        topic: "dt/gf/spar02/req"
-        payload: '{"req_topic": "dt/gf/spar02/req", "res_topic": "dt/gf/spar02/res", "data": "ha_req"}'
+        topic: "dt/gf/spar02/gt1/req"
+        payload: '{"req_topic": "dt/gf/spar02/gt1/req", "res_topic": "dt/gf/spar02/gt1/res", "data": "ha_req"}'
   mode: single
 
-# ──────────────── S-EC-01-1 [EC Sensor 1] ────────────────
-- alias: "S-EC-01-1 • Request"
+# ──────────────── S-PAR-02 GT2 ────────────────
+- alias: "S-PAR-02 GT2 • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 12
+    - platform: time_pattern
+      seconds: 42
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/spar02/gt2/req"
+        payload: '{"req_topic": "dt/gf/spar02/gt2/req", "res_topic": "dt/gf/spar02/gt2/res", "data": "ha_req"}'
+  mode: single
+
+# ──────────────── S-EC-01 GT1 ────────────────
+- alias: "S-EC-01 GT1 • Request"
   trigger:
     - platform: time_pattern
       seconds: 3
@@ -41,12 +41,12 @@
   action:
     - service: mqtt.publish
       data:
-        topic: "dt/gf/sec01/1/req"
-        payload: '{"req_topic": "dt/gf/sec01/1/req", "res_topic": "dt/gf/sec01/1/res", "data": "ha_req"}'
+        topic: "dt/gf/sec01/gt1/req"
+        payload: '{"req_topic": "dt/gf/sec01/gt1/req", "res_topic": "dt/gf/sec01/gt1/res", "data": "ha_req"}'
   mode: single
 
-# ──────────────── S-EC-01-2 [EC Sensor 2] ────────────────
-- alias: "S-EC-01-2 • Request"
+# ──────────────── S-EC-01 GT2 ────────────────
+- alias: "S-EC-01 GT2 • Request"
   trigger:
     - platform: time_pattern
       seconds: 4
@@ -55,74 +55,39 @@
   action:
     - service: mqtt.publish
       data:
-        topic: "dt/gf/sec01/2/req"
-        payload: '{"req_topic": "dt/gf/sec01/2/req", "res_topic": "dt/gf/sec01/2/res", "data": "ha_req"}'
+        topic: "dt/gf/sec01/gt2/req"
+        payload: '{"req_topic": "dt/gf/sec01/gt2/req", "res_topic": "dt/gf/sec01/gt2/res", "data": "ha_req"}'
   mode: single
 
-# ──────────────── STH01_1 [T/H Sensor 1] ────────────────
-- alias: "STH01_1 • Request"
+# ──────────────── S-EC-01 MX ────────────────
+- alias: "S-EC-01 MX • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 14
+    - platform: time_pattern
+      seconds: 44
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sec01/mx/req"
+        payload: '{"req_topic": "dt/gf/sec01/mx/req", "res_topic": "dt/gf/sec01/mx/res", "data": "ha_req"}'
+  mode: single
+
+# ──────────────── STH01 1 ────────────────
+- alias: "STH01 1 • Request"
   trigger:
     - platform: time_pattern
       seconds: 5
-    - platform: time_pattern
-      seconds: 11
-    - platform: time_pattern
-      seconds: 15
-    - platform: time_pattern
-      seconds: 21
-    - platform: time_pattern
-      seconds: 25
-    - platform: time_pattern
-      seconds: 29
-    - platform: time_pattern
-      seconds: 35
-    - platform: time_pattern
-      seconds: 41
-    - platform: time_pattern
-      seconds: 45
-    - platform: time_pattern
-      seconds: 51
-    - platform: time_pattern
-      seconds: 55
-    - platform: time_pattern
-      seconds: 59
+      # High frequency for environmental data
   action:
     - service: mqtt.publish
       data:
-        topic: "dt/gf/STH01/1/req"
-        payload: '{"req_topic": "dt/gf/STH01/1/req", "res_topic": "dt/gf/STH01/1/res", "data": "ha_req"}'
+        topic: "dt/gf/sth01/1/req"
+        payload: '{"req_topic": "dt/gf/sth01/1/req", "res_topic": "dt/gf/sth01/1/res", "data": "ha_req"}'
   mode: single
 
-# ──────────────── S-PH-01-1 [pH Sensor 1] ────────────────
-- alias: "S-PH-01-1 • Request"
-  trigger:
-    - platform: time_pattern
-      seconds: 6
-    - platform: time_pattern
-      seconds: 36
-  action:
-    - service: mqtt.publish
-      data:
-        topic: "dt/gf/sph01/1/req"
-        payload: '{"req_topic": "dt/gf/sph01/1/req", "res_topic": "dt/gf/sph01/1/res", "data": "ha_req"}'
-  mode: single
-
-# ──────────────── S-PH-01-2 [pH Sensor 2] ────────────────
-- alias: "S-PH-01-2 • Request"
-  trigger:
-    - platform: time_pattern
-      seconds: 7
-    - platform: time_pattern
-      seconds: 37
-  action:
-    - service: mqtt.publish
-      data:
-        topic: "dt/gf/sph01/2/req"
-        payload: '{"req_topic": "dt/gf/sph01/2/req", "res_topic": "dt/gf/sph01/2/res", "data": "ha_req"}'
-  mode: single
-
-# ──────────────── STH01_2 [T/H Sensor 2] ────────────────
-- alias: "STH01_2 • Request"
+# ──────────────── STH01 2 ────────────────
+- alias: "STH01 2 • Request"
   trigger:
     - platform: time_pattern
       seconds: 8
@@ -131,8 +96,50 @@
   action:
     - service: mqtt.publish
       data:
-        topic: "dt/gf/STH01/2/req"
-        payload: '{"req_topic": "dt/gf/STH01/2/req", "res_topic": "dt/gf/STH01/2/res", "data": "ha_req"}'
+        topic: "dt/gf/sth01/2/req"
+        payload: '{"req_topic": "dt/gf/sth01/2/req", "res_topic": "dt/gf/sth01/2/res", "data": "ha_req"}'
+  mode: single
+
+# ──────────────── S-PH-01 GT1 ────────────────
+- alias: "S-PH-01 GT1 • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 6
+    - platform: time_pattern
+      seconds: 36
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sph01/gt1/req"
+        payload: '{"req_topic": "dt/gf/sph01/gt1/req", "res_topic": "dt/gf/sph01/gt1/res", "data": "ha_req"}'
+  mode: single
+
+# ──────────────── S-PH-01 GT2 ────────────────
+- alias: "S-PH-01 GT2 • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 7
+    - platform: time_pattern
+      seconds: 37
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sph01/gt2/req"
+        payload: '{"req_topic": "dt/gf/sph01/gt2/req", "res_topic": "dt/gf/sph01/gt2/res", "data": "ha_req"}'
+  mode: single
+
+# ──────────────── S-PH-01 MX ────────────────
+- alias: "S-PH-01 MX • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 13
+    - platform: time_pattern
+      seconds: 43
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sph01/mx/req"
+        payload: '{"req_topic": "dt/gf/sph01/mx/req", "res_topic": "dt/gf/sph01/mx/res", "data": "ha_req"}'
   mode: single
 
 # ──────────────── S-YM-01 [Leaf Wetness Sensor] ────────────────
@@ -149,14 +156,14 @@
         payload: '{"req_topic": "dt/gf/sym01/req", "res_topic": "dt/gf/sym01/res", "data": "ha_req"}'
   mode: single
 
-# ──────────────── CO2VOC_1 [CO2 Sensor] ────────────────
-- alias: "CO2VOC_1 • Request"
+# ──────────────── CO2VOC [CO2 Sensor] ────────────────
+- alias: "CO2VOC • Request"
   trigger:
     - platform: time_pattern
       seconds: "/10"
   action:
     - service: mqtt.publish
       data:
-        topic: "dt/gf/CO2VOC/1/req"
-        payload: '{"req_topic": "dt/gf/CO2VOC/1/req", "res_topic": "dt/gf/CO2VOC/1/res", "data": "ha_req"}'
+        topic: "dt/gf/co2voc/1/req"
+        payload: '{"req_topic": "dt/gf/co2voc/1/req", "res_topic": "dt/gf/co2voc/1/res", "data": "ha_req"}'
   mode: single

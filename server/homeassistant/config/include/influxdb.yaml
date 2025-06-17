@@ -1,0 +1,27 @@
+api_version: 2
+ssl: false
+host: 172.26.31.3
+port: 8086
+token: "your-api-token"
+organization: kybfarm
+bucket: FarmData
+
+tags:
+  source: HA
+
+tags_attributes:
+  - friendly_name
+
+default_measurement: units
+
+exclude:
+  entities:
+    - zone.home
+  domains:
+    - persistent_notification
+    - person
+
+include:
+  domains:
+    - sensor
+    - binary_sensor
