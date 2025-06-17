@@ -1,4 +1,4 @@
-#!/home/user1/Desktop/kybfarm/edge/venv/bin/python
+#!/home/user1/kybfarm/edge/venv/bin/python
 """
 ╔══════════════════════════════════════════════════════════════════════════╗
 ║               KYBFarm Edge Computer Main Controller Script               ║
@@ -145,6 +145,53 @@ MQTT_REF_CMDS = {
     "co2_res":      os.getenv("MQTT_REF_CO2_CMD_RES")
 }
 
+# ────────────────────── Generic fallback for unknown topics ────────────────────── #
+def on_message(client, userdata, msg):
+    print(f"\n[MQTT] Unhandled message on topic: {msg.topic}\nPayload: {msg.payload}")
+
+# ───────────────────────────── On Connect Callback ───────────────────────────── #
+def on_connect(client, userdata, flags, rc):
+    print(f"[MQTT] Connected with result code {rc}")
+
+    for topic in MQTT_DT_REQ.values():
+        if topic:
+            client.subscribe(topic)
+            print(f"[MQTT] Subscribed to data request: {topic}")
+
+    for topic in MQTT_CMD_REQ.values():
+        if topic:
+            client.subscribe(topic)
+            print(f"[MQTT] Subscribed to command request: {topic}")
+
+    for topic in MQTT_RELAY_CMD.values():
+        if topic:
+            client.subscribe(topic)
+            print(f"[MQTT] Subscribed to relay: {topic}")
+
+    if MQTT_SSR_CMD:
+        client.subscribe(MQTT_SSR_CMD)
+        print(f"[MQTT] Subscribed to SSR: {MQTT_SSR_CMD}")
+
+    # Lamps
+    client.subscribe(MQTT_LAMP_01_CMD_REQ)
+    client.subscribe(MQTT_LAMP_01_DT_REQ)
+    client.subscribe(MQTT_LAMP_02_CMD_REQ)
+    client.subscribe(MQTT_LAMP_02_DT_REQ)
+
+    # Reference commands
+    for topic in MQTT_REF_CMDS.values():
+        if topic:
+            client.subscribe(topic)
+
+    # 0–10V control
+    for topic in MQTT_VOLTAGE_CMD.values():
+        if topic:
+            client.subscribe(topic)
+
+    # PID enable topics
+    for topic in MQTT_PID_CMD.values():
+        if topic:
+            client.subscribe(topic)
 
 
 # ───────────────────────────── MQTT Setup ───────────────────────────── #
@@ -201,54 +248,6 @@ client.message_callback_add(MQTT_PID_CMD["heating"], on_message_HEATING_PID_CMD_
 client.message_callback_add(MQTT_REF_CMDS["temp_req"], solid_state_relay.on_message_REFTEMP_CMD_REQ)
 client.message_callback_add(MQTT_PID_CMD["co2"], on_message_CO2_PID_CMD_REQ)
 client.message_callback_add(MQTT_REF_CMDS["co2_req"], CO2_control.on_message_REFCO2_CMD_REQ)
-
-# ────────────────────── Generic fallback for unknown topics ────────────────────── #
-def on_message(client, userdata, msg):
-    print(f"\n[MQTT] Unhandled message on topic: {msg.topic}\nPayload: {msg.payload}")
-
-# ───────────────────────────── On Connect Callback ───────────────────────────── #
-def on_connect(client, userdata, flags, rc):
-    print(f"[MQTT] Connected with result code {rc}")
-
-    for topic in MQTT_DT_REQ.values():
-        if topic:
-            client.subscribe(topic)
-            print(f"[MQTT] Subscribed to data request: {topic}")
-
-    for topic in MQTT_CMD_REQ.values():
-        if topic:
-            client.subscribe(topic)
-            print(f"[MQTT] Subscribed to command request: {topic}")
-
-    for topic in MQTT_RELAY_CMD.values():
-        if topic:
-            client.subscribe(topic)
-            print(f"[MQTT] Subscribed to relay: {topic}")
-
-    if MQTT_SSR_CMD:
-        client.subscribe(MQTT_SSR_CMD)
-        print(f"[MQTT] Subscribed to SSR: {MQTT_SSR_CMD}")
-
-    # Lamps
-    client.subscribe(MQTT_LAMP_01_CMD_REQ)
-    client.subscribe(MQTT_LAMP_01_DT_REQ)
-    client.subscribe(MQTT_LAMP_02_CMD_REQ)
-    client.subscribe(MQTT_LAMP_02_DT_REQ)
-
-    # Reference commands
-    for topic in MQTT_REF_CMDS.values():
-        if topic:
-            client.subscribe(topic)
-
-    # 0–10V control
-    for topic in MQTT_VOLTAGE_CMD.values():
-        if topic:
-            client.subscribe(topic)
-
-    # PID enable topics
-    for topic in MQTT_PID_CMD.values():
-        if topic:
-            client.subscribe(topic)
 
             
 
