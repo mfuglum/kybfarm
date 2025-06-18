@@ -64,29 +64,30 @@ MQTT_KEEP_ALIVE   = int(os.getenv("MQTT_EDGE_KEEP_ALIVE", 60))
 
 # ───────────── Sensor Data Request Topics (DT_REQ) ───────────── #
 MQTT_DT_REQ = {
-    "ec_gt1":      os.getenv("MQTT_DT_REQ_EC_GT1"),
-    "ec_gt2":      os.getenv("MQTT_DT_REQ_EC_GT2"),
-    "ec_mx":       os.getenv("MQTT_DT_REQ_EC_MX"),
-    "ph_gt1":      os.getenv("MQTT_DT_REQ_PH_GT1"),
-    "ph_gt2":      os.getenv("MQTT_DT_REQ_PH_GT2"),
-    "ph_mx":       os.getenv("MQTT_DT_REQ_PH_MX"),
-    "par02_1":     os.getenv("MQTT_DT_REQ_par02_1"),
-    "par02_2":     os.getenv("MQTT_DT_REQ_par02_2"),
-    "sth01_1":     os.getenv("MQTT_DT_REQ_STH_1"),
-    "sth01_2":     os.getenv("MQTT_DT_REQ_STH_2"),
-    "co2voc":      os.getenv("MQTT_DT_REQ_CO2_VOC"),
-    "flow_sym01":  os.getenv("MQTT_DT_REQ_SYM01")
+    "ec_gt1":     os.getenv("MQTT_DT_REQ_EC_GT1"),
+    "ec_gt2":     os.getenv("MQTT_DT_REQ_EC_GT2"),
+    "ec_mx":      os.getenv("MQTT_DT_REQ_EC_MX"),
+    "ph_gt1":     os.getenv("MQTT_DT_REQ_PH_GT1"),
+    "ph_gt2":     os.getenv("MQTT_DT_REQ_PH_GT2"),
+    "ph_mx":      os.getenv("MQTT_DT_REQ_PH_MX"),
+    "par02_1":    os.getenv("MQTT_DT_REQ_PAR02_1"),
+    "par02_2":    os.getenv("MQTT_DT_REQ_PAR02_2"),
+    "sth01_1":    os.getenv("MQTT_DT_REQ_STH01_1"),
+    "sth01_2":    os.getenv("MQTT_DT_REQ_STH01_2"),
+    "co2voc":     os.getenv("MQTT_DT_REQ_CO2VOC"),
+    "sym01":      os.getenv("MQTT_DT_REQ_SYM01")  # FIXED: used 'sym01' to match usage
 }
 
 # ───────────── Sensor Command Request Topics (CMD_REQ) ───────────── #
 MQTT_CMD_REQ = {
-    "ec_gt1":      os.getenv("MQTT_CMD_REQ_EC_GT1"),
-    "ec_gt2":      os.getenv("MQTT_CMD_REQ_EC_GT2"),
-    "ec_mx":       os.getenv("MQTT_CMD_REQ_EC_MX"),
-    "ph_gt1":      os.getenv("MQTT_CMD_REQ_PH_GT1"),
-    "ph_gt2":      os.getenv("MQTT_CMD_REQ_PH_GT2"),
-    "ph_mx":       os.getenv("MQTT_CMD_REQ_PH_MX")
+    "ec_gt1": os.getenv("MQTT_CMD_REQ_EC_GT1"),
+    "ec_gt2": os.getenv("MQTT_CMD_REQ_EC_GT2"),
+    "ec_mx":  os.getenv("MQTT_CMD_REQ_EC_MX"),
+    "ph_gt1": os.getenv("MQTT_CMD_REQ_PH_GT1"),
+    "ph_gt2": os.getenv("MQTT_CMD_REQ_PH_GT2"),
+    "ph_mx":  os.getenv("MQTT_CMD_REQ_PH_MX")
 }
+
 
 # ───────────── Relay Control Topics ───────────── #
 MQTT_RELAY_CMD = {
@@ -179,6 +180,99 @@ def on_connect(client, userdata, flags, rc):
     # PID Enable
     for topic in MQTT_PID_CMD.values():
         client.subscribe(topic)
+
+
+# ───────────────────────────── Activate Sensors ───────────────────────────── #
+
+# PAR Sensors
+try:
+    sensor_PAR02_1 = sensor_SPAR02_modbus.SPAR02(portname='/dev/ttySC1', slaveaddress=1, debug=False)
+    print(sensor_PAR02_1)
+except Exception as e:
+    print("PAR02_1, error:", str(e))
+time.sleep(0.1)
+
+try:
+    sensor_PAR02_2 = sensor_SPAR02_modbus.SPAR02(portname='/dev/ttySC1', slaveaddress=34, debug=False)
+    print(sensor_PAR02_2)
+except Exception as e:
+    print("PAR02_2, error:", str(e))
+time.sleep(0.1)
+
+# EC Sensors
+try:
+    sensor_EC_GT1 = sensor_SEC01_modbus.SEC01(portname='/dev/ttySC1', slaveaddress=5, debug=False)
+    print(sensor_EC_GT1)
+except Exception as e:
+    print("EC_GT1, error:", str(e))
+time.sleep(0.1)
+
+try:
+    sensor_EC_GT2 = sensor_SEC01_modbus.SEC01(portname='/dev/ttySC1', slaveaddress=6, debug=False)
+    print(sensor_EC_GT2)
+except Exception as e:
+    print("EC_GT2, error:", str(e))
+time.sleep(0.1)
+
+try:
+    sensor_EC_MX = sensor_SEC01_modbus.SEC01(portname='/dev/ttySC1', slaveaddress=7, debug=False)
+    print(sensor_EC_MX)
+except Exception as e:
+    print("EC_MX, error:", str(e))
+time.sleep(0.1)
+
+# pH Sensors
+try:
+    sensor_PH_GT1 = sensor_SPH01_modbus.SPH01(portname='/dev/ttySC1', slaveaddress=8, debug=False)
+    print(sensor_PH_GT1)
+except Exception as e:
+    print("PH_GT1, error:", str(e))
+time.sleep(0.1)
+
+try:
+    sensor_PH_GT2 = sensor_SPH01_modbus.SPH01(portname='/dev/ttySC1', slaveaddress=9, debug=False)
+    print(sensor_PH_GT2)
+except Exception as e:
+    print("PH_GT2, error:", str(e))
+time.sleep(0.1)
+
+try:
+    sensor_PH_MX = sensor_SPH01_modbus.SPH01(portname='/dev/ttySC1', slaveaddress=10, debug=False)
+    print(sensor_PH_MX)
+except Exception as e:
+    print("PH_MX, error:", str(e))
+time.sleep(0.1)
+
+# SYM Sensor
+try:
+    sensor_SYM01 = sensor_SYM01_modbus.SYM01(portname='/dev/ttySC1', slaveaddress=12, debug=False)
+    print(sensor_SYM01)
+except Exception as e:
+    print("SYM01, error:", str(e))
+time.sleep(0.1)
+
+# CO₂ Sensor
+try:
+    sensor_CO2_VOC_1 = sensor_CO2_VOC_modbus.CO2_VOC(portname='/dev/ttySC0', slaveaddress=7, debug=False)
+    print(sensor_CO2_VOC_1)
+except Exception as e:
+    print("CO2_VOC_1, error:", str(e))
+time.sleep(0.1)
+
+# STH Sensors
+try:
+    sensor_STH01_1 = sensor_STH01_modbus.STH01(portname='/dev/ttySC0', slaveaddress=69, debug=False)
+    print(sensor_STH01_1)
+except Exception as e:
+    print("STH01_1, error:", str(e))
+time.sleep(0.1)
+
+try:
+    sensor_STH01_2 = sensor_STH01_modbus.STH01(portname='/dev/ttySC0', slaveaddress=70, debug=False)
+    print(sensor_STH01_2)
+except Exception as e:
+    print("STH01_2, error:", str(e))
+time.sleep(0.1)
 
 
 # ─────────────── callback functions ─────────────── #
@@ -376,6 +470,9 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 # Assign the specific callback functions for the client
+print("Topic:", MQTT_DT_REQ["ec_gt1"])
+print("Callback:", on_message_ec_gt1)
+
 # Sensors #
 # EC sensors
 client.message_callback_add(MQTT_DT_REQ["ec_gt1"], on_message_ec_gt1)
@@ -434,10 +531,10 @@ client.message_callback_add(MQTT_SSR_CMD, relay_devices_initialization.on_messag
 # Voltage output
 #Fan
 client.message_callback_add(MQTT_VOLTAGE_CMD["fan_cmd"], voltage_output.on_message_FAN_VOLTAGE_CMD_REQ)
-client.message_callback_add(MQTT_VOLTAGE_CMD["fan_res"], voltage_output.on_message_FAN_VOLTAGE_CMD_RES)
+
 #Valve
 client.message_callback_add(MQTT_VOLTAGE_CMD["valve_cmd"], voltage_output.on_message_VALVE_VOLTAGE_CMD_REQ)
-client.message_callback_add(MQTT_VOLTAGE_CMD["valve_res"], voltage_output.on_message_VALVE_VOLTAGE_CMD_RES)
+
 
 # Grow lamp1 Elixia
 client.message_callback_add(MQTT_LAMP_01_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP01_CMD_REQ)
@@ -470,100 +567,6 @@ try:
     client.loop_start()
 except:
     print("\nConnection failed\n")
-
-
-# ───────────────────────────── Activate Sensors ───────────────────────────── #
-
-# PAR Sensors
-try:
-    sensor_PAR02_1 = sensor_SPAR02_modbus.SPAR02(portname='/dev/ttySC1', slaveaddress=1, debug=False)
-    print(sensor_PAR02_1)
-except Exception as e:
-    print("PAR02_1, error:", str(e))
-time.sleep(0.1)
-
-try:
-    sensor_PAR02_2 = sensor_SPAR02_modbus.SPAR02(portname='/dev/ttySC1', slaveaddress=34, debug=False)
-    print(sensor_PAR02_2)
-except Exception as e:
-    print("PAR02_2, error:", str(e))
-time.sleep(0.1)
-
-# EC Sensors
-try:
-    sensor_EC_GT1 = sensor_SEC01_modbus.SEC01(portname='/dev/ttySC1', slaveaddress=5, debug=False)
-    print(sensor_EC_GT1)
-except Exception as e:
-    print("EC_GT1, error:", str(e))
-time.sleep(0.1)
-
-try:
-    sensor_EC_GT2 = sensor_SEC01_modbus.SEC01(portname='/dev/ttySC1', slaveaddress=6, debug=False)
-    print(sensor_EC_GT2)
-except Exception as e:
-    print("EC_GT2, error:", str(e))
-time.sleep(0.1)
-
-try:
-    sensor_EC_MX = sensor_SEC01_modbus.SEC01(portname='/dev/ttySC1', slaveaddress=7, debug=False)
-    print(sensor_EC_MX)
-except Exception as e:
-    print("EC_MX, error:", str(e))
-time.sleep(0.1)
-
-# pH Sensors
-try:
-    sensor_PH_GT1 = sensor_SPH01_modbus.SPH01(portname='/dev/ttySC1', slaveaddress=8, debug=False)
-    print(sensor_PH_GT1)
-except Exception as e:
-    print("PH_GT1, error:", str(e))
-time.sleep(0.1)
-
-try:
-    sensor_PH_GT2 = sensor_SPH01_modbus.SPH01(portname='/dev/ttySC1', slaveaddress=9, debug=False)
-    print(sensor_PH_GT2)
-except Exception as e:
-    print("PH_GT2, error:", str(e))
-time.sleep(0.1)
-
-try:
-    sensor_PH_MX = sensor_SPH01_modbus.SPH01(portname='/dev/ttySC1', slaveaddress=10, debug=False)
-    print(sensor_PH_MX)
-except Exception as e:
-    print("PH_MX, error:", str(e))
-time.sleep(0.1)
-
-# SYM Sensor
-try:
-    sensor_SYM01 = sensor_SYM01_modbus.SYM01(portname='/dev/ttySC1', slaveaddress=12, debug=False)
-    print(sensor_SYM01)
-except Exception as e:
-    print("SYM01, error:", str(e))
-time.sleep(0.1)
-
-# CO₂ Sensor
-try:
-    sensor_CO2_VOC_1 = sensor_CO2_VOC_modbus.CO2_VOC(portname='/dev/ttySC0', slaveaddress=7, debug=False)
-    print(sensor_CO2_VOC_1)
-except Exception as e:
-    print("CO2_VOC_1, error:", str(e))
-time.sleep(0.1)
-
-# STH Sensors
-try:
-    sensor_STH01_1 = sensor_STH01_modbus.STH01(portname='/dev/ttySC0', slaveaddress=69, debug=False)
-    print(sensor_STH01_1)
-except Exception as e:
-    print("STH01_1, error:", str(e))
-time.sleep(0.1)
-
-try:
-    sensor_STH01_2 = sensor_STH01_modbus.STH01(portname='/dev/ttySC0', slaveaddress=70, debug=False)
-    print(sensor_STH01_2)
-except Exception as e:
-    print("STH01_2, error:", str(e))
-time.sleep(0.1)
-
 
 
 # Start main loop #
