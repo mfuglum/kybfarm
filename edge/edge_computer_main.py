@@ -53,7 +53,6 @@ from src.utils.latest_pid_data import (
     latest_humidity_data,
     latest_CO2_data
 )
-from src.utils.main_runtime.handler_manager import BaseHandlerManager
 
 # ───────────────────────────── Load Environment ───────────────────────────── #
 load_dotenv()
