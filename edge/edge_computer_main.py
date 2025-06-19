@@ -53,6 +53,7 @@ from src.utils.latest_pid_data import (
     latest_humidity_data,
     latest_CO2_data
 )
+from src.utils.main_runtime.handler_manager import BaseHandlerManager
 
 # ───────────────────────────── Load Environment ───────────────────────────── #
 load_dotenv()
@@ -75,7 +76,7 @@ MQTT_DT_REQ = {
     "sth01_1":    os.getenv("MQTT_DT_REQ_STH01_1"),
     "sth01_2":    os.getenv("MQTT_DT_REQ_STH01_2"),
     "co2voc":     os.getenv("MQTT_DT_REQ_CO2VOC"),
-    "sym01":      os.getenv("MQTT_DT_REQ_SYM01")  # FIXED: used 'sym01' to match usage
+    "sym01":      os.getenv("MQTT_DT_REQ_SYM01")  
 }
 
 # ───────────── Sensor Command Request Topics (CMD_REQ) ───────────── #
@@ -117,11 +118,13 @@ MQTT_SSR_CMD = os.getenv("MQTT_SOLID_STATE_RELAY_01_CMD_REQ")
 LAMP_01_IP             = os.getenv("LAMP_01_IP")
 MQTT_LAMP_01_CMD_REQ   = os.getenv("MQTT_LAMP_01_CMD_REQ")
 MQTT_LAMP_01_DT_REQ    = os.getenv("MQTT_LAMP_01_DT_REQ")
+grow_lamp_elixia_initialization.lamp_1.update_ip_address(LAMP_01_IP)
 
 # ───────────── Grow Lamp 2 (Elixia) ───────────── #
 LAMP_02_IP             = os.getenv("LAMP_02_IP")
 MQTT_LAMP_02_CMD_REQ   = os.getenv("MQTT_LAMP_02_CMD_REQ")
 MQTT_LAMP_02_DT_REQ    = os.getenv("MQTT_LAMP_02_DT_REQ")
+grow_lamp_elixia_initialization.lamp_2.update_ip_address(LAMP_02_IP)
 
 # ───────────── PID Enable Topics ───────────── #
 MQTT_PID_CMD = {
@@ -184,95 +187,35 @@ def on_connect(client, userdata, flags, rc):
 
 # ───────────────────────────── Activate Sensors ───────────────────────────── #
 
-# PAR Sensors
-try:
-    sensor_PAR02_1 = sensor_SPAR02_modbus.SPAR02(portname='/dev/ttySC1', slaveaddress=1, debug=False)
-    print(sensor_PAR02_1)
-except Exception as e:
-    print("PAR02_1, error:", str(e))
-time.sleep(0.1)
+sensor_specs = {
+        "par_gt1": (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 1),
+        "par_gt2": (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 34),
 
-try:
-    sensor_PAR02_2 = sensor_SPAR02_modbus.SPAR02(portname='/dev/ttySC1', slaveaddress=34, debug=False)
-    print(sensor_PAR02_2)
-except Exception as e:
-    print("PAR02_2, error:", str(e))
-time.sleep(0.1)
+        "ec_gt1":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 6),
+        "ec_gt2":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 5),
+        "ec_mx":   (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 7),
 
-# EC Sensors
-try:
-    sensor_EC_GT1 = sensor_SEC01_modbus.SEC01(portname='/dev/ttySC1', slaveaddress=5, debug=False)
-    print(sensor_EC_GT1)
-except Exception as e:
-    print("EC_GT1, error:", str(e))
-time.sleep(0.1)
+        "ph_gt1":  (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 8),
+        "ph_gt2":  (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 9),
+        "ph_mx":   (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 10),
 
-try:
-    sensor_EC_GT2 = sensor_SEC01_modbus.SEC01(portname='/dev/ttySC1', slaveaddress=6, debug=False)
-    print(sensor_EC_GT2)
-except Exception as e:
-    print("EC_GT2, error:", str(e))
-time.sleep(0.1)
+        "sym01":   (sensor_SYM01_modbus.SYM01, '/dev/ttySC1', 12),
+        "co2voc":  (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 7),
 
-try:
-    sensor_EC_MX = sensor_SEC01_modbus.SEC01(portname='/dev/ttySC1', slaveaddress=7, debug=False)
-    print(sensor_EC_MX)
-except Exception as e:
-    print("EC_MX, error:", str(e))
-time.sleep(0.1)
+        "sth01_1": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
+        "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70),
+    }
 
-# pH Sensors
-try:
-    sensor_PH_GT1 = sensor_SPH01_modbus.SPH01(portname='/dev/ttySC1', slaveaddress=8, debug=False)
-    print(sensor_PH_GT1)
-except Exception as e:
-    print("PH_GT1, error:", str(e))
-time.sleep(0.1)
+sensors = {}
 
-try:
-    sensor_PH_GT2 = sensor_SPH01_modbus.SPH01(portname='/dev/ttySC1', slaveaddress=9, debug=False)
-    print(sensor_PH_GT2)
-except Exception as e:
-    print("PH_GT2, error:", str(e))
-time.sleep(0.1)
-
-try:
-    sensor_PH_MX = sensor_SPH01_modbus.SPH01(portname='/dev/ttySC1', slaveaddress=10, debug=False)
-    print(sensor_PH_MX)
-except Exception as e:
-    print("PH_MX, error:", str(e))
-time.sleep(0.1)
-
-# SYM Sensor
-try:
-    sensor_SYM01 = sensor_SYM01_modbus.SYM01(portname='/dev/ttySC1', slaveaddress=12, debug=False)
-    print(sensor_SYM01)
-except Exception as e:
-    print("SYM01, error:", str(e))
-time.sleep(0.1)
-
-# CO₂ Sensor
-try:
-    sensor_CO2_VOC_1 = sensor_CO2_VOC_modbus.CO2_VOC(portname='/dev/ttySC0', slaveaddress=7, debug=False)
-    print(sensor_CO2_VOC_1)
-except Exception as e:
-    print("CO2_VOC_1, error:", str(e))
-time.sleep(0.1)
-
-# STH Sensors
-try:
-    sensor_STH01_1 = sensor_STH01_modbus.STH01(portname='/dev/ttySC0', slaveaddress=69, debug=False)
-    print(sensor_STH01_1)
-except Exception as e:
-    print("STH01_1, error:", str(e))
-time.sleep(0.1)
-
-try:
-    sensor_STH01_2 = sensor_STH01_modbus.STH01(portname='/dev/ttySC0', slaveaddress=70, debug=False)
-    print(sensor_STH01_2)
-except Exception as e:
-    print("STH01_2, error:", str(e))
-time.sleep(0.1)
+for label, (cls, port, addr) in sensor_specs.items():
+    try:
+        sensor = cls(portname=port, slaveaddress=addr, debug=False)
+        sensors[label] = sensor
+        print(f"{label} initialized: {sensor}")
+    except Exception as e:
+        print(f"{label} init error:", str(e))
+    time.sleep(0.1)
 
 
 # ─────────────── callback functions ─────────────── #
@@ -280,33 +223,26 @@ def on_message(client, userdata, msg):
     print("\n" + msg.topic + ":\n", msg.payload)
 
 
-# PAR Sensor Handlers
-def create_par_handler(sensor_obj, label):
-    def handler(client, userdata, msg):
-        req_msg = json.loads(msg.payload)
-        try:
-            res_payload = json.dumps(sensor_obj.fetch_and_return_data())
-            client.publish(req_msg["res_topic"], res_payload)
-            print(f"{label} →", res_payload + "\n")
-        except Exception as e:
-            print(f"{label}, data fetch error:", str(e))
-    return handler
-
-on_message_par02_1 = create_par_handler(sensor_PAR02_1, "par02_1")
-on_message_par02_2 = create_par_handler(sensor_PAR02_2, "par02_2")
-
-# EC Sensor Handlers
-def create_ec_handlers(sensor_obj, label):
+def sensor_handler(sensor_obj, label):
     def on_data(client, userdata, msg):
         req_msg = json.loads(msg.payload)
         try:
-            res_payload = json.dumps(sensor_obj.fetch_and_return_data())
+            data = sensor_obj.fetch_and_return_data()
+            res_payload = json.dumps(data)
             client.publish(req_msg["res_topic"], res_payload)
+
+            if label == "co2voc":
+                latest_heating_data[label] = data["fields"]["temperature"]
+                latest_CO2_data[label] = data["fields"]["co2"]
+            elif label in ["sth01_1", "sth01_2"]:
+                latest_heating_data[label] = data["fields"]["temperature"]
+                latest_humidity_data[label] = data["fields"]["humidity"]
+
             print(f"{label} →", res_payload + "\n")
         except Exception as e:
             print(f"{label}, data fetch error:", str(e))
 
-    def on_cmd(client, userdata, msg):
+    def on_cmd_ec(client, userdata, msg):
         cmd_msg = json.loads(msg.payload)
         try:
             print(cmd_msg)
@@ -319,28 +255,11 @@ def create_ec_handlers(sensor_obj, label):
             elif cmd_msg["cmd"] == "set_temperature_compensation":
                 sensor_obj.set_temperature_compensation(float(cmd_msg["value"]))
             else:
-                print("Invalid command")
+                print("Invalid EC command")
         except Exception as e:
-            print(f"{label}, command error:", str(e))
+            print(f"{label}, EC command error:", str(e))
 
-    return on_data, on_cmd
-
-on_message_ec_gt1, on_message_ec_gt1_cmd = create_ec_handlers(sensor_EC_GT1, "ec_gt1")
-on_message_ec_gt2, on_message_ec_gt2_cmd = create_ec_handlers(sensor_EC_GT2, "ec_gt2")
-on_message_ec_mx,  on_message_ec_mx_cmd  = create_ec_handlers(sensor_EC_MX,  "ec_mx")
-
-# pH Sensor Handlers
-def create_ph_handlers(sensor_obj, label):
-    def on_data(client, userdata, msg):
-        req_msg = json.loads(msg.payload)
-        try:
-            res_payload = json.dumps(sensor_obj.fetch_and_return_data())
-            client.publish(req_msg["res_topic"], res_payload)
-            print(f"{label} →", res_payload + "\n")
-        except Exception as e:
-            print(f"{label}, data fetch error:", str(e))
-
-    def on_cmd(client, userdata, msg):
+    def on_cmd_ph(client, userdata, msg):
         cmd_msg = json.loads(msg.payload)
         try:
             print(cmd_msg)
@@ -356,111 +275,81 @@ def create_ph_handlers(sensor_obj, label):
             elif cmd_msg["cmd"] == "set_temperature_compensation":
                 sensor_obj.set_temperature_compensation(float(cmd_msg["value"]))
             else:
-                print("Invalid command")
+                print("Invalid pH command")
         except Exception as e:
-            print(f"{label}, command error:", str(e))
+            print(f"{label}, pH command error:", str(e))
 
-    return on_data, on_cmd
+    # Determine what to return based on sensor type
+    if label.startswith("ec_"):
+        return {"data": on_data, "cmd": on_cmd_ec}
+    elif label.startswith("ph_"):
+        return {"data": on_data, "cmd": on_cmd_ph}
+    else:
+        return {"data": on_data}
 
-on_message_ph_gt1, on_message_ph_gt1_cmd = create_ph_handlers(sensor_PH_GT1, "ph_gt1")
-on_message_ph_gt2, on_message_ph_gt2_cmd = create_ph_handlers(sensor_PH_GT2, "ph_gt2")
-on_message_ph_mx,  on_message_ph_mx_cmd  = create_ph_handlers(sensor_PH_MX,  "ph_mx")
+# PAR sensors (data only)
+on_message_par02_1 = sensor_handler(sensors["par_gt1"], "par_gt1")["data"]
+on_message_par02_2 = sensor_handler(sensors["par_gt2"], "par_gt2")["data"]
 
-def on_message_SYM01(client, userdata, msg):
-    req_msg = json.loads(msg.payload)
-    try:
-        res_payload = json.dumps(sensor_SYM01.fetch_and_return_data())
-        client.publish(req_msg["res_topic"], res_payload)
-        print(res_payload + "\n")
-    except Exception as e:
-        print("SYM01, data fetch error:", str(e))
+# EC sensors (data + command)
+on_message_ec_gt1 = sensor_handler(sensors["ec_gt1"], "ec_gt1")["data"]
+on_message_ec_gt1_cmd = sensor_handler(sensors["ec_gt1"], "ec_gt1")["cmd"]
 
+on_message_ec_gt2 = sensor_handler(sensors["ec_gt2"], "ec_gt2")["data"]
+on_message_ec_gt2_cmd = sensor_handler(sensors["ec_gt2"], "ec_gt2")["cmd"]
 
-def on_message_CO2_VOC_1(client, userdata, msg):
-    req_msg = json.loads(msg.payload)
-    try:
-        data = sensor_CO2_VOC_1.fetch_and_return_data()
-        res_payload = json.dumps(data)
-        client.publish(req_msg["res_topic"], res_payload, )
+on_message_ec_mx = sensor_handler(sensors["ec_mx"], "ec_mx")["data"]
+on_message_ec_mx_cmd = sensor_handler(sensors["ec_mx"], "ec_mx")["cmd"]
 
-        latest_heating_data["CO2_VOC_1"] = data["fields"]["temperature"]
-        latest_CO2_data["CO2_VOC_1"] = data["fields"]["co2"]
+# pH sensors (data + command)
+on_message_ph_gt1 = sensor_handler(sensors["ph_gt1"], "ph_gt1")["data"]
+on_message_ph_gt1_cmd = sensor_handler(sensors["ph_gt1"], "ph_gt1")["cmd"]
 
+on_message_ph_gt2 = sensor_handler(sensors["ph_gt2"], "ph_gt2")["data"]
+on_message_ph_gt2_cmd = sensor_handler(sensors["ph_gt2"], "ph_gt2")["cmd"]
 
-        print(res_payload + "\n")
-    except Exception as e:
-        print("CO2_VOC_1, data fetch error:", str(e))
+on_message_ph_mx = sensor_handler(sensors["ph_mx"], "ph_mx")["data"]
+on_message_ph_mx_cmd = sensor_handler(sensors["ph_mx"], "ph_mx")["cmd"]
 
-def create_sth_handler(sensor_obj, label):
-    def handler(client, userdata, msg):
-        req_msg = json.loads(msg.payload)
-        try:
-            data = sensor_obj.fetch_and_return_data(sensor_name=label)
-            res_payload = json.dumps(data)
-            client.publish(req_msg["res_topic"], res_payload)
-            latest_heating_data[label] = data["fields"]["temperature"]
-            latest_humidity_data[label] = data["fields"]["humidity"]
-            print(f"{label} →", res_payload + "\n")
-        except Exception as e:
-            print(f"{label}, data fetch error:", str(e))
-    return handler
+# SYM (data only)
+on_message_SYM01 = sensor_handler(sensors["sym01"], "sym01")["data"]
 
-on_message_sth01_1 = create_sth_handler(sensor_STH01_1, "STH01_1")
-on_message_sth01_2 = create_sth_handler(sensor_STH01_2, "STH01_2")
+# CO₂ VOC (data only)
+on_message_CO2_VOC_1 = sensor_handler(sensors["co2voc"], "co2voc")["data"]
+
+# STH sensors (data only)
+on_message_sth01_1 = sensor_handler(sensors["sth01_1"], "sth01_1")["data"]
+on_message_sth01_2 = sensor_handler(sensors["sth01_2"], "sth01_2")["data"]
 
 
 #PDI
-def on_message_COOLING_PID_CMD_REQ(client, userdata, msg):
-    cmd_msg = json.loads(msg.payload)
-    try:
-        print(cmd_msg)
-        if cmd_msg["cmd"] == "pid_enable":
-            # Send command to enable PID
-            print("Enabling Cooling PID")
-            print("Latest humidity data:", latest_humidity_data)
-            voltage_output.run_pid()
-            #print("Running Cooling PID")
-            
+def create_pid_handler(label, run_function, data_source):
+    def handler(client, userdata, msg):
+        cmd_msg = json.loads(msg.payload)
+        try:
+            print(cmd_msg)
+            if cmd_msg.get("cmd") == "pid_enable":
+                print(f"Enabling {label} PID")
+                print(f"Latest {label} data:", data_source)
+                run_function()
+            else:
+                print("Invalid command")
+        except Exception as e:
+            print(f"{label.upper()} PID error:", str(e))
+    return handler
 
-        else:
-            print("Invalid command")
-    except Exception as e:
-        print("PID enable error:", str(e))
+on_message_COOLING_PID_CMD_REQ = create_pid_handler(
+    "cooling", voltage_output.run_pid, latest_humidity_data
+)
 
+on_message_HEATING_PID_CMD_REQ = create_pid_handler(
+    "heating", solid_state_relay.run_heating_pid, latest_heating_data
+)
 
-def on_message_HEATING_PID_CMD_REQ(client, userdata, msg):
-    cmd_msg = json.loads(msg.payload)
-    try:
-        print(cmd_msg)
-        if cmd_msg["cmd"] == "pid_enable":
-            # Send command to enable PID
-            print("Enabling Heating PID")
-            print("Latest heating data:", latest_heating_data)
+on_message_CO2_PID_CMD_REQ = create_pid_handler(
+    "co2", CO2_control.run_CO2_pid, latest_CO2_data
+)
 
-            solid_state_relay.run_heating_pid()
-        else:
-            print("Invalid command")
-    except Exception as e:
-        print("PID enable error:", str(e))
-
-
-def on_message_CO2_PID_CMD_REQ(client, userdata, msg):
-    cmd_msg = json.loads(msg.payload)
-    try:
-        print(cmd_msg)
-        if cmd_msg["cmd"] == "pid_enable":
-            # Send command to enable PID
-            print("Enabling CO2 PID")
-            print("Latest CO2 data:", latest_CO2_data)
-
-            CO2_control.run_CO2_pid()
-            print("Running CO2 PID")
-            
-
-        else:
-            print("Invalid command")
-    except Exception as e:
-        print("CO2 PID enable error:", str(e))
 
 # Setup MQTT client for sensor host
 client = mqtt.Client()
@@ -468,10 +357,6 @@ client = mqtt.Client()
 # Assign the generic callback functions for the client
 client.on_connect = on_connect
 client.on_message = on_message
-
-# Assign the specific callback functions for the client
-print("Topic:", MQTT_DT_REQ["ec_gt1"])
-print("Callback:", on_message_ec_gt1)
 
 # Sensors #
 # EC sensors
@@ -503,7 +388,6 @@ client.message_callback_add(MQTT_DT_REQ["co2voc"], on_message_CO2_VOC_1)
 
 # SYM flow sensor
 client.message_callback_add(MQTT_DT_REQ["sym01"], on_message_SYM01)
-
 
 
 # Actuators #
