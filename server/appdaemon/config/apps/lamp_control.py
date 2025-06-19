@@ -21,15 +21,15 @@ class Lamp_control(ad.ADBase):
         # Setup API access and log initialization
         self.adapi = self.get_ad_api()
         self.label = self.args["name"]
-        self.adapi.log(f"[{self.label}] Lamp controller init...")
+        self.adapi.log(f"[{self.label}] init...")
 
         # Get entities for set values (user sliders)
         set_values_ids = self.args["set_values_ids"]
-        self.amplitudes =  [self.adapi.get_entity(id) for id in set_values_ids]
+        self.values=  [self.adapi.get_entity(id) for id in set_values_ids]
 
         # Get entities for actual lamp output channels
         amplitude_ids = self.args["amplitude_ids"]
-        self.values = [self.adapi.get_entity(id) for id in amplitude_ids]
+        self.amplitudes = [self.adapi.get_entity(id) for id in amplitude_ids]
 
         # Get toggle entity (on/off switch)
         toggle_id = self.args["toggle_id"]

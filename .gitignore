@@ -9,6 +9,7 @@ __pycache__
 /server/homeassistant/config/*
 !/server/homeassistant/config/configuration.yaml
 !/server/homeassistant/config/include/
+/server/homeassistant/config/include/influxdb.yaml
 
 # ────────────────────────────── Mosquitto ──────────────────────────────
 /server/mosquitto/
