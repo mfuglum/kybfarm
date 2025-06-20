@@ -99,14 +99,15 @@ class Lamp_control(ad.ADBase):
             return now >= start or now < finish
 
     def turn_on(self):
-        """Copies the user-set values into the active lamp channels"""
-        ampls = [ampl.get_state() for ampl in self.amplitudes]
-        [value.set_state(state=ampl) for value, ampl in zip(self.values, ampls)]
-        self.adapi.log(f"[{self.label}] Turning on lamp")
+        """Copies the user-set slider values into the active lamp output channels"""
+        values = [slider.get_state() for slider in self.values]
+        [ampl.set_state(state=value) for ampl, value in zip(self.amplitudes, values)]
+        self.adapi.log(f"[{self.label}] Turning on lamp with values: {values}")
+
 
     def turn_off(self):
         """Turns off all lamp output channels (sets to 0)"""
-        [value.set_state(state=0) for value in self.values]
+        [ampl.set_state(state=0) for ampl in self.amplitudes]
         self.adapi.log(f"[{self.label}] Turning off lamp")
 
     def set_lamp_state(self):

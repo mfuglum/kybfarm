@@ -3,9 +3,9 @@ import time
 import importlib
 import minimalmodbus
 
-MODBUS_PORT = "/dev/ttySC0" # manually editable
+MODBUS_PORT = "/dev/ttySC1" # manually editable
 ADDRESS_RANGE = range(1, 274)
-WHITELIST = [69,70]  # manually editable
+WHITELIST = []  # manually editable
 SENSOR_OPTIONS = [
     ("SLIGHT01", "sensor_SLIGHT01_modbus", "SLIGHT01", 1),
     ("SPAR02", "sensor_SPAR02_modbus", "SPAR02", 34),

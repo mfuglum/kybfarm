@@ -1,307 +1,169 @@
 # ┌────────────────────────────────────────────────────────────────────────────┐
-# │                         Home Assistant Sensor Config                       │
-# │                          KYBFarm - MQTT Sensor List                        │
+# │                       Home Assistant Sensor Automations                    │
+# │                   KYBFarm - MQTT Sensor Request Scheduler                  │
 # └────────────────────────────────────────────────────────────────────────────┘
 
+# ──────────────── S-PAR-02 GT1 ────────────────
+- alias: "S-PAR-02 GT1 • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 2
+    - platform: time_pattern
+      seconds: 24
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/spar02/gt1/req"
+        payload: '{"req_topic": "dt/gf/spar02/gt1/req", "res_topic": "dt/gf/spar02/gt1/res", "data": "ha_req"}'
+  mode: single
 
-# ────────────────────────────── TEMPLATE FORMAT ───────────────────────────── #
-# - name:                "DISPLAY NAME [TYPE]"
-#   unique_id:           "UNIQUE_SENSOR_ID"
-#   state_topic:         "mqtt/topic"
-#   value_template:      "{{ value_json['fields'].some_field }}"
-#   unit_of_measurement: "unit"
-#   icon:                "mdi:icon-name"
-# ───────────────────────────────────────────────────────────────────────────── #
+# ──────────────── S-PAR-02 GT2 ────────────────
+- alias: "S-PAR-02 GT2 • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 2
+    - platform: time_pattern
+      seconds: 26
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/spar02/gt2/req"
+        payload: '{"req_topic": "dt/gf/spar02/gt2/req", "res_topic": "dt/gf/spar02/gt2/res", "data": "ha_req"}'
+  mode: single
 
+# ──────────────── S-EC-01 GT1 ────────────────
+- alias: "S-EC-01 GT1 • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 4
+    - platform: time_pattern
+      seconds: 28
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sec01/gt1/req"
+        payload: '{"req_topic": "dt/gf/sec01/gt1/req", "res_topic": "dt/gf/sec01/gt1/res", "data": "ha_req"}'
+  mode: single
 
-# ─────────────────────────────── S-PAR-02 ─────────────────────────────── #
+# ──────────────── S-EC-01 GT2 ────────────────
+- alias: "S-EC-01 GT2 • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 6
+    - platform: time_pattern
+      seconds: 30
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sec01/gt2/req"
+        payload: '{"req_topic": "dt/gf/sec01/gt2/req", "res_topic": "dt/gf/sec01/gt2/res", "data": "ha_req"}'
+  mode: single
 
-## ───── PAR Sensor GT1 ─────
-- name: "PAR Sensor 02 GT1 [PAR]"
-  unique_id: "S-PAR-02_GT1_PAR"
-  state_topic: "dt/gf/spar02/gt1/res"
-  value_template: "{{ value_json['fields'].par }}"
-  unit_of_measurement: "µmol/m²/s"
-  icon: "mdi:white-balance-sunny"
+# ──────────────── S-EC-01 MX ────────────────
+- alias: "S-EC-01 MX • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 8
+    - platform: time_pattern
+      seconds: 32
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sec01/mx/req"
+        payload: '{"req_topic": "dt/gf/sec01/mx/req", "res_topic": "dt/gf/sec01/mx/res", "data": "ha_req"}'
+  mode: single
 
-## ───── PAR Sensor GT2 ─────
-- name: "PAR Sensor 02 GT2 [PAR]"
-  unique_id: "S-PAR-02_GT2_PAR"
-  state_topic: "dt/gf/spar02/gt2/res"
-  value_template: "{{ value_json['fields'].par }}"
-  unit_of_measurement: "µmol/m²/s"
-  icon: "mdi:white-balance-sunny"
+# ──────────────── STH01 1 ────────────────
+- alias: "STH01 1 • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 5
+      # High frequency for environmental data
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sth01/1/req"
+        payload: '{"req_topic": "dt/gf/sth01/1/req", "res_topic": "dt/gf/sth01/1/res", "data": "ha_req"}'
+  mode: single
 
+# ──────────────── STH01 2 ────────────────
+- alias: "STH01 2 • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 12
+    - platform: time_pattern
+      seconds: 26
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sth01/2/req"
+        payload: '{"req_topic": "dt/gf/sth01/2/req", "res_topic": "dt/gf/sth01/2/res", "data": "ha_req"}'
+  mode: single
 
-# ─────────────────────────────── S-EC-01 ─────────────────────────────── #
+# ──────────────── S-PH-01 GT1 ────────────────
+- alias: "S-PH-01 GT1 • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 14
+    - platform: time_pattern
+      seconds: 28
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sph01/gt1/req"
+        payload: '{"req_topic": "dt/gf/sph01/gt1/req", "res_topic": "dt/gf/sph01/gt1/res", "data": "ha_req"}'
+  mode: single
 
-## ───── EC Sensor GT1 ─────
-- name: "EC Sensor GT1 [EC]"
-  unique_id: "S-EC-01_GT1_EC"
-  state_topic: "dt/gf/sec01/gt1/res"
-  value_template: "{{ value_json['fields'].ec }}"
-  unit_of_measurement: "µS/cm"
-  icon: "mdi:flash"
+# ──────────────── S-PH-01 GT2 ────────────────
+- alias: "S-PH-01 GT2 • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 17
+    - platform: time_pattern
+      seconds: 31
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sph01/gt2/req"
+        payload: '{"req_topic": "dt/gf/sph01/gt2/req", "res_topic": "dt/gf/sph01/gt2/res", "data": "ha_req"}'
+  mode: single
 
-- name: "EC Sensor GT1 [Temperature]"
-  unique_id: "S-EC-01_GT1_TEMP"
-  state_topic: "dt/gf/sec01/gt1/res"
-  value_template: "{{ value_json['fields'].temperature }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer"
+# ──────────────── S-PH-01 MX ────────────────
+- alias: "S-PH-01 MX • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 19
+    - platform: time_pattern
+      seconds: 33
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sph01/mx/req"
+        payload: '{"req_topic": "dt/gf/sph01/mx/req", "res_topic": "dt/gf/sph01/mx/res", "data": "ha_req"}'
+  mode: single
 
-- name: "EC Sensor GT1 [TDS]"
-  unique_id: "S-EC-01_GT1_TDS"
-  state_topic: "dt/gf/sec01/gt1/res"
-  value_template: "{{ value_json['fields'].tds }}"
-  unit_of_measurement: "mg/L"
-  icon: "mdi:water"
+# ──────────────── S-YM-01 [Leaf Wetness Sensor] ────────────────
+- alias: "S-YM-01 • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: 21
+    - platform: time_pattern
+      seconds: 45
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sym01/req"
+        payload: '{"req_topic": "dt/gf/sym01/req", "res_topic": "dt/gf/sym01/res", "data": "ha_req"}'
+  mode: single
 
-- name: "EC Sensor GT1 [Calibration]"
-  unique_id: "S-EC-01_GT1_CALIBRATION"
-  state_topic: "dt/gf/sec01/gt1/res"
-  value_template: "{{ (value_json['fields'].calibrated if value_json['fields'].calibrated != 0 else '1970-01-01T00:00:00Z') | as_timestamp | round(0) }}"
-  unit_of_measurement: "timestamp"
-  icon: "mdi:calendar-clock"
-
-## ───── EC Sensor GT2 ─────
-- name: "EC Sensor GT2 [EC]"
-  unique_id: "S-EC-01_GT2_EC"
-  state_topic: "dt/gf/sec01/gt2/res"
-  value_template: "{{ value_json['fields'].ec }}"
-  unit_of_measurement: "µS/cm"
-  icon: "mdi:flash"
-
-- name: "EC Sensor GT2 [Temperature]"
-  unique_id: "S-EC-01_GT2_TEMP"
-  state_topic: "dt/gf/sec01/gt2/res"
-  value_template: "{{ value_json['fields'].temperature }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer"
-
-- name: "EC Sensor GT2 [TDS]"
-  unique_id: "S-EC-01_GT2_TDS"
-  state_topic: "dt/gf/sec01/gt2/res"
-  value_template: "{{ value_json['fields'].tds }}"
-  unit_of_measurement: "mg/L"
-  icon: "mdi:water"
-
-- name: "EC Sensor GT2 [Calibration]"
-  unique_id: "S-EC-01_GT2_CALIBRATION"
-  state_topic: "dt/gf/sec01/gt2/res"
-  value_template: "{{ (value_json['fields'].calibrated if value_json['fields'].calibrated != 0 else '1970-01-01T00:00:00Z') | as_timestamp | round(0) }}"
-  unit_of_measurement: "timestamp"
-  icon: "mdi:calendar-clock"
-
-## ───── EC Sensor MX ─────
-- name: "EC Sensor MX [EC]"
-  unique_id: "S-EC-01_MX_EC"
-  state_topic: "dt/gf/sec01/mx/res"
-  value_template: "{{ value_json['fields'].ec }}"
-  unit_of_measurement: "µS/cm"
-  icon: "mdi:flash"
-
-- name: "EC Sensor MX [Temperature]"
-  unique_id: "S-EC-01_MX_TEMP"
-  state_topic: "dt/gf/sec01/mx/res"
-  value_template: "{{ value_json['fields'].temperature }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer"
-
-- name: "EC Sensor MX [TDS]"
-  unique_id: "S-EC-01_MX_TDS"
-  state_topic: "dt/gf/sec01/mx/res"
-  value_template: "{{ value_json['fields'].tds }}"
-  unit_of_measurement: "mg/L"
-  icon: "mdi:water"
-
-- name: "EC Sensor MX [Calibration]"
-  unique_id: "S-EC-01_MX_CALIBRATION"
-  state_topic: "dt/gf/sec01/mx/res"
-  value_template: "{{ (value_json['fields'].calibrated if value_json['fields'].calibrated != 0 else '1970-01-01T00:00:00Z') | as_timestamp | round(0) }}"
-  unit_of_measurement: "timestamp"
-  icon: "mdi:calendar-clock"
-
-
-# ─────────────────────────────── S-PH-01 ─────────────────────────────── #
-
-## ───── pH Sensor GT1 ─────
-- name: "pH Sensor GT1 [pH]"
-  unique_id: "S-PH-01_GT1_PH"
-  state_topic: "dt/gf/sph01/gt1/res"
-  value_template: "{{ value_json['fields'].ph }}"
-  unit_of_measurement: "pH"
-  icon: "mdi:ph"
-
-- name: "pH Sensor GT1 [Temperature]"
-  unique_id: "S-PH-01_GT1_TEMP"
-  state_topic: "dt/gf/sph01/gt1/res"
-  value_template: "{{ value_json['fields'].temperature }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer"
-
-- name: "pH Sensor GT1 [Calibration]"
-  unique_id: "S-PH-01_GT1_CALIBRATION"
-  state_topic: "dt/gf/sph01/gt1/res"
-  value_template: "{{ (value_json['fields'].calibrated if value_json['fields'].calibrated != 0 else '1970-01-01T00:00:00Z') | as_timestamp | round(0) }}"
-  unit_of_measurement: "timestamp"
-  icon: "mdi:calendar-clock"
-
-## ───── pH Sensor GT2 ─────
-- name: "pH Sensor GT2 [pH]"
-  unique_id: "S-PH-01_GT2_PH"
-  state_topic: "dt/gf/sph01/gt2/res"
-  value_template: "{{ value_json['fields'].ph }}"
-  unit_of_measurement: "pH"
-  icon: "mdi:ph"
-
-- name: "pH Sensor GT2 [Temperature]"
-  unique_id: "S-PH-01_GT2_TEMP"
-  state_topic: "dt/gf/sph01/gt2/res"
-  value_template: "{{ value_json['fields'].temperature }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer"
-
-- name: "pH Sensor GT2 [Calibration]"
-  unique_id: "S-PH-01_GT2_CALIBRATION"
-  state_topic: "dt/gf/sph01/gt2/res"
-  value_template: "{{ (value_json['fields'].calibrated if value_json['fields'].calibrated != 0 else '1970-01-01T00:00:00Z') | as_timestamp | round(0) }}"
-  unit_of_measurement: "timestamp"
-  icon: "mdi:calendar-clock"
-
-## ───── pH Sensor MX ─────
-- name: "pH Sensor MX [pH]"
-  unique_id: "S-PH-01_MX_PH"
-  state_topic: "dt/gf/sph01/mx/res"
-  value_template: "{{ value_json['fields'].ph }}"
-  unit_of_measurement: "pH"
-  icon: "mdi:ph"
-
-- name: "pH Sensor MX [Temperature]"
-  unique_id: "S-PH-01_MX_TEMP"
-  state_topic: "dt/gf/sph01/mx/res"
-  value_template: "{{ value_json['fields'].temperature }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer"
-
-- name: "pH Sensor MX [Calibration]"
-  unique_id: "S-PH-01_MX_CALIBRATION"
-  state_topic: "dt/gf/sph01/mx/res"
-  value_template: "{{ (value_json['fields'].calibrated if value_json['fields'].calibrated != 0 else '1970-01-01T00:00:00Z') | as_timestamp | round(0) }}"
-  unit_of_measurement: "timestamp"
-  icon: "mdi:calendar-clock"
-
-
-# ─────────────────────────────── CO2/VOC Sensor ─────────────────────────────── #
-
-## ───── CO2/VOC Sensor ─────
-- name: "CO2/VOC Sensor [Temperature]"
-  unique_id: "CO2_VOC_1_TEMP"
-  state_topic: "dt/gf/co2voc/1/res"
-  value_template: "{{ value_json['fields'].temperature }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer"
-
-- name: "CO2/VOC Sensor [Humidity]"
-  unique_id: "CO2_VOC_1_RH"
-  state_topic: "dt/gf/co2voc/1/res"
-  value_template: "{{ value_json['fields'].humidity }}"
-  unit_of_measurement: "%[RH]"
-  icon: "mdi:water-percent"
-
-- name: "CO2/VOC Sensor 1 [CO2]"
-  unique_id: "CO2_VOC_1_CO2"
-  state_topic: "dt/gf/co2voc/1/res"
-  value_template: "{{ value_json['fields'].co2 }}"
-  unit_of_measurement: "ppm"
-  icon: "mdi:molecule-co2"
-
-- name: "CO2/VOC Sensor 1 [Dewpoint]"
-  unique_id: "CO2_VOC_1_DP"
-  state_topic: "dt/gf/co2voc/1/res"
-  value_template: "{{ value_json['fields'].dewpoint }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer-water"
-
-- name: "CO2/VOC Sensor 1 [Volume Flow]"
-  unique_id: "CO2_VOC_1_VF"
-  state_topic: "dt/gf/co2voc/1/res"
-  value_template: "{{ value_json['fields'].volumeFlow }}"
-  unit_of_measurement: "m3/s"
-  icon: "mdi:air-filter"
-
-
-# ─────────────────────────────── S-TH-01 ─────────────────────────────── #
-
-## ───── STH Sensor 1 ─────
-- name: "STH Sensor 1 [Temperature]"
-  unique_id: "STH01_1_TEMP"
-  state_topic: "dt/gf/sth01/1/res"
-  value_template: "{{ value_json['fields'].temperature }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer"
-
-- name: "STH Sensor 1 [Humidity]"
-  unique_id: "STH01_1_RH"
-  state_topic: "dt/gf/sth01/1/res"
-  value_template: "{{ value_json['fields'].humidity }}"
-  unit_of_measurement: "%[RH]"
-  icon: "mdi:water-percent"
-
-- name: "STH Sensor 1 [Dewpoint]"
-  unique_id: "STH01_1_DP"
-  state_topic: "dt/gf/sth01/1/res"
-  value_template: "{{ value_json['fields'].dewpoint }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer-water"
-
-## ───── STH Sensor 2 ─────
-- name: "STH Sensor 2 [Temperature]"
-  unique_id: "STH01_2_TEMP"
-  state_topic: "dt/gf/sth01/2/res"
-  value_template: "{{ value_json['fields'].temperature }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer"
-
-- name: "STH Sensor 2 [Humidity]"
-  unique_id: "STH01_2_RH"
-  state_topic: "dt/gf/sth01/2/res"
-  value_template: "{{ value_json['fields'].humidity }}"
-  unit_of_measurement: "%[RH]"
-  icon: "mdi:water-percent"
-
-- name: "STH Sensor 2 [Dewpoint]"
-  unique_id: "STH01_2_DP"
-  state_topic: "dt/gf/sth01/2/res"
-  value_template: "{{ value_json['fields'].dewpoint }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer-water"
-
-
-
-# ─────────────────────────────── S-YM-01 ─────────────────────────────── #
-
-## ───── SYM01 Leaf Wetness Sensor ─────
-- name: "SYM01 [Temperature]"
-  unique_id: "S-YM-01_TEMP"
-  state_topic: "dt/gf/sym01/res"
-  value_template: "{{ value_json['fields'].temperature }}"
-  unit_of_measurement: "°C"
-  icon: "mdi:thermometer"
-
-- name: "SYM01 [Leaf Wetness]"
-  unique_id: "S-YM-01_LEAF_WETNESS"
-  state_topic: "dt/gf/sym01/res"
-  value_template: "{{ value_json['fields'].wetness }}"
-  unit_of_measurement: "%[Leaf Wetness]"
-  icon: "mdi:leaf"
-
-
-# ─────────────────────────────── Dummy Control Signal ─────────────────────────────── #
-
-- name: "Dummy Temperature Control Signal [Float]"
-  unique_id: "GF_P_10"
-  state_topic: "ha/desktop_gf/actuators/temperature"
-  value_template: "{{ (value_json['control_signal'] | float) | round(2) }}"
-  unit_of_measurement: "[float]"
-  icon: "mdi:heat-wave"
+# ──────────────── CO2VOC [CO2 Sensor] ────────────────
+- alias: "CO2VOC • Request"
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/co2voc/1/req"
+        payload: '{"req_topic": "dt/gf/co2voc/1/req", "res_topic": "dt/gf/co2voc/1/res", "data": "ha_req"}'
+  mode: single

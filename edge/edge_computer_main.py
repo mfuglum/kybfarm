@@ -190,8 +190,8 @@ sensor_specs = {
         "par_gt1": (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 1),
         "par_gt2": (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 34),
 
-        "ec_gt1":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 6),
-        "ec_gt2":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 5),
+        "ec_gt1":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 5),
+        "ec_gt2":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 6),
         "ec_mx":   (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 7),
 
         "ph_gt1":  (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 8),
@@ -226,7 +226,10 @@ def sensor_handler(sensor_obj, label):
     def on_data(client, userdata, msg):
         req_msg = json.loads(msg.payload)
         try:
-            data = sensor_obj.fetch_and_return_data()
+            if label in ["sth01_1", "sth01_2"]:
+                data = sensor_obj.fetch_and_return_data(label)
+            else:
+                data = sensor_obj.fetch_and_return_data()
             res_payload = json.dumps(data)
             client.publish(req_msg["res_topic"], res_payload)
 
