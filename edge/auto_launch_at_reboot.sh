@@ -71,3 +71,4 @@ done
 echo "Network is up, starting main on edge:"
 
 python /home/user1/kybfarm/edge/edge_computer_main.py > /home/user1/kybfarm/cronlog.log 2>&1
+#!/bin/bash
