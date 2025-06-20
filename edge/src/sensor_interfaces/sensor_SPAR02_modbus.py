@@ -53,7 +53,7 @@ class SPAR02( minimalmodbus.Instrument ):
 
     def __init__(self, 
                  portname='/dev/ttySC1', 
-                 slaveaddress=34, 
+                 slaveaddress=1, 
                  mode=minimalmodbus.MODE_RTU, 
                  close_port_after_each_call=False, 
                  debug=False):
@@ -64,6 +64,7 @@ class SPAR02( minimalmodbus.Instrument ):
                                           close_port_after_each_call, 
                                           debug)
         self.serial.baudrate = 9600
+        self.slaveaddress = slaveaddress
     # Returns the value of the Photosynthetically Active Radiation (PAR) in µmol/m²/s
     def get_par(self):
         par = self.read_long(registeraddress=0,
@@ -82,6 +83,8 @@ class SPAR02( minimalmodbus.Instrument ):
     # A function to fetch and return data from the sensor
     def fetch_and_return_data(self):
         par = self.get_par()
+        if self.slaveaddress == 1:
+            par = (par / 4390912) * 1.8947  # Adjusting for the slave address 1 as per the datasheet
         data["fields"]["par"] = par
         data["time"] = datetime.datetime.now().isoformat()
         return data
