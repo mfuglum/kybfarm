@@ -1,122 +1,138 @@
 import adbase as ad
+from datetime import datetime, timedelta
 
 class Lamp_control(ad.ADBase):
     """
-    AppDaemon app for controlling intensity and scheduling of KYBFarm grow lamps.
-
-    Features:
-    - Turns lamps ON or OFF based on scheduled time (supports overnight ranges)
-    - Copies values from user-set sliders to control channels
-    - Listens to toggle and time changes in real-time
-
-    Configuration args (from apps.yaml):
-    - set_values_ids: entity_ids of user-set input_numbers for lamp intensity
-    - amplitude_ids: entity_ids of actual channels controlling the lamp
-    - toggle_id: input_boolean that enables/disables lamp control
-    - start_time_id: input_datetime that defines lamp ON time
-    - finish_time_id: input_datetime that defines lamp OFF time
+    AppDaemon app for controlling intensity and scheduling of KYBFarm grow lamps with smooth dawn/dusk simulation.
     """
 
     def initialize(self):
-        # Setup API access and log initialization
         self.adapi = self.get_ad_api()
         self.label = self.args["name"]
         self.adapi.log(f"[{self.label}] init...")
 
-        # Get entities for set values (user sliders)
-        set_values_ids = self.args["set_values_ids"]
-        self.values=  [self.adapi.get_entity(id) for id in set_values_ids]
+        self.values = [self.adapi.get_entity(id) for id in self.args["set_values_ids"]]
+        self.amplitudes = [self.adapi.get_entity(id) for id in self.args["amplitude_ids"]]
+        self.dawns = [self.adapi.get_entity(id) for id in self.args["dawn_durations_ids"]]
+        self.dusks = [self.adapi.get_entity(id) for id in self.args["dusk_durations_ids"]]
+        self.toggle = self.adapi.get_entity(self.args["toggle_id"])
+        self.start_time = self.adapi.get_entity(self.args["start_time_id"])
+        self.finish_time = self.adapi.get_entity(self.args["finish_time_id"])
 
-        # Get entities for actual lamp output channels
-        amplitude_ids = self.args["amplitude_ids"]
-        self.amplitudes = [self.adapi.get_entity(id) for id in amplitude_ids]
+        self.cb_handle_step = None
 
-        # Get toggle entity (on/off switch)
-        toggle_id = self.args["toggle_id"]
-        self.toggle = self.adapi.get_entity(toggle_id)
+        if self.toggle.get_state() == "on":
+            self.cb_handle_step = self.adapi.run_every(self.update_ramp, datetime.now() + timedelta(seconds=1), 60)
+            self.adapi.log(f"[{self.label}] Scheduled update_ramp every 60s")
 
-        # Get time input entities
-        start_time_id = self.args["start_time_id"]
-        finish_time_id = self.args["finish_time_id"]
-        self.start_time = self.adapi.get_entity(start_time_id)
-        self.finish_time = self.adapi.get_entity(finish_time_id)
-
-        # Prepare callback handles for scheduling
-        self.cb_handle_start = None
-        self.cb_handle_finish = None
-
-        # If toggle is ON at startup, schedule start/stop callbacks
-        toggle = self.toggle.get_state()
-        if toggle == "on":
-            self.cb_handle_start = self.adapi.run_at(self.callback, self.adapi.parse_datetime(self.start_time.get_state()))
-            self.cb_handle_finish = self.adapi.run_at(self.callback, self.adapi.parse_datetime(self.finish_time.get_state()))
-
-        # Watch for toggle and time changes
         self.toggle.listen_state(self.toggle_control)
-        self.start_time.listen_state(self.new_start_time)
-        self.finish_time.listen_state(self.new_finish_time)
+        self.start_time.listen_state(self.schedule_ramping)
+        self.finish_time.listen_state(self.schedule_ramping)
 
         self.adapi.log(f"[{self.label}] Lamp controller init finished")
 
-    def callback(self, cb_args):
-        """Fires when the timer triggers — checks and sets lamp state"""
-        self.set_lamp_state()
-
     def toggle_control(self, entity, attribute, old, new, cb_args):
-        """Triggered when the ON/OFF toggle changes"""
         if new == "on":
-            self.adapi.log(f"[{self.label}]Lamp controller controller turned on")
-            self.cb_handle_start = self.adapi.run_at(self.callback, self.adapi.parse_datetime(self.start_time.get_state()))
-            self.cb_handle_finish = self.adapi.run_at(self.callback, self.adapi.parse_datetime(self.finish_time.get_state()))
-            self.set_lamp_state()
-        elif new == "off":
-            self.adapi.cancel_timer(self.cb_handle_start)
-            self.adapi.cancel_timer(self.cb_handle_finish)
-            self.turn_off()
-            self.adapi.log(f"[{self.label}] Lamp controller turned off")
+            self.adapi.log(f"[{self.label}] Lamp controller turned ON")
+            if self.cb_handle_step:
+                self.adapi.cancel_timer(self.cb_handle_step)
 
-    def new_start_time(self, entity, attribute, old, new, cb_args):
-        """Called when the start time is changed — reschedules callback"""
-        self.cb_handle_start = self.adapi.run_at(self.callback, new)
-        self.set_lamp_state()
+            self.cb_handle_step = self.adapi.run_every(self.update_ramp, datetime.now() + timedelta(seconds=1), 60)
+            self.adapi.log(f"[{self.label}] Scheduled update_ramp every 60s (toggle ON)")
 
-    def new_finish_time(self, entity, attribute, old, new, cb_args):
-        """Called when the finish time is changed — reschedules callback"""
-        self.cb_handle_start = self.adapi.run_at(self.callback, new)
-        self.set_lamp_state()
-
-    def should_turn_on(self, now, start, finish):
-        """Determines whether the current time is inside the lamp-on window"""
-        now = now.time()
-        start = start.time()
-        finish = finish.time()
-
-        # Daytime range (e.g. 08:00 to 20:00)
-        if start < finish:
-            return start <= now < finish
+            try:
+                self.update_ramp({})
+            except Exception as e:
+                self.adapi.log(f"[{self.label}] ERROR during initial update_ramp: {str(e)}", level="ERROR")
         else:
-            # Overnight range (e.g. 22:00 to 06:00)
-            return now >= start or now < finish
+            if self.cb_handle_step:
+                self.adapi.cancel_timer(self.cb_handle_step)
+            self.turn_off()
+            self.adapi.log(f"[{self.label}] Lamp controller turned OFF")
 
-    def turn_on(self):
-        """Copies the user-set slider values into the active lamp output channels"""
-        values = [slider.get_state() for slider in self.values]
-        [ampl.set_state(state=value) for ampl, value in zip(self.amplitudes, values)]
-        self.adapi.log(f"[{self.label}] Turning on lamp with values: {values}")
+    def schedule_ramping(self, entity, attribute, old, new, cb_args):
+        try:
+            self.update_ramp(cb_args)
+        except Exception as e:
+            self.adapi.log(f"[{self.label}] ERROR in schedule_ramping: {str(e)}", level="ERROR")
+
+    def update_ramp(self, cb_args):
+        try:
+            now = datetime.now().astimezone()
+
+            start = self._parse_time(self.start_time.get_state())
+            finish = self._parse_time(self.finish_time.get_state())
+
+            if self.toggle.get_state() != "on":
+                self.turn_off()
+                return
+
+            if self.is_within_lighting_period(now, start, finish):
+                values = []
+                for i, (val_ent, dawn_ent, dusk_ent) in enumerate(zip(self.values, self.dawns, self.dusks)):
+                    try:
+                        target = float(val_ent.get_state())
+                        dawn = int(float(dawn_ent.get_state()))
+                        dusk = int(float(dusk_ent.get_state()))
+
+                        gain = self.calculate_gain(now, start, finish, dawn, dusk)
+                        ramped_value = round(target * gain)
+                        values.append(ramped_value)
+                        self.adapi.log(f"[{self.label}] Channel {i}: gain={gain:.2f}, target={target}, ramped={ramped_value}")
+                    except Exception as e:
+                        self.adapi.log(f"[{self.label}] ERROR in channel {i} gain calc: {str(e)}", level="ERROR")
+
+                for amp, val in zip(self.amplitudes, values):
+                    amp.set_state(state=val)
+
+                self.adapi.log(f"[{self.label}] Ramping values: {values}")
+            else:
+                self.turn_off()
+        except Exception as e:
+            self.adapi.log(f"[{self.label}] ERROR in update_ramp: {str(e)}", level="ERROR")
+
+    def is_within_lighting_period(self, now, start, finish):
+        now_time = now.time()
+        start_time = start.time()
+        finish_time = finish.time()
+        if start_time < finish_time:
+            return start_time <= now_time < finish_time
+        else:
+            return now_time >= start_time or now_time < finish_time
+
+    def calculate_gain(self, now, start, finish, dawn, dusk):
+        minutes_since_start = self.time_difference_minutes(start, now)
+        minutes_until_end = self.time_difference_minutes(now, finish)
+
+        if dawn > 0 and minutes_since_start < dawn:
+            return max(0.0, min(1.0, minutes_since_start / dawn))
+        elif dusk > 0 and minutes_until_end < dusk:
+            return max(0.0, min(1.0, minutes_until_end / dusk))
+        else:
+            return 1.0
+
+    def time_difference_minutes(self, earlier, later):
+        if later < earlier:
+            later += timedelta(days=1)
+        return (later - earlier).total_seconds() / 60
+
+    def _parse_time(self, raw):
+        try:
+            if isinstance(raw, str):
+                # If it's a time-only string like '15:03:00', combine with today
+                if len(raw) == 8 and raw.count(":") == 2:
+                    today = datetime.now().astimezone().date()
+                    raw = f"{today}T{raw}"
+                parsed = datetime.fromisoformat(raw)
+            else:
+                parsed = raw
+            return parsed.astimezone()
+        except Exception as e:
+            self.adapi.log(f"[{self.label}] ERROR in _parse_time: {e}", level="ERROR")
+            return datetime.now().astimezone()
 
 
     def turn_off(self):
-        """Turns off all lamp output channels (sets to 0)"""
-        [ampl.set_state(state=0) for ampl in self.amplitudes]
+        for amp in self.amplitudes:
+            amp.set_state(state=0)
         self.adapi.log(f"[{self.label}] Turning off lamp")
-
-    def set_lamp_state(self):
-        """Evaluates time range and toggles lamp accordingly"""
-        now = self.adapi.get_now()
-        start = self.adapi.parse_datetime(self.start_time.get_state())
-        finish = self.adapi.parse_datetime(self.finish_time.get_state())
-
-        if self.should_turn_on(now, start, finish):
-            self.turn_on()
-        else:
-            self.turn_off()

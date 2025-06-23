@@ -15,6 +15,11 @@ dummy_control:
   sensor: sensor.s_ec_01_2_temperature
   control_signal_topic: "ha/desktop_gf/actuators/temperature"
 
+main_loop:
+  module: main_loop
+  class: MainLoop
+  flag_entity: input_text.main_loop_flag
+
 air_pump_controller:
   module: air_pump_controller
   class: Air_pump_controller
@@ -53,6 +58,16 @@ lamp1_controller:
     - input_number.elixia_1_set_channel_5700k
     - input_number.elixia_1_set_channel_660nm
     - input_number.elixia_1_set_channel_735nm
+  dawn_durations_ids:
+    - input_number.elixia_1_dawn_duration_450nm
+    - input_number.elixia_1_dawn_duration_5700k
+    - input_number.elixia_1_dawn_duration_660nm
+    - input_number.elixia_1_dawn_duration_735nm
+  dusk_durations_ids:
+    - input_number.elixia_1_dusk_duration_450nm
+    - input_number.elixia_1_dusk_duration_5700k
+    - input_number.elixia_1_dusk_duration_660nm
+    - input_number.elixia_1_dusk_duration_735nm
   start_time_id: input_datetime.lamp1_start_time
   finish_time_id: input_datetime.lamp1_finish_time
   toggle_id: input_boolean.lamp1_control_toggle
@@ -71,9 +86,20 @@ lamp2_controller:
     - input_number.elixia_2_set_channel_5700k
     - input_number.elixia_2_set_channel_660nm
     - input_number.elixia_2_set_channel_735nm
+  dawn_durations_ids:
+    - input_number.elixia_2_dawn_duration_450nm
+    - input_number.elixia_2_dawn_duration_5700k
+    - input_number.elixia_2_dawn_duration_660nm
+    - input_number.elixia_2_dawn_duration_735nm
+  dusk_durations_ids:
+    - input_number.elixia_2_dusk_duration_450nm
+    - input_number.elixia_2_dusk_duration_5700k
+    - input_number.elixia_2_dusk_duration_660nm
+    - input_number.elixia_2_dusk_duration_735nm
   start_time_id: input_datetime.lamp2_start_time
   finish_time_id: input_datetime.lamp2_finish_time
   toggle_id: input_boolean.lamp2_control_toggle
+
 
 mixing_tank_ec_controller:
   module: new_mixing_tank_ec_controller
