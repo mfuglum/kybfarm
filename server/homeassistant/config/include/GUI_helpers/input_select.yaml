@@ -2,8 +2,8 @@
 # │                  Input Select Entities - KYBFarm           │
 # └────────────────────────────────────────────────────────────┘
 
-calibrate_s_ec_01_1:
-  name: "[S-EC-01-1] Calibration"
+calibrate_s_ec_01_gt1:
+  name: "[S-EC-01-GT1] Calibration"
   icon: "mdi:water-check"
   options:
     - "Normal Operation"
@@ -12,8 +12,8 @@ calibrate_s_ec_01_1:
     - "Start EC Calibration (12880 µS/cm)"
     - "Confirm EC Calibration (12880 µS/cm)"
 
-calibrate_s_ec_01_2:
-  name: "[S-EC-01-2] Calibration"
+calibrate_s_ec_01_gt2:
+  name: "[S-EC-01-GT2] Calibration"
   icon: "mdi:water-check"
   options:
     - "Normal Operation"
@@ -22,8 +22,18 @@ calibrate_s_ec_01_2:
     - "Start EC Calibration (12880 µS/cm)"
     - "Confirm EC Calibration (12880 µS/cm)"
 
-calibrate_s_ph_01_1:
-  name: "[S-pH-01-1] Calibration"
+calibrate_s_ec_01_mx:
+  name: "[S-EC-01-MX] Calibration"
+  icon: "mdi:water-check"
+  options:
+    - "Normal Operation"
+    - "Start EC Calibration (1413 µS/cm)"
+    - "Confirm EC Calibration (1413 µS/cm)"
+    - "Start EC Calibration (12880 µS/cm)"
+    - "Confirm EC Calibration (12880 µS/cm)"
+
+calibrate_s_ph_01_gt1:
+  name: "[S-pH-01-GT1] Calibration"
   icon: "mdi:beaker-check"
   options:
     - "Normal Operation"
@@ -34,8 +44,20 @@ calibrate_s_ph_01_1:
     - "Start pH Calibration (10.01)"
     - "Confirm pH Calibration (10.01)"
 
-calibrate_s_ph_01_2:
-  name: "[S-pH-01-2] Calibration"
+calibrate_s_ph_01_gt2:
+  name: "[S-pH-01-GT2] Calibration"
+  icon: "mdi:beaker-check"
+  options:
+    - "Normal Operation"
+    - "Start pH Calibration (4.01)"
+    - "Confirm pH Calibration (4.01)"
+    - "Start pH Calibration (7.00)"
+    - "Confirm pH Calibration (7.00)"
+    - "Start pH Calibration (10.01)"
+    - "Confirm pH Calibration (10.01)"
+
+calibrate_s_ph_01_mx:
+  name: "[S-pH-01-MX] Calibration"
   icon: "mdi:beaker-check"
   options:
     - "Normal Operation"

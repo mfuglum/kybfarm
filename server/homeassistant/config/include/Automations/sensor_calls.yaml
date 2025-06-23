@@ -6,10 +6,9 @@
 # ──────────────── S-PAR-02 GT1 ────────────────
 - alias: "S-PAR-02 GT1 • Request"
   trigger:
-    - platform: time_pattern
-      seconds: 2
-    - platform: time_pattern
-      seconds: 32
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "spar02_gt1"
   action:
     - service: mqtt.publish
       data:
@@ -20,10 +19,9 @@
 # ──────────────── S-PAR-02 GT2 ────────────────
 - alias: "S-PAR-02 GT2 • Request"
   trigger:
-    - platform: time_pattern
-      seconds: 12
-    - platform: time_pattern
-      seconds: 42
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "spar02_gt2"
   action:
     - service: mqtt.publish
       data:
@@ -34,10 +32,9 @@
 # ──────────────── S-EC-01 GT1 ────────────────
 - alias: "S-EC-01 GT1 • Request"
   trigger:
-    - platform: time_pattern
-      seconds: 3
-    - platform: time_pattern
-      seconds: 33
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "ec_gt1"
   action:
     - service: mqtt.publish
       data:
@@ -48,10 +45,9 @@
 # ──────────────── S-EC-01 GT2 ────────────────
 - alias: "S-EC-01 GT2 • Request"
   trigger:
-    - platform: time_pattern
-      seconds: 4
-    - platform: time_pattern
-      seconds: 34
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "ec_gt2"
   action:
     - service: mqtt.publish
       data:
@@ -62,10 +58,9 @@
 # ──────────────── S-EC-01 MX ────────────────
 - alias: "S-EC-01 MX • Request"
   trigger:
-    - platform: time_pattern
-      seconds: 14
-    - platform: time_pattern
-      seconds: 44
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "ec_mx"
   action:
     - service: mqtt.publish
       data:
@@ -73,40 +68,12 @@
         payload: '{"req_topic": "dt/gf/sec01/mx/req", "res_topic": "dt/gf/sec01/mx/res", "data": "ha_req"}'
   mode: single
 
-# ──────────────── STH01 1 ────────────────
-- alias: "STH01 1 • Request"
-  trigger:
-    - platform: time_pattern
-      seconds: 5
-      # High frequency for environmental data
-  action:
-    - service: mqtt.publish
-      data:
-        topic: "dt/gf/sth01/1/req"
-        payload: '{"req_topic": "dt/gf/sth01/1/req", "res_topic": "dt/gf/sth01/1/res", "data": "ha_req"}'
-  mode: single
-
-# ──────────────── STH01 2 ────────────────
-- alias: "STH01 2 • Request"
-  trigger:
-    - platform: time_pattern
-      seconds: 8
-    - platform: time_pattern
-      seconds: 38
-  action:
-    - service: mqtt.publish
-      data:
-        topic: "dt/gf/sth01/2/req"
-        payload: '{"req_topic": "dt/gf/sth01/2/req", "res_topic": "dt/gf/sth01/2/res", "data": "ha_req"}'
-  mode: single
-
 # ──────────────── S-PH-01 GT1 ────────────────
 - alias: "S-PH-01 GT1 • Request"
   trigger:
-    - platform: time_pattern
-      seconds: 6
-    - platform: time_pattern
-      seconds: 36
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "ph_gt1"
   action:
     - service: mqtt.publish
       data:
@@ -117,10 +84,9 @@
 # ──────────────── S-PH-01 GT2 ────────────────
 - alias: "S-PH-01 GT2 • Request"
   trigger:
-    - platform: time_pattern
-      seconds: 7
-    - platform: time_pattern
-      seconds: 37
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "ph_gt2"
   action:
     - service: mqtt.publish
       data:
@@ -131,10 +97,9 @@
 # ──────────────── S-PH-01 MX ────────────────
 - alias: "S-PH-01 MX • Request"
   trigger:
-    - platform: time_pattern
-      seconds: 13
-    - platform: time_pattern
-      seconds: 43
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "ph_mx"
   action:
     - service: mqtt.publish
       data:
@@ -142,13 +107,38 @@
         payload: '{"req_topic": "dt/gf/sph01/mx/req", "res_topic": "dt/gf/sph01/mx/res", "data": "ha_req"}'
   mode: single
 
-# ──────────────── S-YM-01 [Leaf Wetness Sensor] ────────────────
+# ──────────────── STH01 1 ────────────────
+- alias: "STH01 1 • Request"
+  trigger:
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "sth01_1"
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sth01/1/req"
+        payload: '{"req_topic": "dt/gf/sth01/1/req", "res_topic": "dt/gf/sth01/1/res", "data": "ha_req"}'
+  mode: single
+
+# ──────────────── STH01 2 ────────────────
+- alias: "STH01 2 • Request"
+  trigger:
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "sth01_2"
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/sth01/2/req"
+        payload: '{"req_topic": "dt/gf/sth01/2/req", "res_topic": "dt/gf/sth01/2/res", "data": "ha_req"}'
+  mode: single
+
+# ──────────────── S-YM-01 • Leaf Wetness ────────────────
 - alias: "S-YM-01 • Request"
   trigger:
-    - platform: time_pattern
-      seconds: 9
-    - platform: time_pattern
-      seconds: 39
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "sym01"
   action:
     - service: mqtt.publish
       data:
@@ -156,11 +146,12 @@
         payload: '{"req_topic": "dt/gf/sym01/req", "res_topic": "dt/gf/sym01/res", "data": "ha_req"}'
   mode: single
 
-# ──────────────── CO2VOC [CO2 Sensor] ────────────────
+# ──────────────── CO2VOC ────────────────
 - alias: "CO2VOC • Request"
   trigger:
-    - platform: time_pattern
-      seconds: "/10"
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "co2voc"
   action:
     - service: mqtt.publish
       data:

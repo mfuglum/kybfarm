@@ -239,3 +239,151 @@ valve_voltage:
   max: 10
   step: 0.1
   mode: "box"
+
+# ─────────────── Elixia Lamp1 Dawn and Dusk durations ─────────────── #
+
+elixia_1_dawn_duration_450nm:
+  name: "[Elixia 1] Dawn Duration 450nm"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_1_dusk_duration_450nm:
+  name: "[Elixia 1] Dusk Duration 450nm"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_1_dawn_duration_5700k:
+  name: "[Elixia 1] Dawn Duration 5700K"
+  initial: 5
+  min: 0
+  max: 6180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_1_dusk_duration_5700k:
+  name: "[Elixia 1] Dusk Duration 5700K"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_1_dawn_duration_660nm:
+  name: "[Elixia 1] Dawn Duration 660nm"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_1_dusk_duration_660nm:
+  name: "[Elixia 1] Dusk Duration 660nm"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_1_dawn_duration_735nm:
+  name: "[Elixia 1] Dawn Duration 735nm"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_1_dusk_duration_735nm:
+  name: "[Elixia 1] Dusk Duration 735nm"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+# ─────────────── Elixia Lamp2 Dawn and Dusk durations ─────────────── #
+
+elixia_2_dawn_duration_450nm:
+  name: "[Elixia 2] Dawn Duration 450nm"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_2_dusk_duration_450nm:
+  name: "[Elixia 2] Dusk Duration 450nm"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_2_dawn_duration_5700k:
+  name: "[Elixia 2] Dawn Duration 5700K"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_2_dusk_duration_5700k:
+  name: "[Elixia 2] Dusk Duration 5700K"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_2_dawn_duration_660nm:
+  name: "[Elixia 2] Dawn Duration 660nm"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_2_dusk_duration_660nm:
+  name: "[Elixia 2] Dusk Duration 660nm"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_2_dawn_duration_735nm:
+  name: "[Elixia 2] Dawn Duration 735nm"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"
+
+elixia_2_dusk_duration_735nm:
+  name: "[Elixia 2] Dusk Duration 735nm"
+  initial: 5
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: "min"
+  mode: "box"

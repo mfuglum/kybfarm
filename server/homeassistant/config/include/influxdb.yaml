@@ -1,8 +1,8 @@
 api_version: 2
 ssl: false
-host: 172.26.31.3
+host: 172.26.45.193
 port: 8086
-token: "your-api-token"
+token: "URUHo9PG0gKn0HJ0zpHHRLPl03gunl3B_85Yb8SP-kUkSyf6SKO3C0Z94IDT_6ek8dMyYUIuxGNnqwPdkYx8Ig=="
 organization: kybfarm
 bucket: FarmData
 

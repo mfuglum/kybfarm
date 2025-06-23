@@ -7,3 +7,8 @@ calibration_status:
   icon: "mdi:chart-bell-curve"
   initial: "Normal Operation"
   mode: "text"
+
+main_loop_flag:
+    name: Main Loop Flag
+    initial: "idle"
+    max: 100
