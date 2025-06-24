@@ -52,7 +52,7 @@ relay_12:
   icon: "mdi:valve"
 
 relay_13:
-  name: "[RL13] Extra"
+  name: "[RL13] Co2 Solenoid"
   icon: "mdi:toggle-switch"
 
 relay_14:
@@ -91,16 +91,8 @@ mix_control_toggle:
   name: "[CTRL] Mixing Tank"
   icon: "mdi:pot-mix"
 
-grow_control_toggle:
-  name: "[CTRL] Grow Tank"
-  icon: "mdi:hydro-power"
-
 intake_fan_toggle:
   name: "[CTRL] Intake Fan"
-  icon: "mdi:fan"
-
-new_intake_fan_toggle:
-  name: "[CTRL] New Intake Fan"
   icon: "mdi:fan"
 
 fan_normal_operation_toggle:
@@ -114,7 +106,3 @@ lamp1_control_toggle:
 lamp2_control_toggle:
   name: "[CTRL] Lamp 2"
   icon: "mdi:ceiling-light"
-
-hvac_operation:
-  name: "[HVAC] Climate Control"
-  icon: "mdi:air-filter"

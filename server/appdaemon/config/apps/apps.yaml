@@ -3,10 +3,6 @@
 # │                           KYBFarm - apps.yaml                             │
 # └────────────────────────────────────────────────────────────────────────────┘
 
-hello_world:
-  module: hello
-  class: HelloWorld
-
 dummy_control:
   module: dummy_control
   class: DummyControl
@@ -25,6 +21,45 @@ air_pump_controller:
   class: Air_pump_controller
   id: input_boolean.relay_3
 
+co2_pid:
+  module: co2_pid
+  class: CO2PID
+  co2_pid_enable_id: input_boolean.co2_pid_enable_toggle
+  co2_sensor_id: sensor.co2_voc_sensor_1_co2
+  co2_ref_id: input_number.co2_ref
+  co2_pid_kp_id: input_number.co2_pid_kp
+  co2_pid_ki_id: input_number.co2_pid_ki
+  co2_pid_kd_id: input_number.co2_pid_kd
+  relay_13_id: input_boolean.relay_13
+
+cooling_pid:
+  module: cooling_pid
+  class: CoolingPID
+  enable_id: input_boolean.cooling_pid_enable_toggle
+  humid_sensor_id: sensor.sth_sensor_1_humidity_2
+  ref_id: input_number.humid_ref
+  kp_id: input_number.cooling_pid_kp
+  ki_id: input_number.cooling_pid_ki
+  kd_id: input_number.cooling_pid_kd
+  fan_cmd_topic: cmd/fan_voltage/req
+  valve_cmd_topic: cmd/valve_voltage/req
+
+heating_pid:
+  module: heating_pid
+  class: HeatingPID
+  enable_id: input_boolean.heating_pid_enable_toggle
+  sensor_id: sensor.sth_sensor_1_temperature
+  ref_id: input_number.temp_ref
+  kp_id: input_number.heating_pid_kp
+  ki_id: input_number.heating_pid_ki
+  kd_id: input_number.heating_pid_kd
+  relay_id: input_boolean.solid_state_relay1
+  pwm_duty_cycle_id: input_number.ssr_duty_cycle
+  pwm_base_period_id: input_number.ssr_base_period
+  pwm_stop_id: input_boolean.solid_state_relay_stop_loop
+  turn_on_for_id: input_number.ssr_turn_on_for
+
+
 intake_fan_controller:
   module: intake_fan_controller
   class: Intake_fan_controller
@@ -36,13 +71,6 @@ intake_fan_controller:
   temp_low_id: input_number.intake_fan_temp_low
   temp_high_id: input_number.intake_fan_temp_high
   toggle_id: input_boolean.intake_fan_toggle
-
-new_intake_fan_controller:
-  module: new_intake_fan_controller
-  class: new_Intake_fan_controller
-  fan_mode_id: input_select.new_intake_fan_modes
-  fan_voltage_id: input_number.new_intake_fan_voltage
-  fan_manual_toggle_id: input_boolean.new_intake_fan_toggle
 
 lamp1_controller:
   module: lamp_control
@@ -100,44 +128,3 @@ lamp2_controller:
   finish_time_id: input_datetime.lamp2_finish_time
   toggle_id: input_boolean.lamp2_control_toggle
 
-
-mixing_tank_ec_controller:
-  module: new_mixing_tank_ec_controller
-  class: Mixing_tank_ec_controller
-  ratio:
-    - 0.6
-    - 1.8
-    - 1.2
-  flow_rates:
-    - 0.0004347
-    - 0.0003436
-    - 0.000357
-  ec_constant: 0.0034
-  margin: 0.01
-  tank_vol: 350
-  pump_ids:
-    - input_boolean.relay_14
-    - input_boolean.relay_15
-    - input_boolean.relay_16
-  sensor_id: sensor.s_ec_01_2_ec
-  mixing_wait_time: 200
-  toggle_id: input_boolean.mix_control_toggle
-  ec_ref_id: input_number.ec_ref
-  mix_tank_pump_id: input_boolean.relay_2
-
-grow_tank_ec_controller:
-  module: new_grow_controller
-  class: Grow_tank_ec_controller
-  flow_rate: 0.0486111
-  vol_mix_tank: 350
-  vol_growth_tank: 100
-  grow_tank_ec_sensor_id: sensor.s_ec_01_1_ec
-  mix_tank_ec_sensor_id: sensor.s_ec_01_2_ec
-  solenoid_id: input_boolean.relay_11
-  n_tau: 4
-  tau: 70
-  max_run_time: 100
-  drain_time: 150
-  toggle_id: input_boolean.grow_control_toggle
-  reset_time: 3600
-  mix_tank_pump_id: input_boolean.relay_2
