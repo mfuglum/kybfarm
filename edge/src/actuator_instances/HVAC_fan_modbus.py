@@ -58,8 +58,10 @@ class Fan(minimalmodbus.Instrument):
 
     def on_message(self, client, userdata, msg):
         """MQTT handler to receive voltage command."""
+        
         try:
             payload = json.loads(msg.payload)
+            print(f"[FAN] Received MQTT message on {msg.topic}: {payload}")
             if payload.get("cmd") == "adjust":
                 self.set_voltage(float(payload["value"]))
                 client.publish(payload["res_topic"], json.dumps(self.current_voltage))

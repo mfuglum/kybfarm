@@ -44,19 +44,8 @@ from src.actuator_instances import (
     HVAC_valve_modbus,
     HVAC_ssr,
     relay_devices_initialization,
-    grow_lamp_elixia_initialization,
-    voltage_output,
-    solid_state_relay,
-    CO2_control
+    grow_lamp_elixia_initialization
 )
-
-# ────────────────────────────────────── PID State Buffer ───────────────────────────────── #
-from src.utils.latest_pid_data import (
-    latest_heating_data,
-    latest_humidity_data,
-    latest_CO2_data
-)
-
 # ───────────────────────────── Load Environment ───────────────────────────── #
 load_dotenv()
 
@@ -128,29 +117,12 @@ MQTT_LAMP_02_CMD_REQ   = os.getenv("MQTT_LAMP_02_CMD_REQ")
 MQTT_LAMP_02_DT_REQ    = os.getenv("MQTT_LAMP_02_DT_REQ")
 grow_lamp_elixia_initialization.lamp_2.update_ip_address(LAMP_02_IP)
 
-# ───────────── PID Enable Topics ───────────── #
-MQTT_PID_CMD = {
-    "cooling": os.getenv("MQTT_COOLING_PID_ENABLE_CMD_REQ"),
-    "heating": os.getenv("MQTT_HEATING_PID_ENABLE_CMD_REQ"),
-    "co2":     os.getenv("MQTT_CO2_PID_ENABLE_CMD_REQ")
-}
-
 # ───────────── Voltage-Controlled Devices (0–10 V) ───────────── #
 MQTT_VOLTAGE_CMD = {
     "fan_cmd":    os.getenv("MQTT_FAN_VOLTAGE_CMD_REQ"),
     "fan_res":    os.getenv("MQTT_FAN_VOLTAGE_CMD_RES"),
     "valve_cmd":  os.getenv("MQTT_VALVE_VOLTAGE_CMD_REQ"),
     "valve_res":  os.getenv("MQTT_VALVE_VOLTAGE_CMD_RES")
-}
-
-# ───────────── Setpoints (From Home Assistant) ───────────── #
-MQTT_REF_CMDS = {
-    "humidity_req": os.getenv("MQTT_REF_HUMID_CMD_REQ"),
-    "humidity_res": os.getenv("MQTT_REF_HUMID_CMD_RES"),
-    "temp_req":     os.getenv("MQTT_REF_TEMP_CMD_REQ"),
-    "temp_res":     os.getenv("MQTT_REF_TEMP_CMD_RES"),
-    "co2_req":      os.getenv("MQTT_REF_CO2_CMD_REQ"),
-    "co2_res":      os.getenv("MQTT_REF_CO2_CMD_RES")
 }
 
 # ─────────────── MQTT Connection Handler ─────────────── #
@@ -175,17 +147,9 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_LAMP_02_CMD_REQ)
     client.subscribe(MQTT_LAMP_02_DT_REQ)
 
-    for topic in MQTT_REF_CMDS.values():
-        client.subscribe(topic)
-
     # 0 - 10V control
     for topic in MQTT_VOLTAGE_CMD.values():
         client.subscribe(topic)
-
-    # PID Enable
-    for topic in MQTT_PID_CMD.values():
-        client.subscribe(topic)
-
 
 # ───────────────────────────── Activate Sensors & Actuators ───────────────────────────── #
 
@@ -239,13 +203,6 @@ def sensor_handler(sensor_obj, label):
                 data = sensor_obj.fetch_and_return_data()
             res_payload = json.dumps(data)
             client.publish(req_msg["res_topic"], res_payload)
-
-            if label == "co2voc":
-                latest_heating_data[label] = data["fields"]["temperature"]
-                latest_CO2_data[label] = data["fields"]["co2"]
-            elif label in ["sth01_1", "sth01_2"]:
-                latest_heating_data[label] = data["fields"]["temperature"]
-                latest_humidity_data[label] = data["fields"]["humidity"]
 
             print(f"{label} →", res_payload + "\n")
         except Exception as e:
@@ -331,35 +288,6 @@ on_message_sth01_1 = sensor_handler(sensors["sth01_1"], "sth01_1")["data"]
 on_message_sth01_2 = sensor_handler(sensors["sth01_2"], "sth01_2")["data"]
 
 
-#PDI
-def create_pid_handler(label, run_function, data_source):
-    def handler(client, userdata, msg):
-        cmd_msg = json.loads(msg.payload)
-        try:
-            print(cmd_msg)
-            if cmd_msg.get("cmd") == "pid_enable":
-                print(f"Enabling {label} PID")
-                print(f"Latest {label} data:", data_source)
-                run_function()
-            else:
-                print("Invalid command")
-        except Exception as e:
-            print(f"{label.upper()} PID error:", str(e))
-    return handler
-
-on_message_COOLING_PID_CMD_REQ = create_pid_handler(
-    "cooling", voltage_output.run_pid, latest_humidity_data
-)
-
-on_message_HEATING_PID_CMD_REQ = create_pid_handler(
-    "heating", solid_state_relay.run_heating_pid, latest_heating_data
-)
-
-on_message_CO2_PID_CMD_REQ = create_pid_handler(
-    "co2", CO2_control.run_CO2_pid, latest_CO2_data
-)
-
-
 # Setup MQTT client for sensor host
 client = mqtt.Client()
 
@@ -435,24 +363,6 @@ client.message_callback_add(MQTT_LAMP_01_DT_REQ, grow_lamp_elixia_initialization
 # Grow lamp2 Elixia
 client.message_callback_add(MQTT_LAMP_02_CMD_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_CMD_REQ)
 client.message_callback_add(MQTT_LAMP_02_DT_REQ, grow_lamp_elixia_initialization.on_message_LAMP02_DT)
-
-# ───────────── PID Control & Setpoints ───────────── #
-
-# Cooling PID
-client.message_callback_add(MQTT_PID_CMD["cooling"], on_message_COOLING_PID_CMD_REQ)
-client.message_callback_add(MQTT_REF_CMDS["humidity_req"], voltage_output.on_message_REFHUMID_CMD_REQ)
-client.message_callback_add(MQTT_REF_CMDS["humidity_res"], voltage_output.on_message_REFHUMID_CMD_REQ)
-
-# Heating PID
-client.message_callback_add(MQTT_PID_CMD["heating"], on_message_HEATING_PID_CMD_REQ)
-client.message_callback_add(MQTT_REF_CMDS["temp_req"], solid_state_relay.on_message_REFTEMP_CMD_REQ)
-client.message_callback_add(MQTT_REF_CMDS["temp_res"], solid_state_relay.on_message_REFTEMP_CMD_REQ)
-
-# CO₂ PID
-client.message_callback_add(MQTT_PID_CMD["co2"], on_message_CO2_PID_CMD_REQ)
-client.message_callback_add(MQTT_REF_CMDS["co2_req"], CO2_control.on_message_REFCO2_CMD_REQ)
-client.message_callback_add(MQTT_REF_CMDS["co2_res"], CO2_control.on_message_REFCO2_CMD_REQ)
-
 
 # Connect to the MQTT server
 try:
