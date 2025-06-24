@@ -1,5 +1,4 @@
 import appdaemon.plugins.hass.hassapi as hass
-import json
 
 class CO2PID(hass.Hass):
     def initialize(self):
@@ -9,16 +8,18 @@ class CO2PID(hass.Hass):
         self.kp_entity = self.args["co2_pid_kp_id"]
         self.ki_entity = self.args["co2_pid_ki_id"]
         self.kd_entity = self.args["co2_pid_kd_id"]
-        self.relay_topic = "cmd/solid_state_relay13/req"  # Update if using a different CO₂ relay
+        self.relay_entity = self.args["relay_13_id"]
 
         self.integral = 0
         self.prev_error = 0
         self.prev_time = self.datetime()
+        self.off_timer = None
 
-        self.run_every(self.control_loop, self.datetime(), 10)
+        self.run_every(self.control_loop, self.datetime(), 30)  # 30s interval per relay spec
 
     def control_loop(self, kwargs):
         if self.get_state(self.enable_entity) != "on":
+            self._turn_off_relay()
             return
 
         try:
@@ -30,6 +31,7 @@ class CO2PID(hass.Hass):
             Kd = float(self.get_state(self.kd_entity))
 
             error = ref - co2
+    
             now = self.datetime()
             dt = (now - self.prev_time).total_seconds()
             self.prev_time = now
@@ -39,16 +41,30 @@ class CO2PID(hass.Hass):
             self.prev_error = error
 
             control_signal = Kp * error + Ki * self.integral + Kd * derivative
-            scaled = max(0.0, min(control_signal / 10.0, 1.0))
+            scaled = max(0.0, min(control_signal / 0.0, 1.0))
             on_time = round(scaled * 10, 2)
 
-            payload = {
-                "cmd": "on_for",
-                "value": on_time
-            }
-
-            self.call_service("mqtt/publish", topic=self.relay_topic, payload=json.dumps(payload))
-            self.log(f"CO2 PID: ref={ref}, CO2={co2}, error={error:.1f}, Kp={Kp}, Ki={Ki}, Kd={Kd}, ON={on_time}s")
+            if on_time < 0.1:
+                self._turn_off_relay()
+                self.log(f"CO2 PID: ON time too low ({on_time}s), turning relay OFF")
+            else:
+                self._turn_on_relay(on_time)
+                self.log(f"CO2 PID: ref={ref}, CO2={co2}, error={error:.1f}, ON for {on_time}s")
 
         except Exception as e:
             self.log(f"[CO2 PID ERROR] {e}")
+
+    def _turn_on_relay(self, duration):
+        # Cancel any existing off timer
+        if self.off_timer:
+            self.cancel_timer(self.off_timer)
+        # Turn on relay boolean
+        self.call_service("input_boolean/turn_on", entity_id=self.relay_entity)
+        # Schedule relay turn off after duration seconds
+        self.off_timer = self.run_in(self._turn_off_relay, duration)
+
+    def _turn_off_relay(self, kwargs=None):
+        self.call_service("input_boolean/turn_off", entity_id=self.relay_entity)
+        if self.off_timer:
+            self.cancel_timer(self.off_timer)
+            self.off_timer = None

@@ -440,6 +440,7 @@ co2_pid_kp:
   min: 0
   max: 1
   step: 0.01
+  initial: 0.13
   mode: box
   icon: mdi:chart-line
 
@@ -448,6 +449,7 @@ co2_pid_ki:
   min: 0
   max: 0.1
   step: 0.001
+  initial: 0.02
   mode: box
   icon: mdi:sigma-lower
 
@@ -456,5 +458,62 @@ co2_pid_kd:
   min: 0
   max: 0.1
   step: 0.001
+  initial: 0.0
+  mode: box
+  icon: mdi:chart-bell-curve
+
+
+cooling_pid_kp:
+  name: "Cooling PID – Kp"
+  min: 0
+  max: 5
+  step: 0.01
+  mode: box
+  icon: mdi:chart-line
+  initial: 1.0
+
+cooling_pid_ki:
+  name: "Cooling PID – Ki"
+  min: 0
+  max: 1
+  step: 0.001
+  mode: box
+  icon: mdi:sigma-lower
+  initial: 0.05
+
+cooling_pid_kd:
+  name: "Cooling PID – Kd"
+  min: 0
+  max: 1
+  step: 0.001
+  mode: box
+  icon: mdi:chart-bell-curve
+  initial: 0.0
+
+
+heating_pid_kp:
+  name: "Heating PID – Kp"
+  min: 0
+  max: 10
+  step: 0.01
+  initial: 4.5
+  mode: box
+  icon: mdi:chart-line
+
+heating_pid_ki:
+  name: "Heating PID – Ki"
+  min: 0
+  max: 1
+  step: 0.001
+  initial: 0.25
+  mode: box
+  icon: mdi:sigma-lower
+
+heating_pid_kd:
+  name: "Heating PID – Kd"
+  min: 0
+  max: 1
+  step: 0.001
+  initial: 0.0
   mode: box
   icon: mdi:chart-bell-curve

@@ -30,6 +30,34 @@ co2_pid:
   co2_pid_kp_id: input_number.co2_pid_kp
   co2_pid_ki_id: input_number.co2_pid_ki
   co2_pid_kd_id: input_number.co2_pid_kd
+  relay_13_id: input_boolean.relay_13
+
+cooling_pid:
+  module: cooling_pid
+  class: CoolingPID
+  enable_id: input_boolean.cooling_pid_enable_toggle
+  humid_sensor_id: sensor.sth_sensor_1_humidity_2
+  ref_id: input_number.humid_ref
+  kp_id: input_number.cooling_pid_kp
+  ki_id: input_number.cooling_pid_ki
+  kd_id: input_number.cooling_pid_kd
+  fan_cmd_topic: cmd/fan_voltage/req
+  valve_cmd_topic: cmd/valve_voltage/req
+
+heating_pid:
+  module: heating_pid
+  class: HeatingPID
+  enable_id: input_boolean.heating_pid_enable_toggle
+  sensor_id: sensor.sth_sensor_1_temperature
+  ref_id: input_number.temp_ref
+  kp_id: input_number.heating_pid_kp
+  ki_id: input_number.heating_pid_ki
+  kd_id: input_number.heating_pid_kd
+  relay_id: input_boolean.solid_state_relay1
+  pwm_duty_cycle_id: input_number.ssr_duty_cycle
+  pwm_base_period_id: input_number.ssr_base_period
+  pwm_stop_id: input_boolean.solid_state_relay_stop_loop
+  turn_on_for_id: input_number.ssr_turn_on_for
 
 
 intake_fan_controller:
