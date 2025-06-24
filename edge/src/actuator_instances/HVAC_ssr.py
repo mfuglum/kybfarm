@@ -60,6 +60,8 @@ class SolidStateRelay:
             payload = json.loads(msg.payload)
             cmd = payload.get("cmd")
 
+            print(f"[SSR] Received MQTT message on {msg.topic}: {payload}")
+
             if cmd == "on":
                 self.turn_on()
 
