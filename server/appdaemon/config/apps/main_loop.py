@@ -16,7 +16,7 @@ class MainLoop(hass.Hass):
         self.index = 0  # Keeps track of the current position in the loop
 
         # Call `self.step` every 2 seconds, starting immediately
-        self.run_every(self.step, datetime.now() + timedelta(seconds=0), 1)
+        self.run_every(self.step, datetime.now() + timedelta(seconds=0), 2.5)
 
     def step(self, kwargs):
         next_task = self.tasks[self.index]
