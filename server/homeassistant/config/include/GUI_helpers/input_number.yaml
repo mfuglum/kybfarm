@@ -6,6 +6,7 @@
 # ─────────────── Elixia Lamp 1 Raw Channel Levels ─────────────── #
 elixia_1_channel_450nm:
   name: "[Elixia 1] Channel 450nm"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -14,6 +15,7 @@ elixia_1_channel_450nm:
 
 elixia_1_channel_660nm:
   name: "[Elixia 1] Channel 660nm"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -22,6 +24,7 @@ elixia_1_channel_660nm:
 
 elixia_1_channel_735nm:
   name: "[Elixia 1] Channel 735nm"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -30,6 +33,7 @@ elixia_1_channel_735nm:
 
 elixia_1_channel_5700k:
   name: "[Elixia 1] Channel 5700K"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -39,6 +43,7 @@ elixia_1_channel_5700k:
 # ─────────────── Elixia Lamp 2 Raw Channel Levels ─────────────── #
 elixia_2_channel_450nm:
   name: "[Elixia 2] Channel 450nm"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -47,6 +52,7 @@ elixia_2_channel_450nm:
 
 elixia_2_channel_660nm:
   name: "[Elixia 2] Channel 660nm"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -55,6 +61,7 @@ elixia_2_channel_660nm:
 
 elixia_2_channel_735nm:
   name: "[Elixia 2] Channel 735nm"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -63,6 +70,7 @@ elixia_2_channel_735nm:
 
 elixia_2_channel_5700k:
   name: "[Elixia 2] Channel 5700K"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -72,6 +80,7 @@ elixia_2_channel_5700k:
 # ─────────────── Elixia Lamp 1 Set Channels ─────────────── #
 elixia_1_set_channel_450nm:
   name: "[Elixia 1] Set Channel 450nm"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -80,6 +89,7 @@ elixia_1_set_channel_450nm:
 
 elixia_1_set_channel_5700k:
   name: "[Elixia 1] Set Channel 5700K"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -88,6 +98,7 @@ elixia_1_set_channel_5700k:
 
 elixia_1_set_channel_660nm:
   name: "[Elixia 1] Set Channel 660nm"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -96,6 +107,7 @@ elixia_1_set_channel_660nm:
 
 elixia_1_set_channel_735nm:
   name: "[Elixia 1] Set Channel 735nm"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -105,6 +117,7 @@ elixia_1_set_channel_735nm:
 # ─────────────── Elixia Lamp 2 Set Channels ─────────────── #
 elixia_2_set_channel_450nm:
   name: "[Elixia 2] Set Channel 450nm"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -113,6 +126,7 @@ elixia_2_set_channel_450nm:
 
 elixia_2_set_channel_5700k:
   name: "[Elixia 2] Set Channel 5700K"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -121,6 +135,7 @@ elixia_2_set_channel_5700k:
 
 elixia_2_set_channel_660nm:
   name: "[Elixia 2] Set Channel 660nm"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
@@ -129,15 +144,17 @@ elixia_2_set_channel_660nm:
 
 elixia_2_set_channel_735nm:
   name: "[Elixia 2] Set Channel 735nm"
+  icon: "mdi:waveform"
   initial: 0
   min: 0
   max: 1000
   step: 1
   mode: "box"
 
-
+# ─────────────── Ref values ─────────────── #
 ec_ref:
   name: "[Mixing Tank] EC Reference"
+  icon: "mdi:water-opacity"
   initial: 0
   min: 0
   max: 2
@@ -146,6 +163,7 @@ ec_ref:
 
 intake_fan_temp_low:
   name: "[Intake Fan] Min Temperature"
+  icon: "mdi:thermometer-minus"
   initial: 24
   min: 0
   max: 30
@@ -154,6 +172,7 @@ intake_fan_temp_low:
 
 intake_fan_temp_high:
   name: "[Intake Fan] Max Temperature"
+  icon: "mdi:thermometer-plus"
   initial: 25
   min: 0
   max: 30
@@ -162,6 +181,7 @@ intake_fan_temp_high:
 
 intake_fan_humid_low:
   name: "[Intake Fan] Min Humidity"
+  icon: "mdi:water-percent-alert"
   initial: 60
   min: 0
   max: 100
@@ -170,6 +190,7 @@ intake_fan_humid_low:
 
 intake_fan_humid_high:
   name: "[Intake Fan] Max Humidity"
+  icon: "mdi:water-percent"
   initial: 70
   min: 0
   max: 100
@@ -178,6 +199,7 @@ intake_fan_humid_high:
 
 humid_ref:
   name: "[HVAC] Target Humidity"
+  icon: "mdi:water-check"
   initial: 50
   min: 30
   max: 80
@@ -186,6 +208,7 @@ humid_ref:
 
 temp_ref:
   name: "[HVAC] Target Temperature"
+  icon: "mdi:thermostat"
   initial: 20
   min: 10
   max: 50
@@ -194,6 +217,7 @@ temp_ref:
 
 co2_ref:
   name: "[HVAC] Target CO₂"
+  icon: "mdi:molecule-co2"
   initial: 400
   min: 300
   max: 1000
@@ -202,6 +226,7 @@ co2_ref:
 
 ssr_duty_cycle:
   name: "[SSR] Duty Cycle"
+  icon: "mdi:chart-donut"
   initial: 0
   min: 0
   max: 1
@@ -210,6 +235,7 @@ ssr_duty_cycle:
 
 ssr_base_period:
   name: "[SSR] Base Period (s)"
+  icon: "mdi:clock-outline"
   initial: 1
   min: 0.1
   max: 20
@@ -218,6 +244,7 @@ ssr_base_period:
 
 ssr_turn_on_for:
   name: "[SSR] On Time (s)"
+  icon: "mdi:timer-play-outline"
   initial: 0
   min: 0
   max: 60
@@ -226,6 +253,7 @@ ssr_turn_on_for:
 
 new_intake_fan_voltage:
   name: "[Fan] Manual Voltage (V)"
+  icon: "mdi:fan-chevron-up"
   initial: 0
   min: 0
   max: 10
@@ -234,16 +262,19 @@ new_intake_fan_voltage:
 
 valve_voltage:
   name: "[Valve] Manual Voltage (V)"
+  icon: "mdi:valve"
   initial: 0
   min: 0
   max: 10
   step: 0.1
   mode: "box"
 
+
 # ─────────────── Elixia Lamp1 Dawn and Dusk durations ─────────────── #
 
 elixia_1_dawn_duration_450nm:
   name: "[Elixia 1] Dawn Duration 450nm"
+  icon: "mdi:white-balance-sunny"
   initial: 5
   min: 0
   max: 180
@@ -253,6 +284,7 @@ elixia_1_dawn_duration_450nm:
 
 elixia_1_dusk_duration_450nm:
   name: "[Elixia 1] Dusk Duration 450nm"
+  icon: "mdi:weather-night"
   initial: 5
   min: 0
   max: 180
@@ -262,15 +294,17 @@ elixia_1_dusk_duration_450nm:
 
 elixia_1_dawn_duration_5700k:
   name: "[Elixia 1] Dawn Duration 5700K"
+  icon: "mdi:white-balance-sunny"
   initial: 5
   min: 0
-  max: 6180
+  max: 180
   step: 1
   unit_of_measurement: "min"
   mode: "box"
 
 elixia_1_dusk_duration_5700k:
   name: "[Elixia 1] Dusk Duration 5700K"
+  icon: "mdi:weather-night"
   initial: 5
   min: 0
   max: 180
@@ -280,6 +314,7 @@ elixia_1_dusk_duration_5700k:
 
 elixia_1_dawn_duration_660nm:
   name: "[Elixia 1] Dawn Duration 660nm"
+  icon: "mdi:white-balance-sunny"
   initial: 5
   min: 0
   max: 180
@@ -289,6 +324,7 @@ elixia_1_dawn_duration_660nm:
 
 elixia_1_dusk_duration_660nm:
   name: "[Elixia 1] Dusk Duration 660nm"
+  icon: "mdi:weather-night"
   initial: 5
   min: 0
   max: 180
@@ -298,6 +334,7 @@ elixia_1_dusk_duration_660nm:
 
 elixia_1_dawn_duration_735nm:
   name: "[Elixia 1] Dawn Duration 735nm"
+  icon: "mdi:white-balance-sunny"
   initial: 5
   min: 0
   max: 180
@@ -307,6 +344,7 @@ elixia_1_dawn_duration_735nm:
 
 elixia_1_dusk_duration_735nm:
   name: "[Elixia 1] Dusk Duration 735nm"
+  icon: "mdi:weather-night"
   initial: 5
   min: 0
   max: 180
@@ -318,6 +356,7 @@ elixia_1_dusk_duration_735nm:
 
 elixia_2_dawn_duration_450nm:
   name: "[Elixia 2] Dawn Duration 450nm"
+  icon: "mdi:white-balance-sunny"
   initial: 5
   min: 0
   max: 180
@@ -327,6 +366,7 @@ elixia_2_dawn_duration_450nm:
 
 elixia_2_dusk_duration_450nm:
   name: "[Elixia 2] Dusk Duration 450nm"
+  icon: "mdi:weather-night"
   initial: 5
   min: 0
   max: 180
@@ -336,6 +376,7 @@ elixia_2_dusk_duration_450nm:
 
 elixia_2_dawn_duration_5700k:
   name: "[Elixia 2] Dawn Duration 5700K"
+  icon: "mdi:white-balance-sunny"
   initial: 5
   min: 0
   max: 180
@@ -345,6 +386,7 @@ elixia_2_dawn_duration_5700k:
 
 elixia_2_dusk_duration_5700k:
   name: "[Elixia 2] Dusk Duration 5700K"
+  icon: "mdi:weather-night"
   initial: 5
   min: 0
   max: 180
@@ -354,6 +396,7 @@ elixia_2_dusk_duration_5700k:
 
 elixia_2_dawn_duration_660nm:
   name: "[Elixia 2] Dawn Duration 660nm"
+  icon: "mdi:white-balance-sunny"
   initial: 5
   min: 0
   max: 180
@@ -363,6 +406,7 @@ elixia_2_dawn_duration_660nm:
 
 elixia_2_dusk_duration_660nm:
   name: "[Elixia 2] Dusk Duration 660nm"
+  icon: "mdi:weather-night"
   initial: 5
   min: 0
   max: 180
@@ -372,6 +416,7 @@ elixia_2_dusk_duration_660nm:
 
 elixia_2_dawn_duration_735nm:
   name: "[Elixia 2] Dawn Duration 735nm"
+  icon: "mdi:white-balance-sunny"
   initial: 5
   min: 0
   max: 180
@@ -381,6 +426,7 @@ elixia_2_dawn_duration_735nm:
 
 elixia_2_dusk_duration_735nm:
   name: "[Elixia 2] Dusk Duration 735nm"
+  icon: "mdi:weather-night"
   initial: 5
   min: 0
   max: 180
