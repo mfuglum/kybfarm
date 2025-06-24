@@ -40,6 +40,9 @@ from src.sensor_interfaces import (
 
 # ───────────────────────────────────── Actuator Modules ────────────────────────────────── #
 from src.actuator_instances import (
+    HVAC_fan_modbus,
+    HVAC_valve_modbus,
+    HVAC_ssr,
     relay_devices_initialization,
     grow_lamp_elixia_initialization,
     voltage_output,
@@ -184,7 +187,7 @@ def on_connect(client, userdata, flags, rc):
         client.subscribe(topic)
 
 
-# ───────────────────────────── Activate Sensors ───────────────────────────── #
+# ───────────────────────────── Activate Sensors & Actuators ───────────────────────────── #
 
 sensor_specs = {
         "par_gt1": (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 1),
@@ -204,6 +207,9 @@ sensor_specs = {
         "sth01_1": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
         "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70),
     }
+
+valve_1 = HVAC_valve_modbus.Valve(portname="/dev/ttySC0", slaveaddress=1)
+fan_1 = HVAC_fan_modbus.Fan(portname = "/dev/ttySC0", slaveaddress=1)
 
 sensors = {}
 
@@ -416,10 +422,10 @@ client.message_callback_add(MQTT_SSR_CMD, relay_devices_initialization.on_messag
 
 # Voltage output
 #Fan
-client.message_callback_add(MQTT_VOLTAGE_CMD["fan_cmd"], voltage_output.on_message_FAN_VOLTAGE_CMD_REQ)
+client.message_callback_add(MQTT_VOLTAGE_CMD["fan_cmd"], fan_1.on_message)
 
 #Valve
-client.message_callback_add(MQTT_VOLTAGE_CMD["valve_cmd"], voltage_output.on_message_VALVE_VOLTAGE_CMD_REQ)
+client.message_callback_add(MQTT_VOLTAGE_CMD["valve_cmd"], valve_1.on_message)
 
 
 # Grow lamp1 Elixia
