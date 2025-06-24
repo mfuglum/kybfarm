@@ -210,6 +210,7 @@ sensor_specs = {
 
 valve_1 = HVAC_valve_modbus.Valve(portname="/dev/ttySC0", slaveaddress=1)
 fan_1 = HVAC_fan_modbus.Fan(portname = "/dev/ttySC0", slaveaddress=1)
+ssr = HVAC_ssr.SolidStateRelay(pin=26)
 
 sensors = {}
 
@@ -418,7 +419,7 @@ client.message_callback_add(MQTT_RELAY_CMD[15], relay_devices_initialization.on_
 client.message_callback_add(MQTT_RELAY_CMD[16], relay_devices_initialization.on_message_RLY16)
 
 # Solid state relay
-client.message_callback_add(MQTT_SSR_CMD, relay_devices_initialization.on_message_SSR01)
+client.message_callback_add(MQTT_SSR_CMD, ssr.on_message)
 
 # Voltage output
 #Fan
