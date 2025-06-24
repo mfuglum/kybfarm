@@ -52,7 +52,7 @@ relay_12:
   icon: "mdi:valve"
 
 relay_13:
-  name: "[RL13] Extra"
+  name: "[RL13] Co2 Solenoid"
   icon: "mdi:toggle-switch"
 
 relay_14:
