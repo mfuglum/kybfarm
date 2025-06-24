@@ -31,9 +31,9 @@ def run_heating_pid():
 
    
         ref_temperature = latest_heating_data["REF_TEMP"]
-        temperature1 = latest_heating_data["STH01_1"]
-        temperature2 = latest_heating_data["STH01_2"]
-        temperature3 = latest_heating_data["CO2_VOC_1"]
+        temperature1 = latest_heating_data["sth01_1"]
+        temperature2 = latest_heating_data["sth01_2"]
+        temperature3 = latest_heating_data["co2voc"]
 
         if temperature1 is not None and temperature1> 50:
             heating_signal = 0.0

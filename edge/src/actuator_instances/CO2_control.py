@@ -31,7 +31,7 @@ def run_CO2_pid():
 
    
         ref_CO2 = latest_CO2_data["REF_CO2"]
-        CO2 = latest_CO2_data["CO2_VOC_1"]
+        CO2 = latest_CO2_data["co2voc"]
         print("Ref_CO2:", ref_CO2)
         print("Latest CO2:", CO2)
 
