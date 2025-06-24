@@ -10,13 +10,13 @@ class MainLoop(hass.Hass):
         self.tasks = [
             "spar02_gt1", "spar02_gt2", "ec_gt1", "ec_gt2", "ec_mx",
             "ph_gt1", "ph_gt2", "ph_mx", "sth01_1", "sth01_2",
-            "sym01", "co2voc", "cooling_pid", "heating_pid", "co2_pid"
+            "sym01", "co2voc"
         ]
 
         self.index = 0  # Keeps track of the current position in the loop
 
         # Call `self.step` every 2 seconds, starting immediately
-        self.run_every(self.step, datetime.now() + timedelta(seconds=0), 2.5)
+        self.run_every(self.step, datetime.now() + timedelta(seconds=0), 1)
 
     def step(self, kwargs):
         next_task = self.tasks[self.index]
