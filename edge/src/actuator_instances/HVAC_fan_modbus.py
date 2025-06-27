@@ -1,6 +1,6 @@
 import minimalmodbus
 import json
-import time
+import serial
 
 class Fan(minimalmodbus.Instrument):
     """
@@ -50,15 +50,21 @@ class Fan(minimalmodbus.Instrument):
             return None
 
     def get_slave_address(self):
-        return self.read_register(512, 0, 3, signed=False)
+        try:
+            return self.read_register(512, 0, 3, signed=False)
+        except Exception as e:
+            print("Error reading slave address:", e)
+            return None
 
     def set_slave_address(self, new_address):
-        self.write_register(512, new_address, 0, 6, signed=False)
-        self.address = new_address
+        try:
+            self.write_register(512, new_address, 0, 6, signed=False)
+            self.address = new_address
+        except Exception as e:
+            print("Error setting slave address:", e)
 
     def on_message(self, client, userdata, msg):
         """MQTT handler to receive voltage command."""
-        
         try:
             payload = json.loads(msg.payload)
             print(f"[FAN] Received MQTT message on {msg.topic}: {payload}")
