@@ -147,12 +147,13 @@
 
 # ──────────────── PAR Sensors ────────────────
 
-- name: "PAR Sensor 02 GT1 [PAR]"
-  unique_id: "S-PAR-02_GT1"
-  state_topic: "dt/gf/spar02/gt1/res"
-  value_template: "{{ value_json['fields'].par }}"
-  unit_of_measurement: "µmol/m²/s"
+- name: "SLIGHT01 [Light Intensity]"
+  unique_id: "S-LIGHT-01"
+  state_topic: "dt/gf/slight01/res"
+  value_template: "{{ value_json['fields'].illuminance }}"
+  unit_of_measurement: "lx"
   icon: "mdi:white-balance-sunny"
+
 
 - name: "PAR Sensor 02 GT2 [PAR]"
   unique_id: "S-PAR-02_GT2"
