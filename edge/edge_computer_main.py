@@ -62,7 +62,7 @@ MQTT_DT_REQ = {
     "ph_gt1":     os.getenv("MQTT_DT_REQ_PH_GT1"),
     "ph_gt2":     os.getenv("MQTT_DT_REQ_PH_GT2"),
     "ph_mx":      os.getenv("MQTT_DT_REQ_PH_MX"),
-    "light01":    os.getenv("MQTT_DT_REQ_LIGHT01"),
+    "light01":    os.getenv("MQTT_DT_REQ_SLIGHT01"),
     "par02_2":    os.getenv("MQTT_DT_REQ_PAR02_2"),
     "sth01_1":    os.getenv("MQTT_DT_REQ_STH01_1"),
     "sth01_2":    os.getenv("MQTT_DT_REQ_STH01_2"),
