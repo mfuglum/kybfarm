@@ -8,7 +8,7 @@ class MainLoop(hass.Hass):
 
         # List of scheduled task keys that will be posted sequentially to the flag
         self.tasks = [
-            "spar02_gt1", "spar02_gt2", "ec_gt1", "ec_gt2", "ec_mx",
+            "slight01", "spar02_gt2", "ec_gt1", "ec_gt2", "ec_mx",
             "ph_gt1", "ph_gt2", "ph_mx", "sth01_1", "sth01_2",
             "sym01", "co2voc"
         ]

@@ -3,17 +3,17 @@
 # │                   KYBFarm - MQTT Sensor Request Scheduler                  │
 # └────────────────────────────────────────────────────────────────────────────┘
 
-# ──────────────── S-PAR-02 GT1 ────────────────
-- alias: "S-PAR-02 GT1 • Request"
+# ──────────────── S-LIGHT-01────────────────
+- alias: "S-LIGHT-01 • Request"
   trigger:
     - platform: state
       entity_id: input_text.main_loop_flag
-      to: "spar02_gt1"
+      to: "slight01"
   action:
     - service: mqtt.publish
       data:
-        topic: "dt/gf/spar02/gt1/req"
-        payload: '{"req_topic": "dt/gf/spar02/gt1/req", "res_topic": "dt/gf/spar02/gt1/res", "data": "ha_req"}'
+        topic: "dt/gf/slight01/req"
+        payload: '{"req_topic": "dt/gf/slight01/req", "res_topic": "dt/gf/slight01/res", "data": "ha_req"}'
   mode: single
 
 # ──────────────── S-PAR-02 GT2 ────────────────
