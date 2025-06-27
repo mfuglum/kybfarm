@@ -30,6 +30,7 @@ import paho.mqtt.client as mqtt
 from src.sensor_interfaces import (
     sensor_SYM01_modbus,
     sensor_SPAR02_modbus,
+    sensor_LIGHT01_modbus,
     sensor_SEC01_modbus,
     sensor_SPH01_modbus,
     sensor_CO2_VOC_modbus,
@@ -40,8 +41,7 @@ from src.sensor_interfaces import (
 
 # ───────────────────────────────────── Actuator Modules ────────────────────────────────── #
 from src.actuator_instances import (
-    HVAC_fan_modbus,
-    HVAC_valve_modbus,
+    HVAC_fan_and_valve_modbus,
     HVAC_ssr,
     relay_devices_initialization,
     grow_lamp_elixia_initialization
@@ -62,7 +62,7 @@ MQTT_DT_REQ = {
     "ph_gt1":     os.getenv("MQTT_DT_REQ_PH_GT1"),
     "ph_gt2":     os.getenv("MQTT_DT_REQ_PH_GT2"),
     "ph_mx":      os.getenv("MQTT_DT_REQ_PH_MX"),
-    "par02_1":    os.getenv("MQTT_DT_REQ_PAR02_1"),
+    "light01":    os.getenv("MQTT_DT_REQ_LIGHT01"),
     "par02_2":    os.getenv("MQTT_DT_REQ_PAR02_2"),
     "sth01_1":    os.getenv("MQTT_DT_REQ_STH01_1"),
     "sth01_2":    os.getenv("MQTT_DT_REQ_STH01_2"),
@@ -154,7 +154,7 @@ def on_connect(client, userdata, flags, rc):
 # ───────────────────────────── Activate Sensors & Actuators ───────────────────────────── #
 
 sensor_specs = {
-        "par_gt1": (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 1),
+        "light01": (sensor_LIGHT01_modbus.SLIGHT01, '/dev/ttySC1', 1),
         "par_gt2": (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 34),
 
         "ec_gt1":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 5),
@@ -172,8 +172,8 @@ sensor_specs = {
         "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70),
     }
 
-valve_1 = HVAC_valve_modbus.Valve(portname="/dev/ttySC0", slaveaddress=1)
-fan_1 = HVAC_fan_modbus.Fan(portname = "/dev/ttySC0", slaveaddress=1)
+valve_1 = HVAC_fan_and_valve_modbus.Valve()
+fan_1 = HVAC_fan_and_valve_modbus.Fan()
 ssr = HVAC_ssr.SolidStateRelay(pin=26)
 
 sensors = {}
@@ -254,7 +254,7 @@ def sensor_handler(sensor_obj, label):
         return {"data": on_data}
 
 # PAR sensors (data only)
-on_message_par02_1 = sensor_handler(sensors["par_gt1"], "par_gt1")["data"]
+on_message_light01 = sensor_handler(sensors["light01"], "light01")["data"]
 on_message_par02_2 = sensor_handler(sensors["par_gt2"], "par_gt2")["data"]
 
 # EC sensors (data + command)
@@ -317,7 +317,7 @@ client.message_callback_add(MQTT_DT_REQ["sth01_1"], on_message_sth01_1)
 client.message_callback_add(MQTT_DT_REQ["sth01_2"], on_message_sth01_2)
 
 # PAR sensors (assuming callbacks are defined)
-client.message_callback_add(MQTT_DT_REQ["par02_1"], on_message_par02_1)
+client.message_callback_add(MQTT_DT_REQ["light01"], on_message_light01)
 client.message_callback_add(MQTT_DT_REQ["par02_2"], on_message_par02_2)
 
 # CO₂ VOC sensor
