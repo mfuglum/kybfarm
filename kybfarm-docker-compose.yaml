@@ -1,6 +1,6 @@
 services:
   requirements:
-    container_name: requirements
+    container_name: config_generator
     build: ./server/src
     volumes:
       - ./.env:/app/.env:ro
