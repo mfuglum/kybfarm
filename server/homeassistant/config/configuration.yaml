@@ -8,6 +8,18 @@ frontend:
     - /local/card-mod.js
 
 # External service configuration
+
+homeassistant:
+  media_dirs:
+    hsi: /config/HSI/debug_pictures
+  allowlist_external_dirs:
+    - /config/HSI/scanner_data
+    - /config/HSI/debug_pictures
+camera:
+  platform: local_file
+  name: HSI Debug Snapshot
+  file_path: /config/HSI/debug_pictures/latest_debug_picture.png
+
 mqtt:
   sensor: !include include/mqtt_sensor_topics.yaml
 
@@ -21,3 +33,4 @@ input_boolean: !include include/GUI_helpers/input_boolean.yaml
 input_select: !include include/GUI_helpers/input_select.yaml
 input_text: !include include/GUI_helpers/input_text.yaml
 input_datetime: !include include/GUI_helpers/input_datetime.yaml
+input_button: !include include/GUI_helpers/input_button.yaml

@@ -517,3 +517,77 @@ heating_pid_kd:
   initial: 0.0
   mode: box
   icon: mdi:chart-bell-curve
+
+# ─────────────── HSI ─────────────── #
+
+# === CAMERA ===
+
+hs_camera_exposure:
+  name: "HSI Camera – Exposure Time"
+  min: 1
+  max: 5000
+  step: 1
+  initial: 200
+  mode: box
+  unit_of_measurement: "ms"
+  icon: mdi:camera-timer
+
+hs_camera_gain:
+  name: "HSI Camera – Master Gain"
+  min: 0
+  max: 100
+  step: 1
+  initial: 20
+  mode: box
+  icon: mdi:video-input-component
+
+hs_camera_blacklevel:
+  name: "HSI Camera – Black Level"
+  min: 0
+  max: 255
+  step: 1
+  initial: 10
+  mode: box
+  icon: mdi:contrast-box
+
+# === PRINTER ===
+
+hs_printer_x_step:
+  name: "HSI Printer – X Step"
+  min: 0.1
+  max: 50
+  step: 0.1
+  initial: 5.0
+  mode: box
+  unit_of_measurement: "mm"
+  icon: mdi:arrow-expand-horizontal
+
+hs_printer_x_end:
+  name: "HSI Printer – X End"
+  min: 1
+  max: 2000
+  step: 1
+  initial: 400
+  mode: box
+  unit_of_measurement: "mm"
+  icon: mdi:arrow-right-bold
+
+hs_printer_z_step:
+  name: "HSI Printer – Z Step"
+  min: 0.1
+  max: 50
+  step: 0.1
+  initial: 5.0
+  mode: box
+  unit_of_measurement: "mm"
+  icon: mdi:arrow-expand-vertical
+
+hs_printer_z_end:
+  name: "HSI Printer – Z End"
+  min: 1
+  max: 2000
+  step: 1
+  initial: 200
+  mode: box
+  unit_of_measurement: "mm"
+  icon: mdi:arrow-down-bold

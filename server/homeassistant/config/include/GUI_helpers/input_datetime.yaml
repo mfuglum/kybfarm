@@ -22,3 +22,10 @@ lamp2_finish_time:
   name: "[Lamp 2] End Time"
   has_date: false
   has_time: true
+
+
+hs_scan_time:
+  name: "Daily HSI Scan Time"
+  has_time: true
+  has_date: false
+  icon: mdi:clock-time-four-outline

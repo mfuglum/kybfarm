@@ -1,0 +1,48 @@
+# ┌────────────────────────────────────────────────────────────────────────────┐
+# │                         HSI Edge Automations – KYBFarm                     │
+# │       Manage scanner, debug picture & printer G-code on button press       │
+# └────────────────────────────────────────────────────────────────────────────┘
+
+
+# ────────────── [HSI] Run Full Scan ────────────── #
+- alias: "HSI • Start Full Scan"
+  trigger:
+    - platform: state
+      entity_id: input_button.hs_scan_full
+  action:
+    - service: mqtt.publish
+      data:
+        qos: 0
+        retain: false
+        topic: "cmd/gf/hs_camera/scan/req"
+        payload: '{ "cmd": "run_scan" }'
+
+# ────────────── [HSI] Take Debug Camera Picture ────────────── #
+- alias: "HSI • Take Debug Camera Picture"
+  trigger:
+    - platform: state
+      entity_id: input_button.hs_scan_debug
+  action:
+    - service: mqtt.publish
+      data:
+        qos: 0
+        retain: false
+        topic: "cmd/gf/hs_camera/picture/req"
+        payload: '{ "cmd": "take_picture" }'
+
+# ────────────── [HSI] Send Printer G-code ────────────── #
+- alias: "HSI • Send Printer G-code"
+  trigger:
+    - platform: state
+      entity_id: input_button.hs_send_printer_gcode
+  action:
+    - service: mqtt.publish
+      data:
+        qos: 0
+        retain: false
+        topic: "cmd/gf/hs_camera/printer_gcode/req"
+        payload: >
+          {
+            "cmd": "send_gcode",
+            "gcode": "{{ states('input_text.hs_printer_gcode') }}"
+          }

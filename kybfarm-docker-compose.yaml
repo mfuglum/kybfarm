@@ -16,7 +16,6 @@ services:
     volumes:
       - ./server/homeassistant/config:/config 
       - /etc/localtime:/etc/localtime:ro
-      - /run/dbus:/run/dbus:ro  # For Bluetooth
     restart: unless-stopped
     privileged: true
     ports:

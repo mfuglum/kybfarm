@@ -1,0 +1,17 @@
+
+hs_scan_full:
+  name: "Start Full Scan"
+  icon: mdi:scanner
+
+hs_scan_debug:
+  name: "Debug Camera Snapshot"
+  icon: mdi:camera
+
+hs_send_printer_gcode:
+  name: "Send Printer G-code"
+  icon: mdi:send
+
+
+hs_apply_config:
+  name: "Apply HSI Config"
+  icon: mdi:content-save-cog

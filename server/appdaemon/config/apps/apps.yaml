@@ -21,6 +21,28 @@ air_pump_controller:
   class: Air_pump_controller
   id: input_boolean.relay_3
 
+hsi_config_update:
+  module: HSI_config_update
+  class: HSIConfigUpdate
+  apply_button_id: input_button.hs_apply_config
+
+  # CAMERA
+  camera_exposure_id: input_number.hs_camera_exposure
+  camera_gain_id: input_number.hs_camera_gain
+  camera_blacklevel_id: input_number.hs_camera_blacklevel
+
+  # PRINTER
+  printer_x_step_id: input_number.hs_printer_x_step
+  printer_x_end_id: input_number.hs_printer_x_end
+  printer_z_step_id: input_number.hs_printer_z_step
+  printer_z_end_id: input_number.hs_printer_z_end
+
+hsi_scheduler:
+  module: HSI_scheduler
+  class: HSIScheduler
+  scan_time_id: input_datetime.hs_scan_time
+
+
 co2_pid:
   module: co2_pid
   class: CO2PID
@@ -58,19 +80,6 @@ heating_pid:
   pwm_base_period_id: input_number.ssr_base_period
   pwm_stop_id: input_boolean.solid_state_relay_stop_loop
   turn_on_for_id: input_number.ssr_turn_on_for
-
-
-intake_fan_controller:
-  module: intake_fan_controller
-  class: Intake_fan_controller
-  humidity_sensor_id: sensor.scd_41_humidity
-  temp_sensor_id: sensor.scd_41_temperature
-  intake_fan_id: input_boolean.relay_5
-  humid_low_id: input_number.intake_fan_humid_low
-  humid_high_id: input_number.intake_fan_humid_high
-  temp_low_id: input_number.intake_fan_temp_low
-  temp_high_id: input_number.intake_fan_temp_high
-  toggle_id: input_boolean.intake_fan_toggle
 
 lamp1_controller:
   module: lamp_control
