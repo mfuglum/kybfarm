@@ -16,10 +16,10 @@ class MainLoop(hass.Hass):
         self.index = 0  # Keeps track of the current position in the loop
 
         # Call `self.step` every 2 seconds, starting immediately
-        self.run_every(self.step, datetime.now() + timedelta(seconds=0), 1)
+        self.run_every(self.step, datetime.now() + timedelta(seconds=0), 2)
 
     def step(self, kwargs):
         next_task = self.tasks[self.index]
         self.call_service("input_text/set_value", entity_id=self.flag_entity, value=next_task)
-        self.log(f"[MainLoop] Flag set to '{next_task}'")
+        #self.log(f"[MainLoop] Flag set to '{next_task}'")
         self.index = (self.index + 1) % len(self.tasks)
