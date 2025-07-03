@@ -265,3 +265,77 @@
   value_template: "{{ value_json['fields'].temperature }}"
   unit_of_measurement: ""
   icon: "mdi:thermometer"
+
+
+# ──────────────── HSI ────────────────
+
+# === Scanner ===
+
+- name: "HSI Scanner Status"
+  state_topic: "status/gf/hs_scanner/state"
+  value_template: "{{ value_json.status }}"
+  unique_id: "hs_scanner_status"
+  icon: mdi:scanner
+
+# === CAMERA ===
+
+- name: "HSI Camera Status"
+  state_topic: "status/gf/hs_camera/camera_state"
+  value_template: "{{ value_json.status }}"
+  unique_id: "hs_camera_status"
+  icon: mdi:camera
+
+- name: "HSI Camera Exposure"
+  state_topic: "status/gf/hs_camera/camera_state"
+  value_template: "{{ value_json.EXPOSURE_TIME_MS }}"
+  unit_of_measurement: "ms"
+  unique_id: "hs_camera_exposure"
+  icon: mdi:camera-timer
+
+- name: "HSI Camera Gain"
+  state_topic: "status/gf/hs_camera/camera_state"
+  value_template: "{{ value_json.MASTER_GAIN }}"
+  unique_id: "hs_camera_gain"
+  icon: mdi:video-input-component
+
+- name: "HSI Camera Black Level"
+  state_topic: "status/gf/hs_camera/camera_state"
+  value_template: "{{ value_json.BLACK_LEVEL }}"
+  unique_id: "hs_camera_blacklevel"
+  icon: mdi:contrast-box
+
+# === PRINTER ===
+
+- name: "HSI Printer Status"
+  state_topic: "status/gf/hs_camera/printer_state"
+  value_template: "{{ value_json.status }}"
+  unique_id: "hs_printer_status"
+  icon: mdi:printer-3d
+
+- name: "HSI Printer X Step"
+  state_topic: "status/gf/hs_camera/printer_state"
+  value_template: "{{ value_json.X_STEP }}"
+  unit_of_measurement: "mm"
+  unique_id: "hs_printer_x_step"
+  icon: mdi:arrow-expand-horizontal
+
+- name: "HSI Printer X End"
+  state_topic: "status/gf/hs_camera/printer_state"
+  value_template: "{{ value_json.X_END }}"
+  unit_of_measurement: "mm"
+  unique_id: "hs_printer_x_end"
+  icon: mdi:arrow-right-bold
+
+- name: "HSI Printer Z Step"
+  state_topic: "status/gf/hs_camera/printer_state"
+  value_template: "{{ value_json.Z_STEP }}"
+  unit_of_measurement: "mm"
+  unique_id: "hs_printer_z_step"
+  icon: mdi:arrow-expand-vertical
+
+- name: "HSI Printer Z End"
+  state_topic: "status/gf/hs_camera/printer_state"
+  value_template: "{{ value_json.Z_END }}"
+  unit_of_measurement: "mm"
+  unique_id: "hs_printer_z_end"
+  icon: mdi:arrow-down-bold

@@ -9,6 +9,12 @@ calibration_status:
   mode: "text"
 
 main_loop_flag:
-    name: Main Loop Flag
-    initial: "idle"
-    max: 100
+  name: Main Loop Flag
+  initial: "idle"
+  max: 100
+
+hs_printer_gcode:
+  name: "HSI Printer G-code"
+  max: 120
+  mode: text
+  icon: mdi:console-line
