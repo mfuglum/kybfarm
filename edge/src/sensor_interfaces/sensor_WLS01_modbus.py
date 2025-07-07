@@ -46,7 +46,7 @@ class WLS01(minimalmodbus.Instrument):
         level_cm = pressure_kPa * 10.2  # Adjust for your sensor specs
         return level_cm
 
-    def fetch_and_return_data(self, sensor_name):
+    def fetch_and_return_data(self, sensor_name = None):
         level_cm = self.get_water_level_cm()
         pressure_kPa = self.get_pressure_kPa()
 
