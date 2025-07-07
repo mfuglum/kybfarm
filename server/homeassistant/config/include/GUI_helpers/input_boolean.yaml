@@ -87,8 +87,8 @@ co2_pid_enable_toggle:
   name: "[PID] CO₂ Enable"
   icon: "mdi:molecule-co2"
 
-mix_control_toggle:
-  name: "[CTRL] Mixing Tank"
+tank_and_nutrient_control:
+  name: "[CTRL] tank_and_nutrient_control"
   icon: "mdi:pot-mix"
 
 intake_fan_toggle:
