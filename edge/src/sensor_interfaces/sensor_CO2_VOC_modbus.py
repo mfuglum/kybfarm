@@ -206,5 +206,3 @@ class CO2_VOC( minimalmodbus.Instrument ):
         data["fields"]["volumeFlow"] = volumeFlow
         data["time"] = datetime.datetime.now().isoformat()
         return data
-    
-

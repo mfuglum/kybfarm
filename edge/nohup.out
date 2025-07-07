@@ -22,3 +22,128 @@ ffmpeg version 5.1.6-0+deb12u1+rpt3 Copyright (c) 2000-2024 the FFmpeg developer
   libpostproc    56.  6.100 / 56.  6.100
 udp://@0.0.0.0:8554?overrun_nonfatal=1&fifo_size=50000000: Immediate exit requested
 Exiting normally, received signal 2.
+Error in BMP280 interface:  No Hardware I2C on (scl,sda)=(3, 2)
+Valid I2C ports: ((1, 3, 2), (0, 1, 0), (10, 45, 44))
+Error in SCD41 interface:  No Hardware I2C on (scl,sda)=(3, 2)
+Valid I2C ports: ((1, 3, 2), (0, 1, 0), (10, 45, 44))
+Init: light01, port=/dev/ttySC1, slave=1
+Init: par_gt2, port=/dev/ttySC1, slave=34
+Init: ec_gt1, port=/dev/ttySC1, slave=5
+Init: ec_gt2, port=/dev/ttySC1, slave=6
+Init: ec_mx, port=/dev/ttySC1, slave=7
+Init: ph_gt1, port=/dev/ttySC1, slave=8
+Init: ph_gt2, port=/dev/ttySC1, slave=9
+Init: ph_mx, port=/dev/ttySC1, slave=10
+Init: sym01, port=/dev/ttySC1, slave=12
+Init: co2voc_1, port=/dev/ttySC0, slave=7
+Init: sth01_1, port=/dev/ttySC0, slave=69
+Init: sth01_2, port=/dev/ttySC0, slave=70
+Init: wls01_gt1, port=/dev/ttySC1, slave=2
+Init: wls01_gt2, port=/dev/ttySC1, slave=2
+Init: wls01_mx, port=/dev/ttySC1, slave=2
+Init: wls01_fwt, port=/dev/ttySC1, slave=2
+Connected with code 0
+RLY01 {'cmd': 'off'} 
+
+RLY02 {'cmd': 'on'} 
+
+RLY03 {'cmd': 'on'} 
+
+RLY04 {'cmd': 'on'} 
+
+RLY05 {'cmd': 'off'} 
+
+RLY06 {'cmd': 'off'} 
+
+RLY07 {'cmd': 'off'} 
+
+RLY08 {'cmd': 'off'} 
+
+RLY09 {'cmd': 'off'} 
+
+RLY10 {'cmd': 'off'} 
+
+RLY11 {'cmd': 'off'} 
+
+RLY12 {'cmd': 'off'} 
+
+RLY13 {'cmd': 'off'} 
+
+RLY14 {'cmd': 'off'} 
+
+RLY15 {'cmd': 'off'} 
+
+RLY16 {'cmd': 'off'} 
+
+[SSR] Received MQTT message on cmd/solid_state_relay01/req: {'cmd': 'on'}
+[FAN] MQTT message: {'cmd': 'adjust', 'res_topic': 'cmd/fan_voltage/res', 'value': '0'}
+[MODBUS WRITE] Valve: 0  Fan: 0
+
+cmd/fan_voltage/res:
+ b'0.0'
+wls01_gt1, data fetch error: No communication with the instrument (no answer)
+wls01_gt2, data fetch error: No communication with the instrument (no answer)
+[SSR] Received MQTT message on cmd/solid_state_relay01/req: {'cmd': 'off'}
+wls01_mx, data fetch error: No communication with the instrument (no answer)
+wls01_fwt, data fetch error: No communication with the instrument (no answer)
+light01 → {"measurement": "light intensity", "tags": {"sensor_id": "01", "location": "Gloeshaugen", "sensor_name": "S-LIGHT-01"}, "fields": {"illuminance": 6898}, "time": "2025-07-07T22:21:07.110692"}
+
+par_gt2 → {"measurement": "photosynthetically active radiation", "tags": {"sensor_id": "02", "location": "Gloeshaugen", "sensor_name": "S-PAR-02"}, "fields": {"par": 126}, "time": "2025-07-07T22:21:09.072703"}
+
+ec_gt1 → {"measurement": "EC, TDS, Salinity and Temperature", "tags": {"sensor_id": 5, "location": "Gloeshaugen", "sensor_name": "S-EC-01"}, "fields": {"ec": 1500, "tds": 750, "temperature": 15.3, "calibrated": 0}, "time": "2025-07-07T22:21:11.138735"}
+
+ec_gt2 → {"measurement": "EC, TDS, Salinity and Temperature", "tags": {"sensor_id": 6, "location": "Gloeshaugen", "sensor_name": "S-EC-01"}, "fields": {"ec": 1550, "tds": 775, "temperature": 15.7, "calibrated": 0}, "time": "2025-07-07T22:21:13.143520"}
+
+ec_mx → {"measurement": "EC, TDS, Salinity and Temperature", "tags": {"sensor_id": 7, "location": "Gloeshaugen", "sensor_name": "S-EC-01"}, "fields": {"ec": 170, "tds": 85, "temperature": 14.6, "calibrated": 0}, "time": "2025-07-07T22:21:15.133668"}
+
+ph_gt1 → {"measurement": "pH and Temperature", "tags": {"sensor_id": 8, "location": "Gloeshaugen", "sensor_name": "S-PH-01"}, "fields": {"ph": 6.91, "temperature": 19.6, "calibrated": 0}, "time": "2025-07-07T22:21:17.107660"}
+
+ph_gt2 → {"measurement": "pH and Temperature", "tags": {"sensor_id": 9, "location": "Gloeshaugen", "sensor_name": "S-PH-01"}, "fields": {"ph": 14, "temperature": 20.29, "calibrated": 0}, "time": "2025-07-07T22:21:19.148696"}
+
+ph_mx → {"measurement": "pH and Temperature", "tags": {"sensor_id": 10, "location": "Gloeshaugen", "sensor_name": "S-PH-01"}, "fields": {"ph": 8.11, "temperature": 19.76, "calibrated": 0}, "time": "2025-07-07T22:21:21.111336"}
+
+[FAN] MQTT message: {'cmd': 'adjust', 'value': 10.0}
+[MODBUS WRITE] Valve: 0  Fan: 10000
+[VALVE] MQTT message: {'cmd': 'adjust', 'value': 10.0}
+[MODBUS WRITE] Valve: 10000  Fan: 10000
+[SSR] Received MQTT message on cmd/solid_state_relay01/req: {'cmd': 'on'}
+sth01_1 → {"measurement": "Temperature and Humidity", "tags": {"sensor_id": "8", "location": "GF, Gloeshaugen", "sensor_name": "sth01_1"}, "fields": {"temperature": 12.5, "dewpoint": 11.14, "humidity": 91.41}, "time": "2025-07-07T22:21:23.179749"}
+
+sth01_2 → {"measurement": "Temperature and Humidity", "tags": {"sensor_id": "8", "location": "GF, Gloeshaugen", "sensor_name": "sth01_2"}, "fields": {"temperature": 18.14, "dewpoint": 11.87, "humidity": 66.78}, "time": "2025-07-07T22:21:25.179593"}
+
+sym01 → {"measurement": "Temperature and Leaf Wetness", "tags": {"sensor_id": "10", "location": "Gloeshaugen", "sensor_name": "S-YM-01"}, "fields": {"temperature": 16.28, "wetness": 0}, "time": "2025-07-07T22:21:27.120798"}
+
+co2voc_1 → {"measurement": "ambient", "tags": {"sensor_id": "1", "location": "GF, Gloeshaugen", "sensor_name": "CO2+VOC"}, "fields": {"temperature": 15.7, "humidity": 75.8, "co2": 485, "dewpoint": 11.4, "volumeFlow": 0}, "time": "2025-07-07T22:21:29.208305"}
+
+
+dt/gf/co2voc/2/req:
+ b'{"req_topic": "dt/gf/co2voc/2/req", "res_topic": "dt/gf/co2voc/2/res", "data": "ha_req"}'
+[SSR] Received MQTT message on cmd/solid_state_relay01/req: {'cmd': 'off'}
+wls01_gt1, data fetch error: No communication with the instrument (no answer)
+wls01_gt2, data fetch error: No communication with the instrument (no answer)
+wls01_mx, data fetch error: No communication with the instrument (no answer)
+wls01_fwt, data fetch error: No communication with the instrument (no answer)
+light01 → {"measurement": "light intensity", "tags": {"sensor_id": "01", "location": "Gloeshaugen", "sensor_name": "S-LIGHT-01"}, "fields": {"illuminance": 6910}, "time": "2025-07-07T22:21:41.109541"}
+
+par_gt2 → {"measurement": "photosynthetically active radiation", "tags": {"sensor_id": "02", "location": "Gloeshaugen", "sensor_name": "S-PAR-02"}, "fields": {"par": 127}, "time": "2025-07-07T22:21:43.083737"}
+
+ec_gt1 → {"measurement": "EC, TDS, Salinity and Temperature", "tags": {"sensor_id": 5, "location": "Gloeshaugen", "sensor_name": "S-EC-01"}, "fields": {"ec": 1500, "tds": 750, "temperature": 15.4, "calibrated": 0}, "time": "2025-07-07T22:21:45.134265"}
+
+ec_gt2 → {"measurement": "EC, TDS, Salinity and Temperature", "tags": {"sensor_id": 6, "location": "Gloeshaugen", "sensor_name": "S-EC-01"}, "fields": {"ec": 1550, "tds": 775, "temperature": 15.8, "calibrated": 0}, "time": "2025-07-07T22:21:47.138289"}
+
+ec_mx → {"measurement": "EC, TDS, Salinity and Temperature", "tags": {"sensor_id": 7, "location": "Gloeshaugen", "sensor_name": "S-EC-01"}, "fields": {"ec": 170, "tds": 85, "temperature": 14.6, "calibrated": 0}, "time": "2025-07-07T22:21:49.134454"}
+
+ph_gt1 → {"measurement": "pH and Temperature", "tags": {"sensor_id": 8, "location": "Gloeshaugen", "sensor_name": "S-PH-01"}, "fields": {"ph": 6.91, "temperature": 19.65, "calibrated": 0}, "time": "2025-07-07T22:21:51.115452"}
+
+[FAN] MQTT message: {'cmd': 'adjust', 'value': 10.0}
+[MODBUS WRITE] Valve: 10000  Fan: 10000
+[VALVE] MQTT message: {'cmd': 'adjust', 'value': 10.0}
+[MODBUS WRITE] Valve: 10000  Fan: 10000
+[SSR] Received MQTT message on cmd/solid_state_relay01/req: {'cmd': 'on'}
+ph_gt2 → {"measurement": "pH and Temperature", "tags": {"sensor_id": 9, "location": "Gloeshaugen", "sensor_name": "S-PH-01"}, "fields": {"ph": 14, "temperature": 20.32, "calibrated": 0}, "time": "2025-07-07T22:21:53.106905"}
+
+ph_mx → {"measurement": "pH and Temperature", "tags": {"sensor_id": 10, "location": "Gloeshaugen", "sensor_name": "S-PH-01"}, "fields": {"ph": 8.11, "temperature": 19.76, "calibrated": 0}, "time": "2025-07-07T22:21:55.110052"}
+
+sth01_1 → {"measurement": "Temperature and Humidity", "tags": {"sensor_id": "8", "location": "GF, Gloeshaugen", "sensor_name": "sth01_1"}, "fields": {"temperature": 12.56, "dewpoint": 11.72, "humidity": 94.58}, "time": "2025-07-07T22:21:57.174144"}
+
+Keyboard interrupt

@@ -36,7 +36,8 @@ from src.sensor_interfaces import (
     sensor_CO2_VOC_modbus,
     sensor_STH01_modbus,
     sensor_BMP280_I2C,
-    sensor_SCD41_I2C
+    sensor_SCD41_I2C,
+    sensor_WLS01_modbus
 )
 
 # ───────────────────────────────────── Actuator Modules ────────────────────────────────── #
@@ -63,9 +64,9 @@ MQTT_DT_REQ = {
     "ph_gt2":     os.getenv("MQTT_DT_REQ_PH_GT2"),
     "ph_mx":      os.getenv("MQTT_DT_REQ_PH_MX"),
     "light01":    os.getenv("MQTT_DT_REQ_SLIGHT01"),
-    "par02_2":    os.getenv("MQTT_DT_REQ_PAR02_2"),
-    "sth01_1":    os.getenv("MQTT_DT_REQ_STH01_1"),
-    "sth01_2":    os.getenv("MQTT_DT_REQ_STH01_2"),
+    "par02_2":    os.getenv("MQTT_DT_REQ_PAR_GT2"),
+    "sth01_1":    os.getenv("MQTT_DT_REQ_STH_1"),
+    "sth01_2":    os.getenv("MQTT_DT_REQ_STH_2"),
     "co2voc_1":   os.getenv("MQTT_DT_REQ_CO2_VOC_1"),
     "co2voc_2":   os.getenv("MQTT_DT_REQ_CO2_VOC_2"),
     "sym01":      os.getenv("MQTT_DT_REQ_SYM01"),
@@ -172,15 +173,15 @@ sensor_specs = {
 
     "sym01":   (sensor_SYM01_modbus.SYM01, '/dev/ttySC1', 12),
     "co2voc_1": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 7),
-    "co2voc_2": (sensor_CO2_VOC_modbus.CO2_VOC, None, None),  # Change when connected
+    #"co2voc_2": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 8),  # Change when connected
 
     "sth01_1": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
     "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70),
 
-    "wls01_gt1": (sensor_WLS01_modbus.WLS01, None, None),  # Change when connected
-    "wls01_gt2": (sensor_WLS01_modbus.WLS01, None, None),  # Change when connected
-    "wls01_mx":  (sensor_WLS01_modbus.WLS01, None, None),  # Change when connected
-    "wls01_fwt": (sensor_WLS01_modbus.WLS01, None, None),  # Change when connected
+    "wls01_gt1": (sensor_WLS01_modbus.WLS01, '/dev/ttySC1', 2),  # Change when connected
+    "wls01_gt2": (sensor_WLS01_modbus.WLS01, '/dev/ttySC1', 2),  # Change when connected
+    "wls01_mx":  (sensor_WLS01_modbus.WLS01, '/dev/ttySC1', 2),  # Change when connected
+    "wls01_fwt": (sensor_WLS01_modbus.WLS01, '/dev/ttySC1', 2),  # Change when connected
 }
 
 
@@ -190,13 +191,13 @@ ssr = HVAC_ssr.SolidStateRelay(pin=26)
 
 sensors = {}
 
-for label, (cls, port, addr) in sensor_specs.items():
-    try:
-        sensor = cls(portname=port, slaveaddress=addr, debug=False)
-        sensors[label] = sensor
-        print(f"{label} initialized: {sensor}")
-    except Exception as e:
-        print(f"{label} init error:", str(e))
+for label, (cls, port, slave) in sensor_specs.items():
+    print(f"Init: {label}, port={port}, slave={slave}")
+    if port is not None and slave is not None:
+        try:
+            sensors[label] = cls(port, slave)
+        except Exception as e:
+            print(f"Failed to init {label}: {e}")
     time.sleep(0.1)
 
 
@@ -294,7 +295,7 @@ on_message_SYM01 = sensor_handler(sensors["sym01"], "sym01")["data"]
 
 # CO₂ VOC 
 on_message_CO2_VOC_1 = sensor_handler(sensors["co2voc_1"], "co2voc_1")["data"]
-on_message_CO2_VOC_2 = sensor_handler(sensors["co2voc_2"], "co2voc_2")["data"]
+#on_message_CO2_VOC_2 = sensor_handler(sensors["co2voc_2"], "co2voc_2")["data"] #uncomment when connected
 
 # WLS01s 
 on_message_WLS01_GT1 = sensor_handler(sensors["wls01_gt1"], "wls01_gt1")["data"]
@@ -340,8 +341,14 @@ client.message_callback_add(MQTT_DT_REQ["light01"], on_message_light01)
 client.message_callback_add(MQTT_DT_REQ["par02_2"], on_message_par02_2)
 
 # CO₂ VOC sensor
-client.message_callback_add(MQTT_DT_REQ["co2voc"], on_message_CO2_VOC_1)
+client.message_callback_add(MQTT_DT_REQ["co2voc_1"], on_message_CO2_VOC_1)
+#client.message_callback_add(MQTT_DT_REQ["co2voc_2"], on_message_CO2_VOC_2) #uncomment when connected
 
+# New WLS01 sensors 
+client.message_callback_add(MQTT_DT_REQ["wls01_gt1"], on_message_WLS01_GT1)
+client.message_callback_add(MQTT_DT_REQ["wls01_gt2"], on_message_WLS01_GT2)
+client.message_callback_add(MQTT_DT_REQ["wls01_mx"],  on_message_WLS01_MX)
+client.message_callback_add(MQTT_DT_REQ["wls01_fwt"], on_message_WLS01_FWT)
 # SYM flow sensor
 client.message_callback_add(MQTT_DT_REQ["sym01"], on_message_SYM01)
 
