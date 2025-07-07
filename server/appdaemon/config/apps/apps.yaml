@@ -66,6 +66,54 @@ cooling_pid:
   fan_cmd_topic: cmd/fan_voltage/req
   valve_cmd_topic: cmd/valve_voltage/req
 
+tank_and_nutrient_controller:
+  module: tank_and_nutrient_controller
+  class: TankAndNutrientControler
+
+  enable_id: input_boolean.tank_and_nutrient_control
+
+  # ───── Water level sensors ─────
+  wls01_gt1_level_id: sensor.wls01_gt1_level
+  wls01_gt2_level_id: sensor.wls01_gt2_level
+  wls01_mx_level_id: sensor.wls01_mx_level
+  wls01_fwt_level_id: sensor.wls01_fwt_level
+
+  # ───── EC sensors ─────
+  ec_gt1_id: sensor.s_ec_01_gt1_ec
+  ec_gt2_id: sensor.s_ec_01_gt2_ec
+  ec_mx_id: sensor.s_ec_01_mx_ec
+
+  # ───── Nutrient references ─────
+  nutrient_1_ref_id: input_number.nutrient_1_ref
+  nutrient_2_ref_id: input_number.nutrient_2_ref
+  nutrient_3_ref_id: input_number.nutrient_3_ref
+
+  # ───── Tank capacity references ─────
+  mx_capacity_liters: 200
+  gt1_capacity_liters: 100
+  gt2_capacity_liters: 100
+
+  # ───── Peristaltic pump flow rates (m³/s) ─────
+  peristaltic_flow_1: 0.000424
+  peristaltic_flow_2: 0.000344
+  peristaltic_flow_3: 0.000357
+
+  # ───── Peristaltic pump toggles ─────
+  peristaltic_1_id: input_boolean.relay_14
+  peristaltic_2_id: input_boolean.relay_15
+  peristaltic_3_id: input_boolean.relay_16
+
+  # ───── Solenoid valves ─────
+  solenoid_1_id: input_boolean.relay_11
+  solenoid_2_id: input_boolean.relay_12
+
+  # ───── Water pumps & valves ─────
+  water_pump_350_id: input_boolean.relay_1
+  water_pump_5k_id: input_boolean.relay_2
+
+
+
+
 heating_pid:
   module: heating_pid
   class: HeatingPID
