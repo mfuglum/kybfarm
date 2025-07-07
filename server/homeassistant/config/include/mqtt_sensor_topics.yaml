@@ -5,6 +5,8 @@
 
 # ──────────────── CO2/VOC Sensor ────────────────
 
+#─────── 1 ───────
+
 - name: "CO2/VOC Sensor [Humidity]"
   unique_id: "CO2_VOC_HUMIDITY"
   state_topic: "dt/gf/co2voc/1/res"
@@ -39,6 +41,45 @@
   value_template: "{{ value_json['fields'].volumeFlow }}"
   unit_of_measurement: "m³/h"
   icon: "mdi:air-filter"
+
+# ─────── 2 ───────
+
+- name: "CO2/VOC Sensor 2 [Humidity]"
+  unique_id: "CO2_VOC_2_HUMIDITY"
+  state_topic: "dt/gf/co2voc/2/res"
+  value_template: "{{ value_json['fields'].humidity }}"
+  unit_of_measurement: "%"
+  icon: "mdi:water-percent"
+
+- name: "CO2/VOC Sensor 2 [Temperature]"
+  unique_id: "CO2_VOC_2_TEMPERATURE"
+  state_topic: "dt/gf/co2voc/2/res"
+  value_template: "{{ value_json['fields'].temperature }}"
+  unit_of_measurement: "°C"
+  icon: "mdi:thermometer"
+
+- name: "CO2/VOC Sensor 2 [CO2]"
+  unique_id: "CO2_VOC_2_CO2"
+  state_topic: "dt/gf/co2voc/2/res"
+  value_template: "{{ value_json['fields'].co2 }}"
+  unit_of_measurement: "ppm"
+  icon: "mdi:molecule-co2"
+
+- name: "CO2/VOC Sensor 2 [Dewpoint]"
+  unique_id: "CO2_VOC_2_DEWPOINT"
+  state_topic: "dt/gf/co2voc/2/res"
+  value_template: "{{ value_json['fields'].dewpoint }}"
+  unit_of_measurement: "°C"
+  icon: "mdi:thermometer-lines"
+
+- name: "CO2/VOC Sensor 2 [Volume Flow]"
+  unique_id: "CO2_VOC_2_VOLUME_FLOW"
+  state_topic: "dt/gf/co2voc/2/res"
+  value_template: "{{ value_json['fields'].volumeFlow }}"
+  unit_of_measurement: "m³/h"
+  icon: "mdi:air-filter"
+
+
 
 # ──────────────── EC Sensor Calibrations ────────────────
 
@@ -265,6 +306,69 @@
   value_template: "{{ value_json['fields'].temperature }}"
   unit_of_measurement: ""
   icon: "mdi:thermometer"
+
+# ──────────────── WLS01 ────────────────
+
+# ───── Grow Tank 1 ─────
+- name: "Water Level Sensor GT1 [Level]"
+  unique_id: "WLS01_GT1_LEVEL"
+  state_topic: "dt/gf/wls01/gt1/res"
+  value_template: "{{ value_json['fields'].level_cm }}"
+  unit_of_measurement: "cm"
+  icon: "mdi:waves"
+
+- name: "Water Level Sensor GT1 [Pressure]"
+  unique_id: "WLS01_GT1_PRESSURE"
+  state_topic: "dt/gf/wls01/gt1/res"
+  value_template: "{{ value_json['fields'].pressure_kPa }}"
+  unit_of_measurement: "kPa"
+  icon: "mdi:gauge"
+
+# ───── Grow Tank 2 ─────
+- name: "Water Level Sensor GT2 [Level]"
+  unique_id: "WLS01_GT2_LEVEL"
+  state_topic: "dt/gf/wls01/gt2/res"
+  value_template: "{{ value_json['fields'].level_cm }}"
+  unit_of_measurement: "cm"
+  icon: "mdi:waves"
+
+- name: "Water Level Sensor GT2 [Pressure]"
+  unique_id: "WLS01_GT2_PRESSURE"
+  state_topic: "dt/gf/wls01/gt2/res"
+  value_template: "{{ value_json['fields'].pressure_kPa }}"
+  unit_of_measurement: "kPa"
+  icon: "mdi:gauge"
+
+# ───── Mixing Tank ─────
+- name: "Water Level Sensor MX [Level]"
+  unique_id: "WLS01_MX_LEVEL"
+  state_topic: "dt/gf/wls01/mx/res"
+  value_template: "{{ value_json['fields'].level_cm }}"
+  unit_of_measurement: "cm"
+  icon: "mdi:waves"
+
+- name: "Water Level Sensor MX [Pressure]"
+  unique_id: "WLS01_MX_PRESSURE"
+  state_topic: "dt/gf/wls01/mx/res"
+  value_template: "{{ value_json['fields'].pressure_kPa }}"
+  unit_of_measurement: "kPa"
+  icon: "mdi:gauge"
+
+# ───── Freshwater Tank ─────
+- name: "Water Level Sensor FWT [Level]"
+  unique_id: "WLS01_FWT_LEVEL"
+  state_topic: "dt/gf/wls01/fwt/res"
+  value_template: "{{ value_json['fields'].level_cm }}"
+  unit_of_measurement: "cm"
+  icon: "mdi:waves"
+
+- name: "Water Level Sensor FWT [Pressure]"
+  unique_id: "WLS01_FWT_PRESSURE"
+  state_topic: "dt/gf/wls01/fwt/res"
+  value_template: "{{ value_json['fields'].pressure_kPa }}"
+  unit_of_measurement: "kPa"
+  icon: "mdi:gauge"
+
 
 
 # ──────────────── HSI ────────────────

@@ -66,8 +66,13 @@ MQTT_DT_REQ = {
     "par02_2":    os.getenv("MQTT_DT_REQ_PAR02_2"),
     "sth01_1":    os.getenv("MQTT_DT_REQ_STH01_1"),
     "sth01_2":    os.getenv("MQTT_DT_REQ_STH01_2"),
-    "co2voc":     os.getenv("MQTT_DT_REQ_CO2VOC"),
-    "sym01":      os.getenv("MQTT_DT_REQ_SYM01")  
+    "co2voc_1":   os.getenv("MQTT_DT_REQ_CO2_VOC_1"),
+    "co2voc_2":   os.getenv("MQTT_DT_REQ_CO2_VOC_2"),
+    "sym01":      os.getenv("MQTT_DT_REQ_SYM01"),
+    "wls01_gt1":  os.getenv("MQTT_DT_REQ_WLS01_GT1"),
+    "wls01_gt2":  os.getenv("MQTT_DT_REQ_WLS01_GT2"),
+    "wls01_mx":   os.getenv("MQTT_DT_REQ_WLS01_MX"),
+    "wls01_fwt":  os.getenv("MQTT_DT_REQ_WLS01_FWT"),
 }
 
 # ───────────── Sensor Command Request Topics (CMD_REQ) ───────────── #
@@ -154,23 +159,30 @@ def on_connect(client, userdata, flags, rc):
 # ───────────────────────────── Activate Sensors & Actuators ───────────────────────────── #
 
 sensor_specs = {
-        "light01": (sensor_LIGHT01_modbus.SLIGHT01, '/dev/ttySC1', 1),
-        "par_gt2": (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 34),
+    "light01": (sensor_LIGHT01_modbus.SLIGHT01, '/dev/ttySC1', 1),
+    "par_gt2": (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 34),
 
-        "ec_gt1":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 5),
-        "ec_gt2":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 6),
-        "ec_mx":   (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 7),
+    "ec_gt1":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 5),
+    "ec_gt2":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 6),
+    "ec_mx":   (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 7),
 
-        "ph_gt1":  (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 8),
-        "ph_gt2":  (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 9),
-        "ph_mx":   (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 10),
+    "ph_gt1":  (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 8),
+    "ph_gt2":  (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 9),
+    "ph_mx":   (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 10),
 
-        "sym01":   (sensor_SYM01_modbus.SYM01, '/dev/ttySC1', 12),
-        "co2voc":  (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 7),
+    "sym01":   (sensor_SYM01_modbus.SYM01, '/dev/ttySC1', 12),
+    "co2voc_1": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 7),
+    "co2voc_2": (sensor_CO2_VOC_modbus.CO2_VOC, None, None),  # Change when connected
 
-        "sth01_1": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
-        "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70),
-    }
+    "sth01_1": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
+    "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70),
+
+    "wls01_gt1": (sensor_WLS01_modbus.WLS01, None, None),  # Change when connected
+    "wls01_gt2": (sensor_WLS01_modbus.WLS01, None, None),  # Change when connected
+    "wls01_mx":  (sensor_WLS01_modbus.WLS01, None, None),  # Change when connected
+    "wls01_fwt": (sensor_WLS01_modbus.WLS01, None, None),  # Change when connected
+}
+
 
 valve_1 = HVAC_fan_and_valve_modbus.Valve()
 fan_1 = HVAC_fan_and_valve_modbus.Fan()
@@ -280,8 +292,15 @@ on_message_ph_mx_cmd = sensor_handler(sensors["ph_mx"], "ph_mx")["cmd"]
 # SYM (data only)
 on_message_SYM01 = sensor_handler(sensors["sym01"], "sym01")["data"]
 
-# CO₂ VOC (data only)
-on_message_CO2_VOC_1 = sensor_handler(sensors["co2voc"], "co2voc")["data"]
+# CO₂ VOC 
+on_message_CO2_VOC_1 = sensor_handler(sensors["co2voc_1"], "co2voc_1")["data"]
+on_message_CO2_VOC_2 = sensor_handler(sensors["co2voc_2"], "co2voc_2")["data"]
+
+# WLS01s 
+on_message_WLS01_GT1 = sensor_handler(sensors["wls01_gt1"], "wls01_gt1")["data"]
+on_message_WLS01_GT2 = sensor_handler(sensors["wls01_gt2"], "wls01_gt2")["data"]
+on_message_WLS01_MX = sensor_handler(sensors["wls01_mx"], "wls01_mx")["data"]
+on_message_WLS01_FWT = sensor_handler(sensors["wls01_fwt"], "wls01_fwt")["data"]
 
 # STH sensors (data only)
 on_message_sth01_1 = sensor_handler(sensors["sth01_1"], "sth01_1")["data"]

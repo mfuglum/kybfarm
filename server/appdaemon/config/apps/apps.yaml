@@ -11,8 +11,8 @@ dummy_control:
   sensor: sensor.s_ec_01_2_temperature
   control_signal_topic: "ha/desktop_gf/actuators/temperature"
 
-main_loop:
-  module: main_loop
+sensor_request_loop:
+  module: sensor_request_loop
   class: MainLoop
   flag_entity: input_text.main_loop_flag
 
