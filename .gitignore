@@ -1,6 +1,7 @@
 .env
 .venv
 __pycache__
+cronlog.log
 # ────────────────────────────── AppDaemon ──────────────────────────────
 /server/appdaemon/config/*
 !/server/appdaemon/config/apps/
