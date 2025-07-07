@@ -18,7 +18,7 @@ SENSOR_OPTIONS = [
 
 # Scan for a sensor address (just check for Modbus response)
 def scan_for_sensor():
-    print(f"\n🔍 Scanning {MODBUS_PORT} for sensor (excluding whitelist)...")
+    print(f"\n Scanning {MODBUS_PORT} for sensor (excluding whitelist)...")
     for addr in ADDRESS_RANGE:
         if addr in WHITELIST:
             continue
