@@ -10,7 +10,8 @@ class MainLoop(hass.Hass):
         self.tasks = [
             "slight01", "spar02_gt2", "ec_gt1", "ec_gt2", "ec_mx",
             "ph_gt1", "ph_gt2", "ph_mx", "sth01_1", "sth01_2",
-            "sym01", "co2voc"
+            "sym01", "co2voc_1" , "co2voc_2", "wls01_gt1", "wls01_gt2",
+            "wls01_mx", "wls01_fwt"
         ]
 
         self.index = 0  # Keeps track of the current position in the loop
