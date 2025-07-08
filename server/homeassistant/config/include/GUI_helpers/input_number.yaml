@@ -623,7 +623,7 @@ hs_printer_z_end:
 
 hs_printer_z_start:
   name: "HSI Printer – Z Start"
-  min: 1
+  min: 0
   max: 2000
   step: 1
   initial: 200
@@ -633,7 +633,7 @@ hs_printer_z_start:
 
 hs_printer_x_start:
   name: "HSI Printer – X Start"
-  min: 1
+  min: 0
   max: 2000
   step: 1
   initial: 200
