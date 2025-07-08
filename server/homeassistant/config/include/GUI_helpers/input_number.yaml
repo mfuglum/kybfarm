@@ -620,3 +620,50 @@ hs_printer_z_end:
   mode: box
   unit_of_measurement: "mm"
   icon: mdi:arrow-down-bold
+
+hs_printer_z_start:
+  name: "HSI Printer – Z Start"
+  min: 1
+  max: 2000
+  step: 1
+  initial: 200
+  mode: box
+  unit_of_measurement: "mm"
+  icon: mdi:arrow-down-bold
+
+hs_printer_x_start:
+  name: "HSI Printer – X Start"
+  min: 1
+  max: 2000
+  step: 1
+  initial: 200
+  mode: box
+  unit_of_measurement: "mm"
+  icon: mdi:arrow-down-bold
+
+# === PROCCESING ===
+hsi_band_to_plot:
+    name: HSI Band to Plot
+    min: 0
+    max: 300
+    step: 1
+hsi_pixel_x:
+  name: HSI Pixel X
+  min: 0
+  max: 2000
+  step: 1
+hsi_pixel_y:
+  name: HSI Pixel Y
+  min: 0
+  max: 2000
+  step: 1
+hsi_red_band:
+  name: HSI Red Band
+  min: 0
+  max: 300
+  step: 1
+hsi_nir_band:
+  name: HSI NIR Band
+  min: 0
+  max: 300
+  step: 1
