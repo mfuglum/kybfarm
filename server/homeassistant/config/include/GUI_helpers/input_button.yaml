@@ -15,3 +15,7 @@ hs_send_printer_gcode:
 hs_apply_config:
   name: "Apply HSI Config"
   icon: mdi:content-save-cog
+
+hs_process_hsi:
+    name: "Process HSI Data"
+    icon: mdi:play-circle

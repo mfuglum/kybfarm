@@ -36,6 +36,8 @@ hsi_config_update:
   printer_x_end_id: input_number.hs_printer_x_end
   printer_z_step_id: input_number.hs_printer_z_step
   printer_z_end_id: input_number.hs_printer_z_end
+  printer_z_start_id: input_number.hs_printer_z_start
+  printer_x_start_id: input_number.hs_printer_x_start
 
 hsi_scheduler:
   module: HSI_scheduler
@@ -185,3 +187,18 @@ lamp2_controller:
   finish_time_id: input_datetime.lamp2_finish_time
   toggle_id: input_boolean.lamp2_control_toggle
 
+scan_processor:
+  module: scan_processor
+  class: ScanProcessor
+
+  # Entity to watch for scan state change
+  scann_status_id: sensor.hsi_scanner_status
+
+  # Inputs for processing parameters
+  band_input: input_number.hsi_band_to_plot
+  pixel_x_input: input_number.hsi_pixel_x
+  pixel_y_input: input_number.hsi_pixel_y
+  red_band_input: input_number.hsi_red_band
+  nir_band_input: input_number.hsi_nir_band
+
+  process_button: input_button.hs_process_hsi

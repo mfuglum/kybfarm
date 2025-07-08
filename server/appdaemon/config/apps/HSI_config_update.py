@@ -27,6 +27,9 @@ class HSIConfigUpdate(hass.Hass):
         x_end = self.get_state(self.args["printer_x_end_id"])
         z_step = self.get_state(self.args["printer_z_step_id"])
         z_end = self.get_state(self.args["printer_z_end_id"])
+        x_start = self.get_state(self.args["printer_x_start_id"])
+        z_start = self.get_state(self.args["printer_z_start_id"])
+        
 
         # Build config payload
         payload = {
@@ -42,6 +45,8 @@ class HSIConfigUpdate(hass.Hass):
                     "X_END": int(float(x_end)),
                     "Z_STEP": float(z_step),
                     "Z_END": int(float(z_end))
+                    "Z_START": int(float(z_start))
+                    "X_START": int(float(x_start))
                 }
             }
         }
