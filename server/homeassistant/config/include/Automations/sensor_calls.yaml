@@ -172,54 +172,54 @@
         payload: '{"req_topic": "dt/gf/co2voc/2/req", "res_topic": "dt/gf/co2voc/2/res", "data": "ha_req"}'
   mode: single
 
-# ──────────────── WLS01 GT1 ────────────────
-- alias: "WLS01 GT1 • Request"
+# ──────────────── SLLE01 GT1 ────────────────
+- alias: "SLLE01 GT1 • Request"
   trigger:
     - platform: state
       entity_id: input_text.main_loop_flag
-      to: "wls01_gt1"
+      to: "slle01_gt1"
   action:
     - service: mqtt.publish
       data:
-        topic: "dt/gf/wls01/gt1/req"
-        payload: '{"req_topic": "dt/gf/wls01/gt1/req", "res_topic": "dt/gf/wls01/gt1/res", "data": "ha_req"}'
+        topic: "dt/gf/slle01/gt1/req"
+        payload: '{"req_topic": "dt/gf/slle01/gt1/req", "res_topic": "dt/gf/slle01/gt1/res", "data": "ha_req"}'
   mode: single
 
-# ──────────────── WLS01 GT2 ────────────────
-- alias: "WLS01 GT2 • Request"
+# ──────────────── SLLE01 GT2 ────────────────
+- alias: "SLLE01 GT2 • Request"
   trigger:
     - platform: state
       entity_id: input_text.main_loop_flag
-      to: "wls01_gt2"
+      to: "slle01_gt2"
   action:
     - service: mqtt.publish
       data:
-        topic: "dt/gf/wls01/gt2/req"
-        payload: '{"req_topic": "dt/gf/wls01/gt2/req", "res_topic": "dt/gf/wls01/gt2/res", "data": "ha_req"}'
+        topic: "dt/gf/slle01/gt2/req"
+        payload: '{"req_topic": "dt/gf/slle01/gt2/req", "res_topic": "dt/gf/slle01/gt2/res", "data": "ha_req"}'
   mode: single
 
-# ──────────────── WLS01 MX ────────────────
-- alias: "WLS01 MX • Request"
+# ──────────────── SLLE01 MX ────────────────
+- alias: "SLLE01 MX • Request"
   trigger:
     - platform: state
       entity_id: input_text.main_loop_flag
-      to: "wls01_mx"
+      to: "slle01_mx"
   action:
     - service: mqtt.publish
       data:
-        topic: "dt/gf/wls01/mx/req"
-        payload: '{"req_topic": "dt/gf/wls01/mx/req", "res_topic": "dt/gf/wls01/mx/res", "data": "ha_req"}'
+        topic: "dt/gf/slle01/mx/req"
+        payload: '{"req_topic": "dt/gf/slle01/mx/req", "res_topic": "dt/gf/slle01/mx/res", "data": "ha_req"}'
   mode: single
 
-# ──────────────── WLS01 FWT ────────────────
-- alias: "WLS01 FWT • Request"
+# ──────────────── SLLE01 FWT ────────────────
+- alias: "SLLE01 FWT • Request"
   trigger:
     - platform: state
       entity_id: input_text.main_loop_flag
-      to: "wls01_fwt"
+      to: "slle01_fwt"
   action:
     - service: mqtt.publish
       data:
-        topic: "dt/gf/wls01/fwt/req"
-        payload: '{"req_topic": "dt/gf/wls01/fwt/req", "res_topic": "dt/gf/wls01/fwt/res", "data": "ha_req"}'
+        topic: "dt/gf/slle01/fwt/req"
+        payload: '{"req_topic": "dt/gf/slle01/fwt/req", "res_topic": "dt/gf/slle01/fwt/res", "data": "ha_req"}'
   mode: single
