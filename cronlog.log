@@ -1,0 +1,26 @@
+Error in BMP280 interface:  No Hardware I2C on (scl,sda)=(3, 2)
+Valid I2C ports: ((1, 3, 2), (0, 1, 0), (10, 45, 44))
+Error in SCD41 interface:  No Hardware I2C on (scl,sda)=(3, 2)
+Valid I2C ports: ((1, 3, 2), (0, 1, 0), (10, 45, 44))
+Init: light01, port=/dev/ttySC1, slave=1
+Init: par_gt2, port=/dev/ttySC1, slave=34
+Init: ec_gt1, port=/dev/ttySC1, slave=5
+Init: ec_gt2, port=/dev/ttySC1, slave=6
+Init: ec_mx, port=/dev/ttySC1, slave=7
+Init: ph_gt1, port=/dev/ttySC1, slave=8
+Init: ph_gt2, port=/dev/ttySC1, slave=9
+Init: ph_mx, port=/dev/ttySC1, slave=10
+Init: sym01, port=/dev/ttySC1, slave=12
+Init: co2voc_1, port=/dev/ttySC0, slave=7
+Failed to init co2voc_1: No communication with the instrument (no answer)
+Init: sth01_1, port=/dev/ttySC0, slave=69
+Init: sth01_2, port=/dev/ttySC0, slave=70
+Init: wls01_gt1, port=/dev/ttySC1, slave=2
+Init: wls01_gt2, port=/dev/ttySC1, slave=2
+Init: wls01_mx, port=/dev/ttySC1, slave=2
+Init: wls01_fwt, port=/dev/ttySC1, slave=2
+Traceback (most recent call last):
+  File "/home/user1/kybfarm/edge/edge_computer_main.py", line 297, in <module>
+    on_message_CO2_VOC_1 = sensor_handler(sensors["co2voc_1"], "co2voc_1")["data"]
+                                          ~~~~~~~^^^^^^^^^^^^
+KeyError: 'co2voc_1'
