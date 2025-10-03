@@ -17,7 +17,7 @@ Init: sth01_1, port=/dev/ttySC0, slave=69
 Init: sth01_2, port=/dev/ttySC0, slave=70
 Init: wls01_gt1, port=/dev/ttySC1, slave=2
 Init: wls01_gt2, port=/dev/ttySC1, slave=2
-Init: wls01_mx, port=/dev/ttySC1, slave=2
+Init: slle01_mx, port=/dev/ttySC1, slave=28
 Init: wls01_fwt, port=/dev/ttySC1, slave=2
 Traceback (most recent call last):
   File "/home/user1/kybfarm/edge/edge_computer_main.py", line 297, in <module>
