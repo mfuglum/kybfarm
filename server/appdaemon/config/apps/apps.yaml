@@ -75,10 +75,10 @@ tank_and_nutrient_controller:
   enable_id: input_boolean.tank_and_nutrient_control
 
   # ───── Water level sensors ─────
-  wls01_gt1_level_id: sensor.wls01_gt1_level
-  wls01_gt2_level_id: sensor.wls01_gt2_level
-  wls01_mx_level_id: sensor.wls01_mx_level
-  wls01_fwt_level_id: sensor.wls01_fwt_level
+  slle01_gt1_level_id: sensor.slle01_gt1_level
+  slle01_gt2_level_id: sensor.slle01_gt2_level
+  slle01_mx_level_id: sensor.slle01_mx_level
+  slle01_fwt_level_id: sensor.slle01_fwt_level
 
   # ───── EC sensors ─────
   ec_gt1_id: sensor.s_ec_01_gt1_ec

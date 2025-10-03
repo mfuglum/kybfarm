@@ -70,10 +70,10 @@ MQTT_DT_REQ = {
     "co2voc_1":   os.getenv("MQTT_DT_REQ_CO2_VOC_1"),
     "co2voc_2":   os.getenv("MQTT_DT_REQ_CO2_VOC_2"),
     "sym01":      os.getenv("MQTT_DT_REQ_SYM01"),
-    "wls01_gt1":  os.getenv("MQTT_DT_REQ_WLS01_GT1"),
-    "wls01_gt2":  os.getenv("MQTT_DT_REQ_WLS01_GT2"),
+    "slle01_gt1":  os.getenv("MQTT_DT_REQ_SLLE01_GT1"),
+    "slle01_gt2":  os.getenv("MQTT_DT_REQ_SLLE01_GT2"),
     "slle01_mx":  os.getenv("MQTT_DT_REQ_SLLE01_MX"),
-    "wls01_fwt":  os.getenv("MQTT_DT_REQ_WLS01_FWT"),
+    "slle01_fwt":  os.getenv("MQTT_DT_REQ_SLLE01_FWT"),
 }
 
 # ───────────── Sensor Command Request Topics (CMD_REQ) ───────────── #
@@ -178,10 +178,10 @@ sensor_specs = {
     "sth01_1": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
     "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70),
 
-    "wls01_gt1": (sensor_WLS01_modbus.WLS01, '/dev/ttySC1', 2),  # Change when connected
-    "wls01_gt2": (sensor_WLS01_modbus.WLS01, '/dev/ttySC1', 2),  # Change when connected
+    "slle01_gt1": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 26),  # Change when connected
+    "slle01_gt2": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 27),  # Change when connected
     "slle01_mx": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 28),
-    "wls01_fwt": (sensor_WLS01_modbus.WLS01, '/dev/ttySC1', 2),  # Change when connected
+    "slle01_fwt": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 29),  # Change when connected
 }
 
 
@@ -297,11 +297,11 @@ on_message_SYM01 = sensor_handler(sensors["sym01"], "sym01")["data"]
 on_message_CO2_VOC_1 = sensor_handler(sensors["co2voc_1"], "co2voc_1")["data"]
 #on_message_CO2_VOC_2 = sensor_handler(sensors["co2voc_2"], "co2voc_2")["data"] #uncomment when connected
 
-# WLS01s 
-on_message_WLS01_GT1 = sensor_handler(sensors["wls01_gt1"], "wls01_gt1")["data"]
-on_message_WLS01_GT2 = sensor_handler(sensors["wls01_gt2"], "wls01_gt2")["data"]
+# SLLE01s 
+on_message_SLLE01_GT1 = sensor_handler(sensors["slle01_gt1"], "slle01_gt1")["data"]
+on_message_SLLE01_GT2 = sensor_handler(sensors["slle01_gt2"], "slle01_gt2")["data"]
 on_message_SLLE01_MX = sensor_handler(sensors["slle01_mx"], "slle01_mx")["data"]
-on_message_WLS01_FWT = sensor_handler(sensors["wls01_fwt"], "wls01_fwt")["data"]
+on_message_SLLE01_FWT = sensor_handler(sensors["slle01_fwt"], "slle01_fwt")["data"]
 
 # STH sensors (data only)
 on_message_sth01_1 = sensor_handler(sensors["sth01_1"], "sth01_1")["data"]
@@ -344,11 +344,11 @@ client.message_callback_add(MQTT_DT_REQ["par02_2"], on_message_par02_2)
 client.message_callback_add(MQTT_DT_REQ["co2voc_1"], on_message_CO2_VOC_1)
 #client.message_callback_add(MQTT_DT_REQ["co2voc_2"], on_message_CO2_VOC_2) #uncomment when connected
 
-# New WLS01 sensors 
-client.message_callback_add(MQTT_DT_REQ["wls01_gt1"], on_message_WLS01_GT1)
-client.message_callback_add(MQTT_DT_REQ["wls01_gt2"], on_message_WLS01_GT2)
+# New SLLE01 sensors 
+client.message_callback_add(MQTT_DT_REQ["slle01_gt1"], on_message_SLLE01_GT1)
+client.message_callback_add(MQTT_DT_REQ["slle01_gt2"], on_message_SLLE01_GT2)
 client.message_callback_add(MQTT_DT_REQ["slle01_mx"],  on_message_SLLE01_MX)
-client.message_callback_add(MQTT_DT_REQ["wls01_fwt"], on_message_WLS01_FWT)
+client.message_callback_add(MQTT_DT_REQ["slle01_fwt"], on_message_SLLE01_FWT)
 # SYM flow sensor
 client.message_callback_add(MQTT_DT_REQ["sym01"], on_message_SYM01)
 

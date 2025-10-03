@@ -4,11 +4,11 @@
 # └────────────────────────────────────────────────────────────────────────────┘
 
 relay_1:
-  name: "[RL1] Water Pump 350"
+  name: "[RL1] Fresh Water Pump 350"
   icon: "mdi:water-pump"
 
 relay_2:
-  name: "[RL2] Water Pump 5K"
+  name: "[RL2] Mixing Water Pump 5K"
   icon: "mdi:water-pump"
 
 relay_3:

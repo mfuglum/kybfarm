@@ -5,10 +5,10 @@ class TankAndNutrientControler(hass.Hass):
     def initialize(self):
         self.enable_id = self.args["enable_id"]
 
-        self.wls01_gt1 = self.args["wls01_gt1_level_id"]
-        self.wls01_gt2 = self.args["wls01_gt2_level_id"]
-        self.wls01_mx = self.args["wls01_mx_level_id"]
-        self.wls01_fwt = self.args["wls01_fwt_level_id"]
+        self.slle01_gt1 = self.args["slle01_gt1_level_id"]
+        self.slle01_gt2 = self.args["slle01_gt2_level_id"]
+        self.slle01_mx = self.args["slle01_mx_level_id"]
+        self.slle01_fwt = self.args["slle01_fwt_level_id"]
 
         self.ec_gt1 = self.args["ec_gt1_id"]
         self.ec_gt2 = self.args["ec_gt2_id"]
@@ -58,7 +58,7 @@ class TankAndNutrientControler(hass.Hass):
             self.dose_more(ec_target, ec_avg)
 
         # Check mixing tank level
-        mx_level = float(self.get_state(self.wls01_mx))  # Assume % full
+        mx_level = float(self.get_state(self.slle01_mx))  # Assume % full
         mx_volume = mx_level / 100 * self.mx_capacity
 
         if mx_volume < 50:  # 50L as example threshold
@@ -81,9 +81,9 @@ class TankAndNutrientControler(hass.Hass):
         delta_ec = target_ec - current_ec
         delta_ml_per_L = delta_ec / 1000
 
-        mx_level = float(self.get_state(self.wls01_mx))
-        gt1_level = float(self.get_state(self.wls01_gt1))
-        gt2_level = float(self.get_state(self.wls01_gt2))
+        mx_level = float(self.get_state(self.slle01_mx))
+        gt1_level = float(self.get_state(self.slle01_gt1))
+        gt2_level = float(self.get_state(self.slle01_gt2))
 
         mx_vol = mx_level / 100 * self.mx_capacity
         gt1_vol = gt1_level / 100 * self.gt1_capacity

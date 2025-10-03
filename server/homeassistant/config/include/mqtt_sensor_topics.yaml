@@ -307,64 +307,64 @@
   unit_of_measurement: ""
   icon: "mdi:thermometer"
 
-# ──────────────── WLS01 ────────────────
+# ──────────────── SLLE01 ────────────────
 
 # ───── Grow Tank 1 ─────
 - name: "Water Level Sensor GT1 [Level]"
-  unique_id: "WLS01_GT1_LEVEL"
-  state_topic: "dt/gf/wls01/gt1/res"
+  unique_id: "SLLE01_GT1_LEVEL"
+  state_topic: "dt/gf/slle01/gt1/res"
   value_template: "{{ value_json['fields'].level_cm }}"
   unit_of_measurement: "cm"
   icon: "mdi:waves"
 
 - name: "Water Level Sensor GT1 [Pressure]"
-  unique_id: "WLS01_GT1_PRESSURE"
-  state_topic: "dt/gf/wls01/gt1/res"
+  unique_id: "SLLE01_GT1_PRESSURE"
+  state_topic: "dt/gf/slle01/gt1/res"
   value_template: "{{ value_json['fields'].pressure_kPa }}"
   unit_of_measurement: "kPa"
   icon: "mdi:gauge"
 
 # ───── Grow Tank 2 ─────
 - name: "Water Level Sensor GT2 [Level]"
-  unique_id: "WLS01_GT2_LEVEL"
-  state_topic: "dt/gf/wls01/gt2/res"
+  unique_id: "SLLE01_GT2_LEVEL"
+  state_topic: "dt/gf/slle01/gt2/res"
   value_template: "{{ value_json['fields'].level_cm }}"
   unit_of_measurement: "cm"
   icon: "mdi:waves"
 
 - name: "Water Level Sensor GT2 [Pressure]"
-  unique_id: "WLS01_GT2_PRESSURE"
-  state_topic: "dt/gf/wls01/gt2/res"
+  unique_id: "SLLE01_GT2_PRESSURE"
+  state_topic: "dt/gf/slle01/gt2/res"
   value_template: "{{ value_json['fields'].pressure_kPa }}"
   unit_of_measurement: "kPa"
   icon: "mdi:gauge"
 
 # ───── Mixing Tank ─────
 - name: "Water Level Sensor MX [Level]"
-  unique_id: "WLS01_MX_LEVEL"
-  state_topic: "dt/gf/wls01/mx/res"
+  unique_id: "SLLE01_MX_LEVEL"
+  state_topic: "dt/gf/slle01/mx/res"
   value_template: "{{ value_json['fields'].level_cm }}"
   unit_of_measurement: "cm"
   icon: "mdi:waves"
 
 - name: "Water Level Sensor MX [Pressure]"
-  unique_id: "WLS01_MX_PRESSURE"
-  state_topic: "dt/gf/wls01/mx/res"
+  unique_id: "SLLE01_MX_PRESSURE"
+  state_topic: "dt/gf/slle01/mx/res"
   value_template: "{{ value_json['fields'].pressure_kPa }}"
   unit_of_measurement: "kPa"
   icon: "mdi:gauge"
 
 # ───── Freshwater Tank ─────
 - name: "Water Level Sensor FWT [Level]"
-  unique_id: "WLS01_FWT_LEVEL"
-  state_topic: "dt/gf/wls01/fwt/res"
+  unique_id: "SLLE01_FWT_LEVEL"
+  state_topic: "dt/gf/slle01/fwt/res"
   value_template: "{{ value_json['fields'].level_cm }}"
   unit_of_measurement: "cm"
   icon: "mdi:waves"
 
 - name: "Water Level Sensor FWT [Pressure]"
-  unique_id: "WLS01_FWT_PRESSURE"
-  state_topic: "dt/gf/wls01/fwt/res"
+  unique_id: "SLLE01_FWT_PRESSURE"
+  state_topic: "dt/gf/slle01/fwt/res"
   value_template: "{{ value_json['fields'].pressure_kPa }}"
   unit_of_measurement: "kPa"
   icon: "mdi:gauge"
