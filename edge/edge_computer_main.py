@@ -178,10 +178,10 @@ sensor_specs = {
     "sth01_1": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
     "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70),
 
-    "slle01_gt1": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 26),  # Change when connected
-    "slle01_gt2": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 27),  # Change when connected
+    "slle01_gt1": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 26),
+    "slle01_gt2": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 27),
     "slle01_mx": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 28),
-    "slle01_fwt": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 29),  # Change when connected
+    "slle01_fwt": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 29),
 }
 
 
