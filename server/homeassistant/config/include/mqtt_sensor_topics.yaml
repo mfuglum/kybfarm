@@ -371,6 +371,35 @@
 
 
 
+# ──────────────── S-RJY01 ────────────────
+# Dissolved Oxygen Sensor
+
+# ───── O₂ Concentration (mg/L) ─────
+- name: "Dissolved Oxygen GT1 [mg/L]"
+  unique_id: "S_RJY01_GT1_MGL"
+  state_topic: "dt/gf/srjy01/gt1/res"
+  value_template: "{{ value_json['fields'].odo_mg_l }}"
+  unit_of_measurement: "mg/L"
+  icon: "mdi:water-percent"
+
+# ───── O₂ Saturation (%) ─────
+- name: "Dissolved Oxygen GT1 [Saturation]"
+  unique_id: "S_RJY01_GT1_SAT"
+  state_topic: "dt/gf/srjy01/gt1/res"
+  value_template: "{{ value_json['fields'].saturation_pct }}"
+  unit_of_measurement: "%"
+  icon: "mdi:percent"
+
+# ───── O₂ Temperature (°C) ─────
+- name: "Dissolved Oxygen GT1 [Temperature]"
+  unique_id: "S_RJY01_GT1_TEMP"
+  state_topic: "dt/gf/srjy01/gt1/res"
+  value_template: "{{ value_json['fields'].temperature_c }}"
+  unit_of_measurement: "°C"
+  icon: "mdi:thermometer"
+
+
+
 # ──────────────── HSI ────────────────
 
 # === Scanner ===

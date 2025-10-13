@@ -37,7 +37,8 @@ from src.sensor_interfaces import (
     sensor_STH01_modbus,
     sensor_BMP280_I2C,
     sensor_SCD41_I2C,
-    sensor_SLLE01_modbus
+    sensor_SLLE01_modbus,
+    sensor_SRJY01_modbus
 )
 
 # ───────────────────────────────────── Actuator Modules ────────────────────────────────── #
@@ -70,10 +71,11 @@ MQTT_DT_REQ = {
     "co2voc_1":   os.getenv("MQTT_DT_REQ_CO2_VOC_1"),
     "co2voc_2":   os.getenv("MQTT_DT_REQ_CO2_VOC_2"),
     "sym01":      os.getenv("MQTT_DT_REQ_SYM01"),
-    "slle01_gt1":  os.getenv("MQTT_DT_REQ_SLLE01_GT1"),
-    "slle01_gt2":  os.getenv("MQTT_DT_REQ_SLLE01_GT2"),
+    "slle01_gt1": os.getenv("MQTT_DT_REQ_SLLE01_GT1"),
+    "slle01_gt2": os.getenv("MQTT_DT_REQ_SLLE01_GT2"),
     "slle01_mx":  os.getenv("MQTT_DT_REQ_SLLE01_MX"),
-    "slle01_fwt":  os.getenv("MQTT_DT_REQ_SLLE01_FWT"),
+    "slle01_fwt": os.getenv("MQTT_DT_REQ_SLLE01_FWT"),
+    "srjy01":     os.getenv("MQTT_DT_REQ_SRJY01"),
 }
 
 # ───────────── Sensor Command Request Topics (CMD_REQ) ───────────── #
@@ -182,6 +184,8 @@ sensor_specs = {
     "slle01_gt2": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 27),
     "slle01_mx": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 28),
     "slle01_fwt": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 29),
+
+    "srjy01":  (sensor_SRJY01_modbus.SRJY01, '/dev/ttySC1', 55),
 }
 
 
@@ -300,10 +304,13 @@ on_message_CO2_VOC_1 = sensor_handler(sensors["co2voc_1"], "co2voc_1")["data"]
 # SLLE01s 
 on_message_SLLE01_GT1 = sensor_handler(sensors["slle01_gt1"], "slle01_gt1")["data"]
 on_message_SLLE01_GT2 = sensor_handler(sensors["slle01_gt2"], "slle01_gt2")["data"]
-on_message_SLLE01_MX = sensor_handler(sensors["slle01_mx"], "slle01_mx")["data"]
+on_message_SLLE01_MX  = sensor_handler(sensors["slle01_mx"], "slle01_mx")["data"]
 on_message_SLLE01_FWT = sensor_handler(sensors["slle01_fwt"], "slle01_fwt")["data"]
 
-# STH sensors (data only)
+# SRJY01
+on_message_SRJY01 = sensor_handler(sensors["srjy01"], "srjy01")["data"]
+
+# STH sensors
 on_message_sth01_1 = sensor_handler(sensors["sth01_1"], "sth01_1")["data"]
 on_message_sth01_2 = sensor_handler(sensors["sth01_2"], "sth01_2")["data"]
 
@@ -344,11 +351,15 @@ client.message_callback_add(MQTT_DT_REQ["par02_2"], on_message_par02_2)
 client.message_callback_add(MQTT_DT_REQ["co2voc_1"], on_message_CO2_VOC_1)
 #client.message_callback_add(MQTT_DT_REQ["co2voc_2"], on_message_CO2_VOC_2) #uncomment when connected
 
-# New SLLE01 sensors 
+# SLLE01 sensors 
 client.message_callback_add(MQTT_DT_REQ["slle01_gt1"], on_message_SLLE01_GT1)
 client.message_callback_add(MQTT_DT_REQ["slle01_gt2"], on_message_SLLE01_GT2)
 client.message_callback_add(MQTT_DT_REQ["slle01_mx"],  on_message_SLLE01_MX)
 client.message_callback_add(MQTT_DT_REQ["slle01_fwt"], on_message_SLLE01_FWT)
+
+# SRJY01 sensor
+client.message_callback_add(MQTT_DT_REQ["srjy01"], on_message_SRJY01)
+
 # SYM flow sensor
 client.message_callback_add(MQTT_DT_REQ["sym01"], on_message_SYM01)
 
