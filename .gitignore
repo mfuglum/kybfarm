@@ -2,6 +2,8 @@
 .venv
 __pycache__
 cronlog.log
+edge/nohup.out
+*.log
 # ────────────────────────────── AppDaemon ──────────────────────────────
 /server/appdaemon/config/*
 !/server/appdaemon/config/apps/
