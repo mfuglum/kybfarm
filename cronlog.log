@@ -23,8 +23,9 @@ Init: slle01_mx, port=/dev/ttySC1, slave=28
 [S-LLE-01] Warning: could not set unit to cm (No communication with the instrument (no answer))
 Init: slle01_fwt, port=/dev/ttySC1, slave=29
 [S-LLE-01] Warning: could not set unit to cm (No communication with the instrument (no answer))
+Init: srjy01, port=/dev/ttySC1, slave=30
 Traceback (most recent call last):
-  File "/home/user1/kybfarm/edge/edge_computer_main.py", line 297, in <module>
+  File "/home/user1/kybfarm/edge/edge_computer_main.py", line 301, in <module>
     on_message_CO2_VOC_1 = sensor_handler(sensors["co2voc_1"], "co2voc_1")["data"]
                                           ~~~~~~~^^^^^^^^^^^^
 KeyError: 'co2voc_1'
