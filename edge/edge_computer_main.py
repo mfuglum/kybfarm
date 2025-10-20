@@ -175,7 +175,7 @@ sensor_specs = {
 
     "sym01":   (sensor_SYM01_modbus.SYM01, '/dev/ttySC1', 12),
     "co2voc_1": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 7),
-    #"co2voc_2": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 8),  # Change when connected
+    "co2voc_2": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 8),
 
     "sth01_1": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
     "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70),
@@ -299,7 +299,7 @@ on_message_SYM01 = sensor_handler(sensors["sym01"], "sym01")["data"]
 
 # CO₂ VOC 
 on_message_CO2_VOC_1 = sensor_handler(sensors["co2voc_1"], "co2voc_1")["data"]
-#on_message_CO2_VOC_2 = sensor_handler(sensors["co2voc_2"], "co2voc_2")["data"] #uncomment when connected
+on_message_CO2_VOC_2 = sensor_handler(sensors["co2voc_2"], "co2voc_2")["data"]
 
 # SLLE01s 
 on_message_SLLE01_GT1 = sensor_handler(sensors["slle01_gt1"], "slle01_gt1")["data"]
@@ -349,7 +349,7 @@ client.message_callback_add(MQTT_DT_REQ["par02_2"], on_message_par02_2)
 
 # CO₂ VOC sensor
 client.message_callback_add(MQTT_DT_REQ["co2voc_1"], on_message_CO2_VOC_1)
-#client.message_callback_add(MQTT_DT_REQ["co2voc_2"], on_message_CO2_VOC_2) #uncomment when connected
+client.message_callback_add(MQTT_DT_REQ["co2voc_2"], on_message_CO2_VOC_2)
 
 # SLLE01 sensors 
 client.message_callback_add(MQTT_DT_REQ["slle01_gt1"], on_message_SLLE01_GT1)
