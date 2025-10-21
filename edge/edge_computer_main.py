@@ -174,11 +174,12 @@ sensor_specs = {
     "ph_mx":   (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 10),
 
     "sym01":   (sensor_SYM01_modbus.SYM01, '/dev/ttySC1', 12),
+
     "co2voc_1": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 7),
     "co2voc_2": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 8),
 
     "sth01_1": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
-    "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70),
+    "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70), # disconnected (replaced with the second CO2 sensor)
 
     "slle01_gt1": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 26),
     "slle01_gt2": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 27),

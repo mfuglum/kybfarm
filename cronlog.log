@@ -13,6 +13,8 @@ Init: ph_mx, port=/dev/ttySC1, slave=10
 Init: sym01, port=/dev/ttySC1, slave=12
 Init: co2voc_1, port=/dev/ttySC0, slave=7
 Failed to init co2voc_1: No communication with the instrument (no answer)
+Init: co2voc_2, port=/dev/ttySC0, slave=8
+Failed to init co2voc_2: No communication with the instrument (no answer)
 Init: sth01_1, port=/dev/ttySC0, slave=69
 Init: sth01_2, port=/dev/ttySC0, slave=70
 Init: slle01_gt1, port=/dev/ttySC1, slave=26

@@ -223,3 +223,16 @@
         topic: "dt/gf/slle01/fwt/req"
         payload: '{"req_topic": "dt/gf/slle01/fwt/req", "res_topic": "dt/gf/slle01/fwt/res", "data": "ha_req"}'
   mode: single
+
+# ──────────────── S-RJY01 MX ────────────────
+- alias: "SRJY01 MX • Request"
+  trigger:
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "srjy01"
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/srjy01/mx/req"
+        payload: '{"req_topic": "dt/gf/srjy01/mx/req", "res_topic": "dt/gf/srjy01/mx/res", "data": "ha_req"}'
+  mode: single

@@ -11,9 +11,9 @@ SENSOR_OPTIONS = [
     ("SPAR02", "sensor_SPAR02_modbus", "SPAR02", 34),
     ("SEC01", "sensor_SEC01_modbus", "SEC01", 30),
     ("SPH01", "sensor_SPH01_modbus", "SPH01", 4),
-    ("STH01", "sensor_STH01_modbus", "STH01", 13),
+    ("STH01", "sensor_STH01_modbus", "STH01", 69),
     ("SYM01", "sensor_SYM01_modbus", "SYM01", 11),
-    ("CO2_VOC", "sensor_CO2_VOC_modbus", "CO2_VOC", 13),
+    ("CO2_VOC", "sensor_CO2_VOC_modbus", "CO2_VOC", 7),
     ("SLLE01", "sensor_SLLE01_modbus", "SLLE01", 26),
     ("SRJY01", "sensor_SRJY01_modbus", "SRJY01", 55)
 ]

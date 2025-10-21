@@ -2,16 +2,14 @@ import minimalmodbus
 import datetime
 
 
-
-# The device / Instrument class for Thermokon LK+ CO2+VOC RS485 Modbus 
 class STH01( minimalmodbus.Instrument ):
-    """Instrument class for  Light Intensity sensor.
+    """Instrument class for sensor.
     
     Args:
         * portname (str):                       port name
                                                 Default is '/dev/ttySC1', which is the address to the RS-485 hat of the Raspberry Pi 4B
         * slaveaddress (int):                   slave address in the range 1 to 247
-                                                Default is 13 (from manufacturer)
+                                                Default is x (from manufacturer)
         * mode (str):                           Mode of communication.
                                                 Default is minimalmodbus.MODE_RTU
         * close_port_after_each_call (bool):    Whether to close the port after each call.
@@ -29,7 +27,7 @@ class STH01( minimalmodbus.Instrument ):
     Current:
         Baudrate: 9600
         Parity: None
-        Address: 7
+        Address: 
 
 
     Imperial vs SI unit system is set using register 400
