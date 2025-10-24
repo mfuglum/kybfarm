@@ -15,7 +15,8 @@ SENSOR_OPTIONS = [
     ("SYM01", "sensor_SYM01_modbus", "SYM01", 11),
     ("CO2_VOC", "sensor_CO2_VOC_modbus", "CO2_VOC", 7),
     ("SLLE01", "sensor_SLLE01_modbus", "SLLE01", 26),
-    ("SRJY01", "sensor_SRJY01_modbus", "SRJY01", 55)
+    ("SRJY01", "sensor_SRJY01_modbus", "SRJY01", 55),
+    ("EE671", "sensor_EE671_modbus", "EE671", 238)
 ]
 
 # Scan for a sensor address (just check for Modbus response)

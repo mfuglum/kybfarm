@@ -236,3 +236,16 @@
         topic: "dt/gf/srjy01/mx/req"
         payload: '{"req_topic": "dt/gf/srjy01/mx/req", "res_topic": "dt/gf/srjy01/mx/res", "data": "ha_req"}'
   mode: single
+
+# ──────────────── EE671 • Airflow Probe ────────────────
+- alias: "EE671 • Request"
+  trigger:
+    - platform: state
+      entity_id: input_text.main_loop_flag
+      to: "ee671"
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "dt/gf/ee671/req"
+        payload: '{"req_topic": "dt/gf/ee671/req", "res_topic": "dt/gf/ee671/res", "data": "ha_req"}'
+  mode: single

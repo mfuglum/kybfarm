@@ -11,7 +11,7 @@ class MainLoop(hass.Hass):
             "slight01", "spar02_gt2", "ec_gt1", "ec_gt2", "ec_mx",
             "ph_gt1", "ph_gt2", "ph_mx", "sth01_1", "sth01_2",
             "sym01", "co2voc_1" , "co2voc_2", "slle01_gt1", "slle01_gt2",
-            "slle01_mx", "slle01_fwt", "srjy01"
+            "slle01_mx", "slle01_fwt", "srjy01", "ee671"
         ]
 
         self.index = 0  # Keeps track of the current position in the loop

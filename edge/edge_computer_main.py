@@ -38,7 +38,8 @@ from src.sensor_interfaces import (
     sensor_BMP280_I2C,
     sensor_SCD41_I2C,
     sensor_SLLE01_modbus,
-    sensor_SRJY01_modbus
+    sensor_SRJY01_modbus,
+    sensor_EE671_modbus
 )
 
 # ───────────────────────────────────── Actuator Modules ────────────────────────────────── #
@@ -76,6 +77,7 @@ MQTT_DT_REQ = {
     "slle01_mx":  os.getenv("MQTT_DT_REQ_SLLE01_MX"),
     "slle01_fwt": os.getenv("MQTT_DT_REQ_SLLE01_FWT"),
     "srjy01":     os.getenv("MQTT_DT_REQ_SRJY01"),
+    "ee671":      os.getenv("MQTT_DT_REQ_EE671")
 }
 
 # ───────────── Sensor Command Request Topics (CMD_REQ) ───────────── #
@@ -187,6 +189,8 @@ sensor_specs = {
     "slle01_fwt": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 29),
 
     "srjy01": (sensor_SRJY01_modbus.SRJY01, '/dev/ttySC1', 55),
+
+    "ee671": (sensor_EE671_modbus.EE671, '/dev/ttySC0', 238)
 }
 
 
@@ -315,6 +319,9 @@ on_message_SRJY01 = sensor_handler(sensors["srjy01"], "srjy 01")["data"]
 on_message_sth01_1 = sensor_handler(sensors["sth01_1"], "sth01_1")["data"]
 on_message_sth01_2 = sensor_handler(sensors["sth01_2"], "sth01_2")["data"]
 
+# EE671
+on_message_EE671 = sensor_handler(sensors["ee671"], "ee671")["data"]
+
 
 # Setup MQTT client for sensor host
 client = mqtt.Client()
@@ -363,6 +370,9 @@ client.message_callback_add(MQTT_DT_REQ["srjy01"], on_message_SRJY01)
 
 # SYM flow sensor
 client.message_callback_add(MQTT_DT_REQ["sym01"], on_message_SYM01)
+
+# EE671 sensor
+client.message_callback_add(MQTT_DT_REQ["ee671"], on_message_EE671)
 
 
 # Actuators #

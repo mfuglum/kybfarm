@@ -400,6 +400,27 @@
 
 
 
+# ──────────────── EE671 ────────────────
+# Airflow Probe Sensor
+
+# ───── Temperature (°C) ─────
+- name: "Airflow Probe Temperature [°C]"
+  unique_id: "EE671_TEMPERATURE_C"
+  state_topic: "dt/gf/ee671/res"
+  value_template: "{{ value_json['fields'].temperature_c }}"
+  unit_of_measurement: "°C"
+  icon: "mdi:thermometer"
+
+# ───── Velocity (m/s) ─────
+- name: "Airflow Probe Velocity [m/s]"
+  unique_id: "EE671_VELOCITY_MS"
+  state_topic: "dt/gf/ee671/res"
+  value_template: "{{ value_json['fields'].air_velocity_ms }}"
+  unit_of_measurement: "m/s"
+  icon: "mdi:speedometer"
+
+
+
 # ──────────────── HSI ────────────────
 
 # === Scanner ===
