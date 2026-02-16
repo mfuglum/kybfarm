@@ -15,14 +15,13 @@ Init: co2voc_1, port=/dev/ttySC0, slave=7
 Failed to init co2voc_1: No communication with the instrument (no answer)
 Init: co2voc_2, port=/dev/ttySC0, slave=8
 Init: sth01_1, port=/dev/ttySC0, slave=69
-Init: sth01_2, port=/dev/ttySC0, slave=70
 Init: slle01_gt1, port=/dev/ttySC1, slave=26
 Init: slle01_gt2, port=/dev/ttySC1, slave=27
 Init: slle01_mx, port=/dev/ttySC1, slave=28
 Init: slle01_fwt, port=/dev/ttySC1, slave=29
 Init: srjy01, port=/dev/ttySC1, slave=55
 Traceback (most recent call last):
-  File "/home/user1/kybfarm/edge/edge_computer_main.py", line 302, in <module>
+  File "/home/user1/kybfarm/edge/edge_computer_main.py", line 306, in <module>
     on_message_CO2_VOC_1 = sensor_handler(sensors["co2voc_1"], "co2voc_1")["data"]
                                           ~~~~~~~^^^^^^^^^^^^
 KeyError: 'co2voc_1'

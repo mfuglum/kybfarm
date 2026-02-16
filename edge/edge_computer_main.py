@@ -39,7 +39,7 @@ from src.sensor_interfaces import (
     sensor_SCD41_I2C,
     sensor_SLLE01_modbus,
     sensor_SRJY01_modbus,
-    sensor_EE671_modbus
+    #sensor_EE671_modbus
 )
 
 # ───────────────────────────────────── Actuator Modules ────────────────────────────────── #
@@ -68,7 +68,7 @@ MQTT_DT_REQ = {
     "light01":    os.getenv("MQTT_DT_REQ_SLIGHT01"),
     "par02_2":    os.getenv("MQTT_DT_REQ_PAR_GT2"),
     "sth01_1":    os.getenv("MQTT_DT_REQ_STH_1"),
-    "sth01_2":    os.getenv("MQTT_DT_REQ_STH_2"),
+    #"sth01_2":    os.getenv("MQTT_DT_REQ_STH_2"),
     "co2voc_1":   os.getenv("MQTT_DT_REQ_CO2_VOC_1"),
     "co2voc_2":   os.getenv("MQTT_DT_REQ_CO2_VOC_2"),
     "sym01":      os.getenv("MQTT_DT_REQ_SYM01"),
@@ -77,7 +77,7 @@ MQTT_DT_REQ = {
     "slle01_mx":  os.getenv("MQTT_DT_REQ_SLLE01_MX"),
     "slle01_fwt": os.getenv("MQTT_DT_REQ_SLLE01_FWT"),
     "srjy01":     os.getenv("MQTT_DT_REQ_SRJY01"),
-    "ee671":      os.getenv("MQTT_DT_REQ_EE671")
+    #"ee671":      os.getenv("MQTT_DT_REQ_EE671")
 }
 
 # ───────────── Sensor Command Request Topics (CMD_REQ) ───────────── #
@@ -177,20 +177,20 @@ sensor_specs = {
 
     "sym01":   (sensor_SYM01_modbus.SYM01, '/dev/ttySC1', 12),
 
-    "co2voc_1": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 7),
-    "co2voc_2": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 8),
+    "co2voc_1": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 8),
+    "co2voc_2": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 7),
 
     "sth01_1": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
-    "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70), # disconnected (replaced with the second CO2 sensor)
+    #"sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70), - disconnected (replaced with the second CO2 sensor)
 
-    "slle01_gt1": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 26),
-    "slle01_gt2": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 27),
+    "slle01_gt1": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 29),
+    "slle01_gt2": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 26),
     "slle01_mx": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 28),
-    "slle01_fwt": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 29),
+    "slle01_fwt": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 27),
 
     "srjy01": (sensor_SRJY01_modbus.SRJY01, '/dev/ttySC1', 55),
 
-    "ee671": (sensor_EE671_modbus.EE671, '/dev/ttySC0', 238)
+    #"ee671": (sensor_EE671_modbus.EE671, '/dev/ttySC0', 238)
 }
 
 
@@ -219,7 +219,7 @@ def sensor_handler(sensor_obj, label):
     def on_data(client, userdata, msg):
         req_msg = json.loads(msg.payload)
         try:
-            if label in ["sth01_1", "sth01_2"]:
+            if label in ["sth01_1"]: #, "sth01_2"]:
                 data = sensor_obj.fetch_and_return_data(label)
             else:
                 data = sensor_obj.fetch_and_return_data()
@@ -313,14 +313,14 @@ on_message_SLLE01_MX  = sensor_handler(sensors["slle01_mx"], "slle01_mx")["data"
 on_message_SLLE01_FWT = sensor_handler(sensors["slle01_fwt"], "slle01_fwt")["data"]
 
 # SRJY01
-on_message_SRJY01 = sensor_handler(sensors["srjy01"], "srjy 01")["data"]
+on_message_SRJY01 = sensor_handler(sensors["srjy01"], "srjy01")["data"]
 
 # STH sensors
 on_message_sth01_1 = sensor_handler(sensors["sth01_1"], "sth01_1")["data"]
-on_message_sth01_2 = sensor_handler(sensors["sth01_2"], "sth01_2")["data"]
+#on_message_sth01_2 = sensor_handler(sensors["sth01_2"], "sth01_2")["data"]
 
 # EE671
-on_message_EE671 = sensor_handler(sensors["ee671"], "ee671")["data"]
+#on_message_EE671 = sensor_handler(sensors["ee671"], "ee671")["data"]
 
 
 # Setup MQTT client for sensor host
@@ -349,7 +349,7 @@ client.message_callback_add(MQTT_CMD_REQ["ph_mx"],  on_message_ph_mx_cmd)
 
 # STH01 sensors
 client.message_callback_add(MQTT_DT_REQ["sth01_1"], on_message_sth01_1)
-client.message_callback_add(MQTT_DT_REQ["sth01_2"], on_message_sth01_2)
+#client.message_callback_add(MQTT_DT_REQ["sth01_2"], on_message_sth01_2)
 
 # PAR sensors (assuming callbacks are defined)
 client.message_callback_add(MQTT_DT_REQ["light01"], on_message_light01)
@@ -372,7 +372,7 @@ client.message_callback_add(MQTT_DT_REQ["srjy01"], on_message_SRJY01)
 client.message_callback_add(MQTT_DT_REQ["sym01"], on_message_SYM01)
 
 # EE671 sensor
-client.message_callback_add(MQTT_DT_REQ["ee671"], on_message_EE671)
+#client.message_callback_add(MQTT_DT_REQ["ee671"], on_message_EE671)
 
 
 # Actuators #

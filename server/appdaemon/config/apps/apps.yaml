@@ -47,7 +47,7 @@ co2_pid:
   module: co2_pid
   class: CO2PID
   co2_pid_enable_id: input_boolean.co2_pid_enable_toggle
-  co2_sensor_id: sensor.co2_voc_sensor_1_co2
+  co2_sensor_id: sensor.co2_voc_sensor_2_co2
   co2_ref_id: input_number.co2_ref
   co2_pid_kp_id: input_number.co2_pid_kp
   co2_pid_ki_id: input_number.co2_pid_ki
@@ -70,16 +70,13 @@ heating_pid:
   module: heating_pid
   class: HeatingPID
   enable_id: input_boolean.heating_pid_enable_toggle
-  sensor_id: sensor.sth_sensor_1_temperature
+  sensor_id: sensor.co2_voc_sensor_2_temperature
   ref_id: input_number.temp_ref
   kp_id: input_number.heating_pid_kp
   ki_id: input_number.heating_pid_ki
   kd_id: input_number.heating_pid_kd
   relay_id: input_boolean.solid_state_relay1
-  pwm_duty_cycle_id: input_number.ssr_duty_cycle
-  pwm_base_period_id: input_number.ssr_base_period
-  pwm_stop_id: input_boolean.solid_state_relay_stop_loop
-  turn_on_for_id: input_number.ssr_turn_on_for
+
 
 lamp1_controller:
   module: lamp_control

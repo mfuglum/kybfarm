@@ -1,24 +1,27 @@
 import appdaemon.plugins.hass.hassapi as hass
 
 class HeatingPID(hass.Hass):
+
     def initialize(self):
         self.enable_entity = self.args["enable_id"]
-        self.sensor_entity = self.args["sensor_id"]
+        self.sensor_entity = self.args["sensor_id"]      # co2voc_2 temperature
         self.ref_entity = self.args["ref_id"]
         self.kp_entity = self.args["kp_id"]
         self.ki_entity = self.args["ki_id"]
         self.kd_entity = self.args["kd_id"]
         self.relay_entity = self.args["relay_id"]
-        self.pwm_duty_entity = self.args.get("pwm_duty_cycle_id", None)
-        self.pwm_period_entity = self.args.get("pwm_base_period_id", None)
-        self.pwm_stop_entity = self.args.get("pwm_stop_id", None)
 
-        self.integral = 0
-        self.prev_error = 0
-        self.prev_time = self.datetime()
+        # PID state
+        self.integral = 0.0
+        self.prev_error = None
+        self.prev_time = None
         self.off_timer = None
 
-        self.run_every(self.control_loop, self.datetime(), 30)
+        # TPC (Time Proportional Control) parameters
+        self.max_on_time = 45.0      # seconds (maximum heater ON inside cycle)
+        self.cycle_period = 60.0     # control cycle length
+
+        self.run_every(self.control_loop, self.datetime(), self.cycle_period)
 
     def control_loop(self, kwargs):
         if self.get_state(self.enable_entity) != "on":
@@ -26,6 +29,7 @@ class HeatingPID(hass.Hass):
             return
 
         try:
+            # read sensor and parameters
             ref = float(self.get_state(self.ref_entity))
             temp = float(self.get_state(self.sensor_entity))
 
@@ -33,49 +37,78 @@ class HeatingPID(hass.Hass):
             Ki = float(self.get_state(self.ki_entity))
             Kd = float(self.get_state(self.kd_entity))
 
+            # PID error
             error = ref - temp
+
+            # time delta
             now = self.datetime()
-            dt = (now - self.prev_time).total_seconds()
+            if self.prev_time is None:
+                dt = self.cycle_period
+            else:
+                dt = (now - self.prev_time).total_seconds()
+                if dt <= 0:
+                    dt = self.cycle_period
             self.prev_time = now
 
+            # INTEGRAL term with anti-windup
             self.integral += error * dt
-            derivative = (error - self.prev_error) / dt if dt > 0 else 0
+
+            # reset integrator when overshooting
+            if error < 0:
+                self.integral = 0.0
+
+            # clamp integral to avoid runaway
+            self.integral = max(min(self.integral, 500), -500)
+
+            # DERIVATIVE term
+            if self.prev_error is None:
+                derivative = 0.0
+            else:
+                derivative = (error - self.prev_error) / dt
             self.prev_error = error
 
+            # PID output
             control_signal = Kp * error + Ki * self.integral + Kd * derivative
-            control_signal = max(0.0, control_signal)  # No negative control
 
-            # Convert control signal to ON time seconds (max 10s)
-            on_time = min(control_signal, 10)
+            # Normalize 0–1 range
+            scaled = max(0.0, min(control_signal / 20.0, 1.0))
+
+            # compute ON time for heater
+            on_time = scaled * self.max_on_time
 
             if on_time < 0.1:
                 self._turn_off_relay()
-                self.log(f"Heating PID: ON time too low ({on_time}s), turning relay OFF")
+                self.log(f"[Heating PID] temp={temp:.2f}, err={error:.2f}, signal={control_signal:.2f}, relay OFF")
             else:
                 self._turn_on_relay(on_time)
-                self.log(f"Heating PID: ref={ref}, temp={temp}, error={error:.2f}, ON for {on_time}s")
-
-            # PWM control if configured
-            if self.pwm_duty_entity and self.pwm_period_entity and self.pwm_stop_entity:
-                if self.get_state(self.pwm_stop_entity) != "on":
-                    duty_cycle = min(max(control_signal / 10.0, 0.0), 1.0)
-                    base_period = float(self.get_state(self.pwm_period_entity))
-                    self.call_service("input_number/set_value", entity_id=self.pwm_duty_entity, value=duty_cycle)
-                    self.call_service("input_number/set_value", entity_id=self.pwm_period_entity, value=base_period)
-                else:
-                    self.call_service("input_number/set_value", entity_id=self.pwm_duty_entity, value=0.0)
+                self.log(f"[Heating PID] temp={temp:.2f}, err={error:.2f}, ON for {on_time:.2f}s")
 
         except Exception as e:
             self.log(f"[Heating PID ERROR] {e}")
 
     def _turn_on_relay(self, duration):
-        if self.off_timer:
-            self.cancel_timer(self.off_timer)
+        # safely cancel old timer (if any)
+        if self.off_timer is not None:
+            try:
+                self.cancel_timer(self.off_timer)
+            except:
+                pass
+            self.off_timer = None
+
+        # turn relay ON
         self.call_service("input_boolean/turn_on", entity_id=self.relay_entity)
+
+        # Schedule OFF
         self.off_timer = self.run_in(self._turn_off_relay, duration)
 
     def _turn_off_relay(self, kwargs=None):
+        # turn relay OFF
         self.call_service("input_boolean/turn_off", entity_id=self.relay_entity)
-        if self.off_timer:
-            self.cancel_timer(self.off_timer)
+
+        # clear timer
+        if self.off_timer is not None:
+            try:
+                self.cancel_timer(self.off_timer)
+            except:
+                pass
             self.off_timer = None
