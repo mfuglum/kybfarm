@@ -19,3 +19,4 @@ edge/nohup.out
 
 # ────────────────────────────── InfluxDB ───────────────────────────────
 /server/influxdb/
+edge/nohup.backup
