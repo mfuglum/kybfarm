@@ -64,9 +64,7 @@ class CO2PID(hass.Hass):
             control_signal = Kp * error + Ki * self.integral + Kd * derivative
 
             # Saturation to 0–1
-            scaled = max(0.0, min(control_signal / 1000.0, 1.0))
-            # 1000 is an arbitrary “control authority” constant.
-            # Adjust based on tuning later.
+            scaled = max(0.0, min(control_signal / 1000.0, 1.0)) # 1000 is an arbitrary “control authority” constant. Adjust based on tuning later.
 
             # On-time command
             on_time = scaled * self.max_on_time

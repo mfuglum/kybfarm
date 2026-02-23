@@ -35,8 +35,8 @@ from src.sensor_interfaces import (
     sensor_SPH01_modbus,
     sensor_CO2_VOC_modbus,
     sensor_STH01_modbus,
-    sensor_BMP280_I2C,
-    sensor_SCD41_I2C,
+    #sensor_BMP280_I2C,
+    #sensor_SCD41_I2C,
     sensor_SLLE01_modbus,
     sensor_SRJY01_modbus,
     #sensor_EE671_modbus
