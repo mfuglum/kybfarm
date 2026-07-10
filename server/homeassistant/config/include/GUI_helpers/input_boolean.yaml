@@ -32,8 +32,8 @@ relay_7:
   icon: "mdi:air-humidifier-off"
 
 relay_8:
-  name: "[RL8] Heater"
-  icon: "mdi:radiator"
+  name: "[RL8] Peristaltic Pump 4"
+  icon: "mdi:pump"
 
 relay_9:
   name: "[RL9] Extra"

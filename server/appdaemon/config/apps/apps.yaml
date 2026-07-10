@@ -142,9 +142,9 @@ alarm_monitor:
   # ── SMTP / email (FILL IN before enabling) ──
   smtp_host: smtp.gmail.com
   smtp_port: 465                        # SSL port (smtplib.SMTP_SSL)
-  smtp_user: agribot.kybfarm@gmail.com  # sender
-  smtp_pass: uxzh belj spkk ulcm        # app password
-  recipient: hannes.pravida@ntnu.no     # receiver
+  smtp_user: !secret smtp_user          # sender
+  smtp_pass: !secret smtp_pass          # set in config/secrets.yaml, never committed
+  recipient: !secret alarm_recipient    # receiver
   cooldown_hours: 1
 
   # ── Monitored HA entities ──
