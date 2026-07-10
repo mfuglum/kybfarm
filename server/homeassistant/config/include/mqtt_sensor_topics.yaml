@@ -195,6 +195,12 @@
   unit_of_measurement: "lx"
   icon: "mdi:white-balance-sunny"
 
+- name: "PAR Sensor 02 GT1 [PAR]"
+  unique_id: "S-PAR-02_GT1"
+  state_topic: "dt/gf/spar02/gt1/res"
+  value_template: "{{ value_json['fields'].par }}"
+  unit_of_measurement: "µmol/m²/s"
+  icon: "mdi:white-balance-sunny"
 
 - name: "PAR Sensor 02 GT2 [PAR]"
   unique_id: "S-PAR-02_GT2"
@@ -320,7 +326,7 @@
 - name: "Water Level Sensor GT1 [Pressure]"
   unique_id: "SLLE01_GT1_PRESSURE"
   state_topic: "dt/gf/slle01/gt1/res"
-  value_template: "{{ value_json['fields'].pressure_kPa }}"
+  value_template: "{{ value_json['fields'].pressure_kPa_est }}"
   unit_of_measurement: "kPa"
   icon: "mdi:gauge"
 
@@ -335,7 +341,7 @@
 - name: "Water Level Sensor GT2 [Pressure]"
   unique_id: "SLLE01_GT2_PRESSURE"
   state_topic: "dt/gf/slle01/gt2/res"
-  value_template: "{{ value_json['fields'].pressure_kPa }}"
+  value_template: "{{ value_json['fields'].pressure_kPa_est }}"
   unit_of_measurement: "kPa"
   icon: "mdi:gauge"
 
@@ -350,7 +356,7 @@
 - name: "Water Level Sensor MX [Pressure]"
   unique_id: "SLLE01_MX_PRESSURE"
   state_topic: "dt/gf/slle01/mx/res"
-  value_template: "{{ value_json['fields'].pressure_kPa }}"
+  value_template: "{{ value_json['fields'].pressure_kPa_est }}"
   unit_of_measurement: "kPa"
   icon: "mdi:gauge"
 
@@ -365,7 +371,7 @@
 - name: "Water Level Sensor FWT [Pressure]"
   unique_id: "SLLE01_FWT_PRESSURE"
   state_topic: "dt/gf/slle01/fwt/res"
-  value_template: "{{ value_json['fields'].pressure_kPa }}"
+  value_template: "{{ value_json['fields'].pressure_kPa_est }}"
   unit_of_measurement: "kPa"
   icon: "mdi:gauge"
 

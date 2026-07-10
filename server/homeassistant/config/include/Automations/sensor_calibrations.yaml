@@ -37,7 +37,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ec_gt1/req"
-        payload: '{"cmd": "calibrate_ec_1413", "res_topic": "dt/gf/sec01/gt1/res"}'
+        payload: '{"cmd": "calibrate_ec_1413", "res_topic": "dt/gf/sec01/gt1/cal_res"}'
   mode: single
 
 # Initiate 12880us/cm
@@ -71,7 +71,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ec_gt1/req"
-        payload: '{"cmd": "calibrate_ec_12880", "res_topic": "dt/gf/sec01/gt1/res"}'
+        payload: '{"cmd": "calibrate_ec_12880", "res_topic": "dt/gf/sec01/gt1/cal_res"}'
   mode: single
 
 # Return to Normal
@@ -123,7 +123,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ec_gt2/req"
-        payload: '{"cmd": "calibrate_ec_1413", "res_topic": "dt/gf/sec01/gt2/res"}'
+        payload: '{"cmd": "calibrate_ec_1413", "res_topic": "dt/gf/sec01/gt2/cal_res"}'
   mode: single
 
 # Initiate 12880us/cm
@@ -157,7 +157,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ec_gt2/req"
-        payload: '{"cmd": "calibrate_ec_12880", "res_topic": "dt/gf/sec01/gt2/res"}'
+        payload: '{"cmd": "calibrate_ec_12880", "res_topic": "dt/gf/sec01/gt2/cal_res"}'
   mode: single
 
 # Return to Normal
@@ -209,7 +209,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ec_mx/req"
-        payload: '{"cmd": "calibrate_ec_1413", "res_topic": "dt/gf/sec01/mx/res"}'
+        payload: '{"cmd": "calibrate_ec_1413", "res_topic": "dt/gf/sec01/mx/cal_res"}'
   mode: single
 
 # Initiate 12880us/cm
@@ -243,7 +243,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ec_mx/req"
-        payload: '{"cmd": "calibrate_ec_12880", "res_topic": "dt/gf/sec01/mx/res"}'
+        payload: '{"cmd": "calibrate_ec_12880", "res_topic": "dt/gf/sec01/mx/cal_res"}'
   mode: single
 
 # Return to Normal
@@ -295,7 +295,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ph_gt1/req"
-        payload: '{ "cmd": "calibrate_ph_0401", "res_topic": "dt/gf/sph01/gt1/res"}'
+        payload: '{ "cmd": "calibrate_ph_0401", "res_topic": "dt/gf/sph01/gt1/cal_res"}'
   mode: single
 
 # Initiate 7.00pH
@@ -329,7 +329,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ph_gt1/req"
-        payload: '{ "cmd": "calibrate_ph_0700", "res_topic": "dt/gf/sph01/gt1/res"}'
+        payload: '{ "cmd": "calibrate_ph_0700", "res_topic": "dt/gf/sph01/gt1/cal_res"}'
   mode: single
 
 # Initiate 10.01pH
@@ -363,7 +363,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ph_gt1/req"
-        payload: '{ "cmd": "calibrate_ph_1001", "res_topic": "dt/gf/sph01/gt1/res"}'
+        payload: '{ "cmd": "calibrate_ph_1001", "res_topic": "dt/gf/sph01/gt1/cal_res"}'
   mode: single
 
 # Return to Normal
@@ -415,7 +415,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ph_gt2/req"
-        payload: '{ "cmd": "calibrate_ph_0401", "res_topic": "dt/gf/sph01/gt2/res"}'
+        payload: '{ "cmd": "calibrate_ph_0401", "res_topic": "dt/gf/sph01/gt2/cal_res"}'
   mode: single
 
 # Initiate 7.00pH
@@ -449,7 +449,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ph_gt2/req"
-        payload: '{ "cmd": "calibrate_ph_0700", "res_topic": "dt/gf/sph01/gt2/res"}'
+        payload: '{ "cmd": "calibrate_ph_0700", "res_topic": "dt/gf/sph01/gt2/cal_res"}'
   mode: single
 
 # Initiate 10.01pH
@@ -483,7 +483,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ph_gt2/req"
-        payload: '{ "cmd": "calibrate_ph_1001", "res_topic": "dt/gf/sph01/gt2/res"}'
+        payload: '{ "cmd": "calibrate_ph_1001", "res_topic": "dt/gf/sph01/gt2/cal_res"}'
   mode: single
 
 # Return to Normal
@@ -534,7 +534,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ph_mx/req"
-        payload: '{ "cmd": "calibrate_ph_0401", "res_topic": "dt/gf/sph01/mx/res"}'
+        payload: '{ "cmd": "calibrate_ph_0401", "res_topic": "dt/gf/sph01/mx/cal_res"}'
   mode: single
 
 # Initiate 7.00pH
@@ -568,7 +568,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ph_mx/req"
-        payload: '{ "cmd": "calibrate_ph_0700", "res_topic": "dt/gf/sph01/mx/res"}'
+        payload: '{ "cmd": "calibrate_ph_0700", "res_topic": "dt/gf/sph01/mx/cal_res"}'
   mode: single
 
 # Initiate 10.01pH
@@ -602,7 +602,7 @@
     - service: mqtt.publish
       data:
         topic: "cmd/ph_mx/req"
-        payload: '{ "cmd": "calibrate_ph_1001", "res_topic": "dt/gf/sph01/mx/res"}'
+        payload: '{ "cmd": "calibrate_ph_1001", "res_topic": "dt/gf/sph01/mx/cal_res"}'
   mode: single
 
 # Return to Normal

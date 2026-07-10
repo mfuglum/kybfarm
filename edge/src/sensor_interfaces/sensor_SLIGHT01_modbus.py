@@ -1,18 +1,6 @@
 import minimalmodbus
 import datetime
 
-# A dictionary struct to send as payload over MQTT
-data = {
-    "measurement": "light intensity",
-    "tags": {
-        "sensor_id": "01",
-        "location": "Gloeshaugen",
-        "sensor_name": "S-LIGHT-01"},
-    "fields": {
-            "illuminance": 0},
-    "time": datetime.datetime.now().isoformat(),
-}
-
 # The device / Instrument class for Seeed Studio SenseCAP S-LIGHT-01 Light Intensity sensor
 class SLIGHT01( minimalmodbus.Instrument ):
     """Instrument class for S-LIGHT-01 Light Intensity sensor.
@@ -141,6 +129,14 @@ class SLIGHT01( minimalmodbus.Instrument ):
     # A funcion to fetch and return data from the sensor
     def fetch_and_return_data(self):
         illuminance = self.get_illuminance()
-        data["fields"]["illuminance"] = illuminance
-        data["time"] = datetime.datetime.now().isoformat()
+        data = {
+            "measurement": "light intensity",
+            "tags": {
+                "sensor_id": self.address,
+                "location": "Gloeshaugen",
+                "sensor_name": "S-LIGHT-01"},
+            "fields": {
+                "illuminance": illuminance},
+            "time": datetime.datetime.now().isoformat(),
+        }
         return data

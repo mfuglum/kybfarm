@@ -1,20 +1,6 @@
 import minimalmodbus
 import datetime
 
-# A dictionary struct to send as payload over MQTT
-data = {
-    "measurement": "pH and Temperature",
-    "tags": {
-        "sensor_id": "5",
-        "location": "Gloeshaugen",
-        "sensor_name": "S-PH-01"},
-    "fields": {
-        "ph": 0,
-        "temperature": 0,
-        "calibrated": 0},
-    "time": datetime.datetime.now().isoformat()
-}
-
 # The device / Instrument class for Seeed Studio SenseCAP S-PH-01 pH and Temperature sensor
 class SPH01( minimalmodbus.Instrument ):
     """Instrument class for S-PH-01 pH and Temperature sensor.
@@ -107,10 +93,18 @@ class SPH01( minimalmodbus.Instrument ):
         temperature = self.get_temperature()
         pH = self.get_pH()
 
-        data["fields"]["temperature"] = temperature
-        data["fields"]["ph"] = pH
-        data["time"] = datetime.datetime.now().isoformat()
-        data["tags"]["sensor_id"] = self.address
+        data = {
+            "measurement": "pH and Temperature",
+            "tags": {
+                "sensor_id": self.address,
+                "location": "Gloeshaugen",
+                "sensor_name": "S-PH-01"},
+            "fields": {
+                "ph": pH,
+                "temperature": temperature,
+                "calibrated": 0},
+            "time": datetime.datetime.now().isoformat(),
+        }
         return data
     
     def get_slave_address(self):
@@ -164,9 +158,12 @@ class SPH01( minimalmodbus.Instrument ):
                             signed=False)
         # Return data struct with calibrated field set to the timestamp
         time = datetime.datetime.now().isoformat()
-        data["time"] = time
-        data["sensor_id"] = self.address
-        data["fields"]["calibrated"] = time
+        data = {
+            "measurement": "pH and Temperature",
+            "tags": {"sensor_id": self.address},
+            "fields": {"calibrated": time},
+            "time": time,
+        }
         return data
         
     def calibrate_ph_0700(self):
@@ -177,9 +174,12 @@ class SPH01( minimalmodbus.Instrument ):
                             signed=False)
         # Return data struct with calibrated field set to the timestamp
         time = datetime.datetime.now().isoformat()
-        data["time"] = time
-        data["sensor_id"] = self.address
-        data["fields"]["calibrated"] = time
+        data = {
+            "measurement": "pH and Temperature",
+            "tags": {"sensor_id": self.address},
+            "fields": {"calibrated": time},
+            "time": time,
+        }
         return data
     
     def calibrate_ph_1001(self):
@@ -190,7 +190,10 @@ class SPH01( minimalmodbus.Instrument ):
                             signed=False)
         # Return data struct with calibrated field set to the timestamp
         time = datetime.datetime.now().isoformat()
-        data["time"] = time
-        data["sensor_id"] = self.address
-        data["fields"]["calibrated"] = time
+        data = {
+            "measurement": "pH and Temperature",
+            "tags": {"sensor_id": self.address},
+            "fields": {"calibrated": time},
+            "time": time,
+        }
         return data

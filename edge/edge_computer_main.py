@@ -23,6 +23,7 @@
 import os
 import time
 import json
+from datetime import date
 from dotenv import load_dotenv
 import paho.mqtt.client as mqtt
 
@@ -49,6 +50,7 @@ from src.actuator_instances import (
     relay_devices_initialization,
     grow_lamp_elixia_initialization
 )
+from src.actuator_instances.lamp_csv_failover import LampCsvFailover
 # ───────────────────────────── Load Environment ───────────────────────────── #
 load_dotenv()
 
@@ -66,6 +68,7 @@ MQTT_DT_REQ = {
     "ph_gt2":     os.getenv("MQTT_DT_REQ_PH_GT2"),
     "ph_mx":      os.getenv("MQTT_DT_REQ_PH_MX"),
     "light01":    os.getenv("MQTT_DT_REQ_SLIGHT01"),
+    "par02_1":    os.getenv("MQTT_DT_REQ_PAR_GT1"),
     "par02_2":    os.getenv("MQTT_DT_REQ_PAR_GT2"),
     "sth01_1":    os.getenv("MQTT_DT_REQ_STH_1"),
     #"sth01_2":    os.getenv("MQTT_DT_REQ_STH_2"),
@@ -165,6 +168,7 @@ def on_connect(client, userdata, flags, rc):
 
 sensor_specs = {
     "light01": (sensor_LIGHT01_modbus.SLIGHT01, '/dev/ttySC1', 1),
+    "par_gt1": (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 33),
     "par_gt2": (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 34),
 
     "ec_gt1":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 5),
@@ -183,10 +187,10 @@ sensor_specs = {
     "sth01_1": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
     #"sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70), - disconnected (replaced with the second CO2 sensor)
 
-    "slle01_gt1": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 29),
-    "slle01_gt2": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 26),
+    "slle01_gt1": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 27),
+    "slle01_gt2": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 29),
     "slle01_mx": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 28),
-    "slle01_fwt": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 27),
+    "slle01_fwt": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 26),
 
     "srjy01": (sensor_SRJY01_modbus.SRJY01, '/dev/ttySC1', 55),
 
@@ -277,6 +281,7 @@ def sensor_handler(sensor_obj, label):
 
 # PAR sensors (data only)
 on_message_light01 = sensor_handler(sensors["light01"], "light01")["data"]
+on_message_par02_1 = sensor_handler(sensors["par_gt1"], "par_gt1")["data"]
 on_message_par02_2 = sensor_handler(sensors["par_gt2"], "par_gt2")["data"]
 
 # EC sensors (data + command)
@@ -353,6 +358,7 @@ client.message_callback_add(MQTT_DT_REQ["sth01_1"], on_message_sth01_1)
 
 # PAR sensors (assuming callbacks are defined)
 client.message_callback_add(MQTT_DT_REQ["light01"], on_message_light01)
+client.message_callback_add(MQTT_DT_REQ["par02_1"], on_message_par02_1)
 client.message_callback_add(MQTT_DT_REQ["par02_2"], on_message_par02_2)
 
 # CO₂ VOC sensor
@@ -418,6 +424,19 @@ try:
     client.loop_start()
 except:
     print("\nConnection failed\n")
+
+
+# ───────────── Lamp 1 CSV Schedule Failover ───────────── #
+# Reuses the lamp_1 object whose IP was set above; passive while the broker is
+# reachable, takes over only when disconnected beyond the grace period AND armed.
+lamp1_failover = LampCsvFailover(
+    lamp=grow_lamp_elixia_initialization.lamp_1,            # same object, IP already set
+    broker_ip=MQTT_HOST,                                    # same broker var the main client uses
+    broker_port=MQTT_PORT,
+    csv_dir="/home/user1/kybfarm/edge/lamp_csv_schedules",
+    start_date=date(2026, 6, 15),                           # MUST match server apps.yaml
+)
+lamp1_failover.start()
 
 
 # Start main loop #

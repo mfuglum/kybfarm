@@ -1,20 +1,6 @@
 import minimalmodbus
 import datetime
 
-# A dictionary struct to send as payload over MQTT
-data = {
-    "measurement": "Temperature and Leaf Wetness",
-    "tags": {
-        "sensor_id": "10",
-        "location": "Gloeshaugen",
-        "sensor_name": "S-YM-01"},
-    "fields": {
-            "temperature": 0,
-            "wetness": 0},
-    "time": datetime.datetime.now().isoformat(),
-}
-
-
 # The device / Instrument class for Seeed Studio SenseCAP S-YM-01 Leaf wetness & Temperature sensor
 class SYM01( minimalmodbus.Instrument ):
     """Instrument class for S-YM-01 Leaf wetness & Temperature sensor.
@@ -124,7 +110,15 @@ class SYM01( minimalmodbus.Instrument ):
 
     # A function to fetch and return data from the sensor
     def fetch_and_return_data(self):
-        data["fields"]["temperature"] =  self.get_temperature()
-        data["fields"]["wetness"] = self.get_wetness()
-        data["time"] = datetime.datetime.now().isoformat()
+        data = {
+            "measurement": "Temperature and Leaf Wetness",
+            "tags": {
+                "sensor_id": self.address,
+                "location": "Gloeshaugen",
+                "sensor_name": "S-YM-01"},
+            "fields": {
+                "temperature": self.get_temperature(),
+                "wetness": self.get_wetness()},
+            "time": datetime.datetime.now().isoformat(),
+        }
         return data

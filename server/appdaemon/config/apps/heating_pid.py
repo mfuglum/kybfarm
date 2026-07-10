@@ -4,7 +4,7 @@ class HeatingPID(hass.Hass):
 
     def initialize(self):
         self.enable_entity = self.args["enable_id"]
-        self.sensor_entity = self.args["sensor_id"]      # co2voc_2 temperature
+        self.sensor_entity = self.args["sensor_id"]      # co2voc sensor 2 temperature
         self.ref_entity = self.args["ref_id"]
         self.kp_entity = self.args["kp_id"]
         self.ki_entity = self.args["ki_id"]
@@ -17,8 +17,8 @@ class HeatingPID(hass.Hass):
         self.prev_time = None
         self.off_timer = None
 
-        # TPC (Time Proportional Control) parameters
-        self.max_on_time = 45.0      # seconds (maximum heater ON inside cycle)
+        # TPC (Time-Proportional Control) parameters
+        self.max_on_time = 45.0      # time in seconds (maximum heater ON time per cycle)
         self.cycle_period = 60.0     # control cycle length
 
         self.run_every(self.control_loop, self.datetime(), self.cycle_period)
@@ -29,7 +29,7 @@ class HeatingPID(hass.Hass):
             return
 
         try:
-            # read sensor and parameters
+
             ref = float(self.get_state(self.ref_entity))
             temp = float(self.get_state(self.sensor_entity))
 
@@ -37,10 +37,8 @@ class HeatingPID(hass.Hass):
             Ki = float(self.get_state(self.ki_entity))
             Kd = float(self.get_state(self.kd_entity))
 
-            # PID error
             error = ref - temp
 
-            # time delta
             now = self.datetime()
             if self.prev_time is None:
                 dt = self.cycle_period
@@ -50,17 +48,17 @@ class HeatingPID(hass.Hass):
                     dt = self.cycle_period
             self.prev_time = now
 
-            # INTEGRAL term with anti-windup
+            # integral term (w/ anti-windup)
             self.integral += error * dt
 
-            # reset integrator when overshooting
+            # reset integrator in case of overshooting
             if error < 0:
                 self.integral = 0.0
 
             # clamp integral to avoid runaway
             self.integral = max(min(self.integral, 500), -500)
 
-            # DERIVATIVE term
+            # derivative term
             if self.prev_error is None:
                 derivative = 0.0
             else:
@@ -70,7 +68,7 @@ class HeatingPID(hass.Hass):
             # PID output
             control_signal = Kp * error + Ki * self.integral + Kd * derivative
 
-            # Normalize 0–1 range
+            # Normalize in 0–1 range
             scaled = max(0.0, min(control_signal / 20.0, 1.0))
 
             # compute ON time for heater
@@ -87,7 +85,7 @@ class HeatingPID(hass.Hass):
             self.log(f"[Heating PID ERROR] {e}")
 
     def _turn_on_relay(self, duration):
-        # safely cancel old timer (if any)
+
         if self.off_timer is not None:
             try:
                 self.cancel_timer(self.off_timer)
@@ -102,6 +100,7 @@ class HeatingPID(hass.Hass):
         self.off_timer = self.run_in(self._turn_off_relay, duration)
 
     def _turn_off_relay(self, kwargs=None):
+        
         # turn relay OFF
         self.call_service("input_boolean/turn_off", entity_id=self.relay_entity)
 

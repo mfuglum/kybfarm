@@ -134,3 +134,26 @@ lamp2_controller:
   finish_time_id: input_datetime.lamp2_finish_time
   toggle_id: input_boolean.lamp2_control_toggle
 
+
+alarm_monitor:
+  module: alarm_monitor
+  class: AlarmMonitor
+
+  # ── SMTP / email (FILL IN before enabling) ──
+  smtp_host: smtp.gmail.com
+  smtp_port: 465                        # SSL port (smtplib.SMTP_SSL)
+  smtp_user: agribot.kybfarm@gmail.com  # sender
+  smtp_pass: uxzh belj spkk ulcm        # app password
+  recipient: hannes.pravida@ntnu.no     # receiver
+  cooldown_hours: 1
+
+  # ── Monitored HA entities ──
+  entity_temperature: sensor.co2_voc_sensor_1_temperature
+  entity_co2: sensor.co2_voc_sensor_2_co2
+  entity_ph_mx: sensor.ph_sensor_mx_ph
+  entities_water_level:
+    - sensor.water_level_sensor_gt1_level_2
+    - sensor.water_level_sensor_gt2_level_2
+    - sensor.water_level_sensor_mx_level_2
+    - sensor.water_level_sensor_fwt_level_2
+

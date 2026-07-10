@@ -37,24 +37,24 @@ calibrate_s_ph_01_gt1:
   icon: "mdi:beaker-check"
   options:
     - "Normal Operation"
-    - "Start pH Calibration (4.01)"
-    - "Confirm pH Calibration (4.01)"
-    - "Start pH Calibration (7.00)"
-    - "Confirm pH Calibration (7.00)"
-    - "Start pH Calibration (10.01)"
-    - "Confirm pH Calibration (10.01)"
+    - "Initiate calibration for pH 4.01"
+    - "Register calibration for pH 4.01"
+    - "Initiate calibration for pH 7.00"
+    - "Register calibration for pH 7.00"
+    - "Initiate calibration for pH 10.01"
+    - "Register calibration for pH 10.01"
 
 calibrate_s_ph_01_gt2:
   name: "[S-pH-01-GT2] Calibration"
   icon: "mdi:beaker-check"
   options:
     - "Normal Operation"
-    - "Start pH Calibration (4.01)"
-    - "Confirm pH Calibration (4.01)"
-    - "Start pH Calibration (7.00)"
-    - "Confirm pH Calibration (7.00)"
-    - "Start pH Calibration (10.01)"
-    - "Confirm pH Calibration (10.01)"
+    - "Initiate calibration for pH 4.01"
+    - "Register calibration for pH 4.01"
+    - "Initiate calibration for pH 7.00"
+    - "Register calibration for pH 7.00"
+    - "Initiate calibration for pH 10.01"
+    - "Register calibration for pH 10.01"
 
 calibrate_s_ph_01_mx:
   name: "[S-pH-01-MX] Calibration"

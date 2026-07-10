@@ -1,18 +1,6 @@
 import minimalmodbus
 import datetime
 
-# A dictionary struct to send as payload over MQTT
-data = {
-    "measurement": "photosynthetically active radiation",
-    "tags": {
-        "sensor_id": "02",
-        "location": "Gloeshaugen",
-        "sensor_name": "S-PAR-02"},
-    "fields": {
-            "par": 0},
-    "time": datetime.datetime.now().isoformat(),
-}
-
 # The device / Instrument class for Seeed Studio SenseCAP S-PAR-02 Photosynthetically Active Radiation sensor
 class SPAR02( minimalmodbus.Instrument ):
     """Instrument class for S-PAR-02 Photosynthetically Active Radiation sensor.
@@ -85,6 +73,14 @@ class SPAR02( minimalmodbus.Instrument ):
         par = self.get_par()
         if self.slaveaddress == 1:
             par = (par / 4390912) * 1.8947  # Adjusting for the slave address 1 as per the datasheet
-        data["fields"]["par"] = par
-        data["time"] = datetime.datetime.now().isoformat()
+        data = {
+            "measurement": "photosynthetically active radiation",
+            "tags": {
+                "sensor_id": self.address,
+                "location": "Gloeshaugen",
+                "sensor_name": "S-PAR-02"},
+            "fields": {
+                "par": par},
+            "time": datetime.datetime.now().isoformat(),
+        }
         return data

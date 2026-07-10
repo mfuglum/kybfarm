@@ -1,21 +1,6 @@
 import minimalmodbus
 import datetime
 
-# A dictionary struct to send as payload over MQTT
-data = {
-    "measurement": "EC, TDS, Salinity and Temperature",
-    "tags": {
-        "sensor_id": "03",
-        "location": "Gloeshaugen",
-        "sensor_name": "S-EC-01"},
-    "fields": {
-            "ec": 0,
-            "tds": 0,
-            "temperature": 0,
-            "calibrated": 0},
-    "time": datetime.datetime.now().isoformat(),
-}
-
 # The device / Instrument class for Seeed Studio SenseCAP S-EC-01 EC, TDS, Salinity and Temperature sensor
 class SEC01( minimalmodbus.Instrument ):
     """Instrument class for S-EC-01 EC, TDS, Salinity and Temperature sensor.
@@ -142,12 +127,19 @@ class SEC01( minimalmodbus.Instrument ):
         ec = self.get_ec()
         tds = self.get_tds()
         # salinity = self.get_salinity()
-        data["fields"]["temperature"] = temperature
-        data["fields"]["ec"] = ec
-        data["fields"]["tds"] = tds
-        # data["fields"]["salinity"] = salinity
-        data["time"] = datetime.datetime.now().isoformat()
-        data["tags"]["sensor_id"] = self.address
+        data = {
+            "measurement": "EC, TDS, Salinity and Temperature",
+            "tags": {
+                "sensor_id": self.address,
+                "location": "Gloeshaugen",
+                "sensor_name": "S-EC-01"},
+            "fields": {
+                "ec": ec,
+                "tds": tds,
+                "temperature": temperature,
+                "calibrated": 0},
+            "time": datetime.datetime.now().isoformat(),
+        }
         return data
     
     def get_slave_address(self):
@@ -236,9 +228,12 @@ class SEC01( minimalmodbus.Instrument ):
             return str(e)
         # Return data struct with calibrated field set to the timestamp
         time = datetime.datetime.now().isoformat()
-        data["time"] = time
-        data["sensor_id"] = self.address
-        data["fields"]["calibrated"] = time
+        data = {
+            "measurement": "EC, TDS, Salinity and Temperature",
+            "tags": {"sensor_id": self.address},
+            "fields": {"calibrated": time},
+            "time": time,
+        }
         return data        
     
     def read_ec_1413us(self):
@@ -255,11 +250,14 @@ class SEC01( minimalmodbus.Instrument ):
                             signed=False)
         # Return data struct with calibrated field set to the timestamp
         time = datetime.datetime.now().isoformat()
-        data["time"] = time
-        data["sensor_id"] = self.address
-        data["fields"]["calibrated"] = time
+        data = {
+            "measurement": "EC, TDS, Salinity and Temperature",
+            "tags": {"sensor_id": self.address},
+            "fields": {"calibrated": time},
+            "time": time,
+        }
         return data
-    
+
     def read_ec_12880us(self):
         return self.read_register(registeraddress=49,
                                   functioncode=3)

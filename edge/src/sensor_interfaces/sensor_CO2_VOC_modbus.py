@@ -2,23 +2,6 @@ import minimalmodbus
 import datetime
 import serial
 
-# A dictionary struct to send as payload over MQTT
-data = {
-    "measurement": "ambient",
-    "tags": {
-        "sensor_id": "1",
-        "location": "GF, Gloeshaugen",
-        "sensor_name": "CO2+VOC"},
-    "fields": {
-            "temperature": 0,
-            "humidity": 0,
-            "co2": 0,
-            "dewpoint": 0,
-            "volumeFlow": 0},
-    "time": datetime.datetime.now().isoformat(),
-}
-
-
 # The device / Instrument class for Thermokon LK+ CO2+VOC RS485 Modbus 
 class CO2_VOC( minimalmodbus.Instrument ):
     """Instrument class for sensor.
@@ -199,10 +182,18 @@ class CO2_VOC( minimalmodbus.Instrument ):
         humidity = self.get_humidity()
         dewpoint = self.get_dewpoint()
         volumeFlow = self.get_volume_flow()
-        data["fields"]["co2"] = co2
-        data["fields"]["humidity"] = humidity
-        data["fields"]["temperature"] = temperature
-        data["fields"]["dewpoint"] = dewpoint
-        data["fields"]["volumeFlow"] = volumeFlow
-        data["time"] = datetime.datetime.now().isoformat()
+        data = {
+            "measurement": "ambient",
+            "tags": {
+                "sensor_id": self.address,
+                "location": "GF, Gloeshaugen",
+                "sensor_name": "CO2+VOC"},
+            "fields": {
+                "temperature": temperature,
+                "humidity": humidity,
+                "co2": co2,
+                "dewpoint": dewpoint,
+                "volumeFlow": volumeFlow},
+            "time": datetime.datetime.now().isoformat(),
+        }
         return data
